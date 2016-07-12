@@ -1,0 +1,50 @@
+{
+  "name": "windtoday-search-backend",
+  "description": "Search engine classificator",
+  "homepage": "https://github.com/windtoday/windtoday-search-backend",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": {
+    "url": "https://github.com/windtoday"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/windtoday/windtoday-search-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/windtoday/windtoday-search-backend/issues"
+  },
+  "keywords": [],
+  "dependencies": {
+    "acho": "~3.0.2",
+    "algoliasearch": "~3.17.0",
+    "async": "~2.0.0-rc.3",
+    "config": "~1.21.0",
+    "lodash": "~4.13.1",
+    "ora": "~0.2.1",
+    "osom": "~1.1.2",
+    "pretty-ms": "~2.1.0",
+    "time-span": "~1.0.0",
+    "totalwind-api": "~1.0.0",
+    "windtoday-sails": "git+https://github.com/windtoday/windtoday-sails.git"
+  },
+  "devDependencies": {
+    "coveralls": "latest",
+    "git-dirty": "latest",
+    "mocha": "latest",
+    "nyc": "latest",
+    "should": "latest",
+    "standard": "latest"
+  },
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "standard lib index.js",
+    "pretest": "npm run lint",
+    "test": "nyc mocha"
+  },
+  "license": "MIT"
+}
