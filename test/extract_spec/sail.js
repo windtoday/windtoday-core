@@ -3,6 +3,7 @@
 /* global describe, it */
 
 var should = require('should')
+var lodash = require('lodash')
 
 module.exports = function (extract) {
   describe('sails', function () {
@@ -21,8 +22,10 @@ module.exports = function (extract) {
     })
 
     it('size', function () {
-      should(extract.sail.size('')).be.undefined()
+      var size = lodash.get(extract.sail(''), 'size')
+      should(size).be.undefined()
       ;[
+        '7 0',
         '7.0',
         '7,0',
         "7'0",
@@ -30,7 +33,8 @@ module.exports = function (extract) {
         '7,0m',
         "7'0m"
       ].forEach(function (sailSize) {
-        extract.sail.size(sailSize).should.be.equal('7.0')
+        var size = lodash.get(extract.sail(sailSize), 'size')
+        size.should.be.equal('7.0')
       })
     })
   })

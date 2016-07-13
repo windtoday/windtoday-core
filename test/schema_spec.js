@@ -2,7 +2,7 @@
 
 /* global describe, it */
 
-var schema = require('../lib/core/schema')
+var schema = require('../lib/schema')
 var should = require('should')
 
 var fixture = {
