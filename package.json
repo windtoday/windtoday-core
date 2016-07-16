@@ -18,7 +18,7 @@
   "dependencies": {
     "acho": "~3.0.2",
     "algoliasearch": "~3.17.0",
-    "async": "~2.0.0-rc.3",
+    "async": "~2.0.0",
     "config": "~1.21.0",
     "lodash": "~4.13.1",
     "ora": "~0.2.1",
