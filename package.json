@@ -45,5 +45,11 @@
     "pretest": "npm run lint",
     "test": "nyc mocha"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "standard": {
+    "globals": [
+      "describe",
+      "it"
+    ]
+  }
 }

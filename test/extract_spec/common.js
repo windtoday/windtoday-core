@@ -1,7 +1,5 @@
 'use strict'
 
-/* global it */
-
 var should = require('should')
 
 module.exports = function (extract) {

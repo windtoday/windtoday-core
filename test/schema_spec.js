@@ -1,7 +1,5 @@
 'use strict'
 
-/* global describe, it */
-
 var schema = require('../lib/schema')
 var should = require('should')
 
