@@ -11,7 +11,6 @@ module.exports = function (extract) {
       [
         'loftsails racing blade',
         'loft sails racingblade',
-        'loft blade',
         'loft racing blade'
       ].forEach(function (title) {
         extract.sail(title).should.be.eql({
