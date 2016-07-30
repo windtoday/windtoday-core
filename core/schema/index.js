@@ -13,10 +13,11 @@ var schema = osom({
   title: {
     required: true,
     type: String,
-    validate: {
-      validator: isBlacklisted,
+    // Not necessary because I check for that in the process!
+    /*validate: {
+      validator: lodash.negate(isBlacklisted),
       message: 'BACKLISTED {VALUE}'
-    },
+    },*/
     transform: [lodash.trim]
   },
   category: {

@@ -22,7 +22,7 @@ var BLACKLIST_WORDS = [
 var regex = new RegExp(BLACKLIST_WORDS.join('|'), 'i')
 
 function isBlacklisted (str) {
-  return str.length > 0 && !(regex.test(str))
+  return str.length > 0 && regex.test(str)
 }
 
 isBlacklisted.regex = regex
