@@ -5,6 +5,7 @@
  */
 
 var Acho = require('acho')
+var emailTransport = require('./email')
 
 var loggers = {
   sync_providers: {
@@ -13,7 +14,9 @@ var loggers = {
   },
   totalwind: {
     keyword: 'totalwind'
-    transport:
+  },
+  sail_extractor: {
+    keyword: 'sail_extractor'
   }
 }
 

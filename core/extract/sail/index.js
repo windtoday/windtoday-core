@@ -1,6 +1,6 @@
 'use strict'
 
-var log = require('../../log')('extract_sail')
+var log = require('../../log')('sail_extractor')
 var sails = require('windtoday-sails')
 var lodash = require('lodash')
 var sailSize = require('./size')
