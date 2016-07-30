@@ -13,6 +13,7 @@ var loggers = {
   },
   totalwind: {
     keyword: 'totalwind'
+    transport:
   }
 }
 
