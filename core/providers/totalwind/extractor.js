@@ -1,5 +1,6 @@
 'use strict'
 
+var isBlacklisted = require('../../schema/is-blacklisted')
 var extract = require('../../extract')
 var lodash = require('lodash')
 
@@ -10,6 +11,8 @@ var CONST = {
 
 function createExtractor (type, category) {
   function extractor (data) {
+    if (isBlacklisted(data.title)) return
+
     data.type = type
     data.provider = CONST.SOURCE_NAME
     data.category = category
