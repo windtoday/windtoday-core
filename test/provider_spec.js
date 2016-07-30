@@ -1,6 +1,6 @@
 'use strict'
 
-var providers = require('../lib/providers')
+var providers = require('../core/providers')
 
 describe('providers', function () {
   it('works fine', function (done) {

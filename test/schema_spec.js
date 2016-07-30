@@ -1,6 +1,6 @@
 'use strict'
 
-var schema = require('../lib/schema')
+var schema = require('../core/schema')
 var should = require('should')
 
 var fixture = {
