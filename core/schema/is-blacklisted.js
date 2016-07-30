@@ -21,10 +21,10 @@ var BLACKLIST_WORDS = [
 
 var regex = new RegExp(BLACKLIST_WORDS.join('|'), 'i')
 
-function isBlacklist (str) {
+function isBlacklisted (str) {
   return str.length > 0 && !(regex.test(str))
 }
 
-isBlacklist.regex = regex
+isBlacklisted.regex = regex
 
-module.exports = isBlacklist
+module.exports = isBlacklisted
