@@ -1,13 +1,13 @@
 'use strict'
 
 var algoliasearch = require('algoliasearch')
+var CONFIG = require('config').algoliasearch
 var lodash = require('lodash')
-var CONFIG = require('config')
 var async = require('async')
 
-var appId = CONFIG.algoliasearch.app_id
-var apiKey = CONFIG.algoliasearch.api_key
-var allIndex = CONFIG.algoliasearch.index
+var appId = process.env[CONFIG.app_id]
+var apiKey = process.env[CONFIG.api_key]
+var allIndex = CONFIG.index
 var client = algoliasearch(appId, apiKey)
 
 var index = lodash.reduce(allIndex, function (acc, indexName) {

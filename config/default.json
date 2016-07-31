@@ -1,0 +1,14 @@
+{
+  "algoliasearch": {
+    "app_id": "ALGOLIA_APP_ID",
+    "api_key": "ALGOLIA_API_KEY",
+    "index": [
+      "sails"
+    ]
+  },
+
+  "totalwind_api": {
+    "key": "TOTALWIND_KEY",
+    "pages": 1
+  }
+}

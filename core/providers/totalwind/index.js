@@ -1,7 +1,13 @@
 'use strict'
 
 var createExtractor = require('./extractor')
-var totalwind = require('totalwind-api')(require('CONFIG').totalwind_api)
+var CONFIG = require('CONFIG').totalwind_api
+
+var totalwindOpts = Object.assign({}, CONFIG, {
+  key: process.env[CONFIG.key]
+})
+
+var totalwind = require('totalwind-api')(totalwindOpts)
 var lodash = require('lodash')
 var async = require('async')
 
