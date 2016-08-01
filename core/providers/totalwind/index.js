@@ -1,7 +1,7 @@
 'use strict'
 
 var createExtractor = require('./extractor')
-var CONFIG = require('CONFIG').totalwind_api
+var CONFIG = require('config').totalwind_api
 
 var totalwindOpts = Object.assign({}, CONFIG, {
   key: process.env[CONFIG.key]
