@@ -12,7 +12,7 @@ module.exports = function (extract) {
         'loft racing blade'
       ].forEach(function (title) {
         extract.sail(title).should.be.eql({
-          brand: 'Loft Sails',
+          brand: 'Loft',
           model: 'Racing Blade'
         })
       })
