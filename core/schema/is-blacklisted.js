@@ -5,18 +5,22 @@
  */
 
 var BLACKLIST_WORDS = [
-  'cambio',
-  'vendid[oa]',
-  'retirad[oa]',
-  'ya no',
-  'encontrad[oa]',
+  '^.[.]*$',
+  'borrad[oa]',
+  'borrar',
   'busc[oa]',
-  'descartad[oa]',
+  'cambio',
+  'cancelad[oa]',
+  'cerra[rd]',
+  'cerrad[oa]',
   'compr[oa]',
   'comprad[oa]',
-  'cerrad[oa]',
-  'cerra[rd]',
-  '^.[.]*$'
+  'descartad[oa]',
+  'eliminad[oa]',
+  'encontrad[oa]',
+  'retirad[oa]',
+  'vendid[oa]',
+  'ya no'
 ]
 
 var regex = new RegExp(BLACKLIST_WORDS.join('|'), 'i')
