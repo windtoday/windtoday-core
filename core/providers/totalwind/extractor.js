@@ -17,15 +17,15 @@ function createExtractor (type, category) {
     data.provider = CONST.SOURCE_NAME
     data.category = category
 
-    var raw = lodash.lowerCase(data.title)
+    var normalizeTitle = lodash.toLower(data.title)
 
     var dataExtract = {
-      price: extract.price(raw),
-      year: extract.year(raw)
+      price: extract.price(normalizeTitle),
+      year: extract.year(normalizeTitle)
     }
 
     if (lodash.isEqual(category, 'sails'))
-      lodash.assign(dataExtract, extract.sail(raw))
+      lodash.assign(dataExtract, extract.sail(normalizeTitle))
 
     lodash.merge(data, dataExtract)
 
