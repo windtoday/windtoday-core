@@ -11,7 +11,8 @@ var lodash = require('lodash')
  * @type {RegExp}
  */
 var REGEX_SAIL_SIZE = /[ ]\d[ ,.']\d|\d[ ]?m/
-var REGEX_SAIL_SEPARATOR = /[ ,']/
+var REGEX_SAIL_SEPARATOR_VARIATONS = /[ ,']/
+var REGEX_SAILS_SINGLE_NUMBER_DELIMITER = /[ ]?m/
 
 function extractSailSize (str) {
   var result = lodash.first(str.match(REGEX_SAIL_SIZE))
@@ -21,7 +22,9 @@ function extractSailSize (str) {
   return lodash(result)
     .thru(lodash.trim)
     .thru((result) => {
-      return lodash.replace(result, REGEX_SAIL_SEPARATOR, '.')})
+      return lodash.replace(result, REGEX_SAILS_SINGLE_NUMBER_DELIMITER, '.0')})
+    .thru((result) => {
+      return lodash.replace(result, REGEX_SAIL_SEPARATOR_VARIATONS, '.')})
     .value()
 }
 

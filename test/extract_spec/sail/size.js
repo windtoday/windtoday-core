@@ -25,6 +25,16 @@ module.exports = function (extract) {
       })
     })
 
+    it('detect single number', function () {
+      ;[
+        '7m',
+        '7 m'
+      ].forEach(function (sailSize) {
+        var size = lodash.get(extract.sail(sailSize), 'size')
+        size.should.be.equal('7.0')
+      })
+    })
+
     it('detect', function () {
       var size = lodash.get(extract.sail('Vendo Neilpryde H2 7,2 2012 - 175€'), 'size')
       size.should.be.equal('7.2')
