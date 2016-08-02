@@ -38,11 +38,11 @@ var schema = osom({
   },
   createdAt: {
     required: true,
-    type: String
+    type: Number
   },
   updatedAt: {
     required: true,
-    type: String
+    type: Number
   },
 
   size: String,
