@@ -20,7 +20,9 @@ function getFirstMatch (str, regex) {
 }
 
 function normalizePrice (str) {
-  return str.replace(REGEX_WHITESPACE, '').replace(REGEX_SYMBOL, '€')
+  return str
+    .replace(REGEX_WHITESPACE, '')
+    .replace(REGEX_SYMBOL, '')
 }
 
 function extractPrice (str) {
