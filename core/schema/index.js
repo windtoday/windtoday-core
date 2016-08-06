@@ -47,7 +47,7 @@ var schema = osom({
     type: Number
   },
 
-  size: String,
+  sailSize: Number,
   price: Number,
   year: String,
   brand: String,

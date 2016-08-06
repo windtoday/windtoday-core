@@ -2,8 +2,8 @@
 
 var log = require('../../log')('sail_extractor')
 var sails = require('windtoday-sails')
+var extractSailSize = require('./size')
 var lodash = require('lodash')
-var sailSize = require('./size')
 
 var regex = lodash.memoize(function createRegex (pattern) {
   return new RegExp(pattern, 'i')
@@ -12,8 +12,8 @@ var regex = lodash.memoize(function createRegex (pattern) {
 function sail (str) {
   var result = {}
 
-  var size = sailSize(str)
-  if (size) result.size = size
+  var sailSize = extractSailSize(str)
+  if (sailSize) result.sailSize = sailSize
   else log.warn('unmatching size', {title: str})
 
   var identifySail = lodash.find(sails, function (sail) {
