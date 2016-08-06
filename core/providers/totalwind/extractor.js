@@ -36,7 +36,6 @@ function createExtractor (type, category) {
       if (!validationError) {
         self.log.info(lodash.omit(instance, CONST.IGNORE_LOG_PROPS))
         ++self.stats.valid
-        var category = instance.category
         if (self.db[category]) {
           ++self.stats.add
           self.db[category].addObject(instance)

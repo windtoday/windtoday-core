@@ -5,6 +5,7 @@
  */
 
 var cleanTitle = require('./clean-title')
+var lodash = require('lodash')
 var async = require('async')
 var osom = require('osom')
 
@@ -21,11 +22,13 @@ var schema = osom({
   },
   category: {
     required: true,
-    type: String
+    type: String,
+    transform: [lodash.capitalize]
   },
   type: {
     required: true,
-    type: String
+    type: String,
+    transform: [lodash.capitalize]
   },
   provider: {
     required: true,
