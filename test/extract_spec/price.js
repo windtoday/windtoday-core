@@ -10,15 +10,15 @@ module.exports = function (extract) {
 
     it('detect', function () {
       ;['80e', '80 e', ' 80 e', '80 e ', ' 80 e '].forEach(function (price) {
-        extract.price(price).should.be.equal('80€')
+        extract.price(price).should.be.equal('80')
       })
 
       ;['150E', '150 E', ' 150 E', '150 E ', ' 150 E '].forEach(function (price) {
-        extract.price(price).should.be.equal('150€')
+        extract.price(price).should.be.equal('150')
       })
 
       ;['200€', '200 €', ' 200 €', ' 200 € ', '200 € '].forEach(function (price) {
-        extract.price(price).should.be.equal('200€')
+        extract.price(price).should.be.equal('200')
       })
     })
   })
