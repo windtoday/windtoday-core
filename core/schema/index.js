@@ -4,8 +4,7 @@
  * Schemaless validation
  */
 
-var isBlacklisted = require('./is-blacklisted')
-var lodash = require('lodash')
+var cleanTitle = require('./clean-title')
 var async = require('async')
 var osom = require('osom')
 
@@ -18,7 +17,7 @@ var schema = osom({
       validator: lodash.negate(isBlacklisted),
       message: 'BACKLISTED {VALUE}'
     },*/
-    transform: [lodash.trim]
+    transform: [cleanTitle]
   },
   category: {
     required: true,
