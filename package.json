@@ -20,7 +20,7 @@
     "algoliasearch": "~3.18.0",
     "async": "~2.0.0",
     "config": "~1.21.0",
-    "lodash": "~4.13.1",
+    "lodash": "~4.14.1",
     "osom": "~1.1.2",
     "pretty-ms": "~2.1.0",
     "time-span": "~1.0.0",
