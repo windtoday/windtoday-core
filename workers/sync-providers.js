@@ -5,22 +5,30 @@
  */
 
 var log = require('../core/log')('sync_providers')
+var isAllReachable = require('is-all-reachable')
 var providers = require('../core/providers')
-var timeSpan = require('time-span')()
-var prettyMs = require('pretty-ms')
+var HOSTS = require('config').check_hosts
+var format = require('util').format
 var async = require('async')
 var db = require('../core/db')
 
 async.waterfall([
+  function checkReachability (next) {
+    isAllReachable(HOSTS, function (err, isAllAvailable, unReachableHost) {
+      if (err) return (err)
+      if (!isAllAvailable) return next(format('unreachable host %s', unReachableHost))
+      return next()
+    })
+  },
   function cleanAll (next) {
-    log.debug('clean')
+    log.debug('reachability')
     return db.clearAll(next)
   },
   function insertAll (next) {
-    log.debug('insert')
+    log.debug('clean')
     return db.insertAll(providers, next)
   }
 ], function (err) {
-  if (err) throw err
-  log.info(prettyMs(timeSpan()))
+  if (!err) return log.debug('insert')
+  log.error({reasong: err.message || err})
 })

@@ -10,5 +10,10 @@
   "totalwind_api": {
     "key": "TOTALWIND_KEY",
     "pages": 1
-  }
+  },
+
+  "check_hosts": [
+    "https://wrapapi.com",
+    "http://totalwind.net/foro/"
+  ]
 }
