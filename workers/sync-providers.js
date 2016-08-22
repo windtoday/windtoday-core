@@ -31,4 +31,5 @@ async.waterfall([
 ], function (err) {
   if (!err) return log.debug('insert')
   log.error({reasong: err.message || err})
+  process.exit(err ? err.code || 1 : 0)
 })
