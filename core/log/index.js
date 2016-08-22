@@ -13,8 +13,8 @@ var loggers = {
     diff: true
   },
   totalwind: {
-    keyword: 'totalwind'
-    level: isProduction ? 'muted' : 'all'
+    keyword: 'totalwind',
+    level: isProduction ? 'info' : 'all'
   },
   sail_extractor: {
     keyword: 'sail_extractor'

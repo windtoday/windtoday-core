@@ -34,14 +34,14 @@ function createExtractor (type, category) {
     this.validate(data, function (validationError, instance) {
       ++self.stats.total
       if (!validationError) {
-        self.log.info(lodash.omit(instance, CONST.IGNORE_LOG_PROPS))
+        self.log.debug(lodash.omit(instance, CONST.IGNORE_LOG_PROPS))
         ++self.stats.valid
         if (self.db[category]) {
           ++self.stats.add
           self.db[category].addObject(instance)
         }
       } else {
-        self.log.debug(validationError)
+        self.log.error(validationError)
       }
     })
   }
