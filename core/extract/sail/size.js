@@ -10,13 +10,14 @@ var lodash = require('lodash')
  * 5'0
  * @type {RegExp}
  */
-var REGEX_SAIL_SIZE = /[ ]\d[ ,.']\d|\d[ ]?m/
+var REGEX_SAIL_SIZE_SINGLE = /\d[ ]?m/
+var REGEX_SAIL_SIZE_DOUBLE = /[ ]\d[ ,.']\d/
 var REGEX_SAIL_SEPARATOR_VARIATONS = /[ ,']/
 var REGEX_SAILS_SINGLE_NUMBER_DELIMITER = /[ ]?m/
 
 function extractSailSize (str) {
-  var result = lodash.first(str.match(REGEX_SAIL_SIZE))
-
+  var result = lodash.first(str.match(REGEX_SAIL_SIZE_DOUBLE))
+  if (!result) result = lodash.first(str.match(REGEX_SAIL_SIZE_SINGLE))
   if (!result) return
 
   return lodash(result)
