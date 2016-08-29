@@ -41,6 +41,9 @@ module.exports = function (extract) {
 
       var size = lodash.get(extract.sail('"Vendo Neil Pryde VX2 8,4 1999 - 75€"'), 'sailSize')
       size.should.be.equal('8.4')
+
+      var size = lodash.get(extract.sail('Vendo Neil Pryde Evo 6 8,6 2015 - 450€'), 'sailSize')
+      size.should.be.equal('8.6')
     })
   })
 }
