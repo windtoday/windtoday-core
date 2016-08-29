@@ -35,15 +35,16 @@ module.exports = function (extract) {
       })
     })
 
-    it('detect', function () {
-      var size = lodash.get(extract.sail('Vendo Neilpryde H2 7,2 2012 - 175€'), 'sailSize')
-      size.should.be.equal('7.2')
+    describe('detect', function () {
+      it('in a string with model that finish in number', function () {
+        var size = lodash.get(extract.sail('Vendo Neilpryde H2 7,2 2012 - 175€'), 'sailSize')
+        size.should.be.equal('7.2')
+      })
 
-      var size = lodash.get(extract.sail('"Vendo Neil Pryde VX2 8,4 1999 - 75€"'), 'sailSize')
-      size.should.be.equal('8.4')
-
-      var size = lodash.get(extract.sail('Vendo Neil Pryde Evo 6 8,6 2015 - 450€'), 'sailSize')
-      size.should.be.equal('8.6')
+      it('in a string with model that finish in number separated with space', function () {
+        var size = lodash.get(extract.sail('Vendo Neil Pryde Evo 6 8,6 2015 - 450€'), 'sailSize')
+        size.should.be.equal('8.6')
+      })
     })
   })
 }
