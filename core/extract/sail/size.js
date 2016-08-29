@@ -21,10 +21,8 @@ function extractSailSize (str) {
 
   return lodash(result)
     .thru(lodash.trim)
-    .thru((result) => {
-      return lodash.replace(result, REGEX_SAILS_SINGLE_NUMBER_DELIMITER, '.0')})
-    .thru((result) => {
-      return lodash.replace(result, REGEX_SAIL_SEPARATOR_VARIATONS, '.')})
+    .thru((result) => lodash.replace(result, REGEX_SAILS_SINGLE_NUMBER_DELIMITER, '.0'))
+    .thru((result) => lodash.replace(result, REGEX_SAIL_SEPARATOR_VARIATONS, '.'))
     .value()
 }
 
