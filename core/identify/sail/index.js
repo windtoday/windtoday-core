@@ -1,30 +1,9 @@
 'use strict'
 
 const log = require('../../log')('sail_unidentify')
+const logUnmatching = require('../../util/log-unmatching')(log)
 const { sails } = require('../../directory')
-const { pick, get } = require('lodash')
 const getSize = require('./size')
-
-function logUnmatching (prop, values) {
-  let props
-
-  switch (prop) {
-    case 'size':
-      props = pick(values, 'input')
-      break
-    case 'brand':
-      props = pick(values, 'input')
-      break
-    case 'model':
-      props = {
-        brand: get(values, 'sail.brand.name'),
-        input: get(values, 'input')
-      }
-      break
-  }
-
-  log.warn(prop, props)
-}
 
 function createAdd (key, fnValue) {
   function add (acc) {
