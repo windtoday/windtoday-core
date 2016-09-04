@@ -30,21 +30,17 @@ function sail (str) {
   else log.warn('unmatching size', {title: str})
 
   var sail = getSail(str)
-  if (!sail) {
-    log.warn('undetected sail', {title: str})
-    return result
-  }
+  var brand = lodash.get(sail, 'brand.name')
 
-  if (!sail.brand) {
+  if (brand) result.brand = brand
+  else {
     log.warn('unmatching brand', {title: str})
     return result
   }
 
-  result.brand = lodash.get(sail, 'brand.name')
-
   var model = getModel(str, sail)
-  if (!model) log.warn('unmatching model', {brand: result.brand, title: str})
-  else result.model = model
+  if (model) result.model = model
+  else log.warn('unmatching model', {brand: result.brand, title: str})
 
   return result
 }
