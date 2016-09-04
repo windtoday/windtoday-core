@@ -1,36 +1,34 @@
 'use strict'
 
-var log = require('../../log')('sail_detector')
-var sails = require('../../directory/sails')
-var format = require('util').format
-var getSize = require('./size')
-var lodash = require('lodash')
+const log = require('../../log')('sail_detector')
+const sails = require('../../directory/sails')
+const { pick, get } = require('lodash')
+const getSize = require('./size')
 
 function logUnmatching (prop, values) {
-  var props
+  let props
 
   switch (prop) {
     case 'size':
-      props = lodash.pick(values, 'input')
+      props = pick(values, 'input')
       break
     case 'brand':
-      props = lodash.pick(values, 'input')
+      props = pick(values, 'input')
       break
     case 'model':
       props = {
-        brand: lodash.get(values, 'sail.brand.name'),
-        input: lodash.get(values, 'input')
+        brand: get(values, 'sail.brand.name'),
+        input: get(values, 'input')
       }
       break
   }
 
-  var msg = format('unmatching %s', prop)
-  log.warn(msg, props)
+  log.warn(`unmatching ${prop}`, props)
 }
 
 function createAdd (key, fnValue) {
   function add (acc) {
-    var value = fnValue(acc)
+    const value = fnValue(acc)
     if (value) acc.output[key] = value
     else logUnmatching(key, acc)
   }
@@ -38,12 +36,12 @@ function createAdd (key, fnValue) {
   return add
 }
 
-var addSize = createAdd('size', (acc) => getSize(acc.input))
-var addBrand = createAdd('brand', (acc) => sails.brand(acc.sail))
-var addModel = createAdd('model', (acc) => sails.model(acc.sail, acc.input))
+const addSize = createAdd('size', (acc) => getSize(acc.input))
+const addBrand = createAdd('brand', (acc) => sails.brand(acc.sail))
+const addModel = createAdd('model', (acc) => sails.model(acc.sail, acc.input))
 
 function sail (str) {
-  var acc = {
+  const acc = {
     sail: sails(str),
     input: str,
     output: {}
