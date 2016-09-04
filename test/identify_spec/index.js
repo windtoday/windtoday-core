@@ -11,4 +11,8 @@ describe('identify', function () {
     require('./sail/model')(identify)
     require('./sail/size')(identify)
   })
+
+  describe('board', function () {
+    require('./board/brand')(identify)
+  })
 })

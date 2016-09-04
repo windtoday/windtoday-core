@@ -18,6 +18,9 @@ const loggers = {
   },
   sail_unidentify: {
     keyword: 'sail_unidentify'
+  },
+  board_unidentify: {
+    keyword: 'board_unidentify'
   }
 }
 

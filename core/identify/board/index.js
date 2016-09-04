@@ -1,9 +1,8 @@
 'use strict'
 
-const log = require('../../log')('sail_unidentify')
-const { sails } = require('../../directory')
+const log = require('../../log')('board_unidentify')
+const { boards } = require('../../directory')
 const { pick, get } = require('lodash')
-const getSize = require('./size')
 
 function logUnmatching (prop, values) {
   let props
@@ -17,7 +16,7 @@ function logUnmatching (prop, values) {
       break
     case 'model':
       props = {
-        brand: get(values, 'sail.brand.name'),
+        brand: get(values, 'board.brand.name'),
         input: get(values, 'input')
       }
       break
@@ -36,22 +35,20 @@ function createAdd (key, fnValue) {
   return add
 }
 
-const addSize = createAdd('size', (acc) => getSize(acc.input))
-const addBrand = createAdd('brand', (acc) => sails.brand(acc.sail))
-const addModel = createAdd('model', (acc) => sails.model(acc.sail, acc.input))
+const addBrand = createAdd('brand', (acc) => boards.brand(acc.board))
+const addModel = createAdd('model', (acc) => boards.model(acc.board, acc.input))
 
-function sail (str) {
+function board (str) {
   const acc = {
-    sail: sails(str),
+    board: boards(str),
     input: str,
     output: {}
   }
 
-  addSize(acc)
   addBrand(acc)
   addModel(acc)
 
   return acc.output
 }
 
-module.exports = sail
+module.exports = board

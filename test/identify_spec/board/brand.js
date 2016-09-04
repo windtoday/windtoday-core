@@ -4,20 +4,20 @@ const should = require('should')
 const { get } = require('lodash')
 
 module.exports = function (identify) {
+  console.log(identify)
+
   describe('brand', function () {
     it('not detect', function () {
-      const brand = get(identify.sail(''), 'brand')
+      const brand = get(identify.board(''), 'brand')
       should(brand).be.undefined()
     })
 
     it('detect', function () {
       [
-        'loftsails racing blade',
-        'loft sails racingblade',
-        'loft racing blade'
+        'starboard futura'
       ].forEach(function (title) {
-        const brand = get(identify.sail(title), 'brand')
-        brand.should.be.equal('Loft')
+        const brand = get(identify.board(title), 'brand')
+        brand.should.be.equal('Starboard')
       })
     })
   })

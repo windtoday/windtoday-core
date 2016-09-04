@@ -3,10 +3,10 @@
 const should = require('should')
 const { get } = require('lodash')
 
-module.exports = function (extract) {
+module.exports = function (identify) {
   describe('model', function () {
     it('not detect', function () {
-      const model = get(extract.sail(''), 'model')
+      const model = get(identify.sail(''), 'model')
       should(model).be.undefined()
     })
 
@@ -16,7 +16,7 @@ module.exports = function (extract) {
         'loft sails racingblade',
         'loft racing blade'
       ].forEach(function (title) {
-        const model = get(extract.sail(title), 'model')
+        const model = get(identify.sail(title), 'model')
         model.should.be.equal('Racing Blade')
       })
     })

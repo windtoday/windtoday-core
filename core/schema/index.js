@@ -48,6 +48,7 @@ const schema = osom({
   },
 
   size: Number,
+  litres: Number,
   price: Number,
   year: String,
   brand: String,
