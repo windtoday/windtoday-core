@@ -4,28 +4,21 @@
  * Main method used for hydrate database requiring all the providers
  */
 
-var log = require('../core/log')('sync_providers')
-var isAllReachable = require('is-all-reachable')
-var providers = require('../core/providers')
-var HOSTS = require('config').check_hosts
-var format = require('util').format
-var async = require('async')
-var db = require('../core/db')
+const log = require('../core/log')('sync_providers')
+const providers = require('../core/providers')
+const isUp = require('../core/util/is-up')
+const { waterfall } = require('async')
+const db = require('../core/db')
 
-async.waterfall([
-  function checkReachability (next) {
-    isAllReachable(HOSTS, function (err, isAllAvailable, unReachableHost) {
-      if (err) return (err)
-      if (!isAllAvailable) return next(format('unreachable host %s', unReachableHost))
-      return next()
-    })
-  },
+waterfall([
+  isUp,
   function cleanAll (next) {
     log.debug('reachability')
     return db.clearIndex(next)
   },
   function insertAll (next) {
     log.debug('clean')
+    console.log(db)
     return db.insertAll(providers, next)
   }
 ], function (err) {
