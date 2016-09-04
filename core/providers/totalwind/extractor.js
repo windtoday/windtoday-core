@@ -46,12 +46,8 @@ function createExtractor (type, category) {
       }
 
       log.call(this, instance)
-
-      ++this.stats.valid
-      if (this.db[category]) {
-        ++this.stats.add
-        this.db[category].addObject(instance)
-      }
+      ++this.stats.add
+      this.db.addObject(instance)
     })
   }
 

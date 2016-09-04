@@ -10,7 +10,6 @@ function createProvider (blueprint) {
     log: log(blueprint.name),
     validate: schema,
     stats: {
-      valid: 0,
       add: 0,
       total: 0
     },
