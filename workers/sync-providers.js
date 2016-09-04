@@ -22,7 +22,7 @@ async.waterfall([
   },
   function cleanAll (next) {
     log.debug('reachability')
-    return db.clearAll(next)
+    return db.clearIndex(next)
   },
   function insertAll (next) {
     log.debug('clean')
@@ -30,6 +30,6 @@ async.waterfall([
   }
 ], function (err) {
   if (!err) return log.debug('insert')
-  log.error({reasong: err.message || err})
+  log.error({reason: err.message || err})
   process.exit(err ? err.code || 1 : 0)
 })
