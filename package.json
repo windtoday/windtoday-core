@@ -24,7 +24,8 @@
     "lodash": "~4.15.0",
     "osom": "~1.1.2",
     "totalwind-api": "~1.0.0",
-    "windtoday-sails": "git+https://github.com/windtoday/windtoday-sails.git"
+    "windtoday-boards": "github:windtoday/windtoday-boards",
+    "windtoday-sails": "github:windtoday/windtoday-sails"
   },
   "devDependencies": {
     "coveralls": "latest",

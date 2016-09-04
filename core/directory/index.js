@@ -1,8 +1,8 @@
 'use strict'
 
-const sails = require('windtoday-sails')
 const create = require('./create')
 
 module.exports = {
-  sails: create(sails)
+  sails: create(require('windtoday-sails')),
+  boards: create(require('windtoday-boards'))
 }
