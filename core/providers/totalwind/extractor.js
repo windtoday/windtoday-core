@@ -1,8 +1,8 @@
 'use strict'
 
 const { price, year, sail } = require('../../identify')
+const { toLower, assign, merge, omit } = require('lodash')
 const isBlacklisted = require('../../schema/is-blacklisted')
-const { toLower, isEqual, assign, merge, omit } = require('lodash')
 
 const CONST = {
   SOURCE_NAME: 'totalwind',
