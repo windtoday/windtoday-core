@@ -1,7 +1,7 @@
 'use strict'
 
 const replace = require('../../util/replace')
-const { first, trim } = require('lodash')
+const { toNumber, first, trim } = require('lodash')
 const match = require('../../util/match')
 
 /**
@@ -46,17 +46,16 @@ function sailSizeDoubleSimple (str) {
   if (!size) return false
 
   size = replace(size, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.')
-  return size
+  return size && toNumber(size)
 }
 
 function sailSizeDouble (str) {
   let size = first(match(str, REGEX_SAIL_SIZE_DOUBLE))
-
   if (!size) return false
 
   size = trim(size)
   size = replace(size, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.')
-  return size
+  return size && toNumber(size)
 }
 
 function sailSizeSingle (str) {
@@ -64,8 +63,7 @@ function sailSizeSingle (str) {
   if (!size) return false
 
   size = replace(size, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0')
-
-  return size
+  return size && toNumber(size)
 }
 
 function sailSize (str) {
