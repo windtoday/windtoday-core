@@ -1,7 +1,7 @@
 'use strict'
 
 const log = require('../../log')('sail_detector')
-const sails = require('../../directory/sails')
+const { sails } = require('../../directory')
 const { pick, get } = require('lodash')
 const getSize = require('./size')
 
