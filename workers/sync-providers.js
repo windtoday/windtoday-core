@@ -16,9 +16,8 @@ waterfall([
     log.debug('reachability')
     return db.clearIndex(next)
   },
-  function insertAll (next) {
+  function insertAll (meta, next) {
     log.debug('clean')
-    console.log(db)
     return db.insertAll(providers, next)
   }
 ], function (err) {
