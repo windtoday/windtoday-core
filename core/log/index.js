@@ -16,8 +16,8 @@ var loggers = {
     keyword: 'totalwind',
     level: isProduction ? 'info' : 'all'
   },
-  sail_extractor: {
-    keyword: 'sail_extractor'
+  sail_detector: {
+    keyword: 'sail_detector'
   }
 }
 

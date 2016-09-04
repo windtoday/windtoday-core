@@ -1,43 +1,50 @@
 'use strict'
 
-var log = require('../../log')('sail_extractor')
+var log = require('../../log')('sail_detector')
+var regex = require('../../util/regex')
 var sails = require('windtoday-sails')
-var extractSailSize = require('./size')
+var getSize = require('./size')
 var lodash = require('lodash')
 
-var regex = lodash.memoize(function createRegex (pattern) {
-  return new RegExp(pattern, 'i')
-})
-
-function sail (str) {
-  var result = {}
-
-  var sailSize = extractSailSize(str)
-  if (sailSize) result.sailSize = sailSize
-  else log.warn('unmatching size', {title: str})
-
-  var identifySail = lodash.find(sails, function (sail) {
+function getSail (str) {
+  return lodash.find(sails, function (sail) {
     return regex(sail.brand.regex).test(str)
   })
+}
 
-  result.brand = lodash.get(identifySail, 'brand.name')
-
-  if (!result.brand) {
-    log.warn('unmatching brand', {title: str})
-    return result
-  }
-
-  var models = lodash.get(identifySail, 'models')
-
-  var model = lodash.chain(models)
+function getModel (str, sail) {
+  var models = lodash.get(sail, 'models')
+  return lodash.chain(models)
     .find(function (model) {
       return regex(model.regex).test(str)
     })
     .get('name')
     .value()
+}
 
-  if (model) result.model = model
-  else log.warn('unmatching model', {brand: result.brand, title: str})
+function sail (str) {
+  var result = {}
+
+  var size = getSize(str)
+  if (!size) log.warn('unmatching size', {title: str})
+  else result.size = size
+
+  var sail = getSail(str)
+  if (!sail) {
+    log.warn('undetected sail', {title: str})
+    return result
+  }
+
+  if (!sail.brand) {
+    log.warn('unmatching brand', {title: str})
+    return result
+  }
+
+  result.brand = lodash.get(sail, 'brand.name')
+
+  var model = getModel(str, sail)
+  if (!model) log.warn('unmatching model', {brand: result.brand, title: str})
+  else result.model = model
 
   return result
 }
