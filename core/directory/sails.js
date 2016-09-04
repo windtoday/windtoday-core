@@ -10,7 +10,7 @@ function find (str) {
   })
 }
 
-function getModel (sail, str) {
+find.model = function getModel (sail, str) {
   var models = lodash.get(sail, 'models')
   return lodash.chain(models)
     .find(function (model) {
@@ -20,12 +20,8 @@ function getModel (sail, str) {
     .value()
 }
 
-function getBrand (sail) {
+find.brand = function getBrand (sail) {
   return lodash.get(sail, 'brand.name')
 }
 
-module.exports = {
-  find: find,
-  getModel: getModel,
-  getBrand: getBrand
-}
+module.exports = find
