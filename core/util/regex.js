@@ -1,7 +1,9 @@
 'use strict'
 
-const { memoize } = require('lodash')
+const mem = require('mem')
 
-module.exports = memoize(function createRegex (pattern) {
-  return new RegExp(pattern, 'i')
-})
+function regex (pattern, opts = 'i') {
+  return new RegExp(pattern, opts)
+}
+
+module.exports = mem(regex)

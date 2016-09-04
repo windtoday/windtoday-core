@@ -1,33 +1,40 @@
 'use strict'
 
-const { first } = require('lodash')
+const { first, flow } = require('lodash')
+const match = require('../util/match')
+const replace = require('../util/replace')
 
 /**
- * Integer price value with optional euro symbol
+ * Detect numeric price with currency symbol.
  * @example
  * 80e → 80€
  * 150E → 150€
  * 200€ → 200€
  * @type {RegExp}
  */
+const REGEX_PRICE = /[0-9]+[ ]?[€eE]/
 
-var REGEX_PRICE = /[0-9]+[ ]?[€eE]/
-var REGEX_WHITESPACE = /\s/g
-var REGEX_SYMBOL = /[€eE]/
+/**
+ * Remove intermediate spaces
+ * @example
+ * 80 e → 80e
+ */
+const REGEX_WHITESPACE = /\s/g
 
-function getFirstMatch (str, regex) {
-  return first(str.match(regex))
+/**
+ * Detect Currency Symbol
+ * @example 80e → €
+ */
+const REGEX_CURRENCY_SYMBOL = /[€eE]/
+
+const normalize = flow([
+  (str) => replace(str, REGEX_CURRENCY_SYMBOL, ''),
+  (str) => replace(str, REGEX_WHITESPACE, '')
+])
+
+function price (str) {
+  const price = first(match(str, REGEX_PRICE))
+  return price && normalize(price)
 }
 
-function normalizePrice (str) {
-  return str
-    .replace(REGEX_WHITESPACE, '')
-    .replace(REGEX_SYMBOL, '')
-}
-
-function extractPrice (str) {
-  var price = getFirstMatch(str, REGEX_PRICE)
-  return price && normalizePrice(price)
-}
-
-module.exports = extractPrice
+module.exports = price
