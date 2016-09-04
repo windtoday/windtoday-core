@@ -26,8 +26,8 @@ function sail (str) {
   var result = {}
 
   var size = getSize(str)
-  if (!size) log.warn('unmatching size', {title: str})
-  else result.size = size
+  if (size) result.size = size
+  else log.warn('unmatching size', {title: str})
 
   var sail = getSail(str)
   if (!sail) {
