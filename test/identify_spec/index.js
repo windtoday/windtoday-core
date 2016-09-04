@@ -1,6 +1,6 @@
 'use strict'
 
-var identify = require('../../core/identify')
+const identify = require('../../core/identify')
 
 describe('identify', function () {
   require('./price')(identify)

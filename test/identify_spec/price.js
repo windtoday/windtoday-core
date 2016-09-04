@@ -1,6 +1,6 @@
 'use strict'
 
-var should = require('should')
+const should = require('should')
 
 module.exports = function (extract) {
   describe('price', function () {

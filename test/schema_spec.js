@@ -1,9 +1,9 @@
 'use strict'
 
-var schema = require('../core/schema')
-var should = require('should')
+const schema = require('../core/schema')
+const should = require('should')
 
-var fixture = {
+const fixture = {
   title: 'Vendo Mistral Syncro 92l 2007 - 280€',
   category: 'particular',
   type: 'particular',

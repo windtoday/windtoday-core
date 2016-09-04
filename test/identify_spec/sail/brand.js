@@ -1,12 +1,12 @@
 'use strict'
 
-var should = require('should')
-var lodash = require('lodash')
+const should = require('should')
+const { get } = require('lodash')
 
 module.exports = function (extract) {
   describe('brand', function () {
     it('not detect', function () {
-      var brand = lodash.get(extract.sail(''), 'brand')
+      const brand = get(extract.sail(''), 'brand')
       should(brand).be.undefined()
     })
 
@@ -16,7 +16,7 @@ module.exports = function (extract) {
         'loft sails racingblade',
         'loft racing blade'
       ].forEach(function (title) {
-        var brand = lodash.get(extract.sail(title), 'brand')
+        const brand = get(extract.sail(title), 'brand')
         brand.should.be.equal('Loft')
       })
     })
