@@ -4,46 +4,33 @@ const should = require('should')
 const { get } = require('lodash')
 
 module.exports = function (identify) {
-  describe('size', function () {
+  describe('litres', function () {
     it('not detection', function () {
-      const size = get(identify.sail(''), 'size')
-      should(size).be.undefined()
+      const litres = get(identify.board(''), 'litres')
+      should(litres).be.undefined()
     })
 
-    it('detect separator variatons', function () {
+    it('two digits', function () {
       ;[
-        ' 7 0',
-        ' 7.0',
-        ' 7,0',
-        " 7'0",
-        ' 7.0m',
-        ' 7,0m',
-        " 7'0m"
-      ].forEach(function (sailSize) {
-        const size = get(identify.sail(sailSize), 'size')
-        size.should.be.equal('7.0')
+        '84',
+        '84l',
+        '84 l',
+        '84 litros'
+      ].forEach(function (boardLitres) {
+        const litres = get(identify.board(boardLitres), 'litres')
+        litres.should.be.equal(84)
       })
     })
 
-    it('detect single number', function () {
+    it('three digits', function () {
       ;[
-        '7m',
-        '7 m'
-      ].forEach(function (sailSize) {
-        const size = get(identify.sail(sailSize), 'size')
-        size.should.be.equal('7.0')
-      })
-    })
-
-    describe('detect', function () {
-      it('in a string with model that finish in number', function () {
-        const size = get(identify.sail('Vendo Neilpryde H2 7,2 2012 - 175€'), 'size')
-        size.should.be.equal('7.2')
-      })
-
-      it('in a string with model that finish in number separated with space', function () {
-        const size = get(identify.sail('Vendo Neil Pryde Evo 6 8,6 2015 - 450€'), 'size')
-        size.should.be.equal('8.6')
+        '105',
+        '105l',
+        '105 l',
+        '105 litros'
+      ].forEach(function (boardLitres) {
+        const litres = get(identify.board(boardLitres), 'litres')
+        litres.should.be.equal(105)
       })
     })
   })

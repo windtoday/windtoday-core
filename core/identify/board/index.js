@@ -3,6 +3,7 @@
 const log = require('../../log')('board_unidentify')
 const logUnmatching = require('../../util/log-unmatching')(log)
 const { boards } = require('../../directory')
+const getLitres = require('./litres')
 
 function createAdd (key, fnValue) {
   function add (acc) {
@@ -14,6 +15,7 @@ function createAdd (key, fnValue) {
   return add
 }
 
+const addLitres = createAdd('litres', (acc) => getLitres(acc.input))
 const addBrand = createAdd('brand', (acc) => boards.brand(acc.board))
 const addModel = createAdd('model', (acc) => boards.model(acc.board, acc.input))
 
@@ -24,6 +26,7 @@ function board (str) {
     output: {}
   }
 
+  addLitres(acc)
   addBrand(acc)
   addModel(acc)
 

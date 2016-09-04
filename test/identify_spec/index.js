@@ -14,5 +14,7 @@ describe('identify', function () {
 
   describe('board', function () {
     require('./board/brand')(identify)
+    require('./board/model')(identify)
+    require('./board/litres')(identify)
   })
 })
