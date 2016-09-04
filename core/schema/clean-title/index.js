@@ -1,4 +1,4 @@
 'use strict'
 
-var lodash = require('lodash')
-module.exports = lodash.flow(lodash.trim)
+const { flow, trim } = require('lodash')
+module.exports = flow(trim)

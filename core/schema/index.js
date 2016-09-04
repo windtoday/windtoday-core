@@ -4,12 +4,12 @@
  * Schemaless validation
  */
 
-var cleanTitle = require('./clean-title')
-var lodash = require('lodash')
-var async = require('async')
-var osom = require('osom')
+const cleanTitle = require('./clean-title')
+const { asyncify } = require('async')
+const lodash = require('lodash')
+const osom = require('osom')
 
-var schema = osom({
+const schema = osom({
   title: {
     required: true,
     type: String,
@@ -54,4 +54,4 @@ var schema = osom({
   model: String
 })
 
-module.exports = async.asyncify(schema)
+module.exports = asyncify(schema)

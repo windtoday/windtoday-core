@@ -1,6 +1,6 @@
 'use strict'
 
-var createProvider = require('./create-provider')
+const createProvider = require('./create-provider')
 
 module.exports = [
   createProvider(require('./totalwind'))

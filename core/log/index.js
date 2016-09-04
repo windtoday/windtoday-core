@@ -4,10 +4,10 @@
  * Logging façade
  */
 
-var Acho = require('acho')
-var isProduction = process.env.NODE_ENV === 'production'
+const Acho = require('acho')
+const isProduction = process.env.NODE_ENV === 'production'
 
-var loggers = {
+const loggers = {
   sync_providers: {
     keyword: 'sync',
     diff: true

@@ -1,17 +1,17 @@
 'use strict'
 
-var createExtractor = require('./extractor')
-var CONFIG = require('config').totalwind_api
+const createExtractor = require('./extractor')
+const CONFIG = require('config').totalwind_api
 
-var totalwindOpts = Object.assign({}, CONFIG, {
+const totalwindOpts = Object.assign({}, CONFIG, {
   key: process.env[CONFIG.key]
 })
 
-var totalwind = require('totalwind-api')(totalwindOpts)
-var lodash = require('lodash')
-var async = require('async')
+const totalwind = require('totalwind-api')(totalwindOpts)
+const lodash = require('lodash')
+const async = require('async')
 
-var CONST = {
+const CONST = {
   CATEGORIES: [
     'sails'
   // 'boards',
@@ -26,10 +26,10 @@ var CONST = {
 module.exports = {
   name: 'totalwind',
   start: function (cb) {
-    var self = this
+    const self = this
     async.each(CONST.CATEGORIES, function (category, next) {
-      var extractor = lodash.bind(createExtractor(CONST.TYPE, category), self)
-      var reqStream = totalwind.purchase[CONST.TYPE][category]()
+      const extractor = lodash.bind(createExtractor(CONST.TYPE, category), self)
+      const reqStream = totalwind.purchase[CONST.TYPE][category]()
       reqStream
         .on('data', extractor)
         .on('error', next)

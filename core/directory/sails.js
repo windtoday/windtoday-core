@@ -1,18 +1,19 @@
 'use strict'
 
-var sails = require('windtoday-sails')
-var regex = require('../util/regex')
-var lodash = require('lodash')
+const { get, find, chain } = require('lodash')
+const sails = require('windtoday-sails')
+const regex = require('../util/regex')
 
-function find (str) {
-  return lodash.find(sails, function (sail) {
+function directory (str) {
+  return find(sails, function (sail) {
     return regex(sail.brand.regex).test(str)
   })
 }
 
-find.model = function getModel (sail, str) {
-  var models = lodash.get(sail, 'models')
-  return lodash.chain(models)
+directory.model = function getModel (sail, str) {
+  const models = get(sail, 'models')
+
+  return chain(models)
     .find(function (model) {
       return regex(model.regex).test(str)
     })
@@ -20,8 +21,8 @@ find.model = function getModel (sail, str) {
     .value()
 }
 
-find.brand = function getBrand (sail) {
-  return lodash.get(sail, 'brand.name')
+directory.brand = function getBrand (sail) {
+  return get(sail, 'brand.name')
 }
 
-module.exports = find
+module.exports = directory

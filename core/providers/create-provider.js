@@ -1,12 +1,12 @@
 'use strict'
 
-var schema = require('../schema')
-var lodash = require('lodash')
-var log = require('../log')
-var db = require('../db')
+const { bind, omit, assign } = require('lodash')
+const schema = require('../schema')
+const log = require('../log')
+const db = require('../db')
 
 function createProvider (blueprint) {
-  var context = {
+  const context = {
     log: log(blueprint.name),
     validate: schema,
     stats: {
@@ -17,7 +17,7 @@ function createProvider (blueprint) {
     db: db
   }
 
-  var _start = lodash.bind(blueprint.start, context)
+  const _start = bind(blueprint.start, context)
 
   function provider (cb) {
     _start(function () {
@@ -26,7 +26,7 @@ function createProvider (blueprint) {
     })
   }
 
-  return lodash.assign(provider, lodash.omit(blueprint, ['start']))
+  return assign(provider, omit(blueprint, ['start']))
 }
 
 module.exports = createProvider

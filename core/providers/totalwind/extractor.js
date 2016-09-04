@@ -1,10 +1,10 @@
 'use strict'
 
-var isBlacklisted = require('../../schema/is-blacklisted')
-var extract = require('../../extract')
-var lodash = require('lodash')
+const isBlacklisted = require('../../schema/is-blacklisted')
+const extract = require('../../extract')
+const { toLower, isEqual, assign, merge, omit } = require('lodash')
 
-var CONST = {
+const CONST = {
   SOURCE_NAME: 'totalwind',
   IGNORE_LOG_PROPS: ['updatedAt', 'createdAt', 'link', 'title', 'provider']
 }
@@ -17,24 +17,22 @@ function createExtractor (type, category) {
     data.provider = CONST.SOURCE_NAME
     data.category = category
 
-    var normalizeTitle = lodash.toLower(data.title)
+    const normalizeTitle = toLower(data.title)
 
-    var dataExtract = {
+    const dataExtract = {
       price: extract.price(normalizeTitle),
       year: extract.year(normalizeTitle)
     }
 
-    if (lodash.isEqual(category, 'sails'))
-      lodash.assign(dataExtract, extract.sail(normalizeTitle))
+    if (isEqual(category, 'sails')) assign(dataExtract, extract.sail(normalizeTitle))
+    merge(data, dataExtract)
 
-    lodash.merge(data, dataExtract)
-
-    var self = this
+    const self = this
 
     this.validate(data, function (validationError, instance) {
       ++self.stats.total
       if (!validationError) {
-        self.log.debug(lodash.omit(instance, CONST.IGNORE_LOG_PROPS))
+        self.log.debug(omit(instance, CONST.IGNORE_LOG_PROPS))
         ++self.stats.valid
         if (self.db[category]) {
           ++self.stats.add

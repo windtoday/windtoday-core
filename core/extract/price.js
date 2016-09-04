@@ -1,6 +1,6 @@
 'use strict'
 
-var lodash = require('lodash')
+const { first } = require('lodash')
 
 /**
  * Integer price value with optional euro symbol
@@ -16,7 +16,7 @@ var REGEX_WHITESPACE = /\s/g
 var REGEX_SYMBOL = /[€eE]/
 
 function getFirstMatch (str, regex) {
-  return lodash.first(str.match(regex))
+  return first(str.match(regex))
 }
 
 function normalizePrice (str) {
