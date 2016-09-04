@@ -1,8 +1,8 @@
 'use strict'
 
-const log = require('../../log')('sail_detector')
+const log = require('../../log')('sail_unidentify')
 const { sails } = require('../../directory')
-const { pick, get } = require('lodash')
+const { pick, get, replace } = require('lodash')
 const getSize = require('./size')
 
 function logUnmatching (prop, values) {
@@ -23,7 +23,7 @@ function logUnmatching (prop, values) {
       break
   }
 
-  log.warn(`unmatching ${prop}`, props)
+  log.warn(prop, props)
 }
 
 function createAdd (key, fnValue) {

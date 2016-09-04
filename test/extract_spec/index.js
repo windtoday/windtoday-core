@@ -1,14 +1,14 @@
 'use strict'
 
-var extract = require('../../core/extract')
+var identify = require('../../core/identify')
 
-describe('extract', function () {
-  require('./price')(extract)
-  require('./year')(extract)
+describe('identify', function () {
+  require('./price')(identify)
+  require('./year')(identify)
 
   describe('sail', function () {
-    require('./sail/brand')(extract)
-    require('./sail/model')(extract)
-    require('./sail/size')(extract)
+    require('./sail/brand')(identify)
+    require('./sail/model')(identify)
+    require('./sail/size')(identify)
   })
 })

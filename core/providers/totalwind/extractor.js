@@ -1,7 +1,7 @@
 'use strict'
 
 const isBlacklisted = require('../../schema/is-blacklisted')
-const extract = require('../../extract')
+const extract = require('../../identify')
 const { toLower, isEqual, assign, merge, omit } = require('lodash')
 
 const CONST = {
