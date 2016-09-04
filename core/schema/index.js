@@ -50,7 +50,7 @@ const schema = osom({
   size: Number,
   litres: Number,
   price: Number,
-  year: String,
+  year: Number,
   brand: String,
   model: String
 })
