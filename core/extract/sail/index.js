@@ -1,48 +1,45 @@
 'use strict'
 
 var log = require('../../log')('sail_detector')
-var regex = require('../../util/regex')
-var sails = require('windtoday-sails')
+var sails = require('../../directory/sails')
+var format = require('util').format
 var getSize = require('./size')
-var lodash = require('lodash')
 
-function getSail (str) {
-  return lodash.find(sails, function (sail) {
-    return regex(sail.brand.regex).test(str)
-  })
+function logUnmatching (prop, values) {
+  var msg = format('unmatching %s', prop)
+  log.warn(msg, values)
 }
 
-function getModel (str, sail) {
-  var models = lodash.get(sail, 'models')
-  return lodash.chain(models)
-    .find(function (model) {
-      return regex(model.regex).test(str)
-    })
-    .get('name')
-    .value()
+function addSize (acc) {
+  var size = getSize(acc.input)
+  if (size) acc.output.size = size
+  else logUnmatching(size, acc)
+}
+
+function addBrand (acc) {
+  var brand = sails.getBrand(acc.sail)
+  if (brand) acc.output.brand = brand
+  else logUnmatching(brand, acc)
+}
+
+function addModel (acc) {
+  var model = sails.getModel(acc.sail, acc.input)
+  if (model) acc.output.model = model
+  else logUnmatching(model, acc)
 }
 
 function sail (str) {
-  var result = {}
-
-  var size = getSize(str)
-  if (size) result.size = size
-  else log.warn('unmatching size', {title: str})
-
-  var sail = getSail(str)
-  var brand = lodash.get(sail, 'brand.name')
-
-  if (brand) result.brand = brand
-  else {
-    log.warn('unmatching brand', {title: str})
-    return result
+  var accumulator = {
+    sail: sails.find(str),
+    input: str,
+    output: {}
   }
 
-  var model = getModel(str, sail)
-  if (model) result.model = model
-  else log.warn('unmatching model', {brand: result.brand, title: str})
+  addSize(accumulator)
+  addBrand(accumulator)
+  addModel(accumulator)
 
-  return result
+  return accumulator.output
 }
 
 module.exports = sail
