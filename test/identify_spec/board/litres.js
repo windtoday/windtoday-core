@@ -35,9 +35,14 @@ module.exports = function (identify) {
     })
 
     it('detech in a string that include numbers', function () {
-      const str = 'Se vende Bic Techno 283 152 litros'
-      const litres = get(identify.board(str), 'litres')
-      litres.should.be.equal(152)
+      [
+        'Se vende Bic Techno 283 152l',
+        'Se vende Bic Techno 283 152 l',
+        'Se vende Bic Techno 283 152 litros'
+      ].forEach(function (str) {
+        const litres = get(identify.board(str), 'litres')
+        litres.should.be.equal(152)
+      })
     })
   })
 }
