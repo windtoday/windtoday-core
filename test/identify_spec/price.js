@@ -6,19 +6,25 @@ module.exports = function (identify) {
   describe('price', function () {
     it('not detect', function () {
       should(identify.price('')).be.undefined()
+      should(identify.price('Vendo material (7 ene 16)')).be.undefined()
     })
 
-    it('detect', function () {
-      ;['80e', '80 e', ' 80 e', '80 e ', ' 80 e '].forEach(function (price) {
-        identify.price(price).should.be.equal('80')
-      })
+    describe('detect', function () {
+      var quantity = 135
+      var symbols = ['e', 'E', '€']
 
-      ;['150E', '150 E', ' 150 E', '150 E ', ' 150 E '].forEach(function (price) {
-        identify.price(price).should.be.equal('150')
-      })
-
-      ;['200€', '200 €', ' 200 €', ' 200 € ', '200 € '].forEach(function (price) {
-        identify.price(price).should.be.equal('200')
+      symbols.forEach(function (symbol) {
+        it(`with '${symbol} symbol'`, function () {
+          [
+            String(quantity + symbol),
+            String(quantity + ' ' + symbol),
+            String(' ' + quantity + ' ' + symbol),
+            String(quantity + ' ' + symbol + ' '),
+            String(' ' + quantity + ' ' + symbol + ' ')
+          ].forEach(function (price) {
+            identify.price(price).should.be.equal(135)
+          })
+        })
       })
     })
   })

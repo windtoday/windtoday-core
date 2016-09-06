@@ -1,6 +1,6 @@
 'use strict'
 
-const { first, flow, replace } = require('lodash')
+const { first, flow, replace, toNumber } = require('lodash')
 
 /**
  * Detect numeric price with currency symbol.
@@ -10,14 +10,7 @@ const { first, flow, replace } = require('lodash')
  * 200€ → 200€
  * @type {RegExp}
  */
-const REGEX_PRICE = /[0-9]+[ ]?[€eE]/
-
-/**
- * Remove intermediate spaces
- * @example
- * 80 e → 80e
- */
-const REGEX_WHITESPACE = /\s/g
+const REGEX_PRICE = /[0-9]+[ ]?[€eE](\s|$)/
 
 /**
  * Detect Currency Symbol
@@ -26,13 +19,13 @@ const REGEX_WHITESPACE = /\s/g
 const REGEX_CURRENCY_SYMBOL = /[€eE]/
 
 const normalize = flow([
-  (str) => replace(str, REGEX_CURRENCY_SYMBOL, ''),
-  (str) => replace(str, REGEX_WHITESPACE, '')
+  (str) => replace(str, REGEX_CURRENCY_SYMBOL, '')
 ])
 
 function price (str) {
   const price = first(str.match(REGEX_PRICE))
-  return price && normalize(price)
+  // NOTE: lodash.toNumber remove whitespace
+  return price && toNumber(normalize(price))
 }
 
 module.exports = price
