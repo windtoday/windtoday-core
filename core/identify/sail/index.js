@@ -1,7 +1,7 @@
 'use strict'
 
 const log = require('../../log')('sail_unidentify')
-const logUnmatching = require('../../util/log-unmatching')(log)
+const logUnmatching = require('../../util/log-unmatching')('sail', log)
 const { sails } = require('../../directory')
 const getSize = require('./size')
 

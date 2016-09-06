@@ -2,7 +2,7 @@
 
 const { pick, get } = require('lodash')
 
-function factory (log) {
+function factory (namespace, log) {
   function logUnmatching (prop, values) {
     let props
 
@@ -15,7 +15,7 @@ function factory (log) {
         break
       case 'model':
         props = {
-          brand: get(values, 'board.brand.name'),
+          brand: get(values, `${namespace}.brand.name`),
           input: get(values, 'input')
         }
         break

@@ -1,6 +1,6 @@
 'use strict'
 
-const { price, year, sail } = require('../../identify')
+const { price, year, sail, board } = require('../../identify')
 const { toLower, assign, merge, omit } = require('lodash')
 const isBlacklisted = require('../../schema/is-blacklisted')
 
@@ -10,7 +10,8 @@ const CONST = {
 }
 
 const getExtractor = {
-  sails: sail
+  sails: sail,
+  boards: board
 }
 
 function log (data) {
@@ -33,7 +34,7 @@ function createExtractor (type, category) {
     }
 
     var extractor = getExtractor[category]
-    if (extractor) assign(dataExtract, sail(normalizeTitle))
+    if (extractor) assign(dataExtract, extractor(normalizeTitle))
 
     merge(data, dataExtract)
 

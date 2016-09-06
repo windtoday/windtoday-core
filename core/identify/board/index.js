@@ -1,7 +1,7 @@
 'use strict'
 
 const log = require('../../log')('board_unidentify')
-const logUnmatching = require('../../util/log-unmatching')(log)
+const logUnmatching = require('../../util/log-unmatching')('board', log)
 const { boards } = require('../../directory')
 const getLitres = require('./litres')
 
