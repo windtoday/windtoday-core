@@ -4,7 +4,7 @@ const should = require('should')
 
 module.exports = function (identify) {
   describe('mixin', function () {
-    it('sail detection', function () {
+    it('sail', function () {
       const str = 'vendo ga-sails vapor 11m 2015'
       identify.mixin(str).should.be.eql({
         size: 11,
@@ -18,6 +18,14 @@ module.exports = function (identify) {
       identify.mixin(str).should.be.eql({
         brand: 'F2',
         litres: 100
+      })
+    })
+
+    it('sail brand but board model', function () {
+      const str = 'Naish Hardline'
+      identify.mixin(str).should.be.eql({
+        brand: 'Naish',
+        model: 'Hardline'
       })
     })
   })

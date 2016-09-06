@@ -6,12 +6,8 @@ const sail = require('./sail')
 
 function mixin (str) {
   if (/aleta/.test(str)) return
-
-  var extract
-
-  extract = sail(str)
-  if (!isEmpty(extract)) return extract
-
+  var extract = sail(str)
+  if (extract.model) return extract
   return board(str)
 }
 
