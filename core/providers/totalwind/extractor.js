@@ -11,7 +11,8 @@ const CONST = {
 
 const selectExtractor = {
   sails: sail,
-  boards: board
+  boards: board,
+  formula: mixin
 }
 
 function log (data) {
@@ -33,7 +34,7 @@ function createExtractor (type, category) {
       year: year(normalizeTitle)
     }
 
-    var extractor = selectExtractor[category] || mixin
+    var extractor = selectExtractor[category]
     if (extractor) assign(dataExtract, extractor(normalizeTitle))
 
     merge(data, dataExtract)
