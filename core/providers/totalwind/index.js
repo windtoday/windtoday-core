@@ -14,11 +14,10 @@ const createExtractor = require('./extractor')
 const CONST = {
   CATEGORIES: [
     'sails',
-    'boards'
-  // 'accesories',
-  // 'others',
-  // 'surf',
-  // 'formula'
+    'boards',
+    'accesories',
+    'others',
+    'formula'
   ],
   TYPE: 'particular'
 }
