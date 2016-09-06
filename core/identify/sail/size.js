@@ -5,8 +5,11 @@ const { replace, toNumber, first, trim } = require('lodash')
 /**
  * Detect sail size in text with spaces
  * @example Evo 6 7,8 → 7,8
+ * @example Evo 6 7 8 → 7,8
+ * @example Evo 6 7'8 → 7,8
+ * @example Evo 6 7,8 → 7,8
  */
-const REGEX_SAIL_SIZE_DOUBLE = /[ ]\d+[ ,.']\d+/
+const REGEX_SAIL_SIZE_DOUBLE = /[ ]?\d+[ ,.']\d+/
 
 /**
  * Detect double sail size
@@ -65,7 +68,7 @@ function sailSizeSingle (str) {
 }
 
 function sailSize (str) {
-  return sailSizeDoubleSimple(str) || sailSizeDouble(str) || sailSizeSingle(str)
+  return sailSizeDoubleSimple(str) || sailSizeSingle(str) || sailSizeDouble(str)
 }
 
 module.exports = sailSize

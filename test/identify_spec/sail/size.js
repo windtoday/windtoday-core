@@ -6,8 +6,12 @@ const { get } = require('lodash')
 module.exports = function (identify) {
   describe('size', function () {
     it('not detection', function () {
-      const size = get(identify.sail(''), 'size')
-      should(size).be.undefined()
+      [
+        ''
+      ].forEach(function (str) {
+        const size = get(identify.sail(str), 'size')
+        should(size).be.undefined()
+      })
     })
 
     it('detect separator variatons', function () {
@@ -44,6 +48,11 @@ module.exports = function (identify) {
       it('in a string with model that finish in number separated with space', function () {
         const size = get(identify.sail('Vendo Neil Pryde Evo 6 8,6 2015 - 450€'), 'size')
         size.should.be.equal(8.6)
+      })
+
+      it('in a string with mast dimensions', function () {
+        const size = get(identify.sail('Vendo Vela Gaasta Vapor 11 m 2013 y Mastil Gaastra 520 75 '), 'size')
+        size.should.be.equal(11)
       })
     })
   })
