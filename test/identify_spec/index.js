@@ -17,4 +17,6 @@ describe('identify', function () {
     require('./board/model')(identify)
     require('./board/litres')(identify)
   })
+
+  require('./mixin')(identify)
 })
