@@ -1,8 +1,6 @@
 'use strict'
 
-const replace = require('../../util/replace')
-const { toNumber, first, trim } = require('lodash')
-const match = require('../../util/match')
+const { replace, toNumber, first, trim } = require('lodash')
 
 /**
  * Detect sail size in text with spaces
@@ -42,7 +40,7 @@ const REGEX_SAIL_SIZE_SINGLE = /\d[ ]?m/
 const REGEX_SAIL_SIZE_SINGLE_DELIMITER = /[ ]?m/
 
 function sailSizeDoubleSimple (str) {
-  let size = first(match(str, REGEX_SAIL_SIZE_DOUBLE_SIMPLE))
+  let size = first(str.match(REGEX_SAIL_SIZE_DOUBLE_SIMPLE))
   if (!size) return false
 
   size = replace(size, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.')
@@ -50,7 +48,7 @@ function sailSizeDoubleSimple (str) {
 }
 
 function sailSizeDouble (str) {
-  let size = first(match(str, REGEX_SAIL_SIZE_DOUBLE))
+  let size = first(str.match(REGEX_SAIL_SIZE_DOUBLE))
   if (!size) return false
 
   size = trim(size)
@@ -59,7 +57,7 @@ function sailSizeDouble (str) {
 }
 
 function sailSizeSingle (str) {
-  let size = first(match(str, REGEX_SAIL_SIZE_SINGLE))
+  let size = first(str.match(REGEX_SAIL_SIZE_SINGLE))
   if (!size) return false
 
   size = replace(size, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0')

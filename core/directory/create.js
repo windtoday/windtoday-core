@@ -1,7 +1,10 @@
 'use strict'
 
 const { get, find, chain } = require('lodash')
-const regex = require('../util/regex')
+
+function regex (pattern) {
+  return new RegExp(pattern, 'i')
+}
 
 function createDirectory (data) {
   function directory (str) {

@@ -1,8 +1,6 @@
 'use strict'
 
-const { first, flow } = require('lodash')
-const match = require('../util/match')
-const replace = require('../util/replace')
+const { first, flow, replace } = require('lodash')
 
 /**
  * Detect numeric price with currency symbol.
@@ -33,7 +31,7 @@ const normalize = flow([
 ])
 
 function price (str) {
-  const price = first(match(str, REGEX_PRICE))
+  const price = first(str.match(REGEX_PRICE))
   return price && normalize(price)
 }
 
