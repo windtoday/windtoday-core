@@ -17,7 +17,7 @@ module.exports = function (identify) {
       const str = 'vendo tabla f2 fx100 x 132 litros rebajada a 300€'
       identify.mixin(str).should.be.eql({
         brand: 'F2',
-        litres: 100
+        litres: 132
       })
     })
 
@@ -26,6 +26,15 @@ module.exports = function (identify) {
       identify.mixin(str).should.be.eql({
         brand: 'Naish',
         model: 'Hardline'
+      })
+    })
+
+    it('sail brand but board model', function () {
+      const str = 'Se vende Bic Techno 283 152 litros'
+      identify.mixin(str).should.be.eql({
+        brand: 'Bic',
+        litres: 152,
+        model: 'Techno'
       })
     })
   })

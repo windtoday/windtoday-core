@@ -33,5 +33,11 @@ module.exports = function (identify) {
         litres.should.be.equal(105)
       })
     })
+
+    it('detech in a string that include numbers', function () {
+      const str = 'Se vende Bic Techno 283 152 litros'
+      const litres = get(identify.board(str), 'litres')
+      litres.should.be.equal(152)
+    })
   })
 }
