@@ -12,7 +12,6 @@ module.exports = function (identify) {
 
     it('two digits', function () {
       ;[
-        '84',
         '84l',
         '84 l',
         '84 litros'
@@ -24,7 +23,6 @@ module.exports = function (identify) {
 
     it('three digits', function () {
       ;[
-        '105',
         '105l',
         '105 l',
         '105 litros'
