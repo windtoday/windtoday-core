@@ -16,12 +16,12 @@ function createAdd (key, fnValue) {
 }
 
 const addSize = createAdd('size', (acc) => getSize(acc.input))
-const addBrand = createAdd('brand', (acc) => sails.brand(acc.sail))
-const addModel = createAdd('model', (acc) => sails.model(acc.sail, acc.input))
+const addBrand = createAdd('brand', (acc) => acc.dir.brand())
+const addModel = createAdd('model', (acc) => acc.dir.model())
 
 function sail (str) {
   const acc = {
-    sail: sails(str),
+    dir: sails(str),
     input: str,
     output: {}
   }
