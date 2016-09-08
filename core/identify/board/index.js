@@ -16,12 +16,12 @@ function createAdd (key, fnValue) {
 }
 
 const addLitres = createAdd('litres', (acc) => getLitres(acc.input))
-const addBrand = createAdd('brand', (acc) => boards.brand(acc.board))
-const addModel = createAdd('model', (acc) => boards.model(acc.board, acc.input))
+const addBrand = createAdd('brand', (acc) => acc.dir.brand())
+const addModel = createAdd('model', (acc) => acc.dir.model())
 
 function board (str) {
   const acc = {
-    board: boards(str),
+    dir: boards(str),
     input: str,
     output: {}
   }
