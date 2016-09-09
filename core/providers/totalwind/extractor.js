@@ -27,15 +27,15 @@ function createExtractor (type, category) {
     data.provider = CONST.SOURCE_NAME
     data.category = category
 
-    const normalizeTitle = toLower(data.title)
+    const str = toLower(data.title)
 
     const dataExtract = {
-      price: price(normalizeTitle),
-      year: year(normalizeTitle)
+      price: price(str),
+      year: year(str)
     }
 
     var extractor = selectExtractor[category]
-    if (extractor) assign(dataExtract, extractor(normalizeTitle))
+    if (extractor) assign(dataExtract, extractor(str))
 
     merge(data, dataExtract)
 
