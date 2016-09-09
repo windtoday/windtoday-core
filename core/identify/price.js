@@ -24,7 +24,6 @@ const normalize = flow([
 
 function price (str) {
   const price = first(str.match(REGEX_PRICE))
-  // NOTE: lodash.toNumber remove whitespace
   return price && toNumber(normalize(price))
 }
 

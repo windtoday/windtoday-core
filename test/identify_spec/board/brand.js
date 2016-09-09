@@ -1,22 +1,26 @@
 'use strict'
 
 const should = require('should')
-const { get } = require('lodash')
+const board = require('../../../core/identify/board')
 
-module.exports = function (identify) {
-  describe('brand', function () {
-    it('not detect', function () {
-      const brand = get(identify.board(''), 'brand')
-      should(brand).be.undefined()
-    })
+function brand (str) {
+  return board(str).brand
+}
 
-    it('detect', function () {
-      [
-        'starboard futura'
-      ].forEach(function (title) {
-        const brand = get(identify.board(title), 'brand')
-        brand.should.be.equal('Starboard')
-      })
+describe('identify » board » brand', function () {
+  it('not detect', function () {
+    [
+      ''
+    ].forEach(function (str) {
+      should(brand(str)).be.undefined()
     })
   })
-}
+
+  it('detect', function () {
+    [
+      'starboard futura'
+    ].forEach(function (str) {
+      brand(str).should.be.equal('Starboard')
+    })
+  })
+})

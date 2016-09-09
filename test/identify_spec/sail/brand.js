@@ -1,24 +1,28 @@
 'use strict'
 
 const should = require('should')
-const { get } = require('lodash')
+const sail = require('../../../core/identify/sail')
 
-module.exports = function (identify) {
-  describe('brand', function () {
-    it('not detect', function () {
-      const brand = get(identify.sail(''), 'brand')
-      should(brand).be.undefined()
-    })
+function brand (str) {
+  return sail(str).brand
+}
 
-    it('detect', function () {
-      [
-        'loftsails racing blade',
-        'loft sails racingblade',
-        'loft racing blade'
-      ].forEach(function (title) {
-        const brand = get(identify.sail(title), 'brand')
-        brand.should.be.equal('Loft')
-      })
+describe('identify » sail » brand', function () {
+  it('not detect', function () {
+    [
+      ''
+    ].forEach(function (str) {
+      should(brand(str)).be.undefined()
     })
   })
-}
+
+  it('detect', function () {
+    [
+      'loftsails racing blade',
+      'loft sails racingblade',
+      'loft racing blade'
+    ].forEach(function (str) {
+      brand(str).should.be.equal('Loft')
+    })
+  })
+})

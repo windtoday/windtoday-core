@@ -1,31 +1,34 @@
 'use strict'
 
 const should = require('should')
+const price = require('../../core/identify/price')
 
-module.exports = function (identify) {
-  describe('price', function () {
-    it('not detect', function () {
-      should(identify.price('')).be.undefined()
-      should(identify.price('Vendo material (7 ene 16)')).be.undefined()
+describe('identify » price', function () {
+  it('not detect', function () {
+    [
+      '',
+      'Vendo material (7 ene 16)'
+    ].forEach(function (str) {
+      should(price(str)).be.undefined()
     })
+  })
 
-    describe('detect', function () {
-      var quantity = 135
-      var symbols = ['e', 'E', '€']
+  describe('detect', function () {
+    var quantity = 135
+    var symbols = ['e', 'E', '€']
 
-      symbols.forEach(function (symbol) {
-        it(`with '${symbol} symbol'`, function () {
-          [
-            String(quantity + symbol),
-            String(quantity + ' ' + symbol),
-            String(' ' + quantity + ' ' + symbol),
-            String(quantity + ' ' + symbol + ' '),
-            String(' ' + quantity + ' ' + symbol + ' ')
-          ].forEach(function (price) {
-            identify.price(price).should.be.equal(135)
-          })
+    symbols.forEach(function (symbol) {
+      it(`with '${symbol} symbol'`, function () {
+        [
+          `${quantity}${symbol}`,
+          `${quantity} ${symbol}`,
+          ` ${quantity} ${symbol}`,
+          `${quantity} ${symbol} `,
+          ` ${quantity} ${symbol} `
+        ].forEach(function (str) {
+          price(str).should.be.equal(135)
         })
       })
     })
   })
-}
+})

@@ -8,7 +8,8 @@ var REGEX_BOARD_LITRES_SUFFIX = /l/
 
 function litres (str) {
   var litres = first(str.match(REGEX_BOARD_LITRES_WITH_SUFFIX))
-  if (!litres) return false
+  if (!litres) return
+
   litres = replace(litres, REGEX_BOARD_LITRES_SUFFIX, '')
   return litres && toNumber(litres)
 }
