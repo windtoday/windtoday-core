@@ -1,11 +1,12 @@
 'use strict'
 
-const { isEmpty } = require('lodash')
 const board = require('./board')
 const sail = require('./sail')
 
+const REGEX_EXCLUDE = /fin|aleta|m[aá]st/
+
 function mixin (str) {
-  if (/aleta/.test(str)) return
+  if (REGEX_EXCLUDE.test(str)) return
 
   var boardExtracted = board(str)
   if (boardExtracted.model) return boardExtracted
