@@ -21,6 +21,12 @@ const loggers = {
   },
   board_unidentify: {
     keyword: 'board_unidentify'
+  },
+  mixin_sail_unidentify: {
+    keyword: 'mixin_sail_unidentify'
+  },
+  mixin_board_unidentify: {
+    keyword: 'mixin_board_unidentify'
   }
 }
 

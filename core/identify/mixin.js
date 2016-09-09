@@ -1,7 +1,11 @@
 'use strict'
 
-const board = require('./board')
-const sail = require('./sail')
+const boardFactory = require('./board/factory')
+const sailFactory = require('./sail/factory')
+const createLog = require('../log')
+
+const sail = sailFactory(createLog('mixin_sail_unidentify'))
+const board = boardFactory(createLog('mixin_board_unidentify'))
 
 const REGEX_EXCLUDE = /fin|aleta|m[aá]st/
 
