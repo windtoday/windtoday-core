@@ -1,26 +1,18 @@
 'use strict'
 
-const { price, year, sail, board, mixin } = require('../../identify')
-const { toLower, assign, merge, omit } = require('lodash')
+const { price, year } = require('../../identify')
+const { toLower, assign, merge } = require('lodash')
 const isBlacklisted = require('../../schema/is-blacklisted')
 
 const CONST = {
-  SOURCE_NAME: 'totalwind',
+  SOURCE_NAME: 'totalwind', // TODO: Inject it!
   IGNORE_LOG_PROPS: ['updatedAt', 'createdAt', 'link', 'title', 'provider']
 }
 
-const selectExtractor = {
-  sails: sail,
-  boards: board,
-  formula: mixin
-}
+function createExtractor (opts) {
+  const { type, category, extractor } = opts
 
-function log (data) {
-  this.log.debug(omit(data, CONST.IGNORE_LOG_PROPS))
-}
-
-function createExtractor (type, category) {
-  function extractor (data) {
+  function _extractor (data) {
     if (isBlacklisted(data.title)) return
 
     data.type = type
@@ -29,15 +21,14 @@ function createExtractor (type, category) {
 
     const str = toLower(data.title)
 
-    const dataExtract = {
+    const dataExtracted = {
       price: price(str),
       year: year(str)
     }
 
-    var extractor = selectExtractor[category]
-    if (extractor) assign(dataExtract, extractor(str))
+    if (extractor) assign(dataExtracted, extractor(str))
 
-    merge(data, dataExtract)
+    merge(data, dataExtracted)
 
     this.validate(data, (validationError, instance) => {
       ++this.stats.total
@@ -47,13 +38,12 @@ function createExtractor (type, category) {
         return
       }
 
-      log.call(this, instance)
       ++this.stats.add
       this.db.addObject(instance)
     })
   }
 
-  return extractor
+  return _extractor
 }
 
 module.exports = createExtractor

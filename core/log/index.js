@@ -1,15 +1,11 @@
 'use strict'
 
-/**
- * Logging façade
- */
-
 const Acho = require('acho')
 const isProduction = process.env.NODE_ENV === 'production'
 
 const loggers = {
-  sync_providers: {
-    keyword: 'sync',
+  worker: {
+    keyword: 'worker',
     diff: true
   },
   totalwind: {
@@ -30,8 +26,9 @@ const loggers = {
   }
 }
 
-function log (namespace) {
-  return Acho(loggers[namespace])
+function log (keyword) {
+  const opts = loggers[keyword] || {keyword}
+  return Acho(opts)
 }
 
 module.exports = log

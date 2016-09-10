@@ -8,20 +8,25 @@ const totalwindOpts = assign({}, CONFIG, {
 })
 
 const totalwind = require('totalwind-api')(totalwindOpts)
-const createExtractor = require('./extractor')
 const createProvider = require('../create-provider')
+const createExtractor = require('./extractor')
 
 const CONST = {
   PROVIDER_NAME: 'totalwind'
 }
 
-function createTotalwindProvider (type, category) {
+const log = require('../../log')(CONST.PROVIDER_NAME)
+
+function createTotalwindProvider (opts) {
+  const { type, category } = opts
+
   return createProvider({
     name: CONST.PROVIDER_NAME,
+    log,
     start: function (done) {
-      const self = this
-      const extractor = bind(createExtractor(type, category), self)
+      const extractor = bind(createExtractor(opts), this)
       const stream = totalwind.purchase[type][category]()
+
       stream
         .on('data', extractor)
         .on('error', done)

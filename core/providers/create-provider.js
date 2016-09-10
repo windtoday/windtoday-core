@@ -1,13 +1,11 @@
 'use strict'
 
-const { bind, assign } = require('lodash')
 const schema = require('../schema')
-const log = require('../log')
+const { bind } = require('lodash')
 const db = require('../db')
 
-function createProvider (provider) {
+function createProvider (provider, log) {
   const ctx = {
-    log: log(provider.name),
     validate: schema,
     stats: { add: 0, total: 0 },
     db: db
@@ -17,7 +15,7 @@ function createProvider (provider) {
 
   function start (cb) {
     _start(function () {
-      ctx.log.info('stats', ctx.stats)
+      provider.log.debug('stats', ctx.stats)
       return cb.apply(cb, arguments)
     })
   }

@@ -2,7 +2,7 @@
 
 'use strict'
 
-const createWorker = require('../../core/workers/create-worker')
+const createWorker = require('../../core/worker')
 const meow = require('meow')
 const path = require('path')
 const fs = require('fs')
