@@ -1,7 +1,7 @@
 'use strict'
 
 const checkRequiredParams = require('../util/check-required-params')
-const getExtractor = require('./get-extractor')
+const createProcessExit = require('../util/process-exit')
 const providers = require('../providers')
 const createLogger = require('../log')
 const { waterfall } = require('async')
@@ -16,27 +16,30 @@ const CONST = {
 
 function createWorker (opts) {
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
+
   const { provider, type, category } = opts
+  const loggerKeyword = opts.loggerKeyword = `${provider}_${type}_${category}`
   const hosts = CONST.CHECK_HOSTS[provider]
-  const loggerKeyword = `${provider}_${type}_${category}`
   const log = createLogger(loggerKeyword)
-  const worker = providers[provider]({extractor: getExtractor(opts), category, type})
+  const processExit = createProcessExit(log)
+  const worker = providers[provider]({category, type})
 
   waterfall([
-    // partial(isUp, hosts),
-    // function clean (next) {
-    //   log.info('checked hosts reachability ✔ (1/3)')
-    //   const filters = `provider:${provider} AND type:${type} AND category:${category}`
-    //   return db.deleteByQuery('', {filters}, next)
-    // },
+    partial(isUp, hosts),
+    function clean (next) {
+      log.info('hosts reachability ✔ (1/3)')
+      const filters = `provider:${provider} AND type:${type} AND category:${category}`
+      return db.deleteByQuery('', {filters}, next)
+    },
     function insert (next) {
       log.info('cleaned old instances ✔ (2/3)')
       return worker(next)
     }
-  ], function (err) {
-    if (!err) return log.info('inserted new instances ✔ (3/3)')
-    log.error({reason: err.message || err})
-    process.exit(err ? err.code || 1 : 0)
+  ], function (err, stats) {
+    if (err) return processExit(err)
+    log.debug('stats', stats)
+    log.info('inserted new instances ✔ (3/3)')
+    return processExit()
   })
 }
 

@@ -4,7 +4,7 @@ const schema = require('../schema')
 const { bind } = require('lodash')
 const db = require('../db')
 
-function createProvider (provider, log) {
+function createProvider (provider) {
   const ctx = {
     validate: schema,
     stats: { add: 0, total: 0 },
@@ -14,9 +14,8 @@ function createProvider (provider, log) {
   const _start = bind(provider.start, ctx)
 
   function start (cb) {
-    _start(function () {
-      provider.log.debug('stats', ctx.stats)
-      return cb.apply(cb, arguments)
+    _start(function (err) {
+      return cb.apply(cb, [err, ctx.stats])
     })
   }
 

@@ -1,34 +1,30 @@
 'use strict'
 
-const { price, year } = require('../../identify')
-const { toLower, assign, merge } = require('lodash')
-const isBlacklisted = require('../../schema/is-blacklisted')
-
-const CONST = {
-  SOURCE_NAME: 'totalwind', // TODO: Inject it!
-  IGNORE_LOG_PROPS: ['updatedAt', 'createdAt', 'link', 'title', 'provider']
-}
+const isBlacklisted = require('../../../schema/is-blacklisted')
+const createSpecificExtractor = require('./specific')
+const { price, year } = require('../../../identify')
+const { toLower, merge } = require('lodash')
+const COMMON = require('../common')
 
 function createExtractor (opts) {
-  const { type, category, extractor } = opts
+  const { type, category } = opts
+  const specificExtractor = createSpecificExtractor(opts)
 
   function _extractor (data) {
     if (isBlacklisted(data.title)) return
 
     data.type = type
-    data.provider = CONST.SOURCE_NAME
+    data.provider = COMMON.PROVIDER_NAME
     data.category = category
 
     const str = toLower(data.title)
 
-    const dataExtracted = {
+    const basicExtractor = {
       price: price(str),
       year: year(str)
     }
 
-    if (extractor) assign(dataExtracted, extractor(str))
-
-    merge(data, dataExtracted)
+    merge(data, basicExtractor, specificExtractor(str))
 
     this.validate(data, (validationError, instance) => {
       ++this.stats.total
