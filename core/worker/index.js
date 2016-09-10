@@ -25,7 +25,7 @@ function createWorker (opts) {
     diff: true
   })
   const processExit = createProcessExit(log)
-  const worker = providers[provider]({category, type})
+  const worker = providers[provider]({category, type, loggerKeyword})
 
   waterfall([
     partial(isUp, hosts),

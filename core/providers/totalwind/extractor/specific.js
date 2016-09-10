@@ -4,6 +4,9 @@ const boardFactory = require('../../../identify/board')
 const mixinFactory = require('../../../identify/mixin')
 const sailFactory = require('../../../identify/sail')
 const createLogger = require('../../../log')
+const { noop } = require('lodash')
+
+const log = createLogger('totalwind_extractor_specific')
 
 function specificExtractor (opts) {
   const { category, loggerKeyword } = opts
@@ -23,7 +26,8 @@ function specificExtractor (opts) {
     })
   }
 
-  throw new Error('Not extractor determined.')
+  log.warn('not extractor determined.')
+  return noop
 }
 
 module.exports = specificExtractor
