@@ -45,7 +45,7 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard lib index.js",
     "pretest": "npm run lint",
-    "start": "NODE_ENV=production node workers/sync-providers.js",
+    "start": "echo 'waiting the 💨'",
     "test": "NODE_ENV=test nyc mocha"
   },
   "license": "MIT",
