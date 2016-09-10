@@ -1,23 +1,17 @@
 'use strict'
 
-const { pick, get } = require('lodash')
+const { assign, get, pick } = require('lodash')
 
 function factory (namespace, log) {
   function logUnmatching (prop, values) {
-    let props
+    let props = pick(values, 'input')
 
     switch (prop) {
-      case 'size':
-        props = pick(values, 'input')
-        break
-      case 'brand':
-        props = pick(values, 'input')
-        break
       case 'model':
-        props = {
+        assign({
           brand: get(values, `${namespace}.brand.name`),
           input: get(values, 'input')
-        }
+        }, props)
         break
     }
 

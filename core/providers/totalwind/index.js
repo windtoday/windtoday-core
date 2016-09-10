@@ -1,8 +1,7 @@
 'use strict'
 
 const CONFIG = require('config').totalwind_api
-const { assign, bind } = require('lodash')
-const { each } = require('async')
+const { partial, assign, bind } = require('lodash')
 
 const totalwindOpts = assign({}, CONFIG, {
   key: process.env[CONFIG.key]
@@ -10,29 +9,25 @@ const totalwindOpts = assign({}, CONFIG, {
 
 const totalwind = require('totalwind-api')(totalwindOpts)
 const createExtractor = require('./extractor')
+const createProvider = require('../create-provider')
 
 const CONST = {
-  CATEGORIES: [
-    'sails',
-    'boards',
-    'accesories',
-    'others',
-    'formula'
-  ],
-  TYPE: 'particular'
+  PROVIDER_NAME: 'totalwind'
 }
 
-module.exports = {
-  name: 'totalwind',
-  start: function (cb) {
-    const self = this
-    each(CONST.CATEGORIES, function (category, next) {
-      const extractor = bind(createExtractor(CONST.TYPE, category), self)
-      const reqStream = totalwind.purchase[CONST.TYPE][category]()
-      reqStream
+function createTotalwindProvider (type, category) {
+  return createProvider({
+    name: CONST.PROVIDER_NAME,
+    start: function (done) {
+      const self = this
+      const extractor = bind(createExtractor(type, category), self)
+      const stream = totalwind.purchase[type][category]()
+      stream
         .on('data', extractor)
-        .on('error', next)
-        .on('end', next)
-    }, cb)
-  }
+        .on('error', done)
+        .on('end', done)
+    }
+  })
 }
+
+module.exports = createTotalwindProvider

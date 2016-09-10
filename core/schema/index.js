@@ -1,12 +1,7 @@
 'use strict'
 
-/**
- * Schemaless validation
- */
-
 const cleanTitle = require('./clean-title')
 const { asyncify } = require('async')
-const lodash = require('lodash')
 const osom = require('osom')
 
 const schema = osom({
@@ -17,13 +12,11 @@ const schema = osom({
   },
   category: {
     required: true,
-    type: String,
-    transform: [lodash.capitalize]
+    type: String
   },
   type: {
     required: true,
-    type: String,
-    transform: [lodash.capitalize]
+    type: String
   },
   provider: {
     required: true,

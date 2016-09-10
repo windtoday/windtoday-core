@@ -10,8 +10,7 @@
     "pages": 1
   },
 
-  "check_hosts": [
-    "https://wrapapi.com",
-    "http://totalwind.net/foro/"
-  ]
+  "check_hosts": {
+    "totalwind": ["https://wrapapi.com", "http://totalwind.net/foro"]
+  }
 }

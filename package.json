@@ -23,6 +23,7 @@
     "is-all-reachable": "~1.0.0",
     "lodash": "~4.15.0",
     "mem": "~0.1.1",
+    "meow": "~3.7.0",
     "osom": "~1.1.2",
     "totalwind-api": "~1.0.0",
     "windtoday-boards": "github:windtoday/windtoday-boards",
