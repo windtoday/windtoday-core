@@ -1,7 +1,8 @@
 'use strict'
 
 const should = require('should')
-const board = require('../../../core/identify/board')
+const log = require('../../../core/log')('board_brand_unidentify')
+const board = require('../../../core/identify/board')(log)
 
 function brand (str) {
   return board(str).brand

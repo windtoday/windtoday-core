@@ -1,7 +1,8 @@
 'use strict'
 
 const should = require('should')
-const sail = require('../../../core/identify/sail')
+const log = require('../../../core/log')('sail_brand_unidentify')
+const sail = require('../../../core/identify/sail')(log)
 
 function brand (str) {
   return sail(str).brand

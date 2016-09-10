@@ -1,7 +1,8 @@
 'use strict'
 
 const should = require('should')
-const sail = require('../../../core/identify/sail')
+const log = require('../../../core/log')('sail_model_unidentify')
+const sail = require('../../../core/identify/sail')(log)
 
 function model (str) {
   return sail(str).model

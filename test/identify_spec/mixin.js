@@ -1,7 +1,11 @@
 'use strict'
 
 const should = require('should')
-const mixin = require('../../core/identify/mixin')
+const createLog = require('../../core/log')
+const mixin = require('../../core/identify/mixin')({
+  sailLogger: createLog('mixin_sail_unidentify'),
+  boardLogger: createLog('mixin_board_unidentify')
+})
 
 describe('identify » mixin', function () {
   it('sail', function () {
