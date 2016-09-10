@@ -20,7 +20,10 @@ function createWorker (opts) {
   const { provider, type, category } = opts
   const loggerKeyword = opts.loggerKeyword = `${provider}_${type}_${category}`
   const hosts = CONST.CHECK_HOSTS[provider]
-  const log = createLogger(loggerKeyword)
+  const log = createLogger({
+    keyword: loggerKeyword,
+    diff: true
+  })
   const processExit = createProcessExit(log)
   const worker = providers[provider]({category, type})
 
