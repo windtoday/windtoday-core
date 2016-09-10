@@ -1,7 +1,7 @@
 'use strict'
 
 const CONFIG = require('config').totalwind_api
-const { partial, assign, bind } = require('lodash')
+const { assign, bind } = require('lodash')
 
 const totalwindOpts = assign({}, CONFIG, {
   key: process.env[CONFIG.key]
