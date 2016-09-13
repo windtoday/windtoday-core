@@ -1,7 +1,7 @@
 {
-  "name": "windtoday-search-backend",
+  "name": "windtoday-core",
   "description": "Search engine classificator",
-  "homepage": "https://github.com/windtoday/windtoday-search-backend",
+  "homepage": "https://github.com/windtoday/windtoday-core",
   "version": "0.0.0",
   "main": "index.js",
   "author": {
@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/windtoday/windtoday-search-backend.git"
+    "url": "git+https://github.com/windtoday/windtoday-core.git"
   },
   "bugs": {
-    "url": "https://github.com/windtoday/windtoday-search-backend/issues"
+    "url": "https://github.com/windtoday/windtoday-core/issues"
   },
   "keywords": [],
   "dependencies": {
