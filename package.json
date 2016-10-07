@@ -24,7 +24,7 @@
     "lodash": "~4.16.0",
     "mem": "~0.1.1",
     "meow": "~3.7.0",
-    "osom": "~1.1.2",
+    "osom": "~2.0.0",
     "totalwind-api": "~1.0.0",
     "windtoday-boards": "github:windtoday/windtoday-boards",
     "windtoday-sails": "github:windtoday/windtoday-sails"
