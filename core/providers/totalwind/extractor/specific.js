@@ -19,15 +19,10 @@ function specificExtractor (opts) {
     return boardFactory(createLogger(`${loggerKeyword}_unidentify`))
   }
 
-  if (category === 'formula') {
-    return mixinFactory({
-      sailLogger: createLogger(`${loggerKeyword}_mixin_unidentify`),
-      boardLogger: createLogger(`${loggerKeyword}_mixin_unidentify`)
-    })
-  }
-
-  log.warn('not extractor determined.')
-  return noop
+  return mixinFactory({
+    sailLogger: createLogger(`${loggerKeyword}_mixin_unidentify`),
+    boardLogger: createLogger(`${loggerKeyword}_mixin_unidentify`)
+  })
 }
 
 module.exports = specificExtractor
