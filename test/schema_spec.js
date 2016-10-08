@@ -24,4 +24,11 @@ describe('schema', function () {
       done()
     })
   })
+
+  it('clean title', function (done) {
+    schema(fixture, function (err, instance) {
+      instance.title.should.be.equal('Mistral Syncro 92l 2007')
+      done(err)
+    })
+  })
 })
