@@ -14,19 +14,43 @@ describe('identify » price', function () {
   })
 
   describe('detect', function () {
-    var quantity = 135
-    var symbols = ['e', 'E', '€']
+    describe('simple', function () {
+      var quantity = 135
+      var symbols = ['e', 'E', '€']
 
-    symbols.forEach(function (symbol) {
-      it(`with '${symbol} symbol'`, function () {
-        [
-          `${quantity}${symbol}`,
-          `${quantity} ${symbol}`,
-          ` ${quantity} ${symbol}`,
-          `${quantity} ${symbol} `,
-          ` ${quantity} ${symbol} `
-        ].forEach(function (str) {
-          price(str).should.be.equal(135)
+      symbols.forEach(function (symbol) {
+        it(`${quantity}${symbol} → ${quantity}`, function () {
+          [
+            `${quantity}${symbol}`,
+            `${quantity} ${symbol}`,
+            ` ${quantity} ${symbol}`,
+            `${quantity} ${symbol} `,
+            ` ${quantity} ${symbol} `
+          ].forEach(function (str) {
+            price(str).should.be.equal(135)
+          })
+        })
+      })
+    })
+
+    describe('complex', function () {
+      var expected = 1100
+      var quantities = ['1.100', '1,100']
+      var symbols = ['e', 'E', '€']
+
+      quantities.forEach(function (quantity) {
+        symbols.forEach(function (symbol) {
+          it(`${quantity}${symbol} → ${expected}`, function () {
+            [
+              `${quantity}${symbol}`,
+              `${quantity} ${symbol}`,
+              ` ${quantity} ${symbol}`,
+              `${quantity} ${symbol} `,
+              ` ${quantity} ${symbol} `
+            ].forEach(function (str) {
+              price(str).should.be.equal(expected)
+            })
+          })
         })
       })
     })

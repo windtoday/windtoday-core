@@ -13,18 +13,45 @@ const { first, flow, replace, toNumber } = require('lodash')
 const REGEX_PRICE = /[0-9]+[ ]?[€eE](\s|$)/
 
 /**
+ * Detect numeric price with currency symbol with decimals
+ * @example
+ * 1.100e → 1100€
+ * 1,100e → 1100€
+ * @type {RegExp}
+ */
+const REGEX_PRICE_COMPLEX = /[0-9]+[,.'][0-9]+[ ]?[€eE](\s|$)/
+
+/**
  * Detect Currency Symbol
  * @example 80e → €
  */
 const REGEX_CURRENCY_SYMBOL = /[€eE]/
 
+/**
+ * Detect decimal symbol
+ * @example 1.100 → .
+ * @example 1,100 → ,
+ */
+const REGEX_DECIMAL_SYMBOL = /[,.']/
+
 const normalize = flow([
-  (str) => replace(str, REGEX_CURRENCY_SYMBOL, '')
+  (str) => replace(str, REGEX_CURRENCY_SYMBOL, ''),
+  (str) => replace(str, REGEX_DECIMAL_SYMBOL, ''),
+  toNumber
 ])
 
-function price (str) {
+function priceSingle (str) {
   const price = first(str.match(REGEX_PRICE))
-  return price && toNumber(normalize(price))
+  return price && normalize(price)
+}
+
+function priceComplex (str) {
+  const price = first(str.match(REGEX_PRICE_COMPLEX))
+  return price && normalize(price)
+}
+
+function price (str) {
+  return priceComplex(str) || priceSingle(str)
 }
 
 module.exports = price
