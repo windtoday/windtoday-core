@@ -14,7 +14,7 @@ describe('identify » price', function () {
   })
 
   describe('detect', function () {
-    describe('simple', function () {
+    describe('zero decimal', function () {
       var quantity = 135
       var symbols = ['e', 'E', '€']
 
@@ -33,7 +33,7 @@ describe('identify » price', function () {
       })
     })
 
-    describe('complex', function () {
+    describe('one decimal', function () {
       var expected = 1100
       var quantities = ['1.100', '1,100']
       var symbols = ['e', 'E', '€']
