@@ -1,6 +1,6 @@
 'use strict'
 
-const { flow, trim } = require('lodash')
+const { flow, trim, capitalize } = require('lodash')
 
 const WORDS = require('./words.json').map(function (word) {
   return RegExp(word, 'i')
@@ -41,5 +41,6 @@ module.exports = flow([
   cleanPrice,
   cleanSymbols,
   cleanWhiteSpaces,
-  trim
+  trim,
+  capitalize
 ])
