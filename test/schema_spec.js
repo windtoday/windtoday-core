@@ -25,10 +25,37 @@ describe('schema', function () {
     })
   })
 
-  it('clean title', function (done) {
-    schema(fixture, function (err, instance) {
-      instance.title.should.be.equal('Mistral Syncro 92l 2007')
-      done(err)
+  describe('clean title', function (done) {
+    it('price', function (done) {
+      const title = 'Mistral Syncro 280€'
+      schema(Object.assign({}, fixture, {title}), function (err, instance) {
+        instance.title.should.be.equal('Mistral Syncro')
+        done(err)
+      })
+    })
+
+    it('blacklisted words', function (done) {
+      const title = 'Vendo Mistral Syncro - 280€'
+      schema(Object.assign({}, fixture, {title}), function (err, instance) {
+        instance.title.should.be.equal('Mistral Syncro')
+        done(err)
+      })
+    })
+
+    it('titleize', function (done) {
+      const title = 'Vendo mistral Syncro - 280€'
+      schema(Object.assign({}, fixture, {title}), function (err, instance) {
+        instance.title.should.be.equal('Mistral Syncro')
+        done(err)
+      })
+    })
+
+    it('whitespaces', function (done) {
+      const title = '  Vendo  mistral  Syncro - 280€   '
+      schema(Object.assign({}, fixture, {title}), function (err, instance) {
+        instance.title.should.be.equal('Mistral Syncro')
+        done(err)
+      })
     })
   })
 })
