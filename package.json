@@ -18,7 +18,7 @@
   "dependencies": {
     "acho": "~3.1.0",
     "algoliasearch": "~3.18.0",
-    "async": "~2.0.0",
+    "async": "~2.1.0",
     "condense-whitespace": "~1.0.0",
     "config": "~1.21.0",
     "is-all-reachable": "~1.0.0",
