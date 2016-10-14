@@ -22,7 +22,7 @@ const schema = osom({
     required: true,
     type: String
   },
-  link: {
+  url: {
     required: true,
     type: String
   },
