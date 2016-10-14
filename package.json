@@ -18,7 +18,7 @@
   "dependencies": {
     "acho": "~3.1.0",
     "algoliasearch": "~3.18.0",
-    "async": "~2.1.0",
+    "async": "~2.1.1",
     "condense-whitespace": "~1.0.0",
     "config": "~1.21.0",
     "is-all-reachable": "~1.0.0",
@@ -26,8 +26,9 @@
     "mem": "~0.1.1",
     "meow": "~3.7.0",
     "osom": "~2.0.0",
+    "shortest-api": "~1.0.0",
     "titleize": "~1.0.0",
-    "totalwind-api": "~1.0.0",
+    "totalwind-api": "~1.0.1",
     "windtoday-boards": "github:windtoday/windtoday-boards",
     "windtoday-sails": "github:windtoday/windtoday-sails"
   },

@@ -1,10 +1,16 @@
 'use strict'
 
+const CONFIG = require('config')['shorte.st']
+CONFIG.token = process.env[CONFIG.token]
+
+const shortestAPI = require('shortest-api')
+const shortest = shortestAPI(CONFIG)
+
 const cleanTitle = require('./clean-title')
 const { asyncify } = require('async')
 const osom = require('osom')
 
-const schema = osom({
+const validate = osom({
   title: {
     required: true,
     type: String,
@@ -43,4 +49,17 @@ const schema = osom({
   model: String
 })
 
-module.exports = asyncify(schema)
+const validateAsync = asyncify(validate)
+
+function validator (schema, cb) {
+  validateAsync(schema, function (err, instance) {
+    if (err) return cb(err, instance)
+    shortest(instance.url, function (err, shortenURL) {
+      if (err) return cb(err)
+      instance.shortenURL = shortenURL
+      return cb(null, instance)
+    })
+  })
+}
+
+module.exports = validator
