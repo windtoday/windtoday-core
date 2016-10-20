@@ -1,19 +1,17 @@
 'use strict'
 
 const should = require('should')
+const { get } = require('lodash')
 const log = require('../../../core/log')('board_brand_unidentify')
 const board = require('../../../core/identify/board')(log)
-
-function brand (str) {
-  return board(str).brand
-}
 
 describe('identify » board » brand', function () {
   it('not detect', function () {
     [
       ''
     ].forEach(function (title) {
-      should(brand({title})).be.undefined()
+      const boardDetected = board({title})
+      get(boardDetected, 'category').should.be.equal('boards')
     })
   })
 
@@ -21,7 +19,9 @@ describe('identify » board » brand', function () {
     [
       'starboard futura'
     ].forEach(function (title) {
-      brand({title}).should.be.equal('Starboard')
+      const boardDetected = board({title})
+      get(boardDetected, 'category').should.be.equal('boards')
+      get(boardDetected, 'brand').should.be.equal('Starboard')
     })
   })
 })
