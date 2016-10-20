@@ -7,7 +7,7 @@ const mixin = require('../../core/identify/mixin')({
   boardLogger: createLog('mixin_board_unidentify')
 })
 
-describe('identify » mixin', function () {
+xdescribe('identify » mixin', function () {
   it('sail', function () {
     const str = 'vendo ga-sails vapor 11m 2015'
     mixin(str).should.be.eql({

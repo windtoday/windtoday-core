@@ -12,8 +12,8 @@ describe('identify » sail » model', function () {
   it('not detect', function () {
     [
       ''
-    ].forEach(function (str) {
-      should(model(str)).be.undefined()
+    ].forEach(function (title) {
+      should(model({title})).be.undefined()
     })
   })
 
@@ -22,8 +22,8 @@ describe('identify » sail » model', function () {
       'loftsails racing blade',
       'loft sails racingblade',
       'loft racing blade'
-    ].forEach(function (str) {
-      model(str).should.be.equal('Racing Blade')
+    ].forEach(function (title) {
+      model({title}).should.be.equal('Racing Blade')
     })
   })
 })

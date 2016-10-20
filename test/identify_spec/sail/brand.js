@@ -12,8 +12,8 @@ describe('identify » sail » brand', function () {
   it('not detect', function () {
     [
       ''
-    ].forEach(function (str) {
-      should(brand(str)).be.undefined()
+    ].forEach(function (title) {
+      should(brand({title})).be.undefined()
     })
   })
 
@@ -22,8 +22,8 @@ describe('identify » sail » brand', function () {
       'loftsails racing blade',
       'loft sails racingblade',
       'loft racing blade'
-    ].forEach(function (str) {
-      brand(str).should.be.equal('Loft')
+    ].forEach(function (title) {
+      brand({title}).should.be.equal('Loft')
     })
   })
 })

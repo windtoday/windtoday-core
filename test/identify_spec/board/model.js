@@ -12,16 +12,16 @@ describe('identify » board » model', function () {
   it('not detect', function () {
     [
       ''
-    ].forEach(function (str) {
-      should(model(str)).be.undefined()
+    ].forEach(function (title) {
+      should(model({title})).be.undefined()
     })
   })
 
   it('detect', function () {
     [
       'starboard futura'
-    ].forEach(function (str) {
-      model(str).should.be.equal('Futura')
+    ].forEach(function (title) {
+      model({title}).should.be.equal('Futura')
     })
   })
 })
