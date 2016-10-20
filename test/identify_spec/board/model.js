@@ -1,6 +1,6 @@
 'use strict'
 
-const should = require('should')
+require('should')
 const { get } = require('lodash')
 const log = require('../../../core/log')('board_brand_unidentify')
 const board = require('../../../core/identify/board')(log)

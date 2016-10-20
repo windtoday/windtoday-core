@@ -1,6 +1,6 @@
 'use strict'
 
-const should = require('should')
+require('should')
 const { get } = require('lodash')
 const log = require('../../../core/log')('sail_brand_unidentify')
 const sail = require('../../../core/identify/sail')(log)
