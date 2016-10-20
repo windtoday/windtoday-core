@@ -2,26 +2,32 @@
 
 const boardFactory = require('../board')
 const sailFactory = require('../sail')
-const REGEX_BLACKLIST = RegExp(require('./words.json').join('|'), 'i')
+const category = require('../../category')
 
 function factory (opts) {
-  const sail = sailFactory(opts.sailLogger)
-  const board = boardFactory(opts.boardLogger)
+  const sailExtracted = sailFactory(opts.sailLogger)
+  const boardExtracted = boardFactory(opts.boardLogger)
 
   /**
-   * Detect board/sail from not determinated input.
+   * Detect category and data associated from not determinated input.
    */
   function mixin (str) {
-    if (REGEX_BLACKLIST.test(str)) return
+    const sail = sailExtracted(str)
+    if (sail.model) return sail
 
-    var boardExtracted = board(str)
-    if (boardExtracted.model) return boardExtracted
+    const board = boardExtracted(str)
+    if (board.model) return board
 
-    var sailExtracted = sail(str)
-    if (sailExtracted.model) return sailExtracted
-    if (sailExtracted.brand) return sailExtracted
+    if (sail.brand) return sail
+    if (board.brand) return board
 
-    return boardExtracted
+    // TODO: implement mast, fin & boom support
+
+    /* not determinated */
+
+    return {
+      category: category.others
+    }
   }
 
   return mixin
