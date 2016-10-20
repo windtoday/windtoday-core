@@ -1,11 +1,11 @@
 'use strict'
 
 const { isString } = require('lodash')
-const Acho = require('acho')
+const createLogger = require('acho')
 
 function log (opts) {
   if (isString(opts)) opts = { keyword: opts }
-  return Acho(opts)
+  return createLogger(opts)
 }
 
 module.exports = log
