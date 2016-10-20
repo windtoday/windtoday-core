@@ -22,3 +22,8 @@ const brands = [
   'hurricane',
   'choco fins'
 ]
+
+module.exports = {
+  types,
+  brands
+}

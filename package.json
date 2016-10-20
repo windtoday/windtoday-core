@@ -23,7 +23,6 @@
     "config": "~1.21.0",
     "is-all-reachable": "~1.0.0",
     "lodash": "~4.16.0",
-    "mem": "~0.1.1",
     "meow": "~3.7.0",
     "osom": "~2.0.0",
     "shortest-api": "~1.0.0",
@@ -46,15 +45,17 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "lint": "standard lib index.js",
+    "lint": "standard",
     "pretest": "npm run lint",
-    "start": "echo 'waiting the 💨'",
+    "start": "echo 'waiting the wind'",
     "test": "NODE_ENV=test nyc mocha"
   },
   "license": "MIT",
   "standard": {
     "globals": [
       "describe",
+      "xdescribe",
+      "xit",
       "it"
     ]
   }

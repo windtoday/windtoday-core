@@ -1,6 +1,6 @@
-'use strict'
+'use titleict'
 
-const should = require('should')
+require('should')
 const createLog = require('../../core/log')
 const mixin = require('../../core/identify/mixin')({
   sailLogger: createLog('mixin_sail_unidentify'),
@@ -8,37 +8,37 @@ const mixin = require('../../core/identify/mixin')({
 })
 
 describe('identify » mixin', function () {
-  it('sail', function () {
-    const str = 'vendo ga-sails vapor 11m 2015'
-    mixin(str).should.be.eql({
-      size: 11,
-      brand: 'Gaastra',
-      model: 'Vapor'
+  describe('sails', function () {
+    it('brand and model', function () {
+      const title = 'vendo ga-sails vapor 11m 2015'
+      mixin({title}).should.be.eql({
+        size: 11,
+        brand: 'GA',
+        category: 'sails',
+        model: 'Vapor'
+      })
     })
   })
 
-  it('board', function () {
-    const str = 'vendo tabla f2 fx100 x 132 litros rebajada a 300€'
-    mixin(str).should.be.eql({
-      brand: 'F2',
-      litres: 132
+  describe('board', function () {
+    it('brand and model', function () {
+      const title = 'vendo tabla f2 Stoke 132 litros rebajada a 300€'
+      mixin({title}).should.be.eql({
+        brand: 'F2',
+        category: 'boards',
+        model: 'Stoke',
+        litres: 132
+      })
     })
   })
 
-  it('sail brand but board model', function () {
-    const str = 'Naish Hardline'
-    mixin(str).should.be.eql({
-      brand: 'Naish',
-      model: 'Hardline'
-    })
-  })
-
-  it('sail brand but board model', function () {
-    const str = 'Se vende Bic Techno 283 152 litros'
-    mixin(str).should.be.eql({
-      brand: 'Bic',
-      litres: 152,
-      model: 'Techno'
+  describe('others', function () {
+    it('brand', function () {
+      const title = 'Botavara Neilpryde X9 2013 180230'
+      mixin({title}).should.be.eql({
+        brand: 'Neilpryde',
+        category: 'others'
+      })
     })
   })
 })

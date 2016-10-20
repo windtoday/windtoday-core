@@ -1,19 +1,17 @@
 'use strict'
 
-const should = require('should')
+require('should')
+const { get } = require('lodash')
 const log = require('../../../core/log')('sail_brand_unidentify')
 const sail = require('../../../core/identify/sail')(log)
-
-function brand (str) {
-  return sail(str).brand
-}
 
 describe('identify » sail » brand', function () {
   it('not detect', function () {
     [
       ''
-    ].forEach(function (str) {
-      should(brand(str)).be.undefined()
+    ].forEach(function (title) {
+      const sailDetected = sail({title})
+      get(sailDetected, 'category').should.be.equal('sails')
     })
   })
 
@@ -22,8 +20,10 @@ describe('identify » sail » brand', function () {
       'loftsails racing blade',
       'loft sails racingblade',
       'loft racing blade'
-    ].forEach(function (str) {
-      brand(str).should.be.equal('Loft')
+    ].forEach(function (title) {
+      const sailDetected = sail({title})
+      get(sailDetected, 'category').should.be.equal('sails')
+      get(sailDetected, 'brand').should.be.equal('Loft')
     })
   })
 })

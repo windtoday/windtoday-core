@@ -7,24 +7,22 @@ const { toLower, merge } = require('lodash')
 const COMMON = require('../common')
 
 function createExtractor (opts) {
-  const { type, category } = opts
+  const { type } = opts
   const specificExtractor = createSpecificExtractor(opts)
 
   function _extractor (data) {
-    if (isBlacklisted(data.title)) return
+    const title = data.title = toLower(data.title)
+    if (isBlacklisted(title)) return
 
     data.type = type
     data.provider = COMMON.PROVIDER_NAME
-    data.category = category
-
-    const str = toLower(data.title)
 
     const basicExtractor = {
-      price: price(str),
-      year: year(str)
+      price: price(title),
+      year: year(title)
     }
 
-    merge(data, basicExtractor, specificExtractor(str))
+    merge(data, basicExtractor, specificExtractor(data))
 
     this.validate(data, (validationError, instance) => {
       ++this.stats.total
