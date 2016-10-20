@@ -11,12 +11,11 @@ const db = require('../db')
 
 const CONST = {
   CHECK_HOSTS: require('config').check_hosts,
-  REQUIRED_PARAMS: [ 'provider', 'type', 'category' ]
+  REQUIRED_PARAMS: [ 'provider' ]
 }
 
 function createWorker (opts) {
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
-
   const { provider, type, category } = opts
   const loggerKeyword = opts.loggerKeyword = `${provider}_${type}_${category}`
   const hosts = CONST.CHECK_HOSTS[provider]
