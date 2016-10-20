@@ -1,19 +1,16 @@
 'use strict'
 
-const { lowerCase } = require('lodash')
-
-const categories = {
-  sails: 'sails',
-  boards: 'boards',
-  fins: 'fins',
-  booms: 'booms',
-  masts: 'masts',
-  others: 'others'
-}
+const { get, forEach, lowerCase } = require('lodash')
+const CATEGORIES = require('./categories.json')
 
 function category (str) {
-  str = lowerCase(str)
-  const category = categories[str]
-  if (category) return category
-  return categories.others
+  const key = lowerCase(str)
+  const category = get(CATEGORIES, key, CATEGORIES.others)
+  return category
 }
+
+forEach(CATEGORIES, function (value, key) {
+  category[value] = key
+})
+
+module.exports = category
