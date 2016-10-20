@@ -18,8 +18,19 @@ function factory (opts) {
     const board = boardExtracted(str)
     if (board.model) return board
 
-    if (sail.brand) return sail
-    if (board.brand) return board
+    if (sail.brand) {
+      return {
+        brand: sail.brand,
+        category: category.others
+      }
+    }
+
+    if (board.brand) {
+      return {
+        brand: board.brand,
+        category: category.others
+      }
+    }
 
     // TODO: implement mast, fin & boom support
 

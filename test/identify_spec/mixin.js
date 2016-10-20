@@ -22,11 +22,22 @@ describe('identify » mixin', function () {
 
   describe('board', function () {
     it('brand and model', function () {
-      const title = 'vendo tabla f2 fx100 x 132 litros rebajada a 300€'
+      const title = 'vendo tabla f2 Stoke 132 litros rebajada a 300€'
       mixin({title}).should.be.eql({
         brand: 'F2',
         category: 'boards',
+        model: 'Stoke',
         litres: 132
+      })
+    })
+  })
+
+  describe('others', function () {
+    it('brand', function () {
+      const title = 'Botavara Neilpryde X9 2013 180230'
+      mixin({title}).should.be.eql({
+        brand: 'Neilpryde',
+        category: 'others'
       })
     })
   })
