@@ -1,6 +1,6 @@
 'use strict'
 
-const should = require('should')
+require('should')
 const createLog = require('../../core/log')
 const mixin = require('../../core/identify/mixin')({
   sailLogger: createLog('mixin_sail_unidentify'),

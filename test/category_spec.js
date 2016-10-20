@@ -1,7 +1,7 @@
 'use strict'
 
 const category = require('../core/category')
-const should = require('should')
+require('should')
 
 describe('categories', function () {
   it('access raw category', function () {
