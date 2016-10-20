@@ -7,7 +7,6 @@ const shortestAPI = require('shortest-api')
 const shortest = shortestAPI(CONFIG)
 
 const cleanTitle = require('./clean-title')
-const getCategory = require('../category')
 const { asyncify } = require('async')
 const osom = require('osom')
 
@@ -19,8 +18,7 @@ const validate = osom({
   },
   category: {
     required: true,
-    type: String,
-    transform: [getCategory]
+    type: String
   },
   type: {
     required: true,

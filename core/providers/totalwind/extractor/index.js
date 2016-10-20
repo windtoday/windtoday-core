@@ -15,7 +15,6 @@ function createExtractor (opts) {
 
     data.type = type
     data.provider = COMMON.PROVIDER_NAME
-    data.category = category
 
     const str = toLower(data.title)
 
@@ -24,7 +23,7 @@ function createExtractor (opts) {
       year: year(str)
     }
 
-    merge(data, basicExtractor, specificExtractor(str))
+    merge(data, basicExtractor, specificExtractor(str, data))
 
     this.validate(data, (validationError, instance) => {
       ++this.stats.total
