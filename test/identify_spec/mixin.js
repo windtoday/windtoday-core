@@ -13,7 +13,7 @@ describe('identify » mixin', function () {
       const title = 'vendo ga-sails vapor 11m 2015'
       mixin({title}).should.be.eql({
         size: 11,
-        brand: 'GA',
+        brand: 'Gaastra',
         category: 'sails',
         model: 'Vapor'
       })
