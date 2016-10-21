@@ -2,31 +2,15 @@
 
 const checkRequiredParams = require('../util/check-required-params')
 const createProcessExit = require('../util/process-exit')
+const createLoggerKeyword = require('./logger-keyword')
+const createFilters = require('./filters')
 const providers = require('../providers')
 const createLogger = require('../log')
 const { waterfall } = require('async')
 const { partial } = require('lodash')
 const isUp = require('../util/is-up')
+const CONST = require('./constants')
 const db = require('../db')
-
-const CONST = {
-  CHECK_HOSTS: require('config').check_hosts,
-  REQUIRED_PARAMS: [ 'provider', 'type' ]
-}
-
-function createLoggerKeyword (opts) {
-  const { provider, type, category } = opts
-  let keyword = `${provider}_${type}`
-  if (category) keyword += `_${category}`
-  return keyword
-}
-
-function createFilter (opts) {
-  const { provider, type, category } = opts
-  let filter = `provider:${provider} AND type:${type}`
-  if (category) filter += ` AND category:${category}`
-  return filter
-}
 
 function createWorker (opts) {
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
@@ -43,7 +27,7 @@ function createWorker (opts) {
     partial(isUp, hosts),
     function clean (next) {
       log.info('hosts reachability ✔ (1/3)')
-      const filters = createFilter(opts)
+      const filters = createFilters(opts)
       return db.deleteByQuery('', {filters}, next)
     },
     function insert (next) {
