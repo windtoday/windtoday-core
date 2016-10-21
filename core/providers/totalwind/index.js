@@ -13,7 +13,7 @@ const CONST = {
 
 const checkRequiredParams = require('../../util/check-required-params')
 const totalwind = require('totalwind-api')(totalwindOpts)
-const createSpecificExtractor = require('./specific')
+const createSpecificExtractor = require('./extractor')
 const createProvider = require('../create')
 
 function createTotalwindProvider (opts) {
