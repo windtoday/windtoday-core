@@ -5,5 +5,14 @@
 
   "totalwind_api": {
     "pages": 1
+  },
+
+  "facebook": {
+    "access_token": "FACEBOOK_ACCESS_TOKEN",
+    "groups_ids": [
+      173068032721866,
+      245756195532660
+    ],
+    "limit": 2
   }
 }
