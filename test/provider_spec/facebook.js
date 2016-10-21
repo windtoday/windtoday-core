@@ -1,8 +1,8 @@
 'use strict'
 
-const should = require('should')
 const fetch = require('../../core/providers/facebook/fetch')
-const { first, includes, keys } = require('lodash')
+const { first, keys } = require('lodash')
+const should = require('should')
 
 const CONST = {
   EXPECTED_FIELDS: [
