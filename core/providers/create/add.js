@@ -1,7 +1,7 @@
 'use strict'
 
 const schema = require('../../schema')
-const { addObject } = require('../../db')
+const db = require('../../db')
 
 function createAdd (opts) {
   const { log, stats } = opts
@@ -16,7 +16,7 @@ function createAdd (opts) {
       }
 
       ++stats.add
-      addObject(instance)
+      db.addObject(instance)
     })
   }
 

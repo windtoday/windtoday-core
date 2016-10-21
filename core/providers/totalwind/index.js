@@ -19,11 +19,12 @@ const createProvider = require('../create')
 function createTotalwindProvider (opts) {
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
 
+  const {type, provider} = opts
   const specificExtractor = createSpecificExtractor(opts)
 
   return createProvider(assign({}, opts, {
     start: function (done) {
-      const {type, category, extract} = this
+      const {category, extract} = this
       const stream = totalwind.purchase[type][category]()
 
       stream
@@ -32,7 +33,9 @@ function createTotalwindProvider (opts) {
         .on('end', done)
     },
 
-    extract: specificExtractor
+    extract: function (data) {
+      return assign({type, provider}, data, specificExtractor(data))
+    }
   }))
 }
 

@@ -18,6 +18,7 @@ function createExtractor (opts) {
     }
 
     const item = merge(data, basicExtractor, extract(data))
+
     add(item)
   }
 
