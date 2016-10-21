@@ -15,6 +15,18 @@
   },
 
   "check_hosts": {
-    "totalwind": ["https://wrapapi.com", "http://totalwind.net/foro"]
+    "totalwind": ["https://wrapapi.com", "http://totalwind.net/foro"],
+    "facebook": ["https://www.facebook.com/platform/api-status"]
+  },
+
+  "facebook": {
+    "access_token": "FACEBOOK_ACCESS_TOKEN",
+    "groups_ids": [
+      173068032721866,
+      245756195532660,
+      229068620567605,
+      143928749095041
+    ],
+    "limit": 2
   }
 }
