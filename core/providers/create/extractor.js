@@ -18,8 +18,7 @@ function createExtractor (opts) {
     }
 
     const item = merge(data, basicExtractor, extract(data))
-    console.log(item)
-    // add(item)
+    add(item)
   }
 
   return extractor
