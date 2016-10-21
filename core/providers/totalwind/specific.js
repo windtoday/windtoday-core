@@ -1,9 +1,9 @@
 'use strict'
 
-const boardFactory = require('../../../identify/board')
-const mixinFactory = require('../../../identify/mixin')
-const sailFactory = require('../../../identify/sail')
-const createLogger = require('../../../log')
+const boardFactory = require('../../identify/board')
+const mixinFactory = require('../../identify/mixin')
+const sailFactory = require('../../identify/sail')
+const createLogger = require('../../log')
 
 function specificExtractor (opts) {
   const { category, loggerKeyword } = opts
