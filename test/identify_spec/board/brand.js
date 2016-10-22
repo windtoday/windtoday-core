@@ -10,7 +10,7 @@ describe('identify » board » brand', function () {
     [
       ''
     ].forEach(function (title) {
-      const boardDetected = board({title})
+      const boardDetected = board(title)
       get(boardDetected, 'category').should.be.equal('boards')
     })
   })
@@ -19,7 +19,7 @@ describe('identify » board » brand', function () {
     [
       'starboard futura'
     ].forEach(function (title) {
-      const boardDetected = board({title})
+      const boardDetected = board(title)
       get(boardDetected, 'category').should.be.equal('boards')
       get(boardDetected, 'brand').should.be.equal('Starboard')
     })

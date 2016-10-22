@@ -10,7 +10,7 @@ describe('identify » sail » brand', function () {
     [
       ''
     ].forEach(function (title) {
-      const sailDetected = sail({title})
+      const sailDetected = sail(title)
       get(sailDetected, 'category').should.be.equal('sails')
     })
   })
@@ -21,7 +21,7 @@ describe('identify » sail » brand', function () {
       'loft sails racingblade',
       'loft racing blade'
     ].forEach(function (title) {
-      const sailDetected = sail({title})
+      const sailDetected = sail(title)
       get(sailDetected, 'category').should.be.equal('sails')
       get(sailDetected, 'brand').should.be.equal('Loft')
     })
