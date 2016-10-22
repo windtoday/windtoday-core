@@ -7,32 +7,46 @@ const { replace, toNumber, first } = require('lodash')
  * @example Evo 6 7,8 → 7,8
  * @example Evo 6 7 8 → 7,8
  * @example Evo 6 7'8 → 7,8
+ * @example Evo 6 7´8 → 7,8
  * @example Evo 6 7,8 → 7,8
  */
-const REGEX_SAIL_SIZE_DOUBLE = /\d{1,2}[ ,.']\d/
+const REGEX_SAIL_SIZE_DOUBLE = /\d{1,2}[ ,.'´]\d/
 
 /**
- * Detect double sail size
- * @example Severne 7,8 → 7,8
+ * Detect double sail size with separator variations
+ * Dont' end with `m` symbol.
+ *
+ * @example Severne 7 → 7.0
+ * @example Severne 7  → 7.0
  * @example Severne 7.8 → 7.8
- * @example Severne 7'8 → 7'8
+ * @example Severne 7.8  → 7.8
+ * @example Severne 10.8 → 10.8
+ * @example Severne 10.8  → 10.8
  */
-const REGEX_SAIL_SIZE_DOUBLE_SIMPLE = /\d{1,2}[,.']\d/
+const REGEX_SAIL_SIZE_DOUBLE_SIMPLE = /\d{1,2}[,.'´]\d/
 
 /**
  * Normalize double delimiter
  * @example 7 8 → 7.8
  * @example 7'8 → 7.8
+ * @example 7´8 → 7.8
  * @example 7,8 → 7.8
+ * @example 7.8 → 7.8
  */
-const REGEX_SAIL_SIZE_DOUBLE_DELIMITER = /[ ,.']/
+const REGEX_SAIL_SIZE_DOUBLE_DELIMITER = /[ ,.'´]/
 
 /**
- * Detect single sail size values
- * @example Severne 7m → 7m
- * @example Severne 7 m → 7 m
+ * Detect single sail size values with separator variations
+ * Need to end with `m` symbol.
+ *
+ * @example Severne 7m → 7.0
+ * @example Severne 7 m → 7.0
+ * @example Severne 7.8m → 7.8
+ * @example Severne 7.8 m → 7.8
+ * @example Severne 10.8m → 10.8
+ * @example Severne 10.8 m → 10.8
  */
-const REGEX_SAIL_SIZE_SINGLE = /\d{1,2}[ ]?m/
+const REGEX_SAIL_SIZE_SINGLE = /(\d{1,2}[ ,.'´])*\d{1,2}[ ,.'´]?m/
 
 /**
  * Normalize single sail size delimiter
@@ -66,7 +80,7 @@ function sailSizeSingle (str) {
 }
 
 function sailSize (str) {
-  return sailSizeSingle(str) || sailSizeDoubleSimple(str) || sailSizeDouble(str)
+  return sailSizeSingle(str) || sailSizeDoubleSimple(str) || sailSizeDouble(str)
 }
 
 module.exports = sailSize

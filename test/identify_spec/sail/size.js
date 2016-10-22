@@ -12,30 +12,83 @@ describe('identify » sail » size', function () {
     })
   })
 
-  it('detect separator variatons', function () {
-    ;[
-      ' 7 0',
-      ' 7.0',
-      ' 7,0',
-      " 7'0",
-      ' 7.0m',
-      ' 7,0m',
-      " 7'0m"
-    ].forEach(function (str) {
-      size(str).should.be.equal(7.0)
+  describe('detect separator variatons', function () {
+    describe('simple', function () {
+      describe('without decimals', function () {
+        [
+          '7m',
+          '7 m'
+        ].forEach(function (str) {
+          it(str, function () {
+            size(str).should.be.equal(7.0)
+          })
+        })
+      })
+
+      describe('with decimals', function () {
+        [
+          '7 0',
+          '7.0',
+          '7,0',
+          "7'0",
+          '7´0',
+          '7 0m',
+          '7.0m',
+          '7,0m',
+          "7'0m",
+          '7´0m',
+          '7 0 m',
+          '7.0 m',
+          '7,0 m',
+          "7'0 m",
+          '7´0 m'
+        ].forEach(function (str) {
+          it(str, function () {
+            size(str).should.be.equal(7.0)
+          })
+        })
+      })
+    })
+
+    describe('double', function () {
+      describe('without decimals', function () {
+        [
+          '10m',
+          '10 m'
+        ].forEach(function (str) {
+          it(str, function () {
+            size(str).should.be.equal(10.0)
+          })
+        })
+      })
+
+      describe('with decimals', function () {
+        [
+          '10 2',
+          '10.2',
+          '10,2',
+          "10'2",
+          '10´2',
+          '10 2m',
+          '10.2m',
+          '10,2m',
+          "10'2m",
+          '10´2m',
+          '10 2 m',
+          '10.2 m',
+          '10,2 m',
+          "10'2 m",
+          '10´2 m'
+        ].forEach(function (str) {
+          it(str, function () {
+            size(str).should.be.equal(10.2)
+          })
+        })
+      })
     })
   })
 
-  it('detect single number', function () {
-    ;[
-      '7m',
-      '7 m'
-    ].forEach(function (str) {
-      size(str).should.be.equal(7.0)
-    })
-  })
-
-  describe('detect', function () {
+  describe('special considerations', function () {
     it('in a string with model that finish in number', function () {
       const str = 'Vendo Neilpryde H2 7,2 2012 - 175€'
       size(str).should.be.equal(7.2)
