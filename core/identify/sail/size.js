@@ -3,16 +3,6 @@
 const { replace, toNumber, first } = require('lodash')
 
 /**
- * Detect sail size in text with spaces
- * @example Evo 6 7,8 → 7,8
- * @example Evo 6 7 8 → 7,8
- * @example Evo 6 7'8 → 7,8
- * @example Evo 6 7´8 → 7,8
- * @example Evo 6 7,8 → 7,8
- */
-const REGEX_SAIL_SIZE_DOUBLE = /\d{1,2}[ ,.'´]\d/
-
-/**
  * Detect double sail size with separator variations
  * Dont' end with `m` symbol.
  *
@@ -46,7 +36,7 @@ const REGEX_SAIL_SIZE_DOUBLE_DELIMITER = /[ ,.'´]/
  * @example Severne 10.8m → 10.8
  * @example Severne 10.8 m → 10.8
  */
-const REGEX_SAIL_SIZE_SINGLE = /(\d{1,2}[ ,.'´])*\d{1,2}[ ,.'´]?m/
+const REGEX_SAIL_SIZE_SINGLE = /(\d{1,2}[ ,.'´])*\d{1,2}[ ,.'´]?m?/
 
 /**
  * Normalize single sail size delimiter
@@ -55,16 +45,10 @@ const REGEX_SAIL_SIZE_SINGLE = /(\d{1,2}[ ,.'´])*\d{1,2}[ ,.'´]?m/
  */
 const REGEX_SAIL_SIZE_SINGLE_DELIMITER = /[ ]?m/
 
+const REGEX_SAIL_SIZE_DELIMITER = /m/
+
 function sailSizeDoubleSimple (str) {
   let size = first(str.match(REGEX_SAIL_SIZE_DOUBLE_SIMPLE))
-  if (!size) return
-
-  size = replace(size, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.')
-  return size && toNumber(size)
-}
-
-function sailSizeDouble (str) {
-  let size = first(str.match(REGEX_SAIL_SIZE_DOUBLE))
   if (!size) return
 
   size = replace(size, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.')
@@ -75,12 +59,15 @@ function sailSizeSingle (str) {
   let size = first(str.match(REGEX_SAIL_SIZE_SINGLE))
   if (!size) return
 
+  size = replace(size, REGEX_SAIL_SIZE_DELIMITER, '')
+  size = replace(size, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.')
   size = replace(size, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0')
+
   return size && toNumber(size)
 }
 
 function sailSize (str) {
-  return sailSizeSingle(str) || sailSizeDoubleSimple(str) || sailSizeDouble(str)
+  return sailSizeSingle(str) || sailSizeDoubleSimple(str)
 }
 
 module.exports = sailSize
