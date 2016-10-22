@@ -23,12 +23,10 @@ function factory (log) {
   const addModel = createAdd('model', (acc) => acc.dir.model())
   const addCategory = createAdd('category', (acc) => category.boards)
 
-  function board (data) {
-    const { title } = data
-
+  function board (str) {
     const acc = {
-      dir: boards(title),
-      input: title,
+      dir: boards(str),
+      input: str,
       output: {}
     }
 

@@ -17,7 +17,7 @@ function createExtractor (opts) {
       year: yearExtractor(title)
     }
 
-    const item = merge(data, basicExtractor, extract(data))
+    const item = merge(data, basicExtractor, extract(title))
 
     add(item)
   }
