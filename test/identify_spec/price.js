@@ -15,28 +15,42 @@ describe('identify » price', function () {
 
   describe('detect', function () {
     describe('zero decimal', function () {
-      var quantity = 135
-      var symbols = ['e', 'E', '€']
+      describe('symbol at end', function () {
+        const quantity = 135
+        const symbols = ['e', 'E', '€']
 
-      symbols.forEach(function (symbol) {
-        it(`${quantity}${symbol} → ${quantity}`, function () {
-          [
-            `${quantity}${symbol}`,
-            `${quantity} ${symbol}`,
-            ` ${quantity} ${symbol}`,
-            `${quantity} ${symbol} `,
-            ` ${quantity} ${symbol} `
-          ].forEach(function (str) {
-            price(str).should.be.equal(135)
+        symbols.forEach(function (symbol) {
+          it(`${quantity}${symbol} → ${quantity}`, function () {
+            [
+              `${quantity}${symbol}`,
+              `${quantity} ${symbol}`,
+              ` ${quantity} ${symbol}`,
+              `${quantity} ${symbol} `,
+              ` ${quantity} ${symbol} `
+            ].forEach(function (str) {
+              price(str).should.be.equal(quantity)
+            })
+          })
+        })
+      })
+
+      describe('symbol at begin', function () {
+        const quantity = 135
+        const symbols = ['€']
+
+        symbols.forEach(function (symbol) {
+          const str = `${symbol}${quantity}`
+          it(`${str} → ${quantity}`, function () {
+            price(str).should.be.equal(quantity)
           })
         })
       })
     })
 
     describe('one decimal', function () {
-      var expected = 1100
-      var quantities = ['1.100', '1,100']
-      var symbols = ['e', 'E', '€']
+      const expected = 1100
+      const quantities = ['1.100', '1,100']
+      const symbols = ['e', 'E', '€']
 
       quantities.forEach(function (quantity) {
         symbols.forEach(function (symbol) {

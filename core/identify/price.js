@@ -3,7 +3,7 @@
 const { first, flow, replace, toNumber } = require('lodash')
 
 /**
- * Detect numeric price with currency symbol.
+ * Detect numeric price with currency at end.
  * @example
  * 80e → 80€
  * 150E → 150€
@@ -12,7 +12,16 @@ const { first, flow, replace, toNumber } = require('lodash')
  * 1,100e → 1100€
  * @type {RegExp}
  */
-const REGEX_PRICE = /([0-9]+[,.'])*[0-9]+[ ]?[€eE](\s|$)/
+const REGEX_PRICE_AT_END = /([0-9]+[,.'])*[0-9]+[ ]?[€eE](\s|$)/
+
+/**
+ * Detect numeric price with currency at begin
+ * @example
+ * €450 → 450€
+ */
+const REGEX_PRICE_AT_BEGIN = /€[0-9]+/
+
+const REGEX_PRICE = RegExp(REGEX_PRICE_AT_END.source + '|' + REGEX_PRICE_AT_BEGIN.source)
 
 /**
  * Detect Currency Symbol
