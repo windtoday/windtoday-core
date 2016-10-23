@@ -1,7 +1,7 @@
 'use strict'
 
-const { get, forEach, lowerCase } = require('lodash')
 const CATEGORIES = require('./categories.json')
+const { get, forEach, lowerCase } = require('lodash')
 
 function category (str) {
   const key = lowerCase(str)
