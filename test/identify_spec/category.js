@@ -13,6 +13,7 @@ describe('identify » category', function () {
         ].forEach(function (keyword) {
           it(keyword, function () {
             category.fins(keyword).should.be.true()
+            category(keyword).should.be.equal('fins')
           })
         })
       })
@@ -29,6 +30,7 @@ describe('identify » category', function () {
         ].forEach(function (keyword) {
           it(keyword, function () {
             category.masts(keyword).should.be.true()
+            category(keyword).should.be.equal('masts')
           })
         })
       })
@@ -44,6 +46,7 @@ describe('identify » category', function () {
         ].forEach(function (keyword) {
           it(keyword, function () {
             category.booms(keyword).should.be.true()
+            category(keyword).should.be.equal('booms')
           })
         })
       })
@@ -59,6 +62,7 @@ describe('identify » category', function () {
         ].forEach(function (keyword) {
           it(keyword, function () {
             category.sails(keyword).should.be.true()
+            category(keyword).should.be.equal('sails')
           })
         })
       })
@@ -69,6 +73,7 @@ describe('identify » category', function () {
         ].forEach(function (keyword) {
           it(keyword, function () {
             category.sails(keyword).should.be.false()
+            category(keyword).should.be.equal('others')
           })
         })
       })
@@ -84,6 +89,7 @@ describe('identify » category', function () {
         ].forEach(function (keyword) {
           it(keyword, function () {
             category.boards(keyword).should.be.true()
+            category(keyword).should.be.equal('boards')
           })
         })
       })
@@ -94,6 +100,7 @@ describe('identify » category', function () {
         ].forEach(function (keyword) {
           it(keyword, function () {
             category.boards(keyword).should.be.false()
+            category(keyword).should.be.equal('others')
           })
         })
       })

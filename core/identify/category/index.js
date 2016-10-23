@@ -21,10 +21,14 @@ const identify = {
 }
 
 function identifyCategory (str) {
+  let category = categories.others
   forEach(omit(categories, 'others'), function (categoryValue, categoryName) {
-    if (identify[categoryName]) return categoryValue
+    if (identify[categoryName](str)) {
+      category = categoryValue
+      return false
+    }
   })
-  return categories.others
+  return category
 }
 
 forEach(identify, function (value, key) {
