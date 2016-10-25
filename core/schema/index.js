@@ -60,9 +60,9 @@ const validateAsync = asyncify(validate)
 function validator (schema, cb) {
   validateAsync(schema, function (err, instance) {
     if (err) return cb(err, instance)
-    shortest(instance.url, function (err, shortenURL) {
+    shortest(instance.url, function (err, shortenUrl) {
       if (err) return cb(err)
-      instance.shortenURL = shortenURL
+      instance.shortenUrl = shortenUrl
       return cb(null, instance)
     })
   })
