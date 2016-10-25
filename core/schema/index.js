@@ -11,6 +11,7 @@ const { asyncify } = require('async')
 const osom = require('osom')
 
 const validate = osom({
+  /* common */
   title: {
     required: true,
     type: String,
@@ -41,12 +42,17 @@ const validate = osom({
     type: Number
   },
 
-  size: Number,
-  litres: Number,
-  price: Number,
-  year: Number,
+  /** identify:common **/
   brand: String,
-  model: String
+  model: String,
+  price: Number,
+  year: Number
+
+  /* identify:board */
+  litres: Number,
+
+  /* identify:sail */
+  size: Number
 })
 
 const validateAsync = asyncify(validate)
