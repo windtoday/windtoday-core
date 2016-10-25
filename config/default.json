@@ -2,7 +2,7 @@
   "algoliasearch": {
     "app_id": "ALGOLIA_APP_ID",
     "api_key": "ALGOLIA_API_KEY",
-    "index": "sails"
+    "index": "primary"
   },
 
   "totalwind_api": {
