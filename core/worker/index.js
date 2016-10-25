@@ -1,15 +1,15 @@
 'use strict'
 
 const checkRequiredParams = require('../util/check-required-params')
-const createProcessExit = require('../util/process-exit')
 const createLoggerKeyword = require('./logger-keyword')
+const createProcessExit = require('./process-exit')
 const createFilters = require('./filters')
 const providers = require('../providers')
 const createLogger = require('../log')
 const { waterfall } = require('async')
 const { partial } = require('lodash')
-const isUp = require('../util/is-up')
 const CONST = require('./constants')
+const isUp = require('./is-up')
 const db = require('../db')
 
 function createWorker (opts) {
