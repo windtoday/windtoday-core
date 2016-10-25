@@ -1,23 +1,12 @@
 'use strict'
 
-const createLogUnmatching = require('../../util/log-unmatching')
+const createAddFactory = require('../create-add')
 const { sails } = require('../../directory')
 const category = require('../../category')
 const size = require('./size')
 
 function factory (log) {
-  const logUnmatching = createLogUnmatching('sail', log)
-
-  function createAdd (key, fnValue) {
-    function add (acc) {
-      const value = fnValue(acc)
-      if (value) acc.output[key] = value
-      else logUnmatching(key, acc)
-    }
-
-    return add
-  }
-
+  const createAdd = createAddFactory('sail', log)
   const addSize = createAdd('size', (acc) => size(acc.input))
   const addBrand = createAdd('brand', (acc) => acc.dir.brand())
   const addModel = createAdd('model', (acc) => acc.dir.model())
