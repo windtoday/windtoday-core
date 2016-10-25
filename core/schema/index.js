@@ -46,7 +46,7 @@ const validate = osom({
   brand: String,
   model: String,
   price: Number,
-  year: Number
+  year: Number,
 
   /* identify:board */
   litres: Number,
