@@ -2,26 +2,56 @@
 
 const { toNumber, first, replace } = require('lodash')
 
-const REGEX_MAST_SIZE_LETTER = /\d{1}m/i
-const REGEX_MAST_SIZE_LETTER_SYMBOL = /m/i
+/**
+ * Detect mast size with symbol
+ * @example
+ * 4m → 400
+ */
+const REGEX_MAST_SIZE = /\d{1}m/i
+const REGEX_MAST_SIZE_SYMBOL = /m/i
 
-const REGEX_MAST_SIZE_NUMBER = /\d{3}/
-
-function letter (str) {
-  let size = first(str.match(REGEX_MAST_SIZE_LETTER))
+function sizeSymbol (str) {
+  let size = first(str.match(REGEX_MAST_SIZE))
   if (!size) return
 
-  size = replace(size, REGEX_MAST_SIZE_LETTER_SYMBOL, '00')
+  size = replace(size, REGEX_MAST_SIZE_SYMBOL, '00')
   return toNumber(size)
 }
 
-function number (str) {
+/**
+ * Detect mast size
+ * @example
+ * 400 → 400
+ */
+const REGEX_MAST_SIZE_NUMBER = /\d{3}/
+
+function sizeNumber (str) {
   let size = first(str.match(REGEX_MAST_SIZE_NUMBER))
   return size && toNumber(size)
 }
 
+/**
+ * Detect mast size with separator
+ * @example
+ * 3.7 → 370
+ * 3'7 → 370
+ * 3,7 → 370
+ */
+const REGEX_SAIL_SIZE_WITH_SEPARATOR = /\d{1,2}[,.'´]\d/
+const REGEX_SAIL_SIZE_SEPARATOR = /[,.'´]/
+
+function sizeSeparator (str) {
+  let size = first(str.match(REGEX_SAIL_SIZE_WITH_SEPARATOR))
+  if (!size) return
+
+  size = replace(size, REGEX_SAIL_SIZE_SEPARATOR, '')
+  if (size.length !== 3) size += '0'
+
+  return size && toNumber(size)
+}
+
 function size (str) {
-  return letter(str) || number(str)
+  return sizeSeparator(str) || sizeNumber(str) || sizeSymbol(str)
 }
 
 module.exports = size

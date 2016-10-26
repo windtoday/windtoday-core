@@ -94,7 +94,7 @@ describe('identify » mast', function () {
         })
       })
 
-      xdescribe('more than one', function () {
+      describe('more than one', function () {
         [
           '3.7',
           '3,7',
@@ -105,7 +105,7 @@ describe('identify » mast', function () {
           it(size, function () {
             const str = tpl({size})
             const mastDetected = mast(str)
-            get(mastDetected, 'size').should.be.equal(430)
+            get(mastDetected, 'size').should.be.equal(370)
           })
         })
       })
