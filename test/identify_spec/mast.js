@@ -2,40 +2,72 @@
 
 const log = require('../../core/log')('mast_unidentify')
 const mast = require('../../core/identify/mast')(log)
-const { get } = require('lodash')
+const { get, template } = require('lodash')
 
 describe('identify » mast', function () {
   it('category', function () {
-    const str = 'Mástil Neilpryde X9 4m SDM'
+    const str = 'Mástil Neilpryde X9 75c 4m SDM'
     const mastDetected = mast(str)
     get(mastDetected, 'category').should.be.equal('masts')
   })
 
   describe('type', function () {
-    it('sdm', function () {
-      const str = 'Mástil Neilpryde X9 4m SDM'
-      const mastDetected = mast(str)
-      get(mastDetected, 'type').should.be.equal('sdm')
+    const tpl = template('Mástil Neilpryde X9 4m 75c <%= type %>')
+
+    describe('sdm', function () {
+      [
+        'sdm',
+        'SDM'
+      ].forEach(function (type) {
+        it(type, function () {
+          const str = tpl({type})
+          const mastDetected = mast(str)
+          get(mastDetected, 'type').should.be.equal('sdm')
+        })
+      })
     })
 
-    it('rdm', function () {
-      const str = 'Mástil Neilpryde X9 4m RDM'
-      const mastDetected = mast(str)
-      get(mastDetected, 'type').should.be.equal('rdm')
+    describe('rdm', function () {
+      [
+        'rdm',
+        'RDM'
+      ].forEach(function (type) {
+        it(type, function () {
+          const str = tpl({type})
+          const mastDetected = mast(str)
+          get(mastDetected, 'type').should.be.equal('rdm')
+        })
+      })
     })
   })
 
-  xdescribe('carbon', function () {
-    it('75c', function () {
-      const str = 'Mástil Neilpryde X9 4m RDM 75c'
-      const mastDetected = mast(str)
-      get(mastDetected, 'carbon').should.be.equal(75)
+  describe('carbon', function () {
+    const tpl = template('Mástil Neilpryde X9 4m <%= carbon %> SDM')
+
+    describe('two units', function () {
+      [
+        '75c',
+        '75%'
+      ].forEach(function (carbon) {
+        it(carbon, function () {
+          const str = tpl({carbon})
+          const mastDetected = mast(str)
+          get(mastDetected, 'carbon').should.be.equal(75)
+        })
+      })
     })
 
-    it('75%', function () {
-      const str = 'Mástil Neilpryde X9 4m RDM 75%'
-      const mastDetected = mast(str)
-      get(mastDetected, 'carbon').should.be.equal(75)
+    describe('three units', function () {
+      [
+        '100c',
+        '100%'
+      ].forEach(function (carbon) {
+        it(carbon, function () {
+          const str = tpl({carbon})
+          const mastDetected = mast(str)
+          get(mastDetected, 'carbon').should.be.equal(100)
+        })
+      })
     })
   })
 
