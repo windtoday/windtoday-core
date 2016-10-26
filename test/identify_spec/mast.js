@@ -47,6 +47,9 @@ describe('identify » mast', function () {
     describe('two units', function () {
       [
         '75c',
+        '75C',
+        'c75',
+        'C75',
         '75%'
       ].forEach(function (carbon) {
         it(carbon, function () {
@@ -60,6 +63,9 @@ describe('identify » mast', function () {
     describe('three units', function () {
       [
         '100c',
+        '100C',
+        'c100',
+        'C100',
         '100%'
       ].forEach(function (carbon) {
         it(carbon, function () {
@@ -77,7 +83,8 @@ describe('identify » mast', function () {
     describe('letter', function () {
       describe('one', function () {
         [
-          '4m'
+          '4m',
+          '4.0'
         ].forEach(function (size) {
           it(size, function () {
             const str = tpl({size})
@@ -89,7 +96,11 @@ describe('identify » mast', function () {
 
       xdescribe('more than one', function () {
         [
-          '4.30m'
+          '3.7',
+          '3,7',
+          '3.70',
+          '3.70m',
+          '3.7m'
         ].forEach(function (size) {
           it(size, function () {
             const str = tpl({size})
