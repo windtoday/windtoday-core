@@ -8,8 +8,8 @@ const litres = require('./litres')
 function factory (log) {
   const createAdd = createAddFactory('board', log)
   const addLitres = createAdd('litres', (acc) => litres(acc.input))
-  const addBrand = createAdd('brand', (acc) => acc.dir.brand())
-  const addModel = createAdd('model', (acc) => acc.dir.model())
+  const addBrand = createAdd('brand', (acc) => acc.dir.brand)
+  const addModel = createAdd('model', (acc) => acc.dir.model)
   const addCategory = createAdd('category', (acc) => category.boards)
 
   function board (str) {

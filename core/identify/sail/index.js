@@ -8,8 +8,8 @@ const size = require('./size')
 function factory (log) {
   const createAdd = createAddFactory('sail', log)
   const addSize = createAdd('size', (acc) => size(acc.input))
-  const addBrand = createAdd('brand', (acc) => acc.dir.brand())
-  const addModel = createAdd('model', (acc) => acc.dir.model())
+  const addBrand = createAdd('brand', (acc) => acc.dir.brand)
+  const addModel = createAdd('model', (acc) => acc.dir.model)
   const addCategory = createAdd('category', (acc) => category.sails)
 
   function sail (str) {
