@@ -36,6 +36,7 @@ function sizeNumber (str) {
  * 3.7 → 370
  * 3'7 → 370
  * 3,7 → 370
+ * 3,7m → 370
  */
 const REGEX_SAIL_SIZE_WITH_SEPARATOR = /\d{1,2}[,.'´]\d/
 const REGEX_SAIL_SIZE_SEPARATOR = /[,.'´]/
@@ -45,7 +46,7 @@ function sizeSeparator (str) {
   if (!size) return
 
   size = replace(size, REGEX_SAIL_SIZE_SEPARATOR, '')
-  if (size.length !== 3) size += '0'
+  while (size.length < 3) size += '0'
 
   return size && toNumber(size)
 }
