@@ -71,17 +71,45 @@ describe('identify » mast', function () {
     })
   })
 
-  xdescribe('size', function () {
-    it('4m', function () {
-      const str = 'Mástil Neilpryde X9 4m RDM'
-      const mastDetected = mast(str)
-      get(mastDetected, 'size').should.be.equal(400)
+  describe('size', function () {
+    const tpl = template('Mástil Neilpryde X9 <%= size %> 75c SDM')
+
+    describe('letter', function () {
+      describe('one', function () {
+        [
+          '4m'
+        ].forEach(function (size) {
+          it(size, function () {
+            const str = tpl({size})
+            const mastDetected = mast(str)
+            get(mastDetected, 'size').should.be.equal(400)
+          })
+        })
+      })
+
+      xdescribe('more than one', function () {
+        [
+          '4.30m'
+        ].forEach(function (size) {
+          it(size, function () {
+            const str = tpl({size})
+            const mastDetected = mast(str)
+            get(mastDetected, 'size').should.be.equal(430)
+          })
+        })
+      })
     })
 
-    it('400', function () {
-      const str = 'Mástil Neilpryde X9 4m RDM'
-      const mastDetected = mast(str)
-      get(mastDetected, 'size').should.be.equal(400)
+    describe('number', function () {
+      [
+        '430'
+      ].forEach(function (size) {
+        it(size, function () {
+          const str = tpl({size})
+          const mastDetected = mast(str)
+          get(mastDetected, 'size').should.be.equal(430)
+        })
+      })
     })
   })
 })
