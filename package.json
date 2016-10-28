@@ -30,7 +30,8 @@
     "titleize": "~1.0.0",
     "totalwind-api": "~1.0.1",
     "windtoday-boards": "github:windtoday/windtoday-boards",
-    "windtoday-sails": "github:windtoday/windtoday-sails"
+    "windtoday-sails": "github:windtoday/windtoday-sails",
+    "windtoday-fins": "github:windtoday/windtoday-fins"
   },
   "devDependencies": {
     "coveralls": "latest",

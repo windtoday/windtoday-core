@@ -1,6 +1,7 @@
 'use strict'
 
 module.exports = {
-  sails: require('windtoday-sails'),
-  boards: require('windtoday-boards')
+  boards: require('windtoday-boards'),
+  fins: require('windtoday-fins'),
+  sails: require('windtoday-sails')
 }
