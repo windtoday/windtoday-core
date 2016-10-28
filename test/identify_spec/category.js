@@ -8,6 +8,7 @@ describe('identify » category', function () {
       describe('truthy', function () {
         [
           'aleta',
+          'aleron',
           'fin',
           'quilla'
         ].forEach(function (keyword) {
