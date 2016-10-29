@@ -11,10 +11,10 @@ describe('identify » fin', function () {
     get(finDetected, 'category').should.be.equal('fins')
   })
 
-  it('type', function () {
+  it('box', function () {
     const str = 'Vendo aleta NUEVA Select 46 trim box'
     const finDetected = fin(str)
-    get(finDetected, 'type').should.be.equal('Trim Box')
+    get(finDetected, 'box').should.be.equal('Trim Box')
   })
 
   it('brand', function () {

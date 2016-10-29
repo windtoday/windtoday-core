@@ -7,7 +7,7 @@ const size = require('./size')
 
 function factory (log) {
   const createAdd = createAddFactory('fin', log)
-  const addType = createAdd('type', (acc) => acc.dir.type)
+  const addBox = createAdd('box', (acc) => acc.dir.box)
   const addBrand = createAdd('brand', (acc) => acc.dir.brand)
   const addCategory = createAdd('category', (acc) => category.fins)
   const addSize = createAdd('size', (acc) => size(acc.input))
@@ -20,7 +20,7 @@ function factory (log) {
     }
 
     addSize(acc)
-    addType(acc)
+    addBox(acc)
     addBrand(acc)
     addCategory(acc)
 
