@@ -50,6 +50,7 @@ describe('identify » mast', function () {
         '75C',
         'c75',
         'C75',
+        'X75',
         '75%'
       ].forEach(function (carbon) {
         it(carbon, function () {

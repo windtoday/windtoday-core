@@ -2,13 +2,14 @@
 
 const { first, replace, toNumber } = require('lodash')
 
-const REGEX_MAST_CARBON_SYMBOL_AT_BEGIN = /[%cC]\d{2,3}/i
-const REGEX_MAST_CARBON_SYMBOL_AT_END = /\d{2,3}[%cC]/i
-const REGEX_MAST_CARBON_SYMBOL = /[%cC]/
+const REGEX_MAST_CARBON_SYMBOL_AT_BEGIN = /[%cx]\d{2,3}/
+const REGEX_MAST_CARBON_SYMBOL_AT_END = /\d{2,3}[%c]/
+const REGEX_MAST_CARBON_SYMBOL = /[%cx]/i
 
 const REGEX_MAST_CARBON = RegExp(
   REGEX_MAST_CARBON_SYMBOL_AT_BEGIN.source + '|' +
-  REGEX_MAST_CARBON_SYMBOL_AT_END.source
+  REGEX_MAST_CARBON_SYMBOL_AT_END.source,
+  'i'
 )
 
 function carbon (str) {
