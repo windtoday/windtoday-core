@@ -8,7 +8,7 @@ const diameter = require('./diameter')
 
 function factory (log) {
   const createAdd = createAddFactory('mast', log)
-  const addCategory = createAdd('category', (acc) => category.masts)
+  const addCategory = createAdd('category', (acc) => category('masts'))
   const addDiameter = createAdd('diameter', (acc) => diameter(acc.input))
   const addCarbon = createAdd('carbon', (acc) => carbon(acc.input))
   const addSize = createAdd('size', (acc) => size(acc.input))

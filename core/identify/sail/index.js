@@ -10,7 +10,7 @@ function factory (log) {
   const addSize = createAdd('size', (acc) => size(acc.input))
   const addBrand = createAdd('brand', (acc) => acc.dir.brand)
   const addModel = createAdd('model', (acc) => acc.dir.model)
-  const addCategory = createAdd('category', (acc) => category.sails)
+  const addCategory = createAdd('category', (acc) => category('sails'))
 
   function sail (str) {
     const acc = {
