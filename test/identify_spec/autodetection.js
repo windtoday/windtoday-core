@@ -1,9 +1,7 @@
 'use strict'
 
 const createAutodetection = require('../../core/identify/create-autodetection')
-const log = require('../../core/log')('fin_unidentify')
-// const mast = require('../../core/identify/mast')(log)
-// const fin = require('../../core/identify/fin')(log)
+const log = require('../../core/log')('autodetection_unidentify')
 
 const autodetection = createAutodetection(log)
 const { get } = require('lodash')
