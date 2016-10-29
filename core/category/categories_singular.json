@@ -1,0 +1,8 @@
+{
+  "sails": "sail",
+  "boards": "board",
+  "fins": "fin",
+  "booms": "boom",
+  "masts": "mast",
+  "others": "other"
+}
