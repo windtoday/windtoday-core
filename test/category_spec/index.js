@@ -1,6 +1,6 @@
 'use strict'
 
-const category = require('../core/category')
+const category = require('../../core/category')
 require('should')
 
 describe('categories', function () {

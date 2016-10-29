@@ -1,6 +1,6 @@
 'use strict'
 
-const schema = require('../core/schema')
+const schema = require('../../core/schema')
 const should = require('should')
 
 const shortenUrl = 'http://sh.st/3duGp'
