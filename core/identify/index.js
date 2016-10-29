@@ -4,6 +4,7 @@ module.exports = {
   price: require('./price'),
   year: require('./year'),
   sail: require('./sail'),
-  board: require('./board'),
-  mixin: require('./mixin')
+  fin: require('./fin'),
+  mast: require('./mast'),
+  board: require('./board')
 }
