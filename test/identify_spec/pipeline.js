@@ -12,7 +12,7 @@ describe('identify » pipeline', function () {
     const str = 'Vendo aleta NUEVA Select 46 trim box'
     const detected = pipeline(str)
     get(detected, 'category').should.be.equal('fins')
-    get(detected, 'type').should.be.equal('Trim Box')
+    get(detected, 'box').should.be.equal('Trim Box')
   })
 
   it('two identifier', function () {
@@ -20,7 +20,7 @@ describe('identify » pipeline', function () {
     const str = 'Vendo aleta NUEVA Select 46 trim box'
     const detected = pipeline(str)
     get(detected, 'category').should.be.equal('fins')
-    get(detected, 'type').should.be.equal('Trim Box')
+    get(detected, 'box').should.be.equal('Trim Box')
   })
 
   it('best effort', function () {

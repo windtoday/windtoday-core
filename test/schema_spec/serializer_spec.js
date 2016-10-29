@@ -1,9 +1,9 @@
 'use strict'
 
-const serializer = require('../../core/db/serializer')
+const serializer = require('../../core/schema/serializer')
 
-describe('db', function () {
-  it('serializer', function () {
+describe('schema » serializer', function () {
+  it('convert size prop into specific category', function () {
     const fixture = {
       category: 'boards',
       size: 132,
@@ -12,7 +12,7 @@ describe('db', function () {
     }
     serializer(fixture).should.be.eql({
       category: 'boards',
-      'boards.size': 132,
+      'board.size': 132,
       brand: 'F2',
       model: 'Stoke'
     })

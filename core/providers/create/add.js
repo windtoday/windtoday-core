@@ -1,6 +1,5 @@
 'use strict'
 
-const serializer = require('../../db/serializer')
 const schema = require('../../schema')
 const db = require('../../db')
 
@@ -17,7 +16,7 @@ function createAdd (opts) {
       }
 
       ++stats.add
-      db.addObject(serializer(instance))
+      db.addObject(instance)
     })
   }
 
