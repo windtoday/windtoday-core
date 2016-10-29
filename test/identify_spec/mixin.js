@@ -27,7 +27,7 @@ describe('identify » mixin', function () {
         brand: 'F2',
         category: 'boards',
         model: 'Stoke',
-        litres: 132
+        size: 132
       })
     })
   })

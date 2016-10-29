@@ -1,14 +1,14 @@
 'use strict'
 
 const should = require('should')
-const litres = require('../../../core/identify/board/litres')
+const size = require('../../../core/identify/board/size')
 
-describe('identify » board » litres', function () {
+describe('identify » board » size', function () {
   it('not detect', function () {
     [
       ''
     ].forEach(function (str) {
-      should(litres(str)).be.undefined()
+      should(size(str)).be.undefined()
     })
   })
 
@@ -18,7 +18,7 @@ describe('identify » board » litres', function () {
       '84 l',
       '84 litros'
     ].forEach(function (str) {
-      litres(str).should.be.equal(84)
+      size(str).should.be.equal(84)
     })
   })
 
@@ -28,7 +28,7 @@ describe('identify » board » litres', function () {
       '105 l',
       '105 litros'
     ].forEach(function (str) {
-      litres(str).should.be.equal(105)
+      size(str).should.be.equal(105)
     })
   })
 
@@ -38,7 +38,7 @@ describe('identify » board » litres', function () {
       'Se vende Bic Techno 283 152 l',
       'Se vende Bic Techno 283 152 litros'
     ].forEach(function (str) {
-      litres(str).should.be.equal(152)
+      size(str).should.be.equal(152)
     })
   })
 })

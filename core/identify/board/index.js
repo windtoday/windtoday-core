@@ -3,11 +3,11 @@
 const createAddFactory = require('../create-add')
 const { boards } = require('../../directory')
 const category = require('../../category')
-const litres = require('./litres')
+const size = require('./size')
 
 function factory (log) {
   const createAdd = createAddFactory('board', log)
-  const addLitres = createAdd('litres', (acc) => litres(acc.input))
+  const addSize = createAdd('size', (acc) => size(acc.input))
   const addBrand = createAdd('brand', (acc) => acc.dir.brand)
   const addModel = createAdd('model', (acc) => acc.dir.model)
   const addCategory = createAdd('category', (acc) => category.boards)
@@ -20,7 +20,7 @@ function factory (log) {
     }
 
     addCategory(acc)
-    addLitres(acc)
+    addSize(acc)
     addBrand(acc)
     addModel(acc)
 
