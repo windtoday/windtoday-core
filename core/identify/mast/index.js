@@ -4,12 +4,12 @@ const createAddFactory = require('../create-add')
 const category = require('../../category')
 const carbon = require('./carbon')
 const size = require('./size')
-const type = require('./type')
+const diameter = require('./diameter')
 
 function factory (log) {
   const createAdd = createAddFactory('mast', log)
   const addCategory = createAdd('category', (acc) => category.masts)
-  const addType = createAdd('type', (acc) => type(acc.input))
+  const addDiameter = createAdd('diameter', (acc) => diameter(acc.input))
   const addCarbon = createAdd('carbon', (acc) => carbon(acc.input))
   const addSize = createAdd('size', (acc) => size(acc.input))
 
@@ -19,7 +19,7 @@ function factory (log) {
       output: {}
     }
 
-    addType(acc)
+    addDiameter(acc)
     addCarbon(acc)
     addSize(acc)
     addCategory(acc)

@@ -57,6 +57,7 @@ const validate = osom({
 
   size: Number,
   carbon: Number,
+  diameter: Number,
   box: String
 })
 

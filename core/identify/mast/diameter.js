@@ -1,10 +1,11 @@
+
 'use strict'
 
 const { toLower, first } = require('lodash')
-const REGEX_MAST_TYPE = /\b[sr]dm\b/i
+const REGEX_MAST_DIAMETER = /\b[sr]dm\b/i
 
 function type (str) {
-  let type = first(str.match(REGEX_MAST_TYPE))
+  let type = first(str.match(REGEX_MAST_DIAMETER))
   return type && toLower(type)
 }
 
