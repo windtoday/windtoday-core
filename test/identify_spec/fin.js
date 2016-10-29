@@ -24,8 +24,15 @@ describe('identify » fin', function () {
   })
 
   it('size', function () {
-    const str = 'Vendo aleta NUEVA Select 46 trim box'
-    const finDetected = fin(str)
-    get(finDetected, 'size').should.be.equal(46)
+    [
+      'Vendo aleta NUEVA Select 46 trim box',
+      'Aletas Varias Tuttle Box 85€ medida 46',
+      'Aletas Varias Tuttle Box 85e medida 46',
+      'Aletas Varias Tuttle Box 85E medida 46',
+      'Aletas Varias Tuttle Box €85 medida 46'
+    ].forEach(function (str) {
+      const finDetected = fin(str)
+      get(finDetected, 'size').should.be.equal(46)
+    })
   })
 })
