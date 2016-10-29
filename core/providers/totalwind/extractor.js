@@ -20,7 +20,7 @@ function specificExtractor (opts) {
     case 'boards':
       return createExtractor(extractorLogger, 'board')
     default:
-      return createAutodetection(extractorLogger)
+      return createAutodetection(loggerKeyword)
   }
 }
 

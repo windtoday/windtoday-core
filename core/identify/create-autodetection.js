@@ -8,7 +8,7 @@ const noopIdentifier = () => noop
 const identify = require('.')
 
 function createCategoryLogger (loggerKeyword, category) {
-  return createLogger(`${loggerKeyword}_${category}_unidentify`)
+  return createLogger(`${loggerKeyword}_autodetection_${category}_unidentify`)
 }
 
 /**
