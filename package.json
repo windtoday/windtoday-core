@@ -42,7 +42,7 @@
     "standard": "latest"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 7"
   },
   "scripts": {
     "clean": "rm -rf node_modules",
