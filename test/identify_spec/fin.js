@@ -2,7 +2,7 @@
 
 const log = require('../../core/log')('fin_unidentify')
 const fin = require('../../core/identify/fin')(log)
-const { get, template } = require('lodash')
+const { get } = require('lodash')
 
 describe('identify » fin', function () {
   it('category', function () {
