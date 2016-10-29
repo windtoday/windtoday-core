@@ -1,14 +1,17 @@
 'use strict'
 
 const should = require('should')
-const size = require('../../../core/identify/sail/size')
+const { get } = require('lodash')
+const log = require('../../../core/log')('sail_size_unidentify')
+const sail = require('../../../core/identify/sail')(log)
 
 describe('identify » sail » size', function () {
   it('not detect', function () {
     [
       ''
     ].forEach(function (str) {
-      should(size(str)).be.undefined()
+      const sailDetected = sail(str)
+      should(get(sailDetected, 'size')).be.undefined()
     })
   })
 
@@ -20,7 +23,8 @@ describe('identify » sail » size', function () {
           '7 m'
         ].forEach(function (str) {
           it(str, function () {
-            size(str).should.be.equal(7.0)
+            const sailDetected = sail(str)
+            get(sailDetected, 'size').should.be.equal(7.0)
           })
         })
       })
@@ -44,7 +48,8 @@ describe('identify » sail » size', function () {
           '7´0 m'
         ].forEach(function (str) {
           it(str, function () {
-            size(str).should.be.equal(7.0)
+            const sailDetected = sail(str)
+            get(sailDetected, 'size').should.be.equal(7.0)
           })
         })
       })
@@ -57,7 +62,8 @@ describe('identify » sail » size', function () {
           '10 m'
         ].forEach(function (str) {
           it(str, function () {
-            size(str).should.be.equal(10.0)
+            const sailDetected = sail(str)
+            get(sailDetected, 'size').should.be.equal(10.0)
           })
         })
       })
@@ -81,7 +87,8 @@ describe('identify » sail » size', function () {
           '10´2 m'
         ].forEach(function (str) {
           it(str, function () {
-            size(str).should.be.equal(10.2)
+            const sailDetected = sail(str)
+            get(sailDetected, 'size').should.be.equal(10.2)
           })
         })
       })
@@ -91,17 +98,20 @@ describe('identify » sail » size', function () {
   describe('special considerations', function () {
     it('in a string with model that finish in number', function () {
       const str = 'Vendo Neilpryde H2 7,2 2012 - 175€'
-      size(str).should.be.equal(7.2)
+      const sailDetected = sail(str)
+      get(sailDetected, 'size').should.be.equal(7.2)
     })
 
     it('in a string with model that finish in number separated with space', function () {
       const str = 'Vendo Neil Pryde Evo 6 8,6 2015 - 450€'
-      size(str).should.be.equal(8.6)
+      const sailDetected = sail(str)
+      get(sailDetected, 'size').should.be.equal(8.6)
     })
 
     it('in a string with mast dimensions', function () {
       const str = 'Vendo Vela Gaasta Vapor 11 m 2013 y Mastil Gaastra 520 75 '
-      size(str).should.be.equal(11)
+      const sailDetected = sail(str)
+      get(sailDetected, 'size').should.be.equal(11)
     })
   })
 })
