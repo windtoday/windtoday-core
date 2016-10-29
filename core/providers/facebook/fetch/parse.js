@@ -19,7 +19,6 @@ function parse (res) {
       return {
         title: cleanWhiteSpaces(item.message),
         updatedAt: Date.parse(item.updated_time),
-        provider: 'facebook',
         url: permalink(item.id)
       }
     })
