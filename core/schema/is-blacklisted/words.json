@@ -1,5 +1,6 @@
 [
   "^.[.]*$",
+  "anulad[oa]",
   "borrad[oa]",
   "borrar",
   "busc[oa]",
@@ -13,7 +14,9 @@
   "eliminad[oa]",
   "encontrad[oa]",
   "retirad[oa]",
-  "vendid[oa]",
+  "robad[oa]",
+  "robo",
   "vend[íi]a",
+  "vendid[oa]",
   "ya no"
 ]
