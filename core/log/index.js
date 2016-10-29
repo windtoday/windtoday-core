@@ -9,7 +9,7 @@ function log (opts) {
   if (isString(opts)) opts = { keyword: opts }
 
   const loggerOpts = assign({}, opts, {
-    level: isTest && 'muted'
+    level: isTest ? 'muted' : 'all'
   })
 
   return createLogger(loggerOpts)
