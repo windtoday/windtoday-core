@@ -24,7 +24,7 @@ function createTotalwindProvider (opts) {
 
   return createProvider(assign({}, opts, {
     start: function (done) {
-      const {category, extract} = this
+      const { category, extract } = this
       const stream = totalwind.purchase[type][category]()
 
       stream
@@ -33,8 +33,8 @@ function createTotalwindProvider (opts) {
         .on('end', done)
     },
 
-    extract: function (data) {
-      return assign({type, provider}, data, specificExtractor(data))
+    extract: function (str) {
+      return assign({type, provider}, specificExtractor(str))
     }
   }))
 }
