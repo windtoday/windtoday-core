@@ -59,7 +59,7 @@ describe('identify » category', function () {
       describe('truthy', function () {
         [
           'vela',
-          'sails'
+          'sail'
         ].forEach(function (keyword) {
           it(keyword, function () {
             category.sails(keyword).should.be.true()
