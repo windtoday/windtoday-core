@@ -5,10 +5,6 @@ require('should')
 
 describe('categories', function () {
   describe('plural', function () {
-    it('access raw category', function () {
-      category.sails.should.be.equal('sails')
-    })
-
     it('determinate the category', function () {
       [
         'sails',
