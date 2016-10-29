@@ -35,7 +35,6 @@ const validate = osom({
     type: String
   },
   createdAt: {
-    required: true,
     type: Number
   },
   updatedAt: {
