@@ -24,7 +24,6 @@ function fetch (cb) {
 
 function createStream () {
   return from(function (size, next) {
-    var _this = this
     fetch((err, items) => {
       if (err) return next(err)
       items.forEach((item) => this.push(item))
