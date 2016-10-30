@@ -29,6 +29,7 @@
     "osom": "~2.0.0",
     "shortest-api": "~1.0.0",
     "titleize": "~1.0.0",
+    "titly": "~1.0.0",
     "totalwind-api": "~1.0.1",
     "url-regex": "~4.0.0",
     "windtoday-boards": "github:windtoday/windtoday-boards",
