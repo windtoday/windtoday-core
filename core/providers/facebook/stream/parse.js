@@ -1,7 +1,9 @@
 'use strict'
 
-const { chain } = require('lodash')
 const cleanWhiteSpaces = require('condense-whitespace')
+const { chain } = require('lodash')
+const titly = require('titly')
+const urlRegex = require('url-regex')
 
 function permalink (str) {
   var [ groupId, docId ] = str.split('_')
@@ -17,11 +19,12 @@ function parse (res) {
     .uniqBy('message')
     .map(function (item) {
       return {
-        title: cleanWhiteSpaces(item.message),
+        title: titly(cleanWhiteSpaces(item.message)),
         updatedAt: Date.parse(item.updated_time),
         url: permalink(item.id)
       }
     })
+    .filter(item => !urlRegex().test(item.title))
     .value()
 }
 

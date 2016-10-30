@@ -30,6 +30,7 @@
     "shortest-api": "~1.0.0",
     "titleize": "~1.0.0",
     "totalwind-api": "~1.0.1",
+    "url-regex": "~4.0.0",
     "windtoday-boards": "github:windtoday/windtoday-boards",
     "windtoday-fins": "github:windtoday/windtoday-fins",
     "windtoday-sails": "github:windtoday/windtoday-sails"
