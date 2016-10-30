@@ -2,7 +2,7 @@
 
 const createStream = require('../../core/providers/facebook/stream')
 const { first, keys } = require('lodash')
-const should = require('should')
+require('should')
 
 const CONST = {
   EXPECTED_FIELDS: [
