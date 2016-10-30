@@ -1,6 +1,7 @@
 'use strict'
 
 const { replace, toNumber, first } = require('lodash')
+const regexYear = require('../year').regex
 
 /**
  * Detect double sail size with separator variations
@@ -67,6 +68,8 @@ function sailSizeSingle (str) {
 }
 
 function sailSize (str) {
+  str = replace(str, regexYear, '')
+
   return sailSizeSingle(str) || sailSizeDoubleSimple(str)
 }
 

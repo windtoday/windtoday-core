@@ -96,6 +96,12 @@ describe('identify » sail » size', function () {
   })
 
   describe('special considerations', function () {
+    it('in a string with year', function () {
+      const str = 'Vela Goya Banzai 2016 5.3 350 P.i'
+      const sailDetected = sail(str)
+      get(sailDetected, 'size').should.be.equal(5.3)
+    })
+
     it('in a string with model that finish in number', function () {
       const str = 'Vendo Neilpryde H2 7,2 2012 - 175€'
       const sailDetected = sail(str)

@@ -13,4 +13,6 @@ function year (str) {
   return year && toNumber(year)
 }
 
+year.regex = REGEX_YEAR
+
 module.exports = year
