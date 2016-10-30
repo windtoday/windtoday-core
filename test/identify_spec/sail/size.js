@@ -102,6 +102,12 @@ describe('identify » sail » size', function () {
       get(sailDetected, 'size').should.be.equal(5.3)
     })
 
+    it('in a string with price', function () {
+      const str = 'Vendo EZZY WAVE SE 2005 80 € de 5.3'
+      const sailDetected = sail(str)
+      get(sailDetected, 'size').should.be.equal(5.3)
+    })
+
     it('in a string with model that finish in number', function () {
       const str = 'Vendo Neilpryde H2 7,2 2012 - 175€'
       const sailDetected = sail(str)

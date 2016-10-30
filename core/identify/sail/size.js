@@ -2,6 +2,7 @@
 
 const { replace, toNumber, first } = require('lodash')
 const REGEX_YEAR = RegExp(require('../year').regex, 'g')
+const REGEX_PRICE = RegExp(require('../price').regex, 'g')
 
 /**
  * Detect double sail size with separator variations
@@ -69,6 +70,7 @@ function sailSizeSingle (str) {
 
 function sailSize (str) {
   str = replace(str, REGEX_YEAR, '')
+  str = replace(str, REGEX_PRICE, '')
   return sailSizeSingle(str) || sailSizeDoubleSimple(str)
 }
 
