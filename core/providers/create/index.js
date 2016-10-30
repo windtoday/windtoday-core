@@ -2,9 +2,9 @@
 
 const createExtractor = require('./extractor')
 const createContext = require('./context')
+const { parallel } = require('async')
 const { bind } = require('lodash')
 const createAdd = require('./add')
-const { series } = require('async')
 
 function createProvider (opts) {
   const { extract } = opts
@@ -17,7 +17,7 @@ function createProvider (opts) {
   function init (cb) {
     start(function (err) {
       if (err) return cb(err)
-      series(buffer, function (err) {
+      parallel(buffer, function (err) {
         return cb(err, ctx.stats)
       })
     })
