@@ -26,7 +26,7 @@ describe('identify » fin', function () {
   it('size', function () {
     [
       'Vendo aleta NUEVA Select 46 trim box',
-      'Aletas Varias Tuttle Box 85€ medida 46',
+      'Aletas Varias Tuttle Box 100€ y 85€ medida 46',
       'Aletas Varias Tuttle Box 85e medida 46',
       'Aletas Varias Tuttle Box 85E medida 46',
       'Aletas Varias Tuttle Box €85 medida 46'
