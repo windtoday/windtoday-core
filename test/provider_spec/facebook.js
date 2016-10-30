@@ -19,11 +19,7 @@ describe('provider » facebook', function () {
       const buffer = []
 
       stream
-        .on('data', function (data) {
-          console.log('new item')
-          console.log(data)
-          buffer.push(data)
-        })
+        .on('data', buffer.push.bind(buffer))
         .on('end', function () {
           const item = first(buffer)
           const itemKey = keys(item)
