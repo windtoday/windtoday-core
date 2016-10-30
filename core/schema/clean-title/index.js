@@ -5,7 +5,7 @@ const { flow } = require('lodash')
 const titleize = require('titleize')
 
 const REGEX_WORDS = RegExp(require('./words.json').join('|'), 'ig')
-const REGEX_PRICE = require('../../identify/price').regex
+const REGEX_PRICE = RegExp(require('../../identify/price').regex, 'g')
 
 function cleanWords (str) {
   return str.replace(REGEX_WORDS, '')
