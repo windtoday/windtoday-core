@@ -2,11 +2,10 @@
 
 const CATEGORIES_SINGULAR = require('./categories_singular.json')
 const CATEGORIES = require('./categories.json')
-const { get, lowerCase } = require('lodash')
+const { get } = require('lodash')
 
 function createFactory (categories) {
-  function category (str) {
-    const key = lowerCase(str)
+  function category (key) {
     const category = get(categories, key, categories.others)
     return category
   }
