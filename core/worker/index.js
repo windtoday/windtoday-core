@@ -38,8 +38,7 @@ function createWorker (opts) {
 
   waterfall(tasks, function (err, stats) {
     if (err) return processExit(err)
-    log.debug('stats', stats)
-    log.info('inserted new instances ✔ (3/3)')
+    log.info('inserted new instances', stats, '✔ (3/3)')
     return processExit()
   })
 }
