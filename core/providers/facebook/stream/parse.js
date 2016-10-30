@@ -19,6 +19,7 @@ function parse (res) {
     .uniqBy('message')
     .map(function (item) {
       return {
+        // TODO: cleanWhiteSpaces will be executed before call specific extractor.
         title: titly(cleanWhiteSpaces(item.message)),
         updatedAt: Date.parse(item.updated_time),
         url: permalink(item.id)
