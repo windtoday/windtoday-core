@@ -7,7 +7,7 @@
 
   "totalwind_api": {
     "key": "TOTALWIND_KEY",
-    "pages": 1
+    "pages": 5
   },
 
   "shorte.st": {
@@ -27,6 +27,6 @@
       229068620567605,
       143928749095041
     ],
-    "limit": 2
+    "limit": 100
   }
 }
