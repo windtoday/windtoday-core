@@ -6,17 +6,17 @@ const db = require('../../db')
 function createAdd (opts) {
   const { log, stats } = opts
 
-  function add (data) {
+  function add (data, cb) {
     schema(data, (validationError, instance) => {
       ++stats.total
 
       if (validationError) {
         log.error(validationError)
-        return
+        return cb()
       }
 
       ++stats.add
-      db.addObject(instance)
+      return db.addObject(instance, cb)
     })
   }
 

@@ -3,10 +3,10 @@
 const isBlacklisted = require('../../schema/is-blacklisted')
 const priceExtractor = require('../../identify/price')
 const yearExtractor = require('../../identify/year')
-const { assign } = require('lodash')
+const { assign, partial } = require('lodash')
 
 function createExtractor (opts) {
-  const { add, extract } = opts
+  const { add, extract, buffer } = opts
 
   function extractor (data) {
     const { title } = data
@@ -19,8 +19,7 @@ function createExtractor (opts) {
     }
 
     const item = assign(data, basicExtractor, extract(title))
-
-    add(item)
+    buffer.push(partial(add, item))
   }
 
   return extractor

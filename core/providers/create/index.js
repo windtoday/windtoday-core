@@ -4,18 +4,22 @@ const createExtractor = require('./extractor')
 const createContext = require('./context')
 const { bind } = require('lodash')
 const createAdd = require('./add')
+const { series } = require('async')
 
 function createProvider (opts) {
   const { extract } = opts
-
   const ctx = createContext(opts)
   const add = createAdd(ctx)
-  ctx.extract = createExtractor({add, extract})
+  const buffer = []
+  ctx.extract = createExtractor({add, extract, buffer})
   const start = bind(opts.start, ctx)
 
   function init (cb) {
     start(function (err) {
-      return cb.apply(cb, [err, ctx.stats])
+      if (err) return cb(err)
+      series(buffer, function (err) {
+        return cb(err, ctx.stats)
+      })
     })
   }
 
