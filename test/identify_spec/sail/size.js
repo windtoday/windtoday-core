@@ -109,9 +109,13 @@ describe('identify » sail » size', function () {
     })
 
     it('in a string with model that finish in number', function () {
-      const str = 'Vendo Neilpryde H2 7,2 2012 - 175€'
-      const sailDetected = sail(str)
+      let str = 'Vendo Neilpryde H2 7,2 2012 - 175€'
+      let sailDetected = sail(str)
       get(sailDetected, 'size').should.be.equal(7.2)
+
+      str = 'Vendo Simmer X-type2 9,0 2008 - 190€'
+      sailDetected = sail(str)
+      get(sailDetected, 'size').should.be.equal(9.0)
     })
 
     it('in a string with model that finish in number separated with space', function () {
