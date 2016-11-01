@@ -118,6 +118,12 @@ describe('identify » sail » size', function () {
       get(sailDetected, 'size').should.be.equal(9.0)
     })
 
+    it('in a string with brand and model that contains number', function () {
+      const str = 'Point7 Ac2 8,3 2012'
+      const sailDetected = sail(str)
+      get(sailDetected, 'size').should.be.equal(8.3)
+    })
+
     it('in a string with model that finish in number separated with space', function () {
       const str = 'Vendo Neil Pryde Evo 6 8,6 2015 - 450€'
       const sailDetected = sail(str)

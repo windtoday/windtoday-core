@@ -71,7 +71,7 @@ function sailSizeSingle (str) {
 function sailSize (str) {
   str = replace(str, REGEX_YEAR, '')
   str = replace(str, REGEX_PRICE, '')
-  return sailSizeSingle(str) || sailSizeDoubleSimple(str)
+  return sailSizeDoubleSimple(str) || sailSizeSingle(str)
 }
 
 module.exports = sailSize
