@@ -52,6 +52,7 @@ const validate = osom({
   'mast.size': Number,
   'sail.size': Number,
   'board.size': Number,
+  'boom.size': Number,
   'fin.size': Number,
 
   carbon: Number,
