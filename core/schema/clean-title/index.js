@@ -1,8 +1,8 @@
 'use strict'
 
-const cleanWhiteSpaces = require('condense-whitespace')
 const { flow } = require('lodash')
 const titleize = require('titleize')
+const cleanWhiteSpaces = require('condense-whitespace')
 
 const REGEX_WORDS = RegExp(require('./words.json').join('|'), 'ig')
 const REGEX_PRICE = RegExp(require('../../identify/price').regex, 'g')
