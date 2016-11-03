@@ -1,10 +1,11 @@
 'use strict'
 
 module.exports = {
-  price: require('./price'),
-  year: require('./year'),
-  sail: require('./sail'),
+  board: require('./board'),
+  boom: require('./boom'),
   fin: require('./fin'),
   mast: require('./mast'),
-  board: require('./board')
+  price: require('./price'),
+  sail: require('./sail'),
+  year: require('./year')
 }
