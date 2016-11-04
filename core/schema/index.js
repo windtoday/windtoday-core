@@ -58,14 +58,14 @@ const validate = osom({
   'board.size': Number,
 
   'boom.size': String,
+  'boom.type': String,
 
   'fin.size': Number,
   'fin.box': String,
+  'fin.type': String,
 
-  'mast.type': String,
   'mast.carbon': Number,
-
-  'boom.type': String
+  'mast.type': String
 })
 
 const validateAsync = asyncify(validate)

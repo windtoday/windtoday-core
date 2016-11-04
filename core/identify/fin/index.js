@@ -3,6 +3,7 @@
 const createAddFactory = require('../create-add')
 const { fins } = require('../../directory')
 const category = require('../../category')
+const type = require('../boom/type')
 const size = require('./size')
 
 function factory (log) {
@@ -11,6 +12,7 @@ function factory (log) {
   const addBrand = createAdd('brand', (acc) => acc.dir.brand)
   const addCategory = createAdd('category', (acc) => category('fins'))
   const addSize = createAdd('size', (acc) => size(acc.input))
+  const addType = createAdd('size', (acc) => type(acc.input))
 
   function fin (str) {
     const acc = {
@@ -21,6 +23,7 @@ function factory (log) {
 
     addSize(acc)
     addBox(acc)
+    addType(acc)
     addBrand(acc)
     addCategory(acc)
 
