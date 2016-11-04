@@ -28,10 +28,12 @@ function createWorker (opts) {
     function clean (next) {
       log.info('hosts reachability ✔ (1/3)')
       const filters = createFilters(opts)
-      return db.deleteByQuery('', {filters}, next)
+      db.deleteByQuery('', filters, function (err) {
+        return next(err, filters)
+      })
     },
-    function insert (next) {
-      log.info('cleaned old instances ✔ (2/3)')
+    function insert (filters, next) {
+      log.info('cleaned old instances', filters, '✔ (2/3)')
       return worker(next)
     }
   ]

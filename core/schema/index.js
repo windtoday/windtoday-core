@@ -30,6 +30,9 @@ const validate = osom({
     required: true,
     type: String
   },
+  path: {
+    type: String
+  },
   url: {
     required: true,
     type: String
@@ -52,7 +55,7 @@ const validate = osom({
   'mast.size': Number,
   'sail.size': Number,
   'board.size': Number,
-  'boom.size': Number,
+  'boom.size': String,
   'fin.size': Number,
 
   carbon: Number,
