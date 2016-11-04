@@ -11,18 +11,18 @@ describe('identify » mast', function () {
     get(mastDetected, 'category').should.be.equal('masts')
   })
 
-  describe('diameter', function () {
-    const tpl = template('Mástil Neilpryde X9 4m 75c <%= diameter %>')
+  describe('type', function () {
+    const tpl = template('Mástil Neilpryde X9 4m 75c <%= type %>')
 
     describe('sdm', function () {
       [
         'sdm',
         'SDM'
-      ].forEach(function (diameter) {
-        it(diameter, function () {
-          const str = tpl({diameter})
+      ].forEach(function (type) {
+        it(type, function () {
+          const str = tpl({type})
           const mastDetected = mast(str)
-          get(mastDetected, 'diameter').should.be.equal('sdm')
+          get(mastDetected, 'type').should.be.equal('sdm')
         })
       })
     })
@@ -31,11 +31,11 @@ describe('identify » mast', function () {
       [
         'rdm',
         'RDM'
-      ].forEach(function (diameter) {
-        it(diameter, function () {
-          const str = tpl({diameter})
+      ].forEach(function (type) {
+        it(type, function () {
+          const str = tpl({type})
           const mastDetected = mast(str)
-          get(mastDetected, 'diameter').should.be.equal('rdm')
+          get(mastDetected, 'type').should.be.equal('rdm')
         })
       })
     })

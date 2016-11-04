@@ -51,16 +51,21 @@ const validate = osom({
   price: Number,
   year: Number,
 
-  /** specific **/
   'mast.size': Number,
-  'sail.size': Number,
-  'board.size': Number,
-  'boom.size': String,
-  'fin.size': Number,
 
-  carbon: Number,
-  diameter: String,
-  box: String
+  'sail.size': Number,
+
+  'board.size': Number,
+
+  'boom.size': String,
+
+  'fin.size': Number,
+  'fin.box': String,
+
+  'mast.type': String,
+  'mast.carbon': Number,
+
+  'boom.type': String
 })
 
 const validateAsync = asyncify(validate)

@@ -3,7 +3,7 @@
 function createFilters (opts) {
   const { provider, seller, path } = opts
   let filters = `provider:${provider} AND seller:${seller}`
-  if (path) filters += ` AND provider.path:${path}`
+  if (path) filters += ` AND path:${path}`
   return {filters}
 }
 

@@ -4,17 +4,17 @@ const createAutodetection = require('../../identify/create-autodetection')
 const identifiers = require('../../identify')
 const createLogger = require('../../log')
 
-function createExtractor (log, category) {
-  const extractor = identifiers[category]
+function createExtractor (log, path) {
+  const extractor = identifiers[path]
   return extractor(log)
 }
 
 function specificExtractor (opts) {
-  const { category, log } = opts
+  const { path, log } = opts
   const loggerKeyword = log.keyword
   const extractorLogger = createLogger(`${loggerKeyword}_unidentify`)
 
-  switch (category) {
+  switch (path) {
     case 'sails':
       return createExtractor(extractorLogger, 'sail')
     case 'boards':

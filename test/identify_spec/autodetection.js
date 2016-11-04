@@ -16,7 +16,7 @@ describe('identify » autodetection', function () {
     const str = 'Mástil North Sails Sdm Red 460 35c'
     const detected = autodetection(str)
     get(detected, 'category').should.be.equal('masts')
-    get(detected, 'diameter').should.be.equal('sdm')
+    get(detected, 'type').should.be.equal('sdm')
     get(detected, 'carbon').should.be.equal(35)
     get(detected, 'size').should.be.equal(460)
   })
