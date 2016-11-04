@@ -1,8 +1,8 @@
 'use strict'
 
-const { replace, first } = require('lodash')
+const { first } = require('lodash')
 
-const REGEX_BOOM_TYPE = /carbon|aluminio|aluminum/i
+const REGEX_BOOM_TYPE = /carbon/i
 
 function type (str) {
   const type = first(str.match(REGEX_BOOM_TYPE))

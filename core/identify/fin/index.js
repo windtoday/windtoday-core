@@ -12,7 +12,7 @@ function factory (log) {
   const addBrand = createAdd('brand', (acc) => acc.dir.brand)
   const addCategory = createAdd('category', (acc) => category('fins'))
   const addSize = createAdd('size', (acc) => size(acc.input))
-  const addType = createAdd('size', (acc) => type(acc.input))
+  const addType = createAdd('type', (acc) => type(acc.input))
 
   function fin (str) {
     const acc = {

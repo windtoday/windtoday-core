@@ -11,7 +11,6 @@ const REGEX_YEAR = RegExp(require('../year').regex, 'g')
 function size (str) {
   str = replace(str, REGEX_PRICE, '')
   str = replace(str, REGEX_YEAR, '')
-  // str = replace(str, ' ', '')
 
   let size = first(str.match(REGEX_BOOM_SIZE))
 
