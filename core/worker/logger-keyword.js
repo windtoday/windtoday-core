@@ -1,8 +1,8 @@
 'use strict'
 
 function createLoggerKeyword (opts) {
-  const { provider, type, category } = opts
-  let keyword = `${provider}_${type}`
+  const { provider, seller, category } = opts
+  let keyword = `${provider}_${seller}`
   if (category) keyword += `_${category}`
   return keyword
 }

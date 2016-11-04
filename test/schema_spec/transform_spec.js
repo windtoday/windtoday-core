@@ -6,7 +6,7 @@ require('should')
 const fixture = {
   title: 'Vendo Mistral Syncro 92l 2007 - 280€',
   category: 'particular',
-  type: 'particular',
+  seller: 'particular',
   provider: 'totalwind',
   url: 'http://totalwind.net/foro/viewtopic.php?f=48&t=102239',
   createdAt: '1466590680000',

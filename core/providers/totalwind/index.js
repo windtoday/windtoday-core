@@ -19,13 +19,13 @@ const createProvider = require('../create')
 function createTotalwindProvider (opts) {
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
 
-  const {type, provider, path} = opts
+  const {seller, provider, path} = opts
   const specificExtractor = createSpecificExtractor(opts)
 
   return createProvider(assign({}, opts, {
     start: function (done) {
       const { extract } = this
-      const stream = totalwind.purchase[type][path]()
+      const stream = totalwind.purchase[seller][path]()
 
       stream
         .on('data', extract)
@@ -34,7 +34,7 @@ function createTotalwindProvider (opts) {
     },
 
     extract: function (str) {
-      return assign({type, provider, path}, specificExtractor(str))
+      return assign({seller, provider, path}, specificExtractor(str))
     }
   }))
 }

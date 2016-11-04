@@ -1,8 +1,8 @@
 'use strict'
 
 function createFilters (opts) {
-  const { provider, type, path } = opts
-  let filters = `provider:${provider} AND type:${type}`
+  const { provider, seller, path } = opts
+  let filters = `provider:${provider} AND seller:${seller}`
   if (path) filters += ` AND provider.path:${path}`
   return {filters}
 }
