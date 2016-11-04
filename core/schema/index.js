@@ -20,7 +20,7 @@ const validate = osom({
   },
   category: {
     required: true,
-    type: String
+    type: Array
   },
   seller: {
     required: true,
