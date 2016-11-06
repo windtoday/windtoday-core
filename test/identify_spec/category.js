@@ -16,7 +16,7 @@ describe('identify » category', function () {
       ].forEach(function (keyword) {
         it(keyword, function () {
           category.fins(keyword).should.be.true()
-          category(keyword).should.be.equal('fins')
+          category(keyword).should.be.eql(['fins'])
         })
       })
     })
@@ -31,7 +31,7 @@ describe('identify » category', function () {
       ].forEach(function (keyword) {
         it(keyword, function () {
           category.masts(keyword).should.be.true()
-          category(keyword).should.be.equal('masts')
+          category(keyword).should.be.eql(['masts'])
         })
       })
     })
@@ -45,7 +45,7 @@ describe('identify » category', function () {
       ].forEach(function (keyword) {
         it(keyword, function () {
           category.booms(keyword).should.be.true()
-          category(keyword).should.be.equal('booms')
+          category(keyword).should.be.eql(['booms'])
         })
       })
     })
@@ -58,7 +58,7 @@ describe('identify » category', function () {
       ].forEach(function (keyword) {
         it(keyword, function () {
           category.sails(keyword).should.be.true()
-          category(keyword).should.be.equal('sails')
+          category(keyword).should.be.eql(['sails'])
         })
       })
     })
@@ -72,7 +72,7 @@ describe('identify » category', function () {
       ].forEach(function (keyword) {
         it(keyword, function () {
           category.boards(keyword).should.be.true()
-          category(keyword).should.be.equal('boards')
+          category(keyword).should.be.eql(['boards'])
         })
       })
     })
@@ -84,7 +84,7 @@ describe('identify » category', function () {
       ].forEach(function (keyword) {
         it(keyword, function () {
           category.sails(keyword).should.be.false()
-          category(keyword).should.be.equal('others')
+          category(keyword).should.be.eql(['others'])
         })
       })
     })
