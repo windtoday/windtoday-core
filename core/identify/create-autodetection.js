@@ -1,8 +1,9 @@
 'use strict'
 
-const identifyCategory = require('./category')
-const { get, merge, noop } = require('lodash')
-const categories = require('../category')
+const { get, merge, map, noop, reduce, omit } = require('lodash')
+const serializer = require('../schema/serializer')
+const detectCategories = require('./category')
+const category = require('../category')
 const createLogger = require('../log')
 const noopIdentifier = () => noop
 const identify = require('.')
@@ -11,22 +12,24 @@ function createCategoryLogger (loggerKeyword, category) {
   return createLogger(`${loggerKeyword}_autodetection_${category}_unidentify`)
 }
 
-/**
- * It autodetect the category based on keywords matching
- * and it applies the specific extractor.
- *
- * TODO: Consider that a string can contains more than one item.
- * Execute autodetection, remove the detected substring and execute
- * again for detect more ads inside the original ad.
- *
- */
 function createAutodetection (loggerKeyword) {
   function autodetect (str) {
-    const category = identifyCategory(str)
-    const identifier = get(identify, categories.singular(category), noopIdentifier)
-    const log = createCategoryLogger(loggerKeyword, category)
-    const detection = identifier(log)(str)
-    return merge({ category }, detection)
+    const categories = detectCategories(str)
+
+    const identifiers = map(categories, function (name) {
+      const fn = get(identify, category.singular(name), noopIdentifier)
+      return {name, fn}
+    })
+
+    const detection = reduce(identifiers, function (acc, identify) {
+      const { name, fn } = identify
+      const log = createCategoryLogger(loggerKeyword, name)
+      const data = serializer(fn(log)(str))
+      merge(acc, omit(data, ['category']))
+      return acc
+    }, {})
+
+    return merge({ category: categories }, detection)
   }
 
   return autodetect
