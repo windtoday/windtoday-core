@@ -1,4 +1,4 @@
 [
-  "^boards?$",
-  "tabla"
+  "\\bboards?\\b",
+  "\\btablas?\\b"
 ]

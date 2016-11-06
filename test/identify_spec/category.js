@@ -3,6 +3,11 @@
 const category = require('../../core/identify/category')
 
 describe('identify » category', function () {
+  it('multiple detection', function () {
+    const str = 'Vela Neilpryde Hellcat 6,7. Mastil Rdm 430 Y Botavara North'
+    category(str).should.be.eql(['sails', 'masts', 'booms'])
+  })
+
   describe('keywords', function () {
     describe('fins', function () {
       [

@@ -1,4 +1,4 @@
 [
-  "^sail$",
-  "^velas?$"
+  "\\bsails?\\b",
+  "\\bvelas?\\b"
 ]
