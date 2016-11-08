@@ -1,6 +1,8 @@
 'use strict'
 
-const { toNumber, first } = require('lodash')
+const { toNumber } = require('lodash')
+const strmatch = require('str-match')
+// TODO: pass options to strmatch to decide how to apply the clean regex
 
 /**
  * Detect year of 4 digits in [2000-2999] range.
@@ -8,9 +10,15 @@ const { toNumber, first } = require('lodash')
  */
 const REGEX_YEAR = /2[0-9]{3}/
 
+function response (year, output) {
+  return { data: {year}, output }
+}
+
 function year (str) {
-  var year = first(str.match(REGEX_YEAR))
-  return year && toNumber(year)
+  const year = strmatch(str, REGEX_YEAR)
+  if (!year.test) return response(undefined, str)
+  year.match = toNumber(year.match)
+  return response(year.match, year.output)
 }
 
 year.regex = REGEX_YEAR
