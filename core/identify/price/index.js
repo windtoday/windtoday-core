@@ -1,6 +1,7 @@
 'use strict'
 
-const { first, flow, replace, toNumber } = require('lodash')
+const { flow, replace, toNumber } = require('lodash')
+const strmatch = require('str-match')
 
 /**
  * Detect numeric price with currency at end.
@@ -36,6 +37,10 @@ const REGEX_CURRENCY_SYMBOL = /[€eE]/
  */
 const REGEX_DECIMAL_SYMBOL = /[,.']/
 
+function response (price, output) {
+  return { data: {price}, output }
+}
+
 const normalize = flow([
   (str) => replace(str, REGEX_CURRENCY_SYMBOL, ''),
   (str) => replace(str, REGEX_DECIMAL_SYMBOL, ''),
@@ -43,8 +48,9 @@ const normalize = flow([
 ])
 
 function price (str) {
-  const price = first(str.match(REGEX_PRICE))
-  return price && normalize(price)
+  const price = strmatch(str, REGEX_PRICE)
+  if (!price.test) return response(undefined, str)
+  return response(normalize(price.match), price.output)
 }
 
 price.regex = REGEX_PRICE

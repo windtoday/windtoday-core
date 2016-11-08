@@ -1,7 +1,8 @@
 'use strict'
 
-const should = require('should')
 const price = require('../../core/identify/price')
+const should = require('should')
+const {get} = require('lodash')
 
 describe('identify » price', function () {
   it('not detect', function () {
@@ -9,7 +10,8 @@ describe('identify » price', function () {
       '',
       'Vendo material (7 ene 16)'
     ].forEach(function (str) {
-      should(price(str)).be.undefined()
+      const {data} = price(str)
+      should(get(data, 'price')).be.undefined()
     })
   })
 
@@ -28,7 +30,9 @@ describe('identify » price', function () {
               `${quantity} ${symbol} `,
               ` ${quantity} ${symbol} `
             ].forEach(function (str) {
-              price(str).should.be.equal(quantity)
+              const {data, output} = price(str)
+              should(get(data, 'price')).be.equal(quantity)
+              output.includes(str).should.be.false()
             })
           })
         })
@@ -41,7 +45,9 @@ describe('identify » price', function () {
         symbols.forEach(function (symbol) {
           const str = `${symbol}${quantity}`
           it(`${str} → ${quantity}`, function () {
-            price(str).should.be.equal(quantity)
+            const {data, output} = price(str)
+            should(get(data, 'price')).be.equal(quantity)
+            output.includes(str).should.be.false()
           })
         })
       })
@@ -62,7 +68,9 @@ describe('identify » price', function () {
               `${quantity} ${symbol} `,
               ` ${quantity} ${symbol} `
             ].forEach(function (str) {
-              price(str).should.be.equal(expected)
+              const {data, output} = price(str)
+              should(get(data, 'price')).be.equal(expected)
+              output.includes(str).should.be.false()
             })
           })
         })
