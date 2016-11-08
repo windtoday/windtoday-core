@@ -1,8 +1,7 @@
 'use strict'
 
-const { replace, toNumber, first } = require('lodash')
-const REGEX_YEAR = RegExp(require('../year').regex, 'g')
-const REGEX_PRICE = RegExp(require('../price').regex, 'g')
+const { flow, replace, toNumber } = require('lodash')
+const strmatch = require('str-match')
 
 /**
  * Detect double sail size with separator variations
@@ -49,28 +48,36 @@ const REGEX_SAIL_SIZE_SINGLE_DELIMITER = /[ ]?m/
 
 const REGEX_SAIL_SIZE_DELIMITER = /m/
 
-function sailSizeDoubleSimple (str) {
-  let size = first(str.match(REGEX_SAIL_SIZE_DOUBLE_SIMPLE))
-  if (!size) return
-
-  size = replace(size, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.')
-  return size && toNumber(size)
+function response (data, output) {
+  return { data, output }
 }
 
+const normalizeSailSizeDoubleSimple = flow([
+  (str) => replace(str, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.'),
+  (str) => replace(str, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0'),
+  toNumber
+])
+
+function sailSizeDoubleSimple (str) {
+  let size = strmatch(str, REGEX_SAIL_SIZE_DOUBLE_SIMPLE)
+  if (!size.test) return
+  return response(normalizeSailSizeDoubleSimple(size.match), size.output)
+}
+
+const normalizeSailSizeSingle = flow([
+  (str) => replace(str, REGEX_SAIL_SIZE_DELIMITER, ''),
+  (str) => replace(str, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.'),
+  (str) => replace(str, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0'),
+  toNumber
+])
+
 function sailSizeSingle (str) {
-  let size = first(str.match(REGEX_SAIL_SIZE_SINGLE))
-  if (!size) return
-
-  size = replace(size, REGEX_SAIL_SIZE_DELIMITER, '')
-  size = replace(size, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.')
-  size = replace(size, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0')
-
-  return size && toNumber(size)
+  let size = strmatch(str, REGEX_SAIL_SIZE_SINGLE)
+  if (!size.test) return
+  return response(normalizeSailSizeSingle(size.match), size.output)
 }
 
 function sailSize (str) {
-  str = replace(str, REGEX_YEAR, '')
-  str = replace(str, REGEX_PRICE, '')
   return sailSizeDoubleSimple(str) || sailSizeSingle(str)
 }
 

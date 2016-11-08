@@ -9,9 +9,9 @@ describe('identify » sail » brand', function () {
   it('not detect', function () {
     [
       ''
-    ].forEach(function (title) {
-      const sailDetected = sail(title)
-      get(sailDetected, 'category').should.be.equal('sails')
+    ].forEach(function (str) {
+      const {data} = sail(str)
+      get(data, 'category').should.be.equal('sails')
     })
   })
 
@@ -20,10 +20,11 @@ describe('identify » sail » brand', function () {
       'loftsails racing blade',
       'loft sails racingblade',
       'loft racing blade'
-    ].forEach(function (title) {
-      const sailDetected = sail(title)
-      get(sailDetected, 'category').should.be.equal('sails')
-      get(sailDetected, 'brand').should.be.equal('Loft')
+    ].forEach(function (str) {
+      const {data, output} = sail(str)
+      get(data, 'category').should.be.equal('sails')
+      get(data, 'brand').should.be.equal('Loft')
+      output.includes('loft').should.be.false()
     })
   })
 })

@@ -7,24 +7,42 @@ const size = require('./size')
 
 function factory (log) {
   const createAdd = createAddFactory('sail', log)
-  const addSize = createAdd('size', (acc) => size(acc.input))
-  const addBrand = createAdd('brand', (acc) => acc.dir.brand)
-  const addModel = createAdd('model', (acc) => acc.dir.model)
-  const addCategory = createAdd('category', (acc) => category('sails'))
 
-  function sail (str) {
-    const acc = {
-      dir: sails(str),
-      input: str,
-      output: {}
+  const addSize = createAdd('size', (acc) => {
+    return size(acc.input)
+  })
+
+  const addBrand = createAdd('brand', (acc) => {
+    return {
+      data: acc.dir.data.brand,
+      output: acc.dir.output
     }
+  })
+
+  const addModel = createAdd('model', (acc) => {
+    return {
+      data: acc.dir.data.model,
+      output: acc.dir.output
+    }
+  })
+
+  const addCategory = createAdd('category', (acc) => {
+    return {
+      data: category('sails'),
+      output: acc.input
+    }
+  })
+
+  function sail (input) {
+    const dir = sails(input)
+    const acc = { dir, input, data: {} }
 
     addCategory(acc)
-    addSize(acc)
     addBrand(acc)
     addModel(acc)
+    addSize(acc)
 
-    return acc.output
+    return {data: acc.data, output: acc.input}
   }
 
   return sail
