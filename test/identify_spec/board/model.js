@@ -9,19 +9,20 @@ describe('identify » board » model', function () {
   it('not detect', function () {
     [
       ''
-    ].forEach(function (title) {
-      const boardDetected = board(title)
-      get(boardDetected, 'category').should.be.equal('boards')
+    ].forEach(function (str) {
+      const {data} = board(str)
+      get(data, 'category').should.be.equal('boards')
     })
   })
 
   it('detect', function () {
     [
       'starboard futura'
-    ].forEach(function (title) {
-      const boardDetected = board(title)
-      get(boardDetected, 'category').should.be.equal('boards')
-      get(boardDetected, 'model').should.be.equal('Futura')
+    ].forEach(function (str) {
+      const {data, output} = board(str)
+      get(data, 'category').should.be.equal('boards')
+      get(data, 'model').should.be.equal('Futura')
+      output.includes('futura').should.be.false()
     })
   })
 })
