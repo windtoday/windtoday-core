@@ -7,32 +7,28 @@ const { get } = require('lodash')
 describe('identify » fin', function () {
   it('category', function () {
     const str = 'Vendo aleta NUEVA Select 46 trim box'
-    const finDetected = fin(str)
-    get(finDetected, 'category').should.be.equal('fins')
+    const { data } = fin(str)
+    get(data, 'category').should.be.equal('fins')
   })
 
-  it('box', function () {
+  it('type', function () {
     const str = 'Vendo aleta NUEVA Select 46 trim box'
-    const finDetected = fin(str)
-    get(finDetected, 'box').should.be.equal('Trim Box')
+    const {data, output} = fin(str)
+    get(data, 'type').should.be.equal('Trim Box')
+    output.includes('trim').should.be.false()
   })
 
   it('brand', function () {
     const str = 'Vendo aleta NUEVA Select 46 trim box'
-    const finDetected = fin(str)
-    get(finDetected, 'brand').should.be.equal('Select')
+    const {data, output} = fin(str)
+    get(data, 'brand').should.be.equal('Select')
+    output.includes('select').should.be.false()
   })
 
   it('size', function () {
-    [
-      'Vendo aleta NUEVA Select 46 trim box',
-      'Aletas Varias Tuttle Box 100€ y 85€ medida 46',
-      'Aletas Varias Tuttle Box 85e medida 46',
-      'Aletas Varias Tuttle Box 85E medida 46',
-      'Aletas Varias Tuttle Box €85 medida 46'
-    ].forEach(function (str) {
-      const finDetected = fin(str)
-      get(finDetected, 'size').should.be.equal(46)
-    })
+    const str = 'Vendo aleta NUEVA Select 46 trim box'
+    const {data, output} = fin(str)
+    get(data, 'size').should.be.equal(46)
+    output.includes('46').should.be.false()
   })
 })

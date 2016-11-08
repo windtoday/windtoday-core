@@ -1,18 +1,22 @@
 'use strict'
 
-const { replace, toNumber, first } = require('lodash')
+const { toNumber, flow } = require('lodash')
+const strmatch = require('str-match')
 
 const REGEX_FINS_SIZE = /\d{2}/
 
-const REGEX_PRICE = RegExp(require('../price').regex, 'g')
-const REGEX_YEAR = RegExp(require('../year').regex, 'g')
+const normalize = flow([
+  toNumber
+])
+
+function response (data, output) {
+  return { data, output }
+}
 
 function size (str) {
-  str = replace(str, REGEX_PRICE, '')
-  str = replace(str, REGEX_YEAR, '')
-
-  let size = first(str.match(REGEX_FINS_SIZE))
-  return size && toNumber(size)
+  let size = strmatch(str, REGEX_FINS_SIZE)
+  if (!size.test) return
+  return response(normalize(size.match), size.output)
 }
 
 module.exports = size

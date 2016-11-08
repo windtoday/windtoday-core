@@ -8,26 +8,42 @@ const size = require('./size')
 
 function factory (log) {
   const createAdd = createAddFactory('fin', log)
-  const addBox = createAdd('box', (acc) => acc.dir.box)
-  const addBrand = createAdd('brand', (acc) => acc.dir.brand)
-  const addCategory = createAdd('category', (acc) => category('fins'))
-  const addSize = createAdd('size', (acc) => size(acc.input))
-  const addType = createAdd('type', (acc) => type(acc.input))
 
-  function fin (str) {
-    const acc = {
-      dir: fins(str),
-      input: str,
-      output: {}
+  const addType = createAdd('type', (acc) => {
+    return {
+      data: acc.dir.data.type,
+      output: acc.dir.output
     }
+  })
 
-    addSize(acc)
-    addBox(acc)
-    addType(acc)
-    addBrand(acc)
+  const addBrand = createAdd('brand', (acc) => {
+    return {
+      data: acc.dir.data.brand,
+      output: acc.dir.output
+    }
+  })
+
+  const addCategory = createAdd('category', (acc) => {
+    return {
+      data: category('fins'),
+      output: acc.input
+    }
+  })
+
+  const addSize = createAdd('size', (acc) => {
+    return size(acc.input)
+  })
+
+  function fin (input) {
+    const dir = fins(input)
+    const acc = { dir, input, data: {} }
+
     addCategory(acc)
+    addBrand(acc)
+    addType(acc)
+    addSize(acc)
 
-    return acc.output
+    return {data: acc.data, output: acc.input}
   }
 
   return fin
