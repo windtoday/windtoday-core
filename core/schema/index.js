@@ -61,7 +61,6 @@ const validate = osom({
   'boom.type': String,
 
   'fin.size': Number,
-  'fin.box': String,
   'fin.type': String,
 
   'mast.carbon': Number,

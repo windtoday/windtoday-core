@@ -5,7 +5,6 @@ const { get, mapKeys, includes } = require('lodash')
 const CATEGORY_SINGULAR = require('../category').singular
 
 const MAP_KEYS = [
-  'box',
   'carbon',
   'size',
   'type'
