@@ -1,6 +1,11 @@
 'use strict'
 
-const { toNumber, first, replace } = require('lodash')
+const { toNumber, flow, replace } = require('lodash')
+const strmatch = require('str-match')
+
+function response (data, output) {
+  return { data, output }
+}
 
 /**
  * Detect mast size with symbol
@@ -10,12 +15,15 @@ const { toNumber, first, replace } = require('lodash')
 const REGEX_MAST_SIZE = /\d{1}m/i
 const REGEX_MAST_SIZE_SYMBOL = /m/i
 
-function sizeSymbol (str) {
-  let size = first(str.match(REGEX_MAST_SIZE))
-  if (!size) return
+const normalizeSizeSymbol = flow([
+  (str) => replace(str, REGEX_MAST_SIZE_SYMBOL, '00'),
+  toNumber
+])
 
-  size = replace(size, REGEX_MAST_SIZE_SYMBOL, '00')
-  return toNumber(size)
+function sizeSymbol (str) {
+  const size = strmatch(str, REGEX_MAST_SIZE)
+  if (!size) return
+  return response(normalizeSizeSymbol(size.match), size.output)
 }
 
 /**
@@ -25,9 +33,14 @@ function sizeSymbol (str) {
  */
 const REGEX_MAST_SIZE_NUMBER = /\d{3}/
 
+const normalizeSizeNumber = flow([
+  toNumber
+])
+
 function sizeNumber (str) {
-  let size = first(str.match(REGEX_MAST_SIZE_NUMBER))
-  return size && toNumber(size)
+  const size = strmatch(str, REGEX_MAST_SIZE_NUMBER)
+  if (!size.test) return
+  return response(normalizeSizeNumber(size.match), size.output)
 }
 
 /**
@@ -41,18 +54,26 @@ function sizeNumber (str) {
 const REGEX_SAIL_SIZE_WITH_SEPARATOR = /\d{1,2}[,.'´]\d/
 const REGEX_SAIL_SIZE_SEPARATOR = /[,.'´]/
 
+const normalizeSizeSeparator = flow([
+  (str) => replace(str, REGEX_SAIL_SIZE_SEPARATOR, ''),
+  (str) => {
+    while (str.length < 3) str += '0'
+    return str
+  },
+  toNumber
+])
+
 function sizeSeparator (str) {
-  let size = first(str.match(REGEX_SAIL_SIZE_WITH_SEPARATOR))
-  if (!size) return
-
-  size = replace(size, REGEX_SAIL_SIZE_SEPARATOR, '')
-  while (size.length < 3) size += '0'
-
-  return size && toNumber(size)
+  const size = strmatch(str, REGEX_SAIL_SIZE_WITH_SEPARATOR)
+  if (!size.test) return
+  return response(normalizeSizeSeparator(size.match), size.output)
 }
 
 function size (str) {
-  return sizeSeparator(str) || sizeNumber(str) || sizeSymbol(str)
+  return sizeSeparator(str) ||
+         sizeNumber(str) ||
+         sizeSymbol(str) ||
+         response(undefined, str)
 }
 
 module.exports = size

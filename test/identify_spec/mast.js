@@ -7,8 +7,8 @@ const { get, template } = require('lodash')
 describe('identify » mast', function () {
   it('category', function () {
     const str = 'Mástil Neilpryde X9 75c 4m SDM'
-    const mastDetected = mast(str)
-    get(mastDetected, 'category').should.be.equal('masts')
+    const {data} = mast(str)
+    get(data, 'category').should.be.equal('masts')
   })
 
   describe('type', function () {
@@ -21,8 +21,9 @@ describe('identify » mast', function () {
       ].forEach(function (type) {
         it(type, function () {
           const str = tpl({type})
-          const mastDetected = mast(str)
-          get(mastDetected, 'type').should.be.equal('sdm')
+          const {data, output} = mast(str)
+          get(data, 'type').should.be.equal('sdm')
+          output.includes('sdm').should.be.false()
         })
       })
     })
@@ -34,8 +35,9 @@ describe('identify » mast', function () {
       ].forEach(function (type) {
         it(type, function () {
           const str = tpl({type})
-          const mastDetected = mast(str)
-          get(mastDetected, 'type').should.be.equal('rdm')
+          const {data, output} = mast(str)
+          get(data, 'type').should.be.equal('rdm')
+          output.includes('rdm').should.be.false()
         })
       })
     })
@@ -55,8 +57,9 @@ describe('identify » mast', function () {
       ].forEach(function (carbon) {
         it(carbon, function () {
           const str = tpl({carbon})
-          const mastDetected = mast(str)
-          get(mastDetected, 'carbon').should.be.equal(75)
+          const {data, output} = mast(str)
+          get(data, 'carbon').should.be.equal(75)
+          output.includes('75').should.be.false()
         })
       })
     })
@@ -71,8 +74,9 @@ describe('identify » mast', function () {
       ].forEach(function (carbon) {
         it(carbon, function () {
           const str = tpl({carbon})
-          const mastDetected = mast(str)
-          get(mastDetected, 'carbon').should.be.equal(100)
+          const {data, output} = mast(str)
+          get(data, 'carbon').should.be.equal(100)
+          output.includes('100').should.be.false()
         })
       })
     })
@@ -89,8 +93,9 @@ describe('identify » mast', function () {
         ].forEach(function (size) {
           it(size, function () {
             const str = tpl({size})
-            const mastDetected = mast(str)
-            get(mastDetected, 'size').should.be.equal(400)
+            const {data, output} = mast(str)
+            get(data, 'size').should.be.equal(400)
+            output.includes('4').should.be.false()
           })
         })
       })
@@ -105,8 +110,9 @@ describe('identify » mast', function () {
         ].forEach(function (size) {
           it(size, function () {
             const str = tpl({size})
-            const mastDetected = mast(str)
-            get(mastDetected, 'size').should.be.equal(370)
+            const {data, output} = mast(str)
+            get(data, 'size').should.be.equal(370)
+            output.includes('3').should.be.false()
           })
         })
       })
@@ -118,8 +124,9 @@ describe('identify » mast', function () {
       ].forEach(function (size) {
         it(size, function () {
           const str = tpl({size})
-          const mastDetected = mast(str)
-          get(mastDetected, 'size').should.be.equal(430)
+          const {data, output} = mast(str)
+          get(data, 'size').should.be.equal(430)
+          output.includes('430').should.be.false()
         })
       })
     })
