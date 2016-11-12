@@ -3,7 +3,6 @@
 const createAddFactory = require('../create-add')
 const { fins } = require('../../directory')
 const category = require('../../category')
-const type = require('../boom/type')
 const size = require('./size')
 
 function factory (log) {
