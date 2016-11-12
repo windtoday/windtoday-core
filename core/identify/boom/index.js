@@ -7,21 +7,25 @@ const type = require('./type')
 
 function factory (log) {
   const createAdd = createAddFactory('boom', log)
-  const addCategory = createAdd('category', (acc) => category('booms'))
-  const addSize = createAdd('size', (acc) => size(acc.input))
-  const addType = createAdd('type', (acc) => type(acc.input))
 
-  function boom (str) {
-    const acc = {
-      input: str,
-      output: {}
+  const addCategory = createAdd('category', (acc) => {
+    return {
+      data: category('booms'),
+      output: acc.input
     }
+  })
 
+  const addType = createAdd('type', (acc) => type(acc.input))
+  const addSize = createAdd('size', (acc) => size(acc.input))
+
+  function boom (input) {
+    const acc = { input, data: {} }
+
+    addCategory(acc)
     addSize(acc)
     addType(acc)
-    addCategory(acc)
 
-    return acc.output
+    return {data: acc.data, output: acc.input}
   }
 
   return boom

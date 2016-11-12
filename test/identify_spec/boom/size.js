@@ -14,9 +14,11 @@ describe('identify » bom » size', function () {
   ].forEach(function (separator) {
     it(separator, function () {
       const str = tpl({separator})
-      const boomDetected = boom(str)
-      get(boomDetected, 'size').should.be.equal('200/250')
-      get(boomDetected, 'category').should.be.equal('booms')
+      const {data, output} = boom(str)
+      get(data, 'size').should.be.equal('200/250')
+      get(data, 'category').should.be.equal('booms')
+      output.includes('200').should.be.false()
+      output.includes('250').should.be.false()
     })
   })
 })
