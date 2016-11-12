@@ -78,7 +78,9 @@ function sailSizeSingle (str) {
 }
 
 function sailSize (str) {
-  return sailSizeDoubleSimple(str) || sailSizeSingle(str)
+  return sailSizeDoubleSimple(str) ||
+         sailSizeSingle(str) ||
+         response(undefined, str)
 }
 
 module.exports = sailSize

@@ -15,7 +15,7 @@ function response (data, output) {
 
 function size (str) {
   let size = strmatch(str, REGEX_FINS_SIZE)
-  if (!size.test) return
+  if (!size.test) return response(undefined, str)
   return response(normalize(size.match), size.output)
 }
 
