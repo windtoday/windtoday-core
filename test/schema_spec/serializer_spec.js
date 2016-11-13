@@ -17,7 +17,7 @@ describe('schema » serializer', function () {
       'size',
       'type',
       'carbon',
-      'box'
+      'type'
     ].forEach(function (prop) {
       it(prop, function () {
         [
@@ -30,8 +30,7 @@ describe('schema » serializer', function () {
           const fixture = assign({category}, {
             size: 132,
             type: 'sdm',
-            carbon: 90,
-            box: 'tuttle'
+            carbon: 90
           })
 
           const serialized = serializer(fixture)
@@ -39,7 +38,6 @@ describe('schema » serializer', function () {
           serialized.should.have.property(`${_category}.size`)
           serialized.should.have.property(`${_category}.type`)
           serialized.should.have.property(`${_category}.carbon`)
-          serialized.should.have.property(`${_category}.box`)
         })
       })
     })
