@@ -1,6 +1,6 @@
 'use strict'
 
-const { forEach, bind, size, reduce } = require('lodash')
+const { size, reduce } = require('lodash')
 const category = require('../../category')
 const strmatch = require('str-match')
 
