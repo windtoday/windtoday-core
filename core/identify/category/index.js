@@ -29,8 +29,4 @@ function getCategories (str) {
   return categories
 }
 
-// forEach(identify, function (value, key) {
-//   getCategories[key] = value
-// })
-
 module.exports = getCategories
