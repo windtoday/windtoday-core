@@ -7,12 +7,12 @@ const { assign } = require('lodash')
 
 function createAutodetection (loggerKeyword) {
   function autodetect (str) {
-    const categories = getCategories(str)
-    const identifiers = getIdentifiers(categories)
-    const detection = pipeline(str, loggerKeyword, identifiers)
+    const {data, output} = getCategories(str)
+    const identifiers = getIdentifiers(data)
+    const detection = pipeline(output, loggerKeyword, identifiers)
 
-    detection.data.category = categories
-    assign(detection.data, {category: categories})
+    detection.data.category = data
+    assign(detection.data, {category: data})
     return detection
   }
 

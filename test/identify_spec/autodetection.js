@@ -9,10 +9,10 @@ describe('identify » autodetection', function () {
     it('fin', function () {
       const str = 'Vendo aleta NUEVA Select 46 trim box'
       const {data, output} = autodetection(str)
-
       get(data, 'category').should.be.eql(['fins'])
       get(data, 'fin.type').should.be.equal('Trim Box')
       get(data, 'fin.size').should.be.equal(46)
+      output.should.be.equal('Vendo  NUEVA    box')
     })
 
     it('mast', function () {
@@ -22,12 +22,14 @@ describe('identify » autodetection', function () {
       get(data, 'mast.type').should.be.equal('sdm')
       get(data, 'mast.carbon').should.be.equal(35)
       get(data, 'mast.size').should.be.equal(460)
+      output.should.be.equal('il North  Red  ')
     })
 
     it('others', function () {
       const str = 'Vendo Neopreno'
       const {data, output} = autodetection(str)
       get(data, 'category').should.be.eql(['others'])
+      output.should.be.equal('Vendo Neopreno')
     })
   })
 
@@ -41,6 +43,7 @@ describe('identify » autodetection', function () {
       get(data, 'sail.size').should.be.equal(6.7)
       get(data, 'brand').should.be.equal('Neilpryde')
       get(data, 'model').should.be.equal('Hellcat')
+      output.should.be.equal('   . il   Y  North')
     })
   })
 })
