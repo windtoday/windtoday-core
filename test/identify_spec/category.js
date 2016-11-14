@@ -60,8 +60,7 @@ describe('identify » category', function () {
     describe('sails', function () {
       [
         'vela',
-        'velas',
-        'sail'
+        'velas'
       ].forEach(function (keyword) {
         it(keyword, function () {
           const { data } = category(keyword)
@@ -72,8 +71,6 @@ describe('identify » category', function () {
 
     describe('boards', function () {
       [
-        'board',
-        'boards',
         'tabla',
         'tablas'
       ].forEach(function (keyword) {
