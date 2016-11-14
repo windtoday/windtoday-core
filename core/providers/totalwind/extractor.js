@@ -1,6 +1,6 @@
 'use strict'
 
-const createAutodetection = require('../../identify/create-autodetection')
+const createAutodetection = require('../../identify/autodetection')
 const identifiers = require('../../identify')
 const createLogger = require('../../log')
 

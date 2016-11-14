@@ -2,24 +2,35 @@
 
 const isBlacklisted = require('../../schema/is-blacklisted')
 const cleanWhiteSpaces = require('condense-whitespace')
-const priceExtractor = require('../../identify/price')
-const yearExtractor = require('../../identify/year')
-const { assign, partial } = require('lodash')
+const createFlow = require('../../identify/create-flow')
+const price = require('../../identify/price')
+const year = require('../../identify/year')
+const { assign, partial, omit } = require('lodash')
+
+const basicExtractor = createFlow({
+  identifiers: [
+    {fn: price, name: 'price'},
+    {fn: year, name: 'year'}
+  ]
+})
 
 function createExtractor (opts) {
   const { add, extract, buffer } = opts
 
-  function extractor (data) {
-    const title = cleanWhiteSpaces(data.title)
-
+  function extractor (raw) {
+    const title = cleanWhiteSpaces(raw.title)
     if (isBlacklisted(title)) return
 
-    const basicExtractor = {
-      price: priceExtractor(title),
-      year: yearExtractor(title)
-    }
+    const {data, output} = basicExtractor(title)
+    const specificExtractor = extract(output)
 
-    const item = assign(data, basicExtractor, extract(title))
+    const item = assign(
+      raw,
+      data,
+      omit(specificExtractor, ['data', 'output']),
+      specificExtractor.data
+    )
+
     buffer.push(partial(add, item))
   }
 
