@@ -48,7 +48,10 @@ const validate = osom({
   /** identify:common **/
   brand: String,
   model: String,
-  price: Number,
+  price: {
+    required: true,
+    type: Number
+  },
   year: Number,
 
   'mast.size': Number,
