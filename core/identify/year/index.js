@@ -1,7 +1,7 @@
 'use strict'
 
 const { toNumber } = require('lodash')
-const strmatch = require('str-match')
+const strmatch = require('str-match')()
 // TODO: pass options to strmatch to decide how to apply the clean regex
 // That's useful for example for clean global results instead of only first.
 

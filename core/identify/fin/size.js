@@ -1,7 +1,7 @@
 'use strict'
 
 const { toNumber, flow } = require('lodash')
-const strmatch = require('str-match')
+const strmatch = require('str-match')()
 
 const REGEX_FINS_SIZE = /\d{2}/
 

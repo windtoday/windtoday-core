@@ -2,7 +2,7 @@
 
 const { size, reduce } = require('lodash')
 const category = require('../../category')
-const strmatch = require('str-match')
+const strmatch = require('str-match')()
 
 const CONST = {
   REGEX: {

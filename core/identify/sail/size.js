@@ -1,7 +1,7 @@
 'use strict'
 
 const { flow, replace, toNumber } = require('lodash')
-const strmatch = require('str-match')
+const strmatch = require('str-match')()
 
 /**
  * Detect double sail size with separator variations

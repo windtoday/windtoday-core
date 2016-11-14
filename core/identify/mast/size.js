@@ -1,7 +1,7 @@
 'use strict'
 
 const { toNumber, flow, replace } = require('lodash')
-const strmatch = require('str-match')
+const strmatch = require('str-match')()
 
 function response (data, output) {
   return { data, output }

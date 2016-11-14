@@ -1,7 +1,7 @@
 'use strict'
 
 const { flow, replace, toNumber } = require('lodash')
-const strmatch = require('str-match')
+const strmatch = require('str-match')()
 
 const REGEX_BOARD_LITRES_WITH_SUFFIX = /[0-9]{2,3}[ ]?l/
 const REGEX_BOARD_LITRES_SUFFIX = /l/

@@ -1,6 +1,6 @@
 'use strict'
 
-const strmatch = require('str-match')
+const strmatch = require('str-match')()
 const {replace} = require('lodash')
 
 function response (data, output) {
