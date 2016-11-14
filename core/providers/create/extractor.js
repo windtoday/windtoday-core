@@ -5,7 +5,7 @@ const cleanWhiteSpaces = require('condense-whitespace')
 const createFlow = require('../../identify/create-flow')
 const price = require('../../identify/price')
 const year = require('../../identify/year')
-const { assign, partial, omit } = require('lodash')
+const { concat, forEach, assign, partial, omit } = require('lodash')
 
 const basicExtractor = createFlow({
   identifiers: [
@@ -13,6 +13,15 @@ const basicExtractor = createFlow({
     {fn: year, name: 'year'}
   ]
 })
+
+function createDoc (raw, data, item) {
+  return assign(
+    raw,
+    data,
+    omit(item, ['data', 'output']),
+    item.data
+  )
+}
 
 function createExtractor (opts) {
   const { add, extract, buffer } = opts
@@ -22,16 +31,12 @@ function createExtractor (opts) {
     if (isBlacklisted(title)) return
 
     const {data, output} = basicExtractor(title)
-    const specificExtractor = extract(output)
+    const items = concat([], extract(output))
 
-    const item = assign(
-      raw,
-      data,
-      omit(specificExtractor, ['data', 'output']),
-      specificExtractor.data
-    )
-
-    buffer.push(partial(add, item))
+    forEach(items, (item) => {
+      const doc = createDoc(raw, data, item)
+      buffer.push(partial(add, doc))
+    })
   }
 
   return extractor
