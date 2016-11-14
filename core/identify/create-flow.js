@@ -13,12 +13,29 @@ const normalize = flow([
   (data) => omit(data, 'category')
 ])
 
-function createFlow (loggerKeyword, identifiers) {
+function createExtractor (loggerKeyword, name, fn) {
+  let extractor
+
+  if (loggerKeyword) {
+    const log = createCategoryLogger(loggerKeyword, name)
+    extractor = fn(log)
+  } else {
+    extractor = fn
+  }
+
+  return extractor
+}
+
+// TODO: Need to create a uniform identifier interface.
+// Currently this implementatin is a quickwin for avoid loggerKeyword for
+// price and year.
+function createFlow (opts) {
+  const { loggerKeyword, identifiers } = opts
+
   function flow (str) {
     return reduce(identifiers, function (acc, identify) {
       const { name, fn } = identify
-      const log = createCategoryLogger(loggerKeyword, name)
-      const extractor = fn(log)
+      const extractor = createExtractor(loggerKeyword, name, fn)
 
       let {data, output} = extractor(acc.output)
       data = normalize(data)

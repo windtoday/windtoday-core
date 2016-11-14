@@ -10,7 +10,7 @@ function createAutodetection (loggerKeyword) {
   function autodetect (str) {
     const {data, output} = getCategories(str)
     const identifiers = getIdentifiers(data)
-    const flow = createFlow(loggerKeyword, identifiers)
+    const flow = createFlow({loggerKeyword, identifiers})
     const detection = flow(output)
 
     detection.data.category = data
