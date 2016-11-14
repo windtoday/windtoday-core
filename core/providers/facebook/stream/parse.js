@@ -1,8 +1,7 @@
 'use strict'
 
 const cleanWhiteSpaces = require('condense-whitespace')
-const { chain } = require('lodash')
-const titly = require('titly')
+const { chain, replace } = require('lodash')
 const urlRegex = require('url-regex')
 
 function permalink (str) {
@@ -19,8 +18,7 @@ function parse (res) {
     .uniqBy('message')
     .map(function (item) {
       return {
-        // TODO: cleanWhiteSpaces will be executed before call specific extractor.
-        title: titly(cleanWhiteSpaces(item.message)),
+        title: replace(cleanWhiteSpaces(item.message), /\n/g, ''),
         updatedAt: Date.parse(item.updated_time),
         url: permalink(item.id)
       }
