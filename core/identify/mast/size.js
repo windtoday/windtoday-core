@@ -22,7 +22,7 @@ const normalizeSizeSymbol = flow([
 
 function sizeSymbol (str) {
   const size = strmatch(str, REGEX_MAST_SIZE)
-  if (!size) return
+  if (!size.test) return
   return response(normalizeSizeSymbol(size.match), size.output)
 }
 
