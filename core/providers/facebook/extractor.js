@@ -1,6 +1,6 @@
 'use strict'
 
-const createAutodetection = require('../../identify/create-autodetection')
+const createAutodetection = require('../../identify/autodetection')
 
 function extractor (opts) {
   const { log } = opts

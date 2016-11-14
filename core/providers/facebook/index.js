@@ -6,7 +6,7 @@ const createStream = require('./stream')
 const { assign } = require('lodash')
 
 function createFacebookProvider (opts) {
-  const { seller, provider } = opts
+  const {seller, provider, path} = opts
   const extractor = createExtractor(opts)
 
   return createProvider(assign({}, opts, {
@@ -19,7 +19,7 @@ function createFacebookProvider (opts) {
         .on('end', done)
     },
     extract: function (str) {
-      return assign({seller, provider}, extractor(str))
+      return assign({seller, provider, path}, extractor(str))
     }
   }))
 }
