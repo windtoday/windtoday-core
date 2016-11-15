@@ -7,6 +7,7 @@ const shortenUrl = 'http://sh.st/3duGp'
 
 const fixture = {
   title: 'Vendo Mistral Syncro 92l 2007 - 280€',
+  price: 280,
   category: 'particular',
   seller: 'particular',
   provider: 'totalwind',
