@@ -18,7 +18,7 @@ function parse (res) {
     .uniqBy('message')
     .map(function (item) {
       return {
-        title: replace(cleanWhiteSpaces(item.message), /\n/g, ''),
+        title: replace(cleanWhiteSpaces(item.message), /\n/g, ' '),
         updatedAt: Date.parse(item.updated_time),
         url: permalink(item.id)
       }
