@@ -16,32 +16,48 @@ const fixture = {
 describe('schema » transform', function () {
   describe('clean title', function (done) {
     it('price', function (done) {
-      const title = 'Mistral Syncro 280€'
-      schema(Object.assign({}, fixture, {title}), function (err, instance) {
+      const doc = {
+        title: 'Mistral Syncro 280€',
+        price: 280
+      }
+
+      schema(Object.assign({}, fixture, doc), function (err, instance) {
         instance.title.should.be.equal('Mistral Syncro')
         done(err)
       })
     })
 
     it('blacklisted words', function (done) {
-      const title = 'Vendo Mistral Syncro - 280€'
-      schema(Object.assign({}, fixture, {title}), function (err, instance) {
+      const doc = {
+        title: 'Vendo Mistral Syncro - 280€',
+        price: 280
+      }
+
+      schema(Object.assign({}, fixture, doc), function (err, instance) {
         instance.title.should.be.equal('Mistral Syncro')
         done(err)
       })
     })
 
     it('titleize', function (done) {
-      const title = 'Vendo mistral Syncro - 280€'
-      schema(Object.assign({}, fixture, {title}), function (err, instance) {
+      const doc = {
+        title: 'Vendo mistral Syncro - 280€',
+        price: 280
+      }
+
+      schema(Object.assign({}, fixture, doc), function (err, instance) {
         instance.title.should.be.equal('Mistral Syncro')
         done(err)
       })
     })
 
     it('whitespaces', function (done) {
-      const title = '  Vendo  mistral  Syncro - 280€   '
-      schema(Object.assign({}, fixture, {title}), function (err, instance) {
+      const doc = {
+        title: '  Vendo  mistral  Syncro - 280€   ',
+        price: 280
+      }
+
+      schema(Object.assign({}, fixture, doc), function (err, instance) {
         instance.title.should.be.equal('Mistral Syncro')
         done(err)
       })
