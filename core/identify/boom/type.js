@@ -1,7 +1,7 @@
 'use strict'
 
 const strmatch = require('str-match')()
-const {replace} = require('lodash')
+const {replace, flow, toLower} = require('lodash')
 
 function response (data, output) {
   return { data, output }
@@ -10,10 +10,14 @@ function response (data, output) {
 const REGEX_BOOM_TYPE_CARBON = /carbon/i
 const REGEX_BOOM_TYPE_ALUMINIUM = /aluminium|aluminio|alu/i
 
+const normalizeTypeCarbon = flow([
+  toLower
+])
+
 function typeCarbon (str) {
   const type = strmatch(str, REGEX_BOOM_TYPE_CARBON)
   if (!type.test) return
-  return response(type.match, type.output)
+  return response(normalizeTypeCarbon(type.match), type.output)
 }
 
 function typeAluminium (str) {
