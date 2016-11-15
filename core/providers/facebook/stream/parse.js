@@ -1,8 +1,17 @@
 'use strict'
 
 const cleanWhiteSpaces = require('condense-whitespace')
-const { chain, replace } = require('lodash')
+const { chain, replace, size } = require('lodash')
 const urlRegex = require('url-regex')
+
+const CONST = {
+  MAX_SIZE: 140
+}
+
+function isValid (item) {
+  const {title} = item
+  return !urlRegex().test(title) && size(title) < CONST.MAX_SIZE
+}
 
 function permalink (str) {
   var [ groupId, docId ] = str.split('_')
@@ -23,7 +32,7 @@ function parse (res) {
         url: permalink(item.id)
       }
     })
-    .filter(item => !urlRegex().test(item.title))
+    .filter(isValid)
     .value()
 }
 
