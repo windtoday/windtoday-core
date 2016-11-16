@@ -3,7 +3,7 @@
 const checkRequiredParams = require('../util/check-required-params')
 const createLoggerKeyword = require('./logger-keyword')
 const createProcessExit = require('./process-exit')
-const createFilters = require('./filters')
+const createParams = require('./create-params')
 const providers = require('../providers')
 const createLogger = require('../log')
 const { waterfall } = require('async')
@@ -27,13 +27,13 @@ function createWorker (opts) {
     partial(isUp, hosts),
     function clean (next) {
       log.info('hosts reachability ✔ (1/3)')
-      const filters = createFilters(opts)
-      db.deleteByQuery('', filters, function (err) {
-        return next(err, filters)
+      const params = createParams(opts)
+      db.deleteByQuery('', params, function (err) {
+        return next(err, params)
       })
     },
-    function insert (filters, next) {
-      log.info('cleaned old instances', filters, '✔ (2/3)')
+    function insert (params, next) {
+      log.info('cleaned old instances', params, '✔ (2/3)')
       return worker(next)
     }
   ]
