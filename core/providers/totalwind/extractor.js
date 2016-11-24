@@ -19,7 +19,14 @@ function specificExtractor (opts) {
       return createExtractor(extractorLogger, 'sail')
     case 'boards':
       return createExtractor(extractorLogger, 'board')
+    case 'masts':
+      return createExtractor(extractorLogger, 'mast')
+    case 'booms':
+      return createExtractor(extractorLogger, 'boom')
     default:
+      // TODO: Ideally, not necessary use autodetection becase at this point
+      // we don't need to process as sails or boards.
+      // Create a pipeline for a very closed detection.
       return createAutodetection(loggerKeyword)
   }
 }
