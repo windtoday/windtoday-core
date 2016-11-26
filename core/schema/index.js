@@ -50,7 +50,8 @@ const validate = osom({
   model: String,
   price: {
     required: true,
-    type: Number
+    type: Number,
+    validate: price => price > 1
   },
   year: Number,
 
