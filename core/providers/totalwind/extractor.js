@@ -23,6 +23,8 @@ function specificExtractor (opts) {
       return createExtractor(extractorLogger, 'mast')
     case 'booms':
       return createExtractor(extractorLogger, 'boom')
+    case 'fins':
+      return createExtractor(extractorLogger, 'fin')
     default:
       loggerKeyword = `${loggerKeyword}_${path}`
       // TODO: Ideally, not necessary use autodetection becase at this point
