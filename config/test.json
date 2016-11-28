@@ -8,7 +8,6 @@
   },
 
   "facebook": {
-    "access_token": "FACEBOOK_ACCESS_TOKEN",
     "groups_ids": [
       173068032721866
     ],

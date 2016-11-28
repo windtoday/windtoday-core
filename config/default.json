@@ -20,7 +20,8 @@
   },
 
   "facebook": {
-    "access_token": "FACEBOOK_ACCESS_TOKEN",
+    "app_id": "FACEBOOK_APP_ID",
+    "app_secret": "FACEBOOK_SECRET_ID",
     "groups_ids": [
       173068032721866,
       245756195532660,
