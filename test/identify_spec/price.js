@@ -76,5 +76,39 @@ describe('identify » price', function () {
         })
       })
     })
+
+    describe('specific cases', function () {
+      it('followed with space', function () {
+        const str = 'Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio 100€ GI incluidos'
+        const {data, output} = price(str)
+
+        should(get(data, 'price')).be.equal(100)
+        output.should.be.equal('Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio GI incluidos')
+      })
+
+      it('followed with dot', function () {
+        const str = 'Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio 100€.'
+        const {data, output} = price(str)
+
+        should(get(data, 'price')).be.equal(100)
+        output.should.be.equal('Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio ')
+      })
+
+      it('followed by comma', function () {
+        const str = 'Vendo Gaastra IQ 4.7 2012, en buen estado por 60€, está en Barcelona, se puede enviar.'
+        const {data, output} = price(str)
+
+        should(get(data, 'price')).be.equal(60)
+        output.should.be.equal('Vendo Gaastra IQ 4.7 2012, en buen estado por  está en Barcelona, se puede enviar.')
+      })
+
+      it('followed by dot comma', function () {
+        const str = 'Vendo Gaastra IQ 4.7 2012, en buen estado por 60€; está en Barcelona, se puede enviar.'
+        const {data, output} = price(str)
+
+        should(get(data, 'price')).be.equal(60)
+        output.should.be.equal('Vendo Gaastra IQ 4.7 2012, en buen estado por  está en Barcelona, se puede enviar.')
+      })
+    })
   })
 })
