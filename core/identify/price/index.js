@@ -4,16 +4,22 @@ const { flow, replace, toNumber } = require('lodash')
 const strmatch = require('str-match')()
 
 /**
- * Detect numeric price with currency at end.
- * @example
- * 80e → 80€
- * 150E → 150€
- * 200€ → 200€
- * 1.100e → 1100€
- * 1,100e → 1100€
- * @type {RegExp}
+ * 50e
+ * 50E
+ * 50€
  */
 const REGEX_PRICE_AT_END = /([0-9]+[,.'])*[0-9]+[ ]?[€eE](\W|\s|$)/
+
+/**
+ * 135eu
+ * 135 eu
+ * 135 euros
+ * 135Euros
+ * 135 Euros
+ * 135euros
+ * @type {[type]}
+ */
+const REGEX_PRICE_AT_END_WORD = /([0-9]+[,.'])*[0-9]+[ ]?(eu(ros)?)/
 
 /**
  * Detect numeric price with currency at begin
@@ -26,7 +32,9 @@ const REGEX_PRICE_AT_BEGIN = /€[0-9]+/
  * Detect Currency Symbol
  * @example 80e → €
  */
-const REGEX_CURRENCY_SYMBOL = /[€eE]/
+const REGEX_CURRENCY_SYMBOL = /[ ]?[€eE]/
+
+const REGEX_CURRENCY_SYMBOL_WORD = /[ ]?(eu(ros)?)/
 
 const REGEX_NON_NUMBER = /\D/
 
@@ -35,6 +43,7 @@ function response (price, output) {
 }
 
 const normalize = flow([
+  (str) => replace(str, REGEX_CURRENCY_SYMBOL_WORD, ''),
   (str) => replace(str, REGEX_CURRENCY_SYMBOL, ''),
   (str) => replace(str, REGEX_NON_NUMBER, ''),
   toNumber
@@ -46,6 +55,12 @@ function priceAtEnd (str) {
   return response(normalize(price.match), price.output)
 }
 
+function priceAtEndWord (str) {
+  let price = strmatch(str, REGEX_PRICE_AT_END_WORD)
+  if (!price.test) return
+  return response(normalize(price.match), price.output)
+}
+
 function priceAtBegin (str) {
   let price = strmatch(str, REGEX_PRICE_AT_BEGIN)
   if (!price.test) return
@@ -53,7 +68,10 @@ function priceAtBegin (str) {
 }
 
 function price (str) {
-  return priceAtBegin(str) || priceAtEnd(str) || response(undefined, str)
+  return priceAtBegin(str) ||
+         priceAtEnd(str) ||
+         priceAtEndWord(str) ||
+         response(undefined, str)
 }
 
 module.exports = price

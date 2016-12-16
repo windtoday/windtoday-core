@@ -19,17 +19,20 @@ describe('identify » price', function () {
     describe('zero decimal', function () {
       describe('symbol at end', function () {
         const quantity = 135
-        const symbols = ['e', 'E', '€']
 
-        symbols.forEach(function (symbol) {
-          it(`${quantity}${symbol} → ${quantity}`, function () {
-            [
-              `${quantity}${symbol}`,
-              `${quantity} ${symbol}`,
-              ` ${quantity} ${symbol}`,
-              `${quantity} ${symbol} `,
-              ` ${quantity} ${symbol} `
-            ].forEach(function (str) {
+        ;[
+          'e',
+          'E',
+          '€'
+        ].forEach(function (symbol) {
+          [
+            `${quantity}${symbol}`,
+            `${quantity} ${symbol}`,
+            ` ${quantity} ${symbol}`,
+            `${quantity} ${symbol} `,
+            ` ${quantity} ${symbol} `
+          ].forEach(function (str) {
+            it(`${str} → ${quantity}`, function () {
               const {data, output} = price(str)
               should(get(data, 'price')).be.equal(quantity)
               output.includes(str).should.be.false()
@@ -40,9 +43,8 @@ describe('identify » price', function () {
 
       describe('symbol at begin', function () {
         const quantity = 135
-        const symbols = ['€']
 
-        symbols.forEach(function (symbol) {
+        ;['€'].forEach(function (symbol) {
           const str = `${symbol}${quantity}`
           it(`${str} → ${quantity}`, function () {
             const {data, output} = price(str)
@@ -55,19 +57,24 @@ describe('identify » price', function () {
 
     describe('one decimal', function () {
       const expected = 1100
-      const quantities = ['1.100', '1,100']
-      const symbols = ['e', 'E', '€']
 
-      quantities.forEach(function (quantity) {
-        symbols.forEach(function (symbol) {
-          it(`${quantity}${symbol} → ${expected}`, function () {
-            [
-              `${quantity}${symbol}`,
-              `${quantity} ${symbol}`,
-              ` ${quantity} ${symbol}`,
-              `${quantity} ${symbol} `,
-              ` ${quantity} ${symbol} `
-            ].forEach(function (str) {
+      ;[
+        '1.100',
+        '1,100'
+      ].forEach(function (quantity) {
+        [
+          'e',
+          'E',
+          '€'
+        ].forEach(function (symbol) {
+          [
+            `${quantity}${symbol}`,
+            `${quantity} ${symbol}`,
+            ` ${quantity} ${symbol}`,
+            `${quantity} ${symbol} `,
+            ` ${quantity} ${symbol} `
+          ].forEach(function (str) {
+            it(`${str} → ${quantity}`, function () {
               const {data, output} = price(str)
               should(get(data, 'price')).be.equal(expected)
               output.includes(str).should.be.false()
@@ -77,37 +84,35 @@ describe('identify » price', function () {
       })
     })
 
-    describe('specific cases', function () {
-      it('followed with space', function () {
-        const str = 'Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio 100€ GI incluidos'
-        const {data, output} = price(str)
+    describe('variations', function () {
+      const expected = 100
 
-        should(get(data, 'price')).be.equal(100)
-        output.should.be.equal('Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio GI incluidos')
-      })
+      ;[
+        '€',
+        ' €',
+        'e',
+        ' e',
+        'E',
+        ' E',
+        'eu',
+        ' eu'
 
-      it('followed with dot', function () {
-        const str = 'Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio 100€.'
-        const {data, output} = price(str)
+      ].forEach(function (symbol) {
+        [
+          ' ',
+          '.',
+          ',',
+          ';',
+          ')'
+        ].forEach(function (separator) {
+          it(`${expected}${symbol}${separator} → ${expected}`, function () {
+            const str = `Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio ${expected}${symbol}${separator}GI incluidos`
 
-        should(get(data, 'price')).be.equal(100)
-        output.should.be.equal('Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio ')
-      })
-
-      it('followed by comma', function () {
-        const str = 'Vendo Gaastra IQ 4.7 2012, en buen estado por 60€, está en Barcelona, se puede enviar.'
-        const {data, output} = price(str)
-
-        should(get(data, 'price')).be.equal(60)
-        output.should.be.equal('Vendo Gaastra IQ 4.7 2012, en buen estado por  está en Barcelona, se puede enviar.')
-      })
-
-      it('followed by dot comma', function () {
-        const str = 'Vendo Gaastra IQ 4.7 2012, en buen estado por 60€; está en Barcelona, se puede enviar.'
-        const {data, output} = price(str)
-
-        should(get(data, 'price')).be.equal(60)
-        output.should.be.equal('Vendo Gaastra IQ 4.7 2012, en buen estado por  está en Barcelona, se puede enviar.')
+            const {data, output} = price(str)
+            should(get(data, 'price')).be.equal(expected)
+            output.should.be.equal(output.replace(`${expected}${symbol}${separator}`, ''))
+          })
+        })
       })
     })
   })
