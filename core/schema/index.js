@@ -1,11 +1,5 @@
 'use strict'
 
-const CONFIG = require('config')['shorte.st']
-CONFIG.token = process.env[CONFIG.token]
-
-const shortestAPI = require('shortest-api')
-const shortest = shortestAPI(CONFIG)
-
 const cleanTitle = require('./clean-title')
 const serializer = require('./serializer')
 const { asyncify } = require('async')
@@ -75,15 +69,7 @@ const validateAsync = asyncify(validate)
 
 function validator (schema, cb) {
   schema = serializer(schema)
-
-  validateAsync(schema, function (err, instance) {
-    if (err) return cb(err, instance)
-    shortest(instance.url, function (err, shortenUrl) {
-      if (err) return cb(err)
-      instance.shortenUrl = shortenUrl
-      return cb(null, instance)
-    })
-  })
+  return validateAsync(schema, cb)
 }
 
 module.exports = validator

@@ -10,10 +10,6 @@
     "pages": 5
   },
 
-  "shorte.st": {
-    "token": "SHORTEST_TOKEN"
-  },
-
   "check_hosts": {
     "totalwind": ["https://wrapapi.com", "http://totalwind.net/foro"],
     "facebook": ["https://www.facebook.com/platform/api-status"]
