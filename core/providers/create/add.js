@@ -1,19 +1,24 @@
 'use strict'
-
 const schema = require('../../schema')
-const db = require('../../db')
 
 function createAdd (opts) {
-  const { stats } = opts
+  const { stats, log } = opts
 
-  function add (data, cb) {
-    schema(data, (validationError, instance) => {
+  function add (accumulator, doc, cb) {
+    schema(doc, (validationError, docValidated) => {
       ++stats.total
 
-      if (validationError) return cb()
+      if (validationError) {
+        log.error('schema', {
+          field: validationError.field,
+          title: doc.title
+        })
+      } else {
+        ++stats.add
+        accumulator.push(docValidated)
+      }
 
-      ++stats.add
-      return db.addObject(instance, cb)
+      return cb(null, accumulator)
     })
   }
 

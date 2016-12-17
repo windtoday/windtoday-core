@@ -2,8 +2,9 @@
 
 const createExtractor = require('./extractor')
 const createContext = require('./context')
-const { parallel } = require('async')
-const { bind } = require('lodash')
+const { waterfall, reduce } = require('async')
+const db = require('../../db')
+const { bind, partial } = require('lodash')
 const createAdd = require('./add')
 
 function createProvider (opts) {
@@ -11,15 +12,19 @@ function createProvider (opts) {
   const ctx = createContext(opts)
   const add = createAdd(ctx)
   const buffer = []
-  ctx.extract = createExtractor({add, extract, buffer})
+  ctx.extract = createExtractor({extract, buffer})
+
   const start = bind(opts.start, ctx)
 
   function init (cb) {
-    start(function (err) {
-      if (err) return cb(err)
-      parallel(buffer, function (err) {
-        return cb(err, ctx.stats)
-      })
+    const tasks = [
+      start,
+      partial(reduce, buffer, [], add),
+      bind(db.addObjects, db)
+    ]
+
+    waterfall(tasks, function (err) {
+      return cb(err, ctx.stats)
     })
   }
 

@@ -24,7 +24,7 @@ function createDoc (raw, data, item) {
 }
 
 function createExtractor (opts) {
-  const { add, extract, buffer } = opts
+  const { extract, buffer } = opts
 
   function extractor (raw) {
     const title = cleanWhiteSpaces(raw.title)
@@ -35,7 +35,7 @@ function createExtractor (opts) {
 
     forEach(items, (item) => {
       const doc = createDoc(raw, data, item)
-      buffer.push(partial(add, doc))
+      buffer.push(doc)
     })
   }
 
