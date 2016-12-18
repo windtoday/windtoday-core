@@ -3,8 +3,6 @@
 const schema = require('../../core/schema')
 const should = require('should')
 
-const shortenUrl = 'http://sh.st/3duGp'
-
 const fixture = {
   title: 'Vendo Mistral Syncro 92l 2007 - 280€',
   price: 280,
@@ -25,13 +23,6 @@ describe('schema » validation', function () {
     schema({}, function (err) {
       should.exist(err)
       done()
-    })
-  })
-
-  it('add shortenUrl field based on url', function (done) {
-    schema(fixture, function (err, instance) {
-      instance.shortenUrl.should.be.equal(shortenUrl)
-      done(err)
     })
   })
 })
