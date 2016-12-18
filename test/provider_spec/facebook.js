@@ -1,8 +1,11 @@
 'use strict'
 
 const createStream = require('../../core/providers/facebook/stream')
-const { first, keys } = require('lodash')
+const { first, keys, noop } = require('lodash')
 require('should')
+
+const isTesting = process.env.NODE_ENV === 'test'
+const logger = isTesting ? noop : console.log
 
 const CONST = {
   EXPECTED_FIELDS: [
@@ -21,7 +24,7 @@ describe('provider » facebook', function () {
       stream
         .on('data', (item) => {
           buffer.push(item)
-          console.log(item)
+          logger(item)
         })
         .on('end', function () {
           const item = first(buffer)
