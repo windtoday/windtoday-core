@@ -5,10 +5,7 @@ const { get } = require('lodash')
 function factory (log) {
   function processExit (err) {
     if (!err) return process.exit()
-
-    const message = get(err, 'message', err)
     const code = get(err, 'code', 1)
-
     return process.exit(code)
   }
 

@@ -5,7 +5,7 @@ const cleanWhiteSpaces = require('condense-whitespace')
 const createFlow = require('../../identify/create-flow')
 const price = require('../../identify/price')
 const year = require('../../identify/year')
-const { concat, forEach, assign, partial, omit } = require('lodash')
+const { concat, forEach, assign, omit } = require('lodash')
 
 const basicExtractor = createFlow({
   identifiers: [
