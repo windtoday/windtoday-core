@@ -11,6 +11,7 @@ const validate = osom({
     required: true,
     type: String,
     transform: [cleanTitle]
+    // TODO: Add a max title size (like 140 chars)
   },
   category: {
     required: true,

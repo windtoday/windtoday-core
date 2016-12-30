@@ -1,6 +1,5 @@
 [
-  "aleta",
-  "aleron",
+  "quilla",
   "fin",
-  "quilla"
+  "ale(?:ta|r[oó]n)"
 ]
