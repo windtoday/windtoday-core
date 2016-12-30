@@ -27,9 +27,6 @@ function specificExtractor (opts) {
       return createExtractor(extractorLogger, 'fin')
     default:
       loggerKeyword = `${loggerKeyword}_${path}`
-      // TODO: Ideally, not necessary use autodetection becase at this point
-      // we don't need to process as sails or boards.
-      // Create a pipeline for a very closed detection.
       return createAutodetection(loggerKeyword)
   }
 }

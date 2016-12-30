@@ -2,8 +2,6 @@
 
 const { toNumber } = require('lodash')
 const strmatch = require('str-match')()
-// TODO: pass options to strmatch to decide how to apply the clean regex
-// That's useful for example for clean global results instead of only first.
 
 /**
  * Detect year of 4 digits in [2000-2999] range.
