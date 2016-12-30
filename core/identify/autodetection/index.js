@@ -8,13 +8,13 @@ const createFlow = require('../create-flow')
 
 function createAutodetection (loggerKeyword) {
   function autodetect (str) {
-    const {data, output} = getCategories(str)
-    const identifiers = getIdentifiers(data)
+    const {data: categories, output} = getCategories(str)
+    const identifiers = getIdentifiers(categories)
+
     const flow = createFlow({loggerKeyword, identifiers})
     const detection = flow(output)
+    assign(detection.data, {category: categories})
 
-    detection.data.category = data
-    assign(detection.data, {category: data})
     return detection
   }
 
