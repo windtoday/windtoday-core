@@ -1,11 +1,11 @@
 'use strict'
 
-const createExtractor = require('./extractor')
-const createContext = require('./context')
+const createExtractor = require('./create-extractor')
+const createContext = require('./create-context')
 const { waterfall, reduce } = require('async')
-const db = require('../../db')
 const { bind, partial } = require('lodash')
-const createAdd = require('./add')
+const createAdd = require('./create-add')
+const db = require('../../db')
 
 function createProvider (opts) {
   const { extract } = opts

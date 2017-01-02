@@ -1,11 +1,11 @@
 'use strict'
 
 const isBlacklisted = require('../../schema/is-blacklisted')
-const cleanWhiteSpaces = require('condense-whitespace')
+const { concat, forEach, assign, omit } = require('lodash')
 const createFlow = require('../../identify/create-flow')
+const cleanWhiteSpaces = require('condense-whitespace')
 const price = require('../../identify/price')
 const year = require('../../identify/year')
-const { concat, forEach, assign, omit } = require('lodash')
 
 const basicExtractor = createFlow({
   identifiers: [
