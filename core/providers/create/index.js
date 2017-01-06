@@ -20,6 +20,7 @@ function createProvider (opts) {
     const tasks = [
       start,
       partial(reduce, buffer, [], add),
+      // TODO: Perfom a diff
       bind(db.addObjects, db)
     ]
 
