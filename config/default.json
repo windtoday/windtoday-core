@@ -5,6 +5,8 @@
     "index": "primary"
   },
 
+  "redis": "process.env.REDIS_URL",
+
   "totalwind_api": {
     "key": "process.env.TOTALWIND_KEY",
     "pages": 5

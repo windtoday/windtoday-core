@@ -26,6 +26,7 @@
     "lodash": "~4.17.2",
     "meow": "~3.7.0",
     "osom": "~2.1.1",
+    "redis-diff": "~1.0.1",
     "simple-get": "~2.3.0",
     "str-match": "~2.1.0",
     "titleize": "~1.0.0",
