@@ -1,6 +1,6 @@
 'use strict'
 
-const createStats = require('./create-addstats')
+const createStats = require('./create-stats')
 
 function createContext (opts) {
   const { log } = opts
