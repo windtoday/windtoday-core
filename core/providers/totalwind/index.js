@@ -1,10 +1,10 @@
 'use strict'
 
 const CONFIG = require('config').totalwind_api
-const { assign } = require('lodash')
+const { get, assign } = require('lodash')
 
 const totalwindOpts = assign({}, CONFIG, {
-  key: process.env[CONFIG.key]
+  key: get(global, CONFIG.key)
 })
 
 const CONST = {

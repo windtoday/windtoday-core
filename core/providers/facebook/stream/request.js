@@ -1,11 +1,11 @@
 'use strict'
 
-const get = require('simple-get')
-const { map, partial } = require('lodash')
+const { get, map, partial } = require('lodash')
 const CONFIG = require('config').facebook
+const req = require('simple-get')
 
-const appId = process.env[CONFIG.app_id]
-const appSecret = process.env[CONFIG.app_secret]
+const appId = get(global, CONFIG.app_id)
+const appSecret = get(global, CONFIG.app_secret)
 const { limit, groups_ids } = CONFIG
 
 const batch = map(groups_ids, function (id) {
@@ -25,4 +25,4 @@ const opts = {
   json: true
 }
 
-module.exports = partial(get.concat, opts)
+module.exports = partial(req.concat, opts)
