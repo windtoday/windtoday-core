@@ -1,6 +1,6 @@
 'use strict'
 
-const { chain, uniqBy, sortBy, map, size, mapValues } = require('lodash')
+const { chain, map, size, mapValues } = require('lodash')
 const { waterfall, parallel } = require('async')
 
 const search = require('./search')
