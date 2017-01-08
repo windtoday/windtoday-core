@@ -1,7 +1,7 @@
 'use strict'
 
 const compose = require('../../core/share/compose')
-const should = require('should')
+require('should')
 
 const doc = {
   title: 'Ezzy Taka 4,9 2015',
