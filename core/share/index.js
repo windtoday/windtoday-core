@@ -1,7 +1,7 @@
 'use strict'
 
 const bufferapp = require('buffer-node')
-const CONFIG = require('CONFIG').buffer
+const CONFIG = require('config').buffer
 const compose = require('./compose')
 const {each} = require('async')
 const {get} = require('lodash')
