@@ -20,17 +20,18 @@ function add (opts, cb) {
     },
     function update (diff, next) {
       const stats = mapValues(diff, size)
+      const {added, removed} = diff
 
       const subTasks = [
-        (done) => search.addObjects(diff.added, done),
-        (done) => search.deleteObjects(map(diff.removed, CONST.DIFF_ID), done)
+        (done) => search.addObjects(added, done),
+        (done) => search.deleteObjects(map(removed, CONST.DIFF_ID), done)
       ]
 
-      const newState = sortBy(difference(value, diff.removed), CONST.DIFF_ID)
-      return parallel(subTasks, (err) => next(err, newState, stats))
+      const newState = sortBy(difference(value, removed), CONST.DIFF_ID)
+      return parallel(subTasks, (err) => next(err, newState, added, stats))
     },
-    function saveState (value, stats, next) {
-      return state.set({key, value}, (err) => next(err, stats))
+    function saveState (value, added, stats, next) {
+      return state.set({key, value}, (err) => next(err, added, stats))
     }
   ]
 

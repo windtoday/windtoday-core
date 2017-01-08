@@ -2,7 +2,7 @@
 
 const bufferapp = require('buffer-node')
 const CONFIG = require('CONFIG').buffer
-const compose = require('./compose.js')
+const compose = require('./compose')
 const {each} = require('async')
 const {get} = require('lodash')
 

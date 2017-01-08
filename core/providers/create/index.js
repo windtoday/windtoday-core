@@ -5,6 +5,7 @@ const createContext = require('./create-context')
 const { bind, get, partial } = require('lodash')
 const { waterfall, reduce } = require('async')
 const createAdd = require('./create-add')
+const share = require('../../share')
 const db = require('../../db')
 
 const env = get(process, 'env.NODE_ENV', 'development')
@@ -24,8 +25,11 @@ function createProvider (opts) {
     const tasks = [
       start,
       partial(reduce, buffer, [], add),
-      function update (docs, next) {
+      function updateDatabase (docs, next) {
         return db.add({key, docs}, next)
+      },
+      function createShareLinks (docs, stats, next) {
+        share(docs, (err) => next(err, stats))
       }
     ]
 

@@ -1,6 +1,6 @@
 'use strict'
 
-const text = require('../../core/social/text')
+const compose = require('../../core/share/compose')
 const should = require('should')
 
 const doc = {
@@ -16,10 +16,10 @@ const doc = {
   'sail.size': 4.9
 }
 
-describe('social » text', function () {
+describe('share » compose', function () {
   it('create the social text from the doc', function () {
     const {title, price, url} = doc
-    const message = text(doc)
+    const message = compose(doc)
     const expected = `${title} ${price}€: ${url}`
     message.should.be.equal(expected)
   })
