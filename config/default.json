@@ -5,6 +5,11 @@
     "index": "primary"
   },
 
+  "buffer": {
+    "access_token": "process.env.BUFFER_ACCESS_TOKEN",
+    "accounts": [ "5871275daa70e8bc3b6389bc", "5871279baa70e81d3a6389bf" ]
+  },
+
   "redis": "process.env.REDIS_URL",
 
   "totalwind_api": {
