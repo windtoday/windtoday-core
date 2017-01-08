@@ -1,6 +1,6 @@
 'use strict'
 
-const { sortBy, difference, map, size, mapValues } = require('lodash')
+const { chain, uniqBy, sortBy, map, size, mapValues } = require('lodash')
 const { waterfall, parallel } = require('async')
 
 const search = require('./search')
@@ -12,7 +12,11 @@ const CONST = {
 
 function add (opts, cb) {
   const {key, docs} = opts
-  const value = sortBy(docs, CONST.DIFF_ID)
+
+  const value = chain(docs)
+  .uniqBy(CONST.DIFF_ID)
+  .sortBy(CONST.DIFF_ID)
+  .value()
 
   const tasks = [
     function compare (next) {
@@ -27,7 +31,12 @@ function add (opts, cb) {
         (done) => search.deleteObjects(map(removed, CONST.DIFF_ID), done)
       ]
 
-      const newState = sortBy(difference(value, removed), CONST.DIFF_ID)
+      const newState = chain(value)
+        .difference(removed)
+        .uniqBy(CONST.DIFF_ID)
+        .sortBy(CONST.DIFF_ID)
+        .value()
+
       return parallel(subTasks, (err) => next(err, newState, added, stats))
     },
     function saveState (value, added, stats, next) {
