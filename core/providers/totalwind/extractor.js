@@ -12,7 +12,7 @@ function createExtractor (log, path) {
 function specificExtractor (opts) {
   const { path, log } = opts
   let loggerKeyword = log.keyword
-  const extractorLogger = createLogger(`${loggerKeyword}_${path}_unidentify`)
+  const extractorLogger = createLogger(`${loggerKeyword}_unidentify`)
 
   switch (path) {
     case 'sails':
