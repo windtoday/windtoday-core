@@ -1,8 +1,8 @@
 'use strict'
 
 const checkRequiredParams = require('../util/check-required-params')
-const createLoggerKeyword = require('./logger-keyword')
-const createProcessExit = require('./process-exit')
+const createLoggerKeyword = require('./create-logger-keyword')
+const createProcessExit = require('./create-process-exit')
 const providers = require('../providers')
 const createLogger = require('../log')
 const { waterfall } = require('async')
