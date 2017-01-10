@@ -13,13 +13,14 @@
   "redis": "process.env.REDIS_URL",
 
   "totalwind_api": {
-    "key": "process.env.TOTALWIND_KEY",
+    "key": "process.env.WRAPAPI_KEY",
     "pages": 5
   },
 
-  "check_hosts": {
-    "totalwind": ["https://wrapapi.com", "http://totalwind.net/foro"],
-    "facebook": ["https://www.facebook.com/platform/api-status"]
+  "merkawind_api": {
+    "key": "process.env.WRAPAPI_KEY",
+    "pages": 4,
+    "sold": false
   },
 
   "facebook": {
@@ -32,5 +33,11 @@
       143928749095041
     ],
     "limit": 100
+  },
+
+  "check_hosts": {
+    "totalwind": ["https://wrapapi.com", "http://totalwind.net/foro"],
+    "merkawind": ["https://wrapapi.com", "http://merkawind.com"],
+    "facebook": ["https://www.facebook.com/platform/api-status"]
   }
 }

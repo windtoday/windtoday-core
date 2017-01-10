@@ -13,14 +13,14 @@ const CONST = {
 
 const checkRequiredParams = require('../../util/check-required-params')
 const totalwind = require('totalwind-api')(totalwindOpts)
-const createSpecificExtractor = require('./extractor')
+const createIdentify = require('../../identify')
 const createProvider = require('../create')
 
 function createTotalwindProvider (opts) {
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
 
   const {seller, provider, path} = opts
-  const specificExtractor = createSpecificExtractor(opts)
+  const identify = createIdentify(opts)
 
   return createProvider(assign({}, opts, {
     start: function (done) {
@@ -34,7 +34,7 @@ function createTotalwindProvider (opts) {
     },
 
     extract: function (str) {
-      return assign({seller, provider, path}, specificExtractor(str))
+      return assign({seller, provider, path}, identify(str))
     }
   }))
 }
