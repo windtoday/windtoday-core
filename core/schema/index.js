@@ -28,6 +28,7 @@ const validate = osom({
   path: {
     type: String
   },
+  // TODO: change url → link
   url: {
     required: true,
     type: String
