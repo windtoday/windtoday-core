@@ -1,6 +1,6 @@
 'use strict'
 
-const createStream = require('../../core/providers/facebook/stream')
+const createStream = require('../../core/provider/facebook/stream')
 const { first, keys, noop } = require('lodash')
 require('should')
 

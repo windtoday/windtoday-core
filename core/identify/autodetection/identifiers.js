@@ -12,8 +12,7 @@ function noop () {
 
 function identifiers (categories) {
   return map(categories, function (name) {
-    const fn = get(identify, category.singular(name), noop)
-    return {name, fn}
+    return get(identify, category.singular(name), noop)
   })
 }
 

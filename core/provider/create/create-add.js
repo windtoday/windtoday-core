@@ -4,7 +4,7 @@ const schema = require('../../schema')
 function createAdd (opts) {
   const { log } = opts
 
-  function add (accumulator, doc, cb) {
+  function add (acc, doc, cb) {
     schema(doc, (validationError, docValidated) => {
       if (validationError) {
         log.error('schema', {
@@ -12,10 +12,10 @@ function createAdd (opts) {
           title: doc.title
         })
       } else {
-        accumulator.push(docValidated)
+        acc.push(docValidated)
       }
 
-      return cb(null, accumulator)
+      return cb(null, acc)
     })
   }
 

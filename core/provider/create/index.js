@@ -10,20 +10,20 @@ const db = require('../../db')
 
 const env = get(process, 'env.NODE_ENV', 'development')
 
-function createProvider (opts) {
-  const { extract, provider, seller, path } = opts
+function createProvider (opts, fetch) {
+  const { provider, seller, path } = opts
   const key = `${env}:${provider}:${seller}:${path}`
   const ctx = createContext(opts)
   const add = createAdd(ctx)
   const buffer = []
+  const extract = ctx.extract = createExtractor(Object.assign({buffer}, opts))
 
-  ctx.extract = createExtractor({extract, buffer})
-
-  const start = bind(opts.start, ctx)
+  fetch = bind(fetch, ctx)
+  extract.on('data', (item) => buffer.push(item))
 
   function init (cb) {
     const tasks = [
-      start,
+      fetch,
       partial(reduce, buffer, [], add),
       function updateDatabase (docs, next) {
         return db.add({key, docs}, next)

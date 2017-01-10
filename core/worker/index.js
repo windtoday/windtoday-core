@@ -3,7 +3,7 @@
 const checkRequiredParams = require('../util/check-required-params')
 const createLoggerKeyword = require('./create-logger-keyword')
 const createProcessExit = require('./create-process-exit')
-const providers = require('../providers')
+const providerWorker = require('../provider')
 const createLogger = require('../log')
 const { waterfall } = require('async')
 const { partial } = require('lodash')
@@ -19,7 +19,7 @@ function createWorker (opts) {
     diff: true
   })
   const processExit = createProcessExit(log)
-  const worker = providers[provider](opts)
+  const worker = providerWorker[provider](opts)
 
   const tasks = [
     partial(isUp, hosts),
