@@ -32,7 +32,7 @@
     "simple-get": "~2.3.0",
     "str-match": "~2.1.0",
     "titleize": "~1.0.0",
-    "totalwind-api": "~1.0.7",
+    "totalwind-api": "~1.1.0",
     "url-regex": "~4.0.0",
     "windtoday-boards": "github:windtoday/windtoday-boards",
     "windtoday-fins": "github:windtoday/windtoday-fins",
