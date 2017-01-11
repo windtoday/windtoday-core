@@ -8,7 +8,7 @@ const fixture = {
   category: 'particular',
   seller: 'particular',
   provider: 'totalwind',
-  url: 'http://totalwind.net/foro/viewtopic.php?f=48&t=102239',
+  link: 'http://totalwind.net/foro/viewtopic.php?f=48&t=102239',
   createdAt: '1466590680000',
   updatedAt: '1467970920000'
 }

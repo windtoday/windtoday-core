@@ -8,7 +8,7 @@ const doc = {
   category: ['sails'],
   provider: 'totalwind',
   seller: 'particular',
-  url: 'http:/totalwind.net/foro/viewtopic.php?f=49&t=95973',
+  link: 'http:/totalwind.net/foro/viewtopic.php?f=49&t=95973',
   brand: 'Ezzy',
   model: 'Taka',
   price: 260,
@@ -18,9 +18,9 @@ const doc = {
 
 describe('share » compose', function () {
   it('create the social text from the doc', function () {
-    const {title, price, url} = doc
+    const {title, price, link} = doc
     const message = compose(doc)
-    const expected = `${title} ${price}€: ${url}`
+    const expected = `${title} ${price}€: ${link}`
     message.should.be.equal(expected)
   })
 })

@@ -1,8 +1,8 @@
 'use strict'
 
 function compose (doc) {
-  const {title, price, url} = doc
-  return `${title} ${price}€: ${url}`
+  const {title, price, link} = doc
+  return `${title} ${price}€: ${link}`
 }
 
 module.exports = compose
