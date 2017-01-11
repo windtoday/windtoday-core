@@ -11,7 +11,8 @@ const identify = {
   mast: require('./mast'),
   price: require('./price'),
   sail: require('./sail'),
-  year: require('./year')
+  year: require('./year'),
+  other: require('./other')
 }
 
 function createIdentify (opts) {
@@ -28,8 +29,8 @@ function createIdentify (opts) {
       const identifyLog = createLogger(`${logKeyword}_unidentify`)
       return identify[category](identifyLog)
     default:
-      const logAutodetectionKeyword = `${logKeyword}_${path}`
-      return identify.autodetection(logAutodetectionKeyword)
+      const autodetectionLogger = createLogger(`${logKeyword}_${path}`)
+      return identify.autodetection(autodetectionLogger)
   }
 }
 

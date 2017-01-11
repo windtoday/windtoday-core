@@ -1,18 +1,12 @@
 'use strict'
 
 const category = require('../../category')
-const { map, get } = require('lodash')
-const identify = require('..')
+const { map } = require('lodash')
 
-function noop () {
-  return function (str) {
-    return { data: undefined, output: str }
-  }
-}
-
-function identifiers (categories) {
+function identifiers (categories, log) {
   return map(categories, function (name) {
-    return get(identify, category.singular(name), noop)
+    const factory = require(`../${category.singular(name)}`)
+    return factory(log)
   })
 }
 
