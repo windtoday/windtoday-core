@@ -19,8 +19,7 @@
 
   "merkawind_api": {
     "key": "process.env.WRAPAPI_KEY",
-    "pages": 4,
-    "sold": false
+    "pages": 4
   },
 
   "facebook": {

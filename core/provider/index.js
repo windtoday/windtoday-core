@@ -1,6 +1,7 @@
 'use strict'
 
 module.exports = {
-  totalwind: require('./totalwind'),
-  facebook: require('./facebook')
+  facebook: require('./facebook'),
+  merkawind: require('./merkawind'),
+  totalwind: require('./totalwind')
 }
