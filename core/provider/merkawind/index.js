@@ -23,8 +23,13 @@ function createTotalwindProvider (opts) {
     const { extract } = this
     const stream = merkawind[path]()
 
+    function extractor (item) {
+      item.title = `${item.title} €${item.price}`
+      return extract(item)
+    }
+
     stream
-      .on('data', extract)
+      .on('data', extractor)
       .on('error', done)
       .on('end', done)
   })
