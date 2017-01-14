@@ -29,7 +29,7 @@
     "merkawind-api": "~1.1.0",
     "osom": "~2.1.1",
     "redis-diff": "~1.0.2",
-    "simple-get": "~2.3.0",
+    "simple-get": "~2.4.0",
     "str-match": "~2.1.0",
     "titleize": "~1.0.0",
     "totalwind-api": "~1.1.0",
