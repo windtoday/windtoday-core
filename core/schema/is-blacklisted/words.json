@@ -1,5 +1,6 @@
 [
   "^.[.]*$",
+  "adjudicad[oa]",
   "anulad[oa]",
   "borrad[oa]",
   "borrar",
@@ -13,11 +14,11 @@
   "descartad[oa]",
   "eliminad[oa]",
   "encontrad[oa]",
+  "necesito",
   "retirad[oa]",
   "robad[oa]",
   "robo",
   "vend[íi]a",
   "vendid[oa]",
-  "necesito",
   "ya no"
 ]
