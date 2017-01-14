@@ -15,6 +15,7 @@ function factory (namespace, log) {
 
       if (exists(data)) {
         acc.data[key] = data
+        // removing the detection from the input
         if (exists(output)) acc.input = output
       } else {
         logUnmatching(key, acc)

@@ -3,19 +3,16 @@
 const { assign, get, pick } = require('lodash')
 
 function factory (namespace, log) {
-  function logUnmatching (prop, values) {
-    let props = pick(values, 'input')
+  function logUnmatching (key, acc) {
+    let values = pick(acc, 'input')
 
-    switch (prop) {
+    switch (key) {
       case 'model':
-        assign({
-          brand: get(values, `${namespace}.brand.name`),
-          input: get(values, 'input')
-        }, props)
+        values = assign({brand: get(acc, 'dir.data.brand')}, values)
         break
     }
 
-    log.warn(prop, props)
+    log.warn(key, values)
   }
 
   return logUnmatching
