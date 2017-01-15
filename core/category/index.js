@@ -2,8 +2,8 @@
 
 const { get } = require('lodash')
 
-const CATEGORIES_SINGULAR = require('./categories_singular.json')
-const CATEGORIES = require('./categories.json')
+const CATEGORIES_SINGULAR = require('./categories-singular.json')
+const CATEGORIES_PLURAL = require('./categories-plural.json')
 
 function createFactory (categories) {
   function category (key) {
@@ -14,7 +14,7 @@ function createFactory (categories) {
   return category
 }
 
-const categories = createFactory(CATEGORIES)
+const categories = createFactory(CATEGORIES_PLURAL)
 categories.singular = createFactory(CATEGORIES_SINGULAR)
 
 module.exports = categories
