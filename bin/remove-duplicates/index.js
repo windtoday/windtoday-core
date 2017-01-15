@@ -2,9 +2,8 @@
 
 'use strict'
 
-const {get, reduce, chain, size} = require('lodash')
+const {reduce, chain, size} = require('lodash')
 const {waterfall} = require('async')
-const meow = require('meow')
 
 const log = require('../../core/log')('remove-duplicates')
 const index = require('../../core/db/search')
@@ -14,9 +13,9 @@ const CONST = {
   DIFF_ID: 'title'
 }
 
-waterfall([find diff, remove], finish)
+waterfall([find, diff, remove], finish)
 
-function find(cb) {
+function find (cb) {
   return index.search(CONST.QUERY, cb)
 }
 
