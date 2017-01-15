@@ -1,6 +1,7 @@
 'use strict'
 
 const { merge, reduce } = require('lodash')
+
 const serializer = require('../schema/serializer')
 
 function createFlow (identifiers) {

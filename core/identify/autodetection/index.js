@@ -1,9 +1,10 @@
 'use strict'
 
+const { assign } = require('lodash')
+
 const getIdentifiers = require('./identifiers')
 const getCategories = require('../category')
 const createFlow = require('../create-flow')
-const { assign } = require('lodash')
 
 function createAutodetection (log) {
   function autodetect (str) {

@@ -2,9 +2,10 @@
 
 const bufferapp = require('buffer-node')
 const CONFIG = require('config').buffer
-const compose = require('./compose')
 const {each} = require('async')
 const {get} = require('lodash')
+
+const compose = require('./compose')
 
 const accessToken = get(global, CONFIG.access_token)
 const client = bufferapp(accessToken)

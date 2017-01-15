@@ -1,8 +1,9 @@
 'use strict'
 
+const { get } = require('lodash')
+
 const CATEGORIES_SINGULAR = require('./categories_singular.json')
 const CATEGORIES = require('./categories.json')
-const { get } = require('lodash')
 
 function createFactory (categories) {
   function category (key) {

@@ -1,8 +1,9 @@
 'use strict'
 
 const { size, reduce } = require('lodash')
-const category = require('../../category')
 const strmatch = require('str-match')()
+
+const category = require('../../category')
 
 const CONST = {
   REGEX: {

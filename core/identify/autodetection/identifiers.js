@@ -1,7 +1,8 @@
 'use strict'
 
-const category = require('../../category')
 const { map } = require('lodash')
+
+const category = require('../../category')
 
 function identifiers (categories, log) {
   return map(categories, function (name) {

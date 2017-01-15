@@ -1,10 +1,11 @@
 'use strict'
 
+const titleize = require('titleize')
+const { flow } = require('lodash')
+
 const REGEX_WORDS = RegExp(require('./words.json').join('|'), 'ig')
 const cleanWhiteSpaces = require('condense-whitespace')
 const price = require('../../identify/price')
-const titleize = require('titleize')
-const { flow } = require('lodash')
 
 function cleanWords (str) {
   return str.replace(REGEX_WORDS, '')

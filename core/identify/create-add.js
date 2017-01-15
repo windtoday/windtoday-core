@@ -1,8 +1,9 @@
 'use strict'
 
-const createLogUnmatching = require('./log-unmatching')
 const exists = require('existential')
 const {get} = require('lodash')
+
+const createLogUnmatching = require('./log-unmatching')
 
 function factory (namespace, log) {
   const logUnmatching = createLogUnmatching(namespace, log)

@@ -1,11 +1,12 @@
 'use strict'
 
+const { assignIn, assign } = require('lodash')
+const EventEmitter = require('events')
+
 const isBlacklisted = require('../../schema/is-blacklisted')
 const createFlow = require('../../identify/create-flow')
 const cleanWhiteSpaces = require('condense-whitespace')
-const { assignIn, assign } = require('lodash')
 const identify = require('../../identify')
-const EventEmitter = require('events')
 
 const generalExtractor = createFlow([
   // TODO: Juse use the specific identifiers

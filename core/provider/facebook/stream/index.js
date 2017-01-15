@@ -1,7 +1,8 @@
 'use strict'
 
-const request = require('./request')
 const from = require('from2').obj
+
+const request = require('./request')
 const parse = require('./parse')
 
 function fetch (cb) {

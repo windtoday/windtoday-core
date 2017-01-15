@@ -3,6 +3,7 @@
 
 const strmatch = require('str-match')()
 const { toLower, flow } = require('lodash')
+
 const REGEX_MAST_DIAMETER = /\b[sr]dm\b/i
 
 const normalize = flow([
