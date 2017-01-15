@@ -7,20 +7,20 @@ const search = require('./search')
 const state = require('./state')
 
 const CONST = {
-  DIFF_ID: 'title'
+  UNIQUE_ID: 'title'
 }
 
 function add (opts, cb) {
   const {key, docs} = opts
 
   const value = chain(docs)
-  .uniqBy(CONST.DIFF_ID)
-  .sortBy(CONST.DIFF_ID)
+  .uniqBy(CONST.UNIQUE_ID)
+  .sortBy(CONST.UNIQUE_ID)
   .value()
 
   const tasks = [
     function compare (next) {
-      return state.compare({key, value, id: CONST.DIFF_ID}, next)
+      return state.compare({key, value, id: CONST.UNIQUE_ID}, next)
     },
     function update (diff, next) {
       const stats = mapValues(diff, size)
@@ -28,13 +28,13 @@ function add (opts, cb) {
 
       const subTasks = [
         (done) => search.addObjects(added, done),
-        (done) => search.deleteObjects(map(removed, CONST.DIFF_ID), done)
+        (done) => search.deleteObjects(map(removed, CONST.UNIQUE_ID), done)
       ]
 
       const newState = chain(value)
         .difference(removed)
-        .uniqBy(CONST.DIFF_ID)
-        .sortBy(CONST.DIFF_ID)
+        .uniqBy(CONST.UNIQUE_ID)
+        .sortBy(CONST.UNIQUE_ID)
         .value()
 
       return parallel(subTasks, (err) => next(err, newState, added, stats))
