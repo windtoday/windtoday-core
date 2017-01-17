@@ -7,6 +7,7 @@ const checkRequiredParams = require('../util/check-required-params')
 const createLoggerKeyword = require('./create-logger-keyword')
 const createProcessExit = require('./create-process-exit')
 const providerWorker = require('../provider')
+
 const createLogger = require('../log')
 const CONST = require('./constants')
 const isUp = require('./is-up')
@@ -31,8 +32,13 @@ function createWorker (opts) {
   ]
 
   waterfall(tasks, function (err, stats) {
-    if (err) log.error(err)
-    else log.info('finished', stats, '✔ (2/2)')
+    if (err) {
+      log.error(err)
+      log.error(err.stack)
+    } else {
+      log.info('finished', stats, '✔ (2/2)')
+    }
+
     return processExit(err)
   })
 }
