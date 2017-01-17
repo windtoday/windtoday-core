@@ -7,4 +7,3 @@ const {get} = require('lodash')
 const connection = get(global, CONFIG)
 
 module.exports = redis(connection)
-module.exports.client = redis
