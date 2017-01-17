@@ -28,6 +28,7 @@
     "meow": "~3.7.0",
     "merkawind-api": "~1.1.4",
     "osom": "~2.1.1",
+    "ozutarifa-api": "~1.1.2",
     "redis-diff": "~1.0.2",
     "simple-get": "~2.4.0",
     "str-match": "~2.1.0",
