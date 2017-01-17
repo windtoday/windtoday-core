@@ -22,6 +22,10 @@
     "pages": 4
   },
 
+  "ozutarifa_api": {
+    "key": "process.env.WRAPAPI_KEY"
+  },
+
   "facebook": {
     "app_id": "process.env.FACEBOOK_APP_ID",
     "app_secret": "process.env.FACEBOOK_SECRET_ID",
@@ -36,6 +40,7 @@
 
   "check_hosts": {
     "totalwind": ["https://wrapapi.com", "http://totalwind.net/foro"],
+    "ozutarifa": ["https://wrapapi.com", "http://ozu-tarifa.com"],
     "merkawind": ["https://wrapapi.com", "http://merkawind.com"],
     "facebook": ["https://www.facebook.com/platform/api-status"]
   }
