@@ -1,7 +1,7 @@
 'use strict'
 
 const CONFIG = require('config').ozutarifa_api
-const { assign, get, includes } = require('lodash')
+const { assign, get } = require('lodash')
 const exists = require('existential')
 
 const ozutarifaOpts = assign({}, CONFIG, {
