@@ -20,7 +20,10 @@ const validate = osom({
   },
   seller: {
     required: true,
-    type: String
+    type: String,
+    transform: [
+      (seller) => seller === 'particular' ? seller : 'store'
+    ]
   },
   provider: {
     required: true,
