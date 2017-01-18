@@ -29,7 +29,7 @@ function createTotalwindProvider (opts) {
       const createdAt = Date.now()
 
       let {title} = item
-      if (exists(year)) title = `${year} ${title}`
+      if (exists(year)) title = `${title} ${year}`
       if (exists(price)) title = `${title} €${price}`
 
       const doc = assign(item, {title, createdAt})
