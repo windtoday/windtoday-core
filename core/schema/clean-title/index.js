@@ -1,10 +1,12 @@
 'use strict'
 
+const cleanWhiteSpaces = require('condense-whitespace')
+const { flow, chain } = require('lodash')
+const strmatch = require('str-match')()
 const titleize = require('titleize')
-const { flow } = require('lodash')
 
 const REGEX_WORDS = RegExp(require('./words.json').join('|'), 'ig')
-const cleanWhiteSpaces = require('condense-whitespace')
+
 const price = require('../../identify/price')
 const boardSize = require('../../identify/board/size')
 
@@ -17,9 +19,14 @@ function cleanPrice (str) {
 }
 
 function prettyBoardSize (str) {
-  const {data, output} = boardSize(str)
-  if (!data) return str
-  return `${output} ${data}L`
+  const {regex, regexCleanOutput} = boardSize
+  const size = strmatch(str, regex)
+  if (!size.test) return str
+
+  return chain(str)
+    .replace(size.match, size.match.toUpperCase())
+    .replace(regexCleanOutput, '')
+    .value()
 }
 
 module.exports = flow([

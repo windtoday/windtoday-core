@@ -3,21 +3,21 @@
 const { flow, replace, toNumber } = require('lodash')
 const strmatch = require('str-match')()
 
-const REGEX_BOARD_LITRES_WITH_SUFFIX = /[0-9]{2,3}[ ]?l/
-const REGEX_BOARD_LITRES_SUFFIX = /l/
-const REGEX_BOARD_LITRES_SUFFIX_OUTPUT = /itr[eo]s/
+const REGEX_BOARD_LITRES = /[0-9]{2,3}[ ]?l/
+const REGEX_BOARD_LITRES_PREFIX = /l/
+const REGEX_BOARD_LITRES_PREFIX_CLEAN_OUTPUT = /itr[eo]s/
 
 const normalizePrice = flow([
-  (str) => replace(str, REGEX_BOARD_LITRES_SUFFIX, ''),
+  (str) => replace(str, REGEX_BOARD_LITRES_PREFIX, ''),
   toNumber
 ])
 
 const normalizeOutput = flow([
-  (str) => replace(str, REGEX_BOARD_LITRES_SUFFIX_OUTPUT, '')
+  (str) => replace(str, REGEX_BOARD_LITRES_PREFIX_CLEAN_OUTPUT, '')
 ])
 
 function boardSize (str) {
-  let size = strmatch(str, REGEX_BOARD_LITRES_WITH_SUFFIX)
+  const size = strmatch(str, REGEX_BOARD_LITRES)
   let output = str
   let data
 
@@ -27,5 +27,8 @@ function boardSize (str) {
   output = normalizeOutput(size.output)
   return {data, output}
 }
+
+boardSize.regex = REGEX_BOARD_LITRES
+boardSize.regexCleanOutput = REGEX_BOARD_LITRES_PREFIX_CLEAN_OUTPUT
 
 module.exports = boardSize

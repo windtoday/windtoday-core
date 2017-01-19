@@ -47,7 +47,7 @@ describe('schema » transform', function () {
         }
 
         schema(Object.assign({}, fixture, doc), function (err, instance) {
-          instance.title.should.be.equal('Starboard Futura 120L')
+          instance.title.should.be.equal('Starboard 120L Futura')
           done(err)
         })
       })
@@ -71,7 +71,7 @@ describe('schema » transform', function () {
         }
 
         schema(Object.assign({}, fixture, doc), function (err, instance) {
-          instance.title.should.be.equal('Starboard Futura 120L')
+          instance.title.should.be.equal('120L Starboard Futura')
           done(err)
         })
       })
