@@ -23,7 +23,7 @@ describe('identify » board » size', function () {
     ].forEach(function (str) {
       const {data, output} = board(str)
       get(data, 'size').should.be.equal(84)
-      output.includes('84').should.be.false()
+      output.should.be.equal('')
     })
   })
 
