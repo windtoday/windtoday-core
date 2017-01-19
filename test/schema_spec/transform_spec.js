@@ -39,6 +39,44 @@ describe('schema » transform', function () {
       })
     })
 
+    describe('board size', function () {
+      it('l → L', function (done) {
+        const doc = {
+          title: 'Vendo Starboard 120l Futura',
+          price: 280
+        }
+
+        schema(Object.assign({}, fixture, doc), function (err, instance) {
+          instance.title.should.be.equal('Starboard Futura 120L')
+          done(err)
+        })
+      })
+
+      it('litros → L', function (done) {
+        const doc = {
+          title: 'Vendo Starboard Futura 120litros',
+          price: 280
+        }
+
+        schema(Object.assign({}, fixture, doc), function (err, instance) {
+          instance.title.should.be.equal('Starboard Futura 120L')
+          done(err)
+        })
+      })
+
+      it('litres → L', function (done) {
+        const doc = {
+          title: '120litres Vendo Starboard Futura',
+          price: 280
+        }
+
+        schema(Object.assign({}, fixture, doc), function (err, instance) {
+          instance.title.should.be.equal('Starboard Futura 120L')
+          done(err)
+        })
+      })
+    })
+
     it('titleize', function (done) {
       const doc = {
         title: 'Vendo mistral Syncro - 280€',
