@@ -1,11 +1,16 @@
 'use strict'
 
-const { get } = require('lodash')
+const cleanStack = require('clean-stack')
 
 function factory (log) {
   function processExit (err) {
     if (!err) return process.exit()
-    const code = get(err, 'code', 1)
+
+    const {stack, message, code = 1} = err
+
+    log.error(message || err)
+    if (stack) log.error(cleanStack(err.stack))
+
     return process.exit(code)
   }
 

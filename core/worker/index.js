@@ -32,13 +32,7 @@ function createWorker (opts) {
   ]
 
   waterfall(tasks, function (err, stats) {
-    if (err) {
-      log.error(err)
-      log.error(err.stack)
-    } else {
-      log.info('finished', stats, '✔ (2/2)')
-    }
-
+    if (!err) log.info('finished', stats, '✔ (2/2)')
     return processExit(err)
   })
 }
