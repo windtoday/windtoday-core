@@ -2,8 +2,12 @@
 
 'use strict'
 
-const createWorker = require('../../core/worker')
+const {assign} = require('lodash')
 const meow = require('meow')
 
+const createWorker = require('../../core/worker')
+
 const cli = meow()
-createWorker(cli.flags)
+const flags = assign(cli.flags, {share: true})
+
+createWorker(flags)
