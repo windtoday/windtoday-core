@@ -27,7 +27,7 @@
     "is-all-reachable": "~1.0.0",
     "lodash": "~4.17.2",
     "meow": "~3.7.0",
-    "merkawind-api": "~1.1.4",
+    "merkawind-api": "~1.1.6",
     "osom": "~2.1.1",
     "ozutarifa-api": "~1.1.5",
     "redis-diff": "~1.0.2",
