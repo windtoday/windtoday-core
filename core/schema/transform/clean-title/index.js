@@ -7,8 +7,8 @@ const titleize = require('titleize')
 
 const REGEX_WORDS = RegExp(require('./words.json').join('|'), 'ig')
 
-const price = require('../../identify/price')
-const boardSize = require('../../identify/board/size')
+const price = require('../../../identify/price')
+const boardSize = require('../../../identify/board/size')
 
 function cleanWords (str) {
   return str.replace(REGEX_WORDS, '')

@@ -3,7 +3,7 @@
 const { asyncify } = require('async')
 const osom = require('osom')
 
-const cleanTitle = require('./clean-title')
+const cleanTitle = require('./transform/clean-title')
 const serializer = require('./serializer')
 
 const validate = osom({
