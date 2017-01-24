@@ -1,10 +1,7 @@
 'use strict'
 
-const {inRange, lt, gt, eq} = require('lodash')
-
-function isRange (size, min, max) {
-  return inRange(size, min, max) || eq(size, max)
-}
+const {inRange, lt, eq} = require('lodash')
+const isRange = (size, min, max) => inRange(size, min, max) || eq(size, max)
 
 function sailRange (size) {
   if (lt(size, 4.6)) return '< 4.6m²'

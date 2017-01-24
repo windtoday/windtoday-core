@@ -58,7 +58,7 @@ describe('schema » transform » clean title', function () {
     ].forEach(function (str) {
       it(`${str} → 120L`, function (done) {
         createCase(str, function (err, instance) {
-          instance.title.should.be.equal('Starboard 120L Futura')
+          instance.title.should.be.equal(`Starboard ${expected} Futura`)
           done(err)
         })
       })
