@@ -20,11 +20,13 @@ function cleanPrice (str) {
 
 function prettyBoardSize (str) {
   const {regex, regexCleanOutput} = boardSize
+  const removeSpaces = (str) => str.replace(/\s+/g, '')
   const size = strmatch(str, regex)
+
   if (!size.test) return str
 
   return chain(str)
-    .replace(size.match, size.match.toUpperCase())
+    .replace(size.match, removeSpaces(size.match).toUpperCase())
     .replace(regexCleanOutput, '')
     .value()
 }

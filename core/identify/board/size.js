@@ -3,9 +3,9 @@
 const { flow, replace, toNumber } = require('lodash')
 const strmatch = require('str-match')()
 
-const REGEX_BOARD_LITRES = /[0-9]{2,3}[ ]?l/
-const REGEX_BOARD_LITRES_PREFIX = /l/
-const REGEX_BOARD_LITRES_PREFIX_CLEAN_OUTPUT = /itr[eo]s/
+const REGEX_BOARD_LITRES = /[0-9]{2,3}[ ]?l/i
+const REGEX_BOARD_LITRES_PREFIX = /l/i
+const REGEX_BOARD_LITRES_PREFIX_CLEAN_OUTPUT = /itr[eo]s/i
 
 const normalizePrice = flow([
   (str) => replace(str, REGEX_BOARD_LITRES_PREFIX, ''),

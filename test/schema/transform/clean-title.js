@@ -39,39 +39,28 @@ describe('schema » transform » clean title', function () {
   })
 
   describe('board size', function () {
-    it('l → L', function (done) {
+    const expected = '120L'
+    const createCase = (str, cb) => {
       const doc = {
-        title: 'Vendo Starboard 120l Futura',
+        title: `Vendo Starboard ${str} Futura`,
         price: 280
       }
+      return schema(Object.assign({}, fixture, doc), cb)
+    }
 
-      schema(Object.assign({}, fixture, doc), function (err, instance) {
-        instance.title.should.be.equal('Starboard 120L Futura')
-        done(err)
-      })
-    })
-
-    it('litros → L', function (done) {
-      const doc = {
-        title: 'Vendo Starboard Futura 120litros',
-        price: 280
-      }
-
-      schema(Object.assign({}, fixture, doc), function (err, instance) {
-        instance.title.should.be.equal('Starboard Futura 120L')
-        done(err)
-      })
-    })
-
-    it('litres → L', function (done) {
-      const doc = {
-        title: '120litres Vendo Starboard Futura',
-        price: 280
-      }
-
-      schema(Object.assign({}, fixture, doc), function (err, instance) {
-        instance.title.should.be.equal('120L Starboard Futura')
-        done(err)
+    [
+      '120 l',
+      '120l',
+      '120 litros',
+      '120litros',
+      '120 litres',
+      '120litres'
+    ].forEach(function (str) {
+      it(`${str} → 120L`, function (done) {
+        createCase(str, function (err, instance) {
+          instance.title.should.be.equal('Starboard 120L Futura')
+          done(err)
+        })
       })
     })
   })
