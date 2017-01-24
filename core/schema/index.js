@@ -3,7 +3,7 @@
 const { asyncify } = require('async')
 const osom = require('osom')
 
-const cleanTitle = require('./transform/clean-title')
+const prettyTitle = require('./transform/pretty-title')
 const serializer = require('./serializer')
 
 const validate = osom({
@@ -11,7 +11,7 @@ const validate = osom({
   title: {
     required: true,
     type: String,
-    transform: [cleanTitle]
+    transform: [prettyTitle]
     // TODO: Add a max title size (like 140 chars)
   },
   category: {
