@@ -58,7 +58,10 @@ const validate = osom({
 
   'mast.size': Number,
 
-  'sail.size': Number,
+  'sail.size': {
+    type: Number,
+    validate: size => inRange(size, 3, 12)
+  },
 
   'board.size': Number,
 
