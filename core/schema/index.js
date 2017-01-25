@@ -1,6 +1,7 @@
 'use strict'
 
-const { asyncify } = require('async')
+const {asyncify} = require('async')
+const {inRange} = require('lodash')
 const osom = require('osom')
 
 const prettyTitle = require('./transform/pretty-title')
@@ -50,8 +51,9 @@ const validate = osom({
   price: {
     required: true,
     type: Number,
-    validate: price => price > 1
+    validate: price => inRange(price, 2, 3001)
   },
+
   year: Number,
 
   'mast.size': Number,
