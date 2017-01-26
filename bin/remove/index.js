@@ -34,10 +34,18 @@ const key = getKey(flags)
 
 const tasks = [
   function deleteKey (next) {
-    return redis.del(key, next)
+    log.debug('redis:start')
+    redis.del(key, function () {
+      log.debug('redis:done')
+      return next.apply(next, arguments)
+    })
   },
   function deleteQuery (next) {
-    return index.deleteByQuery('', params, next)
+    log.debug('query:start')
+    index.deleteByQuery('', params, function () {
+      log.debug('query:done')
+      return next.apply(next, arguments)
+    })
   }
 ]
 
