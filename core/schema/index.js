@@ -56,23 +56,23 @@ const validate = osom({
 
   year: Number,
 
-  'mast.size': Number,
+  'mast size': Number,
 
-  'sail.size': {
+  'sail size': {
     type: Number,
     validate: size => inRange(size, 3, 12)
   },
 
-  'board.size': Number,
+  'board size': Number,
 
-  'boom.size': String,
-  'boom.type': String,
+  'boom size': String,
+  'boom type': String,
 
-  'fin.size': Number,
-  'fin.type': String,
+  'fin size': Number,
+  'fin type': String,
 
-  'mast.carbon': Number,
-  'mast.type': String
+  'mast carbon': Number,
+  'mast type': String
 })
 
 const validateAsync = asyncify(validate)

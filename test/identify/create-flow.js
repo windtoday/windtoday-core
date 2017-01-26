@@ -29,8 +29,8 @@ describe('identify » create flow', function () {
 
     const str = 'Neilpryde Hellcat 6,7. Mastil Rdm 430 Y Botavara North'
     const {data, output} = flow(str)
-    data.should.have.property('sail.size', 6.7)
-    data.should.have.property('mast.size', 430)
+    data.should.have.property('sail size', 6.7)
+    data.should.have.property('mast size', 430)
     output.should.be.equal('  . Mastil   Y Botavara North')
   })
 })

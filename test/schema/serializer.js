@@ -35,9 +35,9 @@ describe('schema » serializer', function () {
 
           const serialized = serializer(fixture)
           const _category = singularCategory[category]
-          serialized.should.have.property(`${_category}.size`)
-          serialized.should.have.property(`${_category}.type`)
-          serialized.should.have.property(`${_category}.carbon`)
+          serialized.should.have.property(`${_category} size`)
+          serialized.should.have.property(`${_category} type`)
+          serialized.should.have.property(`${_category} carbon`)
         })
       })
     })
