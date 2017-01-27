@@ -5,7 +5,7 @@ const { defaults } = require('lodash')
 
 const checkHostsAvailability = require('../util/check-hosts-availability')
 const checkRequiredParams = require('../util/check-required-params')
-const createLoggerKeyword = require('./create-logger-keyword')
+const createLoggerKeyword = require('../util/create-logger-keyword')
 const createWorkerFromProvider = require('../provider')
 const createLogger = require('../log')
 const CONST = require('./constants')
