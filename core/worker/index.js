@@ -5,9 +5,7 @@ const { defaults } = require('lodash')
 
 const checkHostsAvailability = require('../util/check-hosts-availability')
 const checkRequiredParams = require('../util/check-required-params')
-const createLoggerKeyword = require('../util/create-logger-keyword')
 const createWorkerFromProvider = require('../provider')
-const createLogger = require('../log')
 const CONST = require('./constants')
 const DEFAULT = require('./defaults')
 
@@ -15,13 +13,7 @@ function createWorker (opts) {
   opts = defaults(opts, DEFAULT)
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
 
-  const { provider, checkHosts } = opts
-
-  const log = opts.log = createLogger({
-    keyword: createLoggerKeyword(opts),
-    diff: true
-  })
-
+  const { provider, checkHosts, log } = opts
   const worker = createWorkerFromProvider[provider](opts)
 
   const tasks = [
