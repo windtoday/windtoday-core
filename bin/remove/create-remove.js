@@ -14,7 +14,11 @@ function createRemove (flags) {
   const key = getKey(flags)
 
   const keyword = createLoggerKeyword(flags)
-  const log = createLogger(`remove_${keyword}`)
+
+  const log = createLogger({
+    keyword: `remove_${keyword}`,
+    diff: true
+  })
 
   function remove (cb) {
     const tasks = [
