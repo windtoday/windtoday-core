@@ -1,7 +1,9 @@
 'use strict'
 
-const schema = require('../../core/schema')
+const {assign} = require('lodash')
 const should = require('should')
+
+const schema = require('../../core/schema')
 
 const fixture = {
   title: 'Vendo Mistral Syncro 92l 2007 - 280€',
@@ -23,6 +25,43 @@ describe('schema » validation', function () {
     schema({}, function (err) {
       should.exist(err)
       done()
+    })
+  })
+
+  describe('normalize', function () {
+    describe('provider', function (done) {
+      it('store', function (done) {
+        const input = assign({}, fixture, {seller: 'outlet'})
+        schema(input, function (err, doc) {
+          doc.seller.should.be.equal('store')
+          done(err)
+        })
+      })
+
+      it('particular', function (done) {
+        const input = assign({}, fixture, {seller: 'particular'})
+        schema(input, function (err, doc) {
+          doc.seller.should.be.equal('particular')
+          done(err)
+        })
+      })
+    })
+
+    describe('condition', function () {
+      it('new', function (done) {
+        const input = assign({}, fixture, {seller: 'outlet'})
+        schema(input, function (err, doc) {
+          doc.condition.should.be.equal('new')
+          done(err)
+        })
+      })
+      it('used', function (done) {
+        const input = assign({}, fixture, {seller: 'particular'})
+        schema(input, function (err, doc) {
+          doc.condition.should.be.equal('used')
+          done(err)
+        })
+      })
     })
   })
 })
