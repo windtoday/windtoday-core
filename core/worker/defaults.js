@@ -1,5 +1,6 @@
 'use strict'
 
 module.exports = {
-  checkHosts: true
+  checkHosts: true,
+  share: true
 }
