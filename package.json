@@ -30,7 +30,7 @@
     "merkawind-api": "~1.1.6",
     "osom": "~2.1.4",
     "ozutarifa-api": "~1.1.5",
-    "redis-diff": "~1.0.2",
+    "redis-diff": "~2.0.0",
     "simple-get": "~2.4.0",
     "str-match": "~2.1.0",
     "titleize": "~1.0.0",
