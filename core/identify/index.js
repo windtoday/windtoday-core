@@ -18,6 +18,7 @@ const identify = {
 function createIdentify (opts) {
   const { path, log } = opts
   const logKeyword = log.keyword
+  const identifyLog = createLogger(`${logKeyword}_unidentify`)
 
   switch (path) {
     case 'sails':
@@ -26,11 +27,9 @@ function createIdentify (opts) {
     case 'booms':
     case 'fins':
       const category = categorySingular(path)
-      const identifyLog = createLogger(`${logKeyword}_unidentify`)
       return identify[category](identifyLog)
     default:
-      const autodetectionLogger = createLogger(`${logKeyword}_${path}`)
-      return identify.autodetection(autodetectionLogger)
+      return identify.autodetection(identifyLog)
   }
 }
 

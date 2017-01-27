@@ -2,55 +2,15 @@
 
 'use strict'
 
-const {parallel} = require('async')
-const {get} = require('lodash')
 const meow = require('meow')
-
-const redis = require('../../core/db/state').client
-const log = require('../../core/log')('delete')
-const index = require('../../core/db/search')
-
-function createParams (opts) {
-  if (!opts.provider) throw TypeError('Need to provide the provider.')
-  if (!opts.seller) throw TypeError('Need to provide the seller.')
-  const { provider, seller, path } = opts
-
-  let filters = `provider:${provider} AND seller:${seller}`
-  if (path) filters += ` AND path:${path}`
-  return {filters}
-}
-
-function getKey (opts) {
-  const {provider, seller, path} = opts
-  const env = get(process, 'env.NODE_ENV', 'development')
-  return `${env}:${provider}:${seller}:${path}`
-}
+const createRemove = require('./create-remove')
+const createProcessExit = require('../../core/util/create-process-exit')
 
 const cli = meow()
 const {flags} = cli
 
-const params = createParams(flags)
-const key = getKey(flags)
+const remove = createRemove(flags)
+const {log} = remove
+const processExit = createProcessExit(log)
 
-const tasks = [
-  function deleteKey (next) {
-    log.debug('redis:start')
-    redis.del(key, function () {
-      log.debug('redis:done')
-      return next.apply(next, arguments)
-    })
-  },
-  function deleteQuery (next) {
-    log.debug('query:start')
-    index.deleteByQuery('', params, function () {
-      log.debug('query:done')
-      return next.apply(next, arguments)
-    })
-  }
-]
-
-parallel(tasks, function (err) {
-  if (err) throw err
-  log.info('done')
-  process.exit()
-})
+remove(processExit)

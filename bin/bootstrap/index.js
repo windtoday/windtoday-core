@@ -2,12 +2,16 @@
 
 'use strict'
 
-const {assign} = require('lodash')
 const meow = require('meow')
 
-const createWorker = require('../../core/worker')
+const createProcessExit = require('../../core/util/create-process-exit')
+const createBootsrap = require('./create-bootstrap')
 
 const cli = meow()
-const flags = assign(cli.flags, {share: false})
+const {flags} = cli
 
-createWorker(flags)
+const bootstrap = createBootsrap(flags)
+const {log} = bootstrap
+const processExit = createProcessExit(log)
+
+bootstrap(processExit)
