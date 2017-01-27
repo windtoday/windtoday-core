@@ -2,7 +2,7 @@
 
 const cleanStack = require('clean-stack')
 
-function factory (log) {
+function createProcessExit (log) {
   function processExit (err) {
     if (!err) return process.exit()
 
@@ -17,4 +17,4 @@ function factory (log) {
   return processExit
 }
 
-module.exports = factory
+module.exports = createProcessExit
