@@ -45,7 +45,6 @@ const validate = osom({
     type: String
   },
   createdAt: {
-    required: true,
     type: Number
   },
   updatedAt: {
@@ -97,7 +96,8 @@ const validateAsync = asyncify(validate)
 function validator (schema, cb) {
   const doc = assign({}, schema, {
     seller: getSeller(schema),
-    condition: getCondition(schema)
+    condition: getCondition(schema),
+    updatedAt: Date.now()
   })
   const docSerialized = serializer(doc)
   return validateAsync(docSerialized, cb)

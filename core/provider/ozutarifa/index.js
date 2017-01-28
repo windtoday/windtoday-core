@@ -26,13 +26,12 @@ function createTotalwindProvider (opts) {
 
     function extractor (item) {
       const {year, price} = item
-      const createdAt = Date.now()
 
       let {title} = item
       if (exists(year)) title = `${title} ${year}`
       if (exists(price)) title = `${title} €${price}`
 
-      const doc = assign(item, {title, createdAt})
+      const doc = assign(item, {title})
       return extract(doc)
     }
 
