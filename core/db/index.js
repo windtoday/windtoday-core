@@ -7,7 +7,8 @@ const search = require('./search')
 const state = require('./state')
 
 const CONST = {
-  UNIQUE_ID: 'title'
+  UNIQUE_ID: 'title',
+  DIFFERENCE_IDS: ['title', 'price']
 }
 
 function add (opts, cb) {
@@ -20,7 +21,8 @@ function add (opts, cb) {
 
   const tasks = [
     function compare (next) {
-      return state.compare({key, value, id: CONST.UNIQUE_ID}, next)
+      const ids = CONST.DIFFERENCE_IDS
+      return state.compare({key, value, ids}, next)
     },
     function update (diff, next) {
       const stats = mapValues(diff, size)
