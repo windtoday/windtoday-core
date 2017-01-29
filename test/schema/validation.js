@@ -29,24 +29,6 @@ describe('schema » validation', function () {
   })
 
   describe('normalize', function () {
-    describe('provider', function (done) {
-      it('store', function (done) {
-        const input = assign({}, fixture, {seller: 'outlet'})
-        schema(input, function (err, doc) {
-          doc.seller.should.be.equal('store')
-          done(err)
-        })
-      })
-
-      it('particular', function (done) {
-        const input = assign({}, fixture, {seller: 'particular'})
-        schema(input, function (err, doc) {
-          doc.seller.should.be.equal('particular')
-          done(err)
-        })
-      })
-    })
-
     describe('condition', function () {
       it('new', function (done) {
         const input = assign({}, fixture, {seller: 'outlet'})
