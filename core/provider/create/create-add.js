@@ -9,7 +9,8 @@ function createAdd (opts) {
     schema(doc, (validationError, docValidated) => {
       if (validationError) {
         log.error('schema', {
-          field: validationError.field,
+          key: validationError.key,
+          value: validationError.value,
           title: doc.title
         })
       } else {
