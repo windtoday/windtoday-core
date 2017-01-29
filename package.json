@@ -28,7 +28,7 @@
     "lodash": "~4.17.2",
     "meow": "~3.7.0",
     "merkawind-api": "~1.2.0",
-    "osom": "~2.1.4",
+    "osom": "~2.2.0",
     "ozutarifa-api": "~1.2.0",
     "redis-diff": "~2.0.0",
     "simple-get": "~2.4.0",
