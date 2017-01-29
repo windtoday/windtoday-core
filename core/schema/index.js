@@ -1,13 +1,12 @@
 'use strict'
 
 const {asyncify} = require('async')
-const {assign} = require('lodash')
+const {assign, includes} = require('lodash')
 const osom = require('osom')
 
 const prettyTitle = require('./transform/pretty-title')
 const validCondition = require('./validate/condition')
 const validSailSize = require('./validate/sail-size')
-const validSeller = require('./validate/seller')
 const validPrice = require('./validate/price')
 const serializer = require('./serializer')
 
@@ -25,8 +24,7 @@ const validate = osom({
   },
   seller: {
     required: true,
-    type: String,
-    validate: validSeller
+    type: String
   },
   condition: {
     required: true,
@@ -81,21 +79,15 @@ const validate = osom({
   'mast type': String
 })
 
-function getSeller (item) {
-  const {seller} = item
-  return seller === 'particular' ? 'particular' : 'store'
-}
-
 function getCondition (item) {
   const {seller} = item
-  return seller === 'particular' ? 'used' : 'new'
+  return includes(seller, ['particular', 'used']) ? 'used' : 'new'
 }
 
 const validateAsync = asyncify(validate)
 
 function validator (schema, cb) {
   const doc = assign({}, schema, {
-    seller: getSeller(schema),
     condition: getCondition(schema),
     updatedAt: Date.now()
   })
