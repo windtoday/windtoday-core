@@ -24,19 +24,8 @@ function createTotalwindProvider (opts) {
     const { extract } = this
     const stream = ozutarifa[seller][path]()
 
-    function extractor (item) {
-      const {year, price} = item
-
-      let {title} = item
-      if (exists(year)) title = `${title} ${year}`
-      if (exists(price)) title = `${title} €${price}`
-
-      const doc = assign(item, {title})
-      return extract(doc)
-    }
-
     stream
-      .on('data', extractor)
+      .on('data', extract)
       .on('error', done)
       .on('end', done)
   })
