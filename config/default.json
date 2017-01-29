@@ -12,6 +12,10 @@
 
   "redis": "process.env.REDIS_URL",
 
+  "telstarsurf_api": {
+    "key": "process.env.WRAPAPI_KEY"
+  },
+
   "totalwind_api": {
     "key": "process.env.WRAPAPI_KEY",
     "pages": 5
@@ -40,6 +44,7 @@
 
   "check_hosts": {
     "totalwind": ["https://wrapapi.com", "http://totalwind.net/foro"],
+    "telstarsurf": ["https://wrapapi.com", "http://www.telstarsurf.com"],
     "ozutarifa": ["https://wrapapi.com", "http://ozu-tarifa.com"],
     "merkawind": ["https://wrapapi.com", "http://merkawind.com"],
     "facebook": ["https://www.facebook.com/platform/api-status"]

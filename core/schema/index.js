@@ -81,7 +81,8 @@ const validate = osom({
 
 function getCondition (item) {
   const {seller} = item
-  return includes(seller, ['particular', 'used']) ? 'used' : 'new'
+  const condition = includes(['particular', 'used'], seller) ? 'used' : 'new'
+  return condition
 }
 
 const validateAsync = asyncify(validate)
