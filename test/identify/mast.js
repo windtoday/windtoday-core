@@ -11,6 +11,13 @@ describe('identify » mast', function () {
     get(data, 'category').should.be.equal('masts')
   })
 
+  it('brand', function () {
+    const str = 'Mástil Neilpryde X9 75c 4m SDM'
+    const {data, output} = mast(str)
+    get(data, 'brand').should.be.equal('Neilpryde')
+    output.includes('Neilpryde').should.be.false()
+  })
+
   describe('type', function () {
     const tpl = template('Mástil Neilpryde X9 4m 75c <%= type %>')
 

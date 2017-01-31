@@ -1,6 +1,7 @@
 'use strict'
 
 const createAddFactory = require('../create-add')
+const { sails } = require('../../directory')
 const category = require('../../category')
 const carbon = require('./carbon')
 const size = require('./size')
@@ -16,14 +17,23 @@ function factory (log) {
     }
   })
 
+  const addBrand = createAdd('brand', (acc) => {
+    return {
+      data: acc.dir.data.brand,
+      output: acc.dir.output
+    }
+  })
+
   const addType = createAdd('type', (acc) => type(acc.input))
   const addCarbon = createAdd('carbon', (acc) => carbon(acc.input))
   const addSize = createAdd('size', (acc) => size(acc.input))
 
   function mast (input) {
-    const acc = { input, data: {} }
+    const dir = sails(input)
+    const acc = { dir, input, data: {} }
 
     addCategory(acc)
+    addBrand(acc)
     addType(acc)
     addCarbon(acc)
     addSize(acc)
