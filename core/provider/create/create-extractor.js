@@ -1,11 +1,12 @@
 'use strict'
 
-const { assignIn, assign } = require('lodash')
+const cleanWhiteSpaces = require('condense-whitespace')
+const {assignIn, assign} = require('lodash')
 const EventEmitter = require('events')
 
 const isBlacklisted = require('../../schema/is-blacklisted')
+const titleizeProps = require('../../util/titleize-props')
 const createFlow = require('../../identify/create-flow')
-const cleanWhiteSpaces = require('condense-whitespace')
 const identify = require('../../identify')
 
 const generalExtractor = createFlow([
@@ -25,8 +26,10 @@ function createExtractor (opts) {
     specificExtractor
   ])
 
-  function extractor (item) {
+  function extractor (rawItem) {
     if (isBlacklisted(item.title)) return
+
+    const item = titleizeProps(item)
     const title = cleanWhiteSpaces(item.title)
     const {data} = extract(title)
     const doc = assign(item, {seller, provider, path}, data)
