@@ -1,15 +1,22 @@
 'use strict'
 
-const { merge, reduce } = require('lodash')
+const exists = require('existential')
+const { isNil, concat, mergeWith, reduce } = require('lodash')
 
 const serializer = require('../schema/serializer')
+
+function mergeCondition (val1, val2) {
+  if (!exists(val1) || !exists(val2)) return
+  if (val1 === val2) return
+  return concat(val1, val2)
+}
 
 function createFlow (identifiers) {
   function flow (str) {
     return reduce(identifiers, function (acc, identify) {
       const {data, output} = identify(acc.output)
       acc.output = output
-      acc.data = merge(acc.data, serializer(data))
+      acc.data = mergeWith(acc.data, serializer(data), mergeCondition)
       return acc
     }, {output: str})
   }

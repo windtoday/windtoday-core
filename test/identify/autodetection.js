@@ -24,7 +24,7 @@ describe('identify » autodetection', function () {
       get(data, 'mast type').should.be.equal('sdm')
       get(data, 'mast carbon').should.be.equal(35)
       get(data, 'mast size').should.be.equal(460)
-      output.should.be.equal('il North  Red  ')
+      output.should.be.equal('il   Red  ')
     })
 
     it('others', function () {
@@ -43,9 +43,9 @@ describe('identify » autodetection', function () {
       get(data, 'mast type').should.be.equal('rdm')
       get(data, 'mast size').should.be.equal(430)
       get(data, 'sail size').should.be.equal(6.7)
-      get(data, 'brand').should.be.equal('Neilpryde')
+      get(data, 'brand').should.be.eql(['Neilpryde', 'North'])
       get(data, 'model').should.be.equal('Hellcat')
-      output.should.be.equal('   . il   Y  North')
+      output.should.be.equal('   . il   Y  ')
     })
   })
 })
