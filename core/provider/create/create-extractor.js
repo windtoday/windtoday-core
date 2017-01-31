@@ -5,8 +5,8 @@ const {assignIn, assign} = require('lodash')
 const EventEmitter = require('events')
 
 const isBlacklisted = require('../../schema/is-blacklisted')
-const titleizeProps = require('../../util/titleize-props')
 const createFlow = require('../../identify/create-flow')
+const titleize = require('../../util/titleize')
 const identify = require('../../identify')
 
 const generalExtractor = createFlow([
@@ -30,7 +30,7 @@ function createExtractor (opts) {
     const {title: rawTitle} = rawItem
     if (isBlacklisted(rawTitle)) return
 
-    const item = titleizeProps(rawItem)
+    const item = titleize(rawItem)
     const title = cleanWhiteSpaces(item.title)
     const {data} = extract(title)
     const doc = assign(item, {seller, provider, path}, data)
