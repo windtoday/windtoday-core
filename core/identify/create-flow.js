@@ -1,7 +1,7 @@
 'use strict'
 
 const exists = require('existential')
-const { isNil, concat, mergeWith, reduce } = require('lodash')
+const { concat, mergeWith, reduce } = require('lodash')
 
 const serializer = require('../schema/serializer')
 
