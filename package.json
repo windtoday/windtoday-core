@@ -33,7 +33,7 @@
     "redis-diff": "~2.0.0",
     "simple-get": "~2.4.0",
     "str-match": "~2.1.0",
-    "telstarsurf-api": "~1.0.2",
+    "telstarsurf-api": "~1.0.3",
     "titleize": "~1.0.0",
     "totalwind-api": "~1.1.0",
     "url-regex": "~4.0.0",
