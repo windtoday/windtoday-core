@@ -15,7 +15,7 @@ const CONST = {
   ]
 }
 
-describe('provider » facebook', function () {
+xdescribe('provider » facebook', function () {
   describe('stream', function () {
     it(`${CONST.EXPECTED_FIELDS.toString()} are present`, function (done) {
       const stream = createStream()
