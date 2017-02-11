@@ -7,7 +7,11 @@
 
   "buffer": {
     "access_token": "process.env.BUFFER_ACCESS_TOKEN",
-    "accounts": [ "5881d7cfc299a4272e244f6e", "5871279baa70e81d3a6389bf" ]
+    "accounts": [
+      "5881d7cfc299a4272e244f6e",
+      "5871279baa70e81d3a6389bf",
+      "589f5fcbb17c4a5a4b0450d8"
+    ]
   },
 
   "redis": "process.env.REDIS_URL",
