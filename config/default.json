@@ -20,6 +20,10 @@
     "key": "process.env.WRAPAPI_KEY"
   },
 
+  "bellini_api": {
+    "key": "process.env.WRAPAPI_KEY"
+  },
+
   "totalwind_api": {
     "key": "process.env.WRAPAPI_KEY",
     "pages": 5
