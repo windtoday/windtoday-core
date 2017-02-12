@@ -1,7 +1,7 @@
 'use strict'
 
 const {asyncify} = require('async')
-const {assign, includes} = require('lodash')
+const {assign, includes, toLower} = require('lodash')
 const osom = require('osom')
 
 const prettyTitle = require('./transform/pretty-title')
@@ -80,9 +80,12 @@ const validate = osom({
 })
 
 function getCondition (item) {
-  const {seller} = item
-  const condition = includes(['particular', 'used'], seller) ? 'used' : 'new'
-  return condition
+  const condition = toLower(item.condition)
+  if (validCondition(condition)) return condition
+
+  const seller = toLower(item.seller)
+  const isParticularSeller = includes(['particular', 'used'], seller)
+  return isParticularSeller ? 'used' : 'new'
 }
 
 const validateAsync = asyncify(validate)
