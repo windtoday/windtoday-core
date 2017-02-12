@@ -21,7 +21,7 @@ function createProvider (opts, fetch) {
   const extract = ctx.extract = createExtractor(assign({buffer}, opts))
 
   fetch = bind(fetch, ctx)
-  extract.on('data', (item) => buffer.push(item))
+  extract.on('data', item => buffer.push(item))
 
   function init (cb) {
     const tasks = [

@@ -90,9 +90,9 @@ function getCondition (item) {
 
 const validateAsync = asyncify(validate)
 
-function validator (schema, cb) {
-  const doc = assign({}, schema, {
-    condition: getCondition(schema),
+function validator (item, cb) {
+  const doc = assign({}, item, {
+    condition: getCondition(item),
     updatedAt: Date.now()
   })
   const docSerialized = serializer(doc)
