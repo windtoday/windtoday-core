@@ -15,7 +15,7 @@ const checkRequiredParams = require('../../util/check-required-params')
 const merkawind = require('merkawind-api')(merkawindOpts)
 const createProvider = require('../create')
 
-function createTotalwindProvider (opts) {
+function createMerkawindProvider (opts) {
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
   const {path} = opts
 
@@ -29,4 +29,4 @@ function createTotalwindProvider (opts) {
   })
 }
 
-module.exports = createTotalwindProvider
+module.exports = createMerkawindProvider

@@ -15,7 +15,7 @@ const checkRequiredParams = require('../../util/check-required-params')
 const ozutarifa = require('ozutarifa-api')(ozutarifaOpts)
 const createProvider = require('../create')
 
-function createTotalwindProvider (opts) {
+function createOzutarifaProvider (opts) {
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
   const {path, seller} = opts
 
@@ -30,4 +30,4 @@ function createTotalwindProvider (opts) {
   })
 }
 
-module.exports = createTotalwindProvider
+module.exports = createOzutarifaProvider
