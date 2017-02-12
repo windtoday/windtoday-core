@@ -3,7 +3,7 @@
 export NODE_ENV=production
 
 # ozutarifa
-(node bin/sync --provider=ozutarifa --seller=particular --path=sails --no-checkHosts)
+(node bin/sync --provider=ozutarifa --seller=particular --path=sails)
 (node bin/sync --provider=ozutarifa --seller=particular --path=boards --no-checkHosts)
 
 (node bin/sync --provider=ozutarifa --seller=outlet --path=sails --no-checkHosts)
