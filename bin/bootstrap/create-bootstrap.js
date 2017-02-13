@@ -13,7 +13,7 @@ function createBootstrap (flags) {
   })
 
   function bootstrap (cb) {
-    const opts = assign(flags, {log, share: false})
+    const opts = assign({share: false, log}, flags)
     const worker = createWorker(opts)
     return worker(cb)
   }
