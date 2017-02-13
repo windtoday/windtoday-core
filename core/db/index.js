@@ -7,14 +7,15 @@ const search = require('./search')
 const state = require('./state')
 
 const CONST = {
-  UNIQUE_ID: 'title',
-  DIFFERENCE_IDS: ['title', 'price']
+  SORT_ID: 'title',
+  UNIQUE_ID: ['title', 'link'],
+  DIFF_ID: ['title', 'price', 'link']
 }
 
 const getSnapshot = (collection) => {
   return chain(collection)
   .uniqBy(CONST.UNIQUE_ID)
-  .sortBy(CONST.UNIQUE_ID)
+  .sortBy(CONST.SORT_ID)
   .value()
 }
 
@@ -23,7 +24,7 @@ function add (opts, cb) {
 
   const tasks = [
     function compare (next) {
-      const ids = CONST.DIFFERENCE_IDS
+      const ids = CONST.DIFF_ID
       const value = getSnapshot(docs)
       return state.compare({key, value, ids}, next)
     },
