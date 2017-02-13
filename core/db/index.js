@@ -26,15 +26,15 @@ function add (opts, cb) {
     },
     function update (diff, next) {
       const stats = mapValues(diff, size)
-      const {added, removed} = diff
+      const {added, common, removed} = diff
 
       const subTasks = [
         (done) => search.addObjects(added, done),
         (done) => search.deleteObjects(map(removed, CONST.UNIQUE_ID), done)
       ]
 
-      const newState = chain(value)
-        .difference(removed)
+      const newState = chain(common)
+        .concat(added)
         .uniqBy(CONST.UNIQUE_ID)
         .sortBy(CONST.UNIQUE_ID)
         .value()
