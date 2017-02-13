@@ -1,8 +1,8 @@
 'use strict'
 
 function createContext (opts) {
-  const { log } = opts
-  return { log }
+  const { log, isForced } = opts
+  return { log, isForced }
 }
 
 module.exports = createContext

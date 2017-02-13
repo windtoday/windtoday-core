@@ -12,7 +12,8 @@ const cli = meow()
 const {flags} = cli
 
 const remove = createRemove(flags)
-const bootstrap = createBootstrap(assign({checkHosts: false}, flags))
+const bootstrapOpts = assign({checkHosts: false, isForced: true}, flags)
+const bootstrap = createBootstrap(bootstrapOpts)
 
 const tasks = [
   remove,

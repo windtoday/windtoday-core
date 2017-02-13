@@ -48,6 +48,10 @@ const validate = osom({
   updatedAt: {
     type: Number
   },
+  isForced: {
+    type: Boolean,
+    default: false
+  },
 
   /** identify:common **/
   brand: String,

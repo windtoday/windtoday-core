@@ -2,5 +2,6 @@
 
 module.exports = {
   checkHosts: true,
-  share: true
+  share: true,
+  isForced: false
 }
