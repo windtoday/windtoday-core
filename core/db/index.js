@@ -1,6 +1,6 @@
 'use strict'
 
-const { chain, map, size, mapValues, concat } = require('lodash')
+const { map, chain, size, mapValues, concat, uniqBy, pick } = require('lodash')
 const { waterfall, parallel } = require('async')
 
 const search = require('./search')
@@ -8,13 +8,17 @@ const state = require('./state')
 
 const CONST = {
   SORT_ID: 'title',
-  UNIQUE_ID: ['title', 'link'],
-  DIFF_ID: ['title', 'price', 'link']
+  DIFF_IDS: ['price', 'title', 'link']
+}
+
+const uniqByProps = (collection, props) => {
+  const stringify = (val) => JSON.stringify(val)
+  return uniqBy(collection, elem => stringify(pick(elem, props)))
 }
 
 const getSnapshot = (collection) => {
-  return chain(collection)
-  .uniqBy(CONST.UNIQUE_ID)
+  const uniqCollection = uniqByProps(collection, CONST.DIFF_IDS)
+  return chain(uniqCollection)
   .sortBy(CONST.SORT_ID)
   .value()
 }
@@ -24,7 +28,7 @@ function add (opts, cb) {
 
   const tasks = [
     function compare (next) {
-      const ids = CONST.DIFF_ID
+      const ids = CONST.DIFF_IDS
       const value = getSnapshot(docs)
       return state.compare({key, value, ids}, next)
     },
@@ -33,10 +37,6 @@ function add (opts, cb) {
       const {added, common, removed} = diff
       const newDocs = concat(common, added)
       const newState = getSnapshot(newDocs)
-
-      console.log('DEBUG ::')
-      console.log('added', added)
-      console.log('removed', removed)
 
       const subTasks = [
         (done) => search.addObjects(added, done),
