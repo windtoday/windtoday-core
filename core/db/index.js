@@ -32,6 +32,11 @@ function add (opts, cb) {
       const {added, common, removed} = diff
       const newDocs = concat(common, added)
       const newState = getSnapshot(newDocs)
+
+      console.log('DEBUG ::')
+      console.log('added', added)
+      console.log('removed', removed)
+
       const subTasks = [
         (done) => search.addObjects(added, done),
         (done) => search.deleteObjects(map(removed, CONST.UNIQUE_ID), done)
