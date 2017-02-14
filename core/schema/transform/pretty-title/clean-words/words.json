@@ -1,14 +1,16 @@
 [
-  "velas?",
-  "tablas?",
-  "botavaras?",
+  "-{2,}",
+  "![ ]?!",
+  "[ .]-",
+  "\\.[ ]*$",
+  "\\.{2,}",
+  "aletas?",
   "booms?",
+  "botavaras?",
+  "del?",
   "fins?",
   "m[a\\xE1]stil(?:es)?",
-  "aletas?",
-  "vendo",
-  "[ .]-",
-  "\\.{2,}",
-  "![ ]?!",
-  "\\.[ ]*$"
+  "tablas?",
+  "velas?",
+  "vendo"
 ]
