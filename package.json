@@ -31,7 +31,7 @@
     "merkawind-api": "~1.2.0",
     "osom": "~2.2.0",
     "ozutarifa-api": "~1.2.1",
-    "redis-diff": "~2.0.0",
+    "redis-diff": "~2.0.1",
     "simple-get": "~2.4.0",
     "str-match": "~2.1.0",
     "telstarsurf-api": "~1.0.5",
