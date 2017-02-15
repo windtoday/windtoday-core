@@ -19,7 +19,7 @@ const REGEX_PRICE_AT_END = /([0-9]+[,.'])*[0-9]+[ ]?[€eE](\W|\s|$)/
  * 135euros
  * @type {[type]}
  */
-const REGEX_PRICE_AT_END_WORD = /([0-9]+[,.'])*[0-9]+[ ]?(eu(ros)?)/
+const REGEX_PRICE_AT_END_WORD = /([0-9]+[,.'])*[0-9]+[ ]?([eE]u(ros)?)/
 
 /**
  * Detect numeric price with currency at begin
@@ -34,7 +34,7 @@ const REGEX_PRICE_AT_BEGIN = /€[0-9]+/
  */
 const REGEX_CURRENCY_SYMBOL = /[ ]?[€eE]/
 
-const REGEX_CURRENCY_SYMBOL_WORD = /[ ]?(eu(ros)?)/
+const REGEX_CURRENCY_SYMBOL_WORD = /[ ]?([eE]u(ros)?)/
 
 const REGEX_NON_NUMBER = /\D/
 

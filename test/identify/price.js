@@ -4,6 +4,25 @@ const price = require('../../core/identify/price')
 const should = require('should')
 const {get} = require('lodash')
 
+const SYMBOL_VARIATIONS = [
+  '€',
+  ' €',
+  'e',
+  ' e',
+  'E',
+  ' E',
+  'eu',
+  ' eu'
+]
+
+const SEPARATOR_VARIATIONS = [
+  ' ',
+  '.',
+  ',',
+  ';',
+  ')'
+]
+
 describe('identify » price', function () {
   it('not detect', function () {
     [
@@ -74,7 +93,7 @@ describe('identify » price', function () {
             `${quantity} ${symbol} `,
             ` ${quantity} ${symbol} `
           ].forEach(function (str) {
-            it(`${str} → ${quantity}`, function () {
+            it(`${str} → ${expected}`, function () {
               const {data, output} = price(str)
               should(get(data, 'price')).be.equal(expected)
               output.includes(str).should.be.false()
@@ -86,31 +105,42 @@ describe('identify » price', function () {
 
     describe('variations', function () {
       const expected = 100
-
-      ;[
-        '€',
-        ' €',
-        'e',
-        ' e',
-        'E',
-        ' E',
-        'eu',
-        ' eu'
-
-      ].forEach(function (symbol) {
-        [
-          ' ',
-          '.',
-          ',',
-          ';',
-          ')'
-        ].forEach(function (separator) {
+      SYMBOL_VARIATIONS.forEach(function (symbol) {
+        SEPARATOR_VARIATIONS.forEach(function (separator) {
           it(`${expected}${symbol}${separator} → ${expected}`, function () {
             const str = `Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio ${expected}${symbol}${separator}GI incluidos`
 
             const {data, output} = price(str)
             should(get(data, 'price')).be.equal(expected)
             output.should.be.equal(output.replace(`${expected}${symbol}${separator}`, ''))
+          })
+        })
+      })
+    })
+
+    describe('word', function () {
+      const expected = 1100
+
+      ;[
+        '1.100',
+        '1,100'
+      ].forEach(function (quantity) {
+        [
+          'euros',
+          'Euros'
+        ].forEach(function (symbol) {
+          [
+            `${quantity}${symbol}`,
+            `${quantity} ${symbol}`,
+            ` ${quantity} ${symbol}`,
+            `${quantity} ${symbol} `,
+            ` ${quantity} ${symbol} `
+          ].forEach(function (str) {
+            it(`${str} → ${expected}`, function () {
+              const {data, output} = price(str)
+              should(get(data, 'price')).be.equal(expected)
+              output.includes(str).should.be.false()
+            })
           })
         })
       })
