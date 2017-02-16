@@ -4,13 +4,14 @@
   "[ .]-",
   "\\.[ ]*$",
   "\\.{2,}",
-  "aletas?",
-  "booms?",
-  "botavaras?",
-  "del?",
-  "fins?",
-  "m[a\\xE1]stil(?:es)?",
-  "tablas?",
-  "velas?",
-  "vendo"
+  "\\baletas?\\b",
+  "\\bboards?\\b",
+  "\\bbooms?\\b",
+  "\\bbotavaras?\\b",
+  "\\bdel?\\b",
+  "\\bfins?\\b",
+  "\\bm[a\\xE1]stil(?:es)?\\b",
+  "\\btablas?\\b",
+  "\\bvelas?\\b",
+  "\\bvendo\\b"
 ]
