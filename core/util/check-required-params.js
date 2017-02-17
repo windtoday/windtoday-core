@@ -5,7 +5,7 @@ const { each, isNil } = require('lodash')
 function checkNil (value, name) {
   if (!isNil(value)) return
   const message = `Need to provide '${name}' parameter.`
-  throw new Error(message)
+  throw new TypeError(message)
 }
 
 function checkRequiredParams (obj, requiredParams) {
