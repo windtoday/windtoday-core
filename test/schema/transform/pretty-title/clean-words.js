@@ -26,7 +26,9 @@ describe('schema » transform » pretty title » clean words', function () {
       'mástil',
       'mástiles',
       'mastil',
-      'mastiles'
+      'mastiles',
+      'windsurf',
+      'windsurfing'
     ].forEach(function (word) {
       it(word, function () {
         const input = `${word} Mistral Syncro switch${word}`

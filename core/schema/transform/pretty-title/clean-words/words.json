@@ -13,5 +13,6 @@
   "\\bm[a\\xE1]stil(?:es)?\\b",
   "\\btablas?\\b",
   "\\bvelas?\\b",
-  "\\bvendo\\b"
+  "\\bvendo\\b",
+  "\\bwindsurf(?:ing)?\\b"
 ]
