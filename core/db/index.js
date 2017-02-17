@@ -1,27 +1,21 @@
 'use strict'
 
-const { map, chain, size, mapValues, concat, uniqBy, pick } = require('lodash')
+const { map, size, mapValues, concat } = require('lodash')
 const { waterfall, parallel } = require('async')
 
+const createSnapshot = require('../util/create-snapshot')
 const search = require('./search')
 const state = require('./state')
 
 const CONST = {
-  SORT_ID: 'title',
-  DIFF_IDS: ['price', 'title', 'link']
+  SNAPSHOT_OPTS: {
+    sortId: 'title',
+    uniqId: ['url', 'title']
+  },
+  DIFF_IDS: ['title', 'url', 'price']
 }
 
-const uniqByProps = (collection, props) => {
-  const stringify = (val) => JSON.stringify(val)
-  return uniqBy(collection, elem => stringify(pick(elem, props)))
-}
-
-const getSnapshot = (collection) => {
-  const uniqCollection = uniqByProps(collection, CONST.DIFF_IDS)
-  return chain(uniqCollection)
-  .sortBy(CONST.SORT_ID)
-  .value()
-}
+const getSnapshot = createSnapshot(CONST.SNAPSHOT_OPTS)
 
 function add (opts, cb) {
   const {key, docs} = opts
