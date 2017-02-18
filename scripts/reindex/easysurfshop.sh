@@ -14,6 +14,3 @@ export NODE_ENV=production
 
 (node bin/reindex --provider=easysurfshop --seller=new --path=masts --no-checkHosts)
 (node bin/reindex --provider=easysurfshop --seller=used --path=masts --no-checkHosts)
-
-(node bin/reindex --provider=easysurfshop --seller=new --path=accesories --no-checkHosts)
-(node bin/reindex --provider=easysurfshop --seller=used --path=accesories --no-checkHosts)

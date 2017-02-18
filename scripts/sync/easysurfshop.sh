@@ -14,6 +14,3 @@ export NODE_ENV=production
 
 (node bin/sync --provider=easysurfshop --seller=new --path=masts --no-checkHosts)
 (node bin/sync --provider=easysurfshop --seller=used --path=masts --no-checkHosts)
-
-(node bin/sync --provider=easysurfshop --seller=new --path=accesories --no-checkHosts)
-(node bin/sync --provider=easysurfshop --seller=used --path=accesories --no-checkHosts)
