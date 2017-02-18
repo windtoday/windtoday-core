@@ -21,8 +21,7 @@ function createSnapshot (opts = {}) {
   const {sortId, uniqId} = opts
   const uniqByProps = createUniqByProps(uniqId)
 
-  function snapshot (input) {
-    const collection = uniqByProps(input, uniqId)
+  function snapshot (collection) {
     return chain(collection)
     .thru(uniqByProps)
     .sortBy(sortId)
