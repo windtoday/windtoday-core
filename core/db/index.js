@@ -10,9 +10,9 @@ const state = require('./state')
 const CONST = {
   SNAPSHOT_OPTS: {
     sortId: 'title',
-    uniqId: ['url', 'title']
+    uniqId: ['url', 'title', 'price']
   },
-  DIFF_IDS: ['title', 'url', 'price'],
+  DIFF_IDS: ['url', 'title', 'price'],
   OBJECT_ID: 'objectID'
 }
 
