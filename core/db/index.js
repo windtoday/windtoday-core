@@ -33,7 +33,7 @@ function createTransaction (objectIDs, added) {
 const getSnapshot = createSnapshot(CONST.SNAPSHOT_OPTS)
 
 function add (opts, cb) {
-  const {key, docs} = opts
+  const {log, key, docs} = opts
 
   const tasks = [
     function compare (next) {
@@ -44,6 +44,9 @@ function add (opts, cb) {
     function update (diff, next) {
       const {added, common, removed} = diff
       const objectIDs = map(removed, CONST.OBJECT_ID)
+      log.info('db:added', added)
+      log.info('db:removed', removed)
+
       const transaction = createTransaction(objectIDs, added)
 
       series(transaction, function (err, results) {
