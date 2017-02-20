@@ -2,19 +2,30 @@
 
 const bufferapp = require('buffer-node')
 const CONFIG = require('config').buffer
-const {each} = require('async')
+const {each, waterfall} = require('async')
 const {get} = require('lodash')
 
 const compose = require('./compose')
+const {accounts, access_token} = CONFIG
 
-const accessToken = get(global, CONFIG.access_token)
+const accessToken = get(global, access_token)
 const client = bufferapp(accessToken)
 
-function update (doc, cb) {
+function createUpdate (doc, cb) {
   const text = compose(doc)
-  return client.updates.create(text, CONFIG.accounts).nodeify(cb)
+  return client.updates.create(text, accounts).nodeify(cb)
 }
 
-const updateDocs = (docs, cb) => each(docs, update, cb)
+const createUpdates = (docs, cb) => each(docs, createUpdate, cb)
+const shuffleAccount = (account, cb) => client.profile(account).updates.shuffle().nodeify(cb)
+const shuffle = (cb) => each(accounts, shuffleAccount, cb)
 
-module.exports = updateDocs
+function share (docs, cb) {
+  const tasks = [
+    (next) => createUpdates(docs, next),
+    (res, next) => shuffle(next)
+  ]
+  return waterfall(tasks, cb)
+}
+
+module.exports = share
