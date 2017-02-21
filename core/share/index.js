@@ -13,17 +13,25 @@ const client = bufferapp(accessToken)
 
 function createUpdate (doc, cb) {
   const text = compose(doc)
-  return client.updates.create(text, accounts).nodeify(cb)
+  return client.updates.create(text, accounts).nodeify(err => cb(err))
 }
 
-const createUpdates = (docs, cb) => each(docs, createUpdate, cb)
-const shuffleAccount = (account, cb) => client.profile(account).updates.shuffle().nodeify(cb)
-const shuffle = (cb) => each(accounts, shuffleAccount, cb)
+function createUpdates (docs, cb) {
+  return each(docs, createUpdate, cb)
+}
+
+function shuffleAccount (account, cb) {
+  return client.profile(account).updates.shuffle().nodeify(err => cb(err))
+}
+
+function shuffleUpdates (cb) {
+  return each(accounts, shuffleAccount, cb)
+}
 
 function share (docs, cb) {
   const tasks = [
     (next) => createUpdates(docs, next),
-    (res, next) => shuffle(next)
+    (next) => shuffleUpdates(next)
   ]
   return waterfall(tasks, cb)
 }
