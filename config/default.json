@@ -29,6 +29,10 @@
     "key": "process.env.WRAPAPI_KEY"
   },
 
+  "surfkeppler_api": {
+    "key": "process.env.WRAPAPI_KEY"
+  },
+
   "telstarsurf_api": {
     "key": "process.env.WRAPAPI_KEY"
   },

@@ -7,5 +7,6 @@ CURRENT_DIR=$(dirname $0)
 . $CURRENT_DIR/easysurfshop.sh
 . $CURRENT_DIR/merkawind.sh
 . $CURRENT_DIR/ozutarifa.sh
+. $CURRENT_DIR/surfkeppler.sh
 . $CURRENT_DIR/telstarsurf.sh
 . $CURRENT_DIR/totalwind.sh

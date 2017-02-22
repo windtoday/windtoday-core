@@ -35,6 +35,7 @@
     "redis-diff": "~2.0.1",
     "simple-get": "~2.4.0",
     "str-match": "~2.1.0",
+    "surfkeppler-api": "~1.0.2",
     "telstarsurf-api": "~1.0.5",
     "titleize": "~1.0.0",
     "totalwind-api": "~1.1.0",

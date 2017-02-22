@@ -6,6 +6,7 @@ module.exports = {
   facebook: require('./facebook'),
   merkawind: require('./merkawind'),
   ozutarifa: require('./ozutarifa'),
+  surfkeppler: require('./surfkeppler'),
   telstarsurf: require('./telstarsurf'),
   totalwind: require('./totalwind')
 }
