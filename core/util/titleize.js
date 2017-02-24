@@ -1,11 +1,9 @@
 'use strict'
 
-const {isArray, isObject, isString, reduce} = require('lodash')
-const urlRegex = require('url-regex')
+const {isArray, isObject, reduce} = require('lodash')
 const titleize = require('titleize')
 
-const isUrl = (str) => urlRegex().test(str)
-const isTitle = (str) => isString(str) && !isUrl(str)
+const isTitle = require('./is-title')
 
 function capitalize (value) {
   return isTitle(value) ? titleize(value) : value
