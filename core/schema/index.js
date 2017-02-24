@@ -1,22 +1,26 @@
 'use strict'
 
-const {asyncify} = require('async')
 const {assign, includes, toLower} = require('lodash')
+const {asyncify} = require('async')
 const osom = require('osom')
 
+const getCondition = require('./get-condition')
+const getReferralLink = require('./get-referral-link')
+
 const prettyTitle = require('./transform/pretty-title')
-const validCondition = require('./validate/condition')
-const validSailSize = require('./validate/sail-size')
-const validPrice = require('./validate/price')
+const isValidCondition = require('./validate/condition')
+const isValidSailSize = require('./validate/sail-size')
+const isValidPrice = require('./validate/price')
 const serializer = require('./serializer')
+const isUrl = require('../util/is-url')
 
 const validate = osom({
   /* common */
   title: {
     required: true,
     type: String,
-    transform: [prettyTitle]
     // TODO: Add a max title size (like 140 chars)
+    transform: [prettyTitle]
   },
   category: {
     required: true,
@@ -29,7 +33,7 @@ const validate = osom({
   condition: {
     required: true,
     type: String,
-    validate: validCondition
+    validate: isValidCondition
   },
   provider: {
     required: true,
@@ -40,7 +44,8 @@ const validate = osom({
   },
   link: {
     required: true,
-    type: String
+    type: String,
+    validate: isUrl
   },
   createdAt: {
     type: Number
@@ -59,7 +64,7 @@ const validate = osom({
   price: {
     required: true,
     type: Number,
-    validate: validPrice
+    validate: isValidPrice
   },
 
   year: Number,
@@ -68,7 +73,7 @@ const validate = osom({
 
   'sail size': {
     type: Number,
-    validate: validSailSize
+    validate: isValidSailSize
   },
 
   'board size': Number,
@@ -83,22 +88,15 @@ const validate = osom({
   'mast type': String
 })
 
-function getCondition (item) {
-  const condition = toLower(item.condition)
-  if (validCondition(condition)) return condition
-
-  const seller = toLower(item.seller)
-  const isParticularSeller = includes(['particular', 'used'], seller)
-  return isParticularSeller ? 'used' : 'new'
-}
-
 const validateAsync = asyncify(validate)
 
 function validator (item, cb) {
   const doc = assign({}, item, {
     condition: getCondition(item),
+    link: getReferralLink(item),
     updatedAt: Date.now()
   })
+
   const docSerialized = serializer(doc)
   return validateAsync(docSerialized, cb)
 }
