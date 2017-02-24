@@ -1,7 +1,7 @@
 'use strict'
 
-const {assign, includes, toLower} = require('lodash')
 const {asyncify} = require('async')
+const {assign} = require('lodash')
 const osom = require('osom')
 
 const getCondition = require('./get-condition')
