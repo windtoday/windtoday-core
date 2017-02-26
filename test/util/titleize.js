@@ -12,7 +12,7 @@ const fixture = {
   brand: ['north', 'sails']
 }
 
-describe('util » titleize', function () {
+describe('core » util » titleize', function () {
   it('string', function () {
     titleize('http://foo.bar').should.be.equal('http://foo.bar')
     titleize(123).should.be.equal(123)

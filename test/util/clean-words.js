@@ -1,9 +1,9 @@
 'use strict'
 
 const should = require('should')
-const cleanWords = require('../../../../core/schema/transform/pretty-title/clean-words')
+const cleanWords = require('../../core/util/clean-words')
 
-describe('schema » transform » pretty title » clean words', function () {
+describe('core » util » clean words', function () {
   describe('words', function () {
     [
       'aleta',

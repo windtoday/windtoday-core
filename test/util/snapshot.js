@@ -3,7 +3,7 @@
 const should = require('should')
 const createSnapshot = require('../../core/util/create-snapshot')
 
-describe('core » snapshot', function () {
+describe('core » util » snapshot', function () {
   it('Remove duplicate elements by uniqId', function () {
     const snapshot = createSnapshot({
       sortId: 'title',
