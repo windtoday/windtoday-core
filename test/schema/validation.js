@@ -1,7 +1,7 @@
 'use strict'
 
 const should = require('should')
-const {assign} = require('lodash')
+const {assign, repeat} = require('lodash')
 
 const schema = require('../../core/schema')
 
@@ -62,13 +62,34 @@ describe('schema » validation', function () {
   })
 
   describe('static properties', function () {
-    it("optional fields dont't throw validation errors", function (done) {
-      schema(baseFixture, done)
+    describe('behavior', function () {
+      it("optional fields don't throw validation errors", function (done) {
+        schema(baseFixture, done)
+      })
+      it('required fields need to be present', function (done) {
+        schema({}, function (err) {
+          should.exist(err)
+          done()
+        })
+      })
     })
-    it('required fields need to be present', function (done) {
-      schema({}, function (err) {
-        should.exist(err)
-        done()
+
+    describe.only('title', function () {
+      it('throw error if not reached mininum length', function (done) {
+        const fixture = assign({}, baseFixture, {title: 'Vendo velas windsurf'})
+        schema(fixture, function (err, doc) {
+          should(err).be.an.Error()
+          done()
+        })
+      })
+
+      it('throw error if reached maximum length', function (done) {
+        const title = repeat('n', 141)
+        const fixture = assign({}, baseFixture, {title})
+        schema(fixture, function (err, doc) {
+          should(err).be.an.Error()
+          done()
+        })
       })
     })
   })

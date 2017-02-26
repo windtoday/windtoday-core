@@ -10,6 +10,7 @@ const getReferralLink = require('./get-referral-link')
 const prettyTitle = require('./transform/pretty-title')
 const isValidCondition = require('./validate/condition')
 const isValidSailSize = require('./validate/sail-size')
+const isValidTitle = require('./validate/title')
 const isValidPrice = require('./validate/price')
 const serializer = require('./serializer')
 const isUrl = require('../util/is-url')
@@ -19,7 +20,7 @@ const validate = osom({
   title: {
     required: true,
     type: String,
-    // TODO: Add a max title size (like 140 chars)
+    validate: isValidTitle,
     transform: [prettyTitle]
   },
   category: {
