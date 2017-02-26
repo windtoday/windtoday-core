@@ -1,6 +1,6 @@
 'use strict'
 
-const cleanWhiteSpaces = require('condense-whitespace')
+const condenseWhitespace = require('condense-whitespace')
 const { flow } = require('lodash')
 
 const prettyBoardSize = require('./pretty-board-size')
@@ -13,5 +13,5 @@ module.exports = flow([
   cleanWords,
   prettyBoardSize,
   prettyYear,
-  cleanWhiteSpaces
+  condenseWhitespace
 ])

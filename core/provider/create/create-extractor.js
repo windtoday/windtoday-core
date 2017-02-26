@@ -1,6 +1,6 @@
 'use strict'
 
-const cleanWhiteSpaces = require('condense-whitespace')
+const condenseWhitespace = require('condense-whitespace')
 const {assignIn, assign} = require('lodash')
 const EventEmitter = require('events')
 
@@ -31,7 +31,7 @@ function createExtractor (opts) {
     if (isBlacklisted(rawTitle)) return
 
     const item = titleize(rawItem)
-    const title = cleanWhiteSpaces(item.title)
+    const title = condenseWhitespace(item.title)
     const {data} = extract(title)
     const doc = assign(item, {seller, provider, path}, data)
     emitter.emit('data', doc)

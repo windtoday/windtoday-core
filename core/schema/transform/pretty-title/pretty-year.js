@@ -1,13 +1,13 @@
 'use strict'
 
-const cleanWhiteSpaces = require('condense-whitespace')
+const condenseWhitespace = require('condense-whitespace')
 const year = require('../../../identify/year')
 
 function prettyYear (str) {
   const {data, output} = year(str)
   const yearDetected = data.year
   if (!yearDetected) return str
-  return cleanWhiteSpaces(`${output} ${yearDetected}`)
+  return condenseWhitespace(`${output} ${yearDetected}`)
 }
 
 module.exports = prettyYear
