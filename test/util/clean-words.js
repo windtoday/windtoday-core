@@ -1,9 +1,9 @@
 'use strict'
 
 const should = require('should')
-const cleanWords = require('../../core/util/clean-words')
+const cleanTitleWords = require('../../core/util/clean-words')
 
-describe('core » util » clean words', function () {
+describe('core » util » clean title words', function () {
   describe('words', function () {
     [
       'aleta',
@@ -33,7 +33,7 @@ describe('core » util » clean words', function () {
       it(word, function () {
         const input = `${word} Mistral Syncro switch${word}`
         const expected = `Mistral Syncro switch${word}`
-        const output = cleanWords(input)
+        const output = cleanTitleWords(input)
         should(output).be.equal(expected)
       })
     })
@@ -43,21 +43,21 @@ describe('core » util » clean words', function () {
     it('-', function () {
       const input = 'Mistral Syncro - €280'
       const expected = 'Mistral Syncro €280'
-      const output = cleanWords(input)
+      const output = cleanTitleWords(input)
       should(output).be.equal(expected)
     })
 
     it('.-', function () {
       const input = 'Mistral Syncro .- €280'
       const expected = 'Mistral Syncro €280'
-      const output = cleanWords(input)
+      const output = cleanTitleWords(input)
       should(output).be.equal(expected)
     })
 
     it('----', function () {
       const input = 'SIMMER -------- 5.7 ---- 150€'
       const expected = 'SIMMER 5.7 150€'
-      const output = cleanWords(input)
+      const output = cleanTitleWords(input)
       should(output).be.equal(expected)
     })
   })
