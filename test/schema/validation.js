@@ -74,7 +74,7 @@ describe('schema » validation', function () {
       })
     })
 
-    describe.only('title', function () {
+    describe('title', function () {
       it('throw error if not reached mininum length', function (done) {
         const fixture = assign({}, baseFixture, {title: 'Vendo velas windsurf'})
         schema(fixture, function (err, doc) {
