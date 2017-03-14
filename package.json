@@ -39,9 +39,9 @@
     "titleize": "~1.0.0",
     "totalwind-api": "~1.1.0",
     "url-regex": "~4.0.0",
-    "windtoday-boards": "github:windtoday/windtoday-boards",
-    "windtoday-fins": "github:windtoday/windtoday-fins",
-    "windtoday-sails": "github:windtoday/windtoday-sails"
+    "windtoday-windsurf-boards": "github:windtoday/windtoday-windsurf-boards",
+    "windtoday-windsurf-fins": "github:windtoday/windtoday-windsurf-fins",
+    "windtoday-windsurf-sails": "github:windtoday/windtoday-windsurf-sails"
   },
   "devDependencies": {
     "coveralls": "latest",
