@@ -1,9 +1,12 @@
 'use strict'
 
+const createDirectoryFlow = require('../../directory/create-flow')
+const { accesories, fins } = require('../../directory')
 const createAddFactory = require('../create-add')
-const { fins } = require('../../directory')
 const category = require('../../category')
 const size = require('./size')
+
+const directory = createDirectoryFlow([fins, accesories])
 
 function factory (log) {
   const createAdd = createAddFactory('fin', log)
@@ -34,7 +37,7 @@ function factory (log) {
   })
 
   function fin (input) {
-    const dir = fins(input)
+    const dir = directory(input)
     const acc = { dir, input, data: {} }
 
     addCategory(acc)

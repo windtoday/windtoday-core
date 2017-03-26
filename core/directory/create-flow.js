@@ -1,24 +1,16 @@
 'use strict'
 
-const { forEach, size } = require('lodash')
+const { mergeWith, reduce } = require('lodash')
+const mergeProps = require('../util/merge-props')
 
 function createFlow (directories) {
-  function flow (input) {
-    let result
-
-    forEach(directories, function (directory, index) {
-      const dir = directory(input)
-
-      if (size(dir.data)) {
-        result = dir
-        return false
-      }
-
-      // fallback
-      if (index === 0) result = dir
-    })
-
-    return result
+  function flow (str) {
+    return reduce(directories, function (acc, directory) {
+      const {data, output} = directory(acc.output)
+      acc.output = output
+      acc.data = mergeWith(acc.data, data, mergeProps)
+      return acc
+    }, {output: str})
   }
 
   return flow
