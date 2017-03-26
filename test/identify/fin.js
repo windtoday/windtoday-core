@@ -1,36 +1,38 @@
 'use strict'
 
+const should = require('should')
+const { get } = require('lodash')
+
 const log = require('../../core/log')('fin_unidentify')
 const fin = require('../../core/identify/fin')(log)
-const { get } = require('lodash')
 
 describe('identify » fin', function () {
   describe('from fins directory', function () {
     it('category', function () {
       const str = 'Vendo aleta NUEVA Select 46 trim box'
       const { data } = fin(str)
-      get(data, 'category').should.be.equal('fins')
+      should(get(data, 'category')).be.equal('fins')
     })
 
     it('type', function () {
       const str = 'Vendo aleta NUEVA Select 46 trim box'
       const {data, output} = fin(str)
-      get(data, 'type').should.be.equal('Trim Box')
-      output.includes('trim').should.be.false()
+      should(get(data, 'type')).be.equal('Trim Box')
+      should(output.includes('trim')).be.false()
     })
 
     it('brand', function () {
       const str = 'Vendo aleta NUEVA Select 46 trim box'
       const {data, output} = fin(str)
-      get(data, 'brand').should.be.equal('Select')
-      output.includes('select').should.be.false()
+      should(get(data, 'brand')).be.equal('Select')
+      should(output.includes('select')).be.false()
     })
 
     it('size', function () {
       const str = 'Vendo aleta NUEVA Select 46 trim box'
       const {data, output} = fin(str)
-      get(data, 'size').should.be.equal(46)
-      output.includes('46').should.be.false()
+      should(get(data, 'size')).be.equal(46)
+      should(output.includes('46')).be.false()
     })
   })
 
@@ -38,28 +40,28 @@ describe('identify » fin', function () {
     it('category', function () {
       const str = 'Vendo aleta NUEVA B3 46 trim box'
       const { data } = fin(str)
-      get(data, 'category').should.be.equal('fins')
+      should(get(data, 'category')).be.equal('fins')
     })
 
     it('type', function () {
       const str = 'Vendo aleta NUEVA B3 46 trim box'
       const {data, output} = fin(str)
-      get(data, 'type').should.be.equal('Trim Box')
-      output.includes('trim').should.be.false()
+      should(get(data, 'type')).be.equal('Trim Box')
+      should(output.includes('trim')).be.false()
     })
 
     it('brand', function () {
       const str = 'Vendo aleta NUEVA B3 46 trim box'
       const {data, output} = fin(str)
-      get(data, 'brand').should.be.equal('B3')
-      output.includes('select').should.be.false()
+      should(get(data, 'brand')).be.equal('B3')
+      should(output.includes('select')).be.false()
     })
 
     it('size', function () {
       const str = 'Vendo aleta NUEVA B3 46 trim box'
       const {data, output} = fin(str)
-      get(data, 'size').should.be.equal(46)
-      output.includes('46').should.be.false()
+      should(get(data, 'size')).be.equal(46)
+      should(output.includes('46')).be.false()
     })
   })
 })

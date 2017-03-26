@@ -2,6 +2,7 @@
 
 const should = require('should')
 const { get } = require('lodash')
+
 const log = require('../../../core/log')('sail_size_unidentify')
 const sail = require('../../../core/identify/sail')(log)
 
@@ -24,8 +25,8 @@ describe('identify » sail » size', function () {
         ].forEach(function (str) {
           it(str, function () {
             const {data, output} = sail(str)
-            get(data, 'size').should.be.equal(7.0)
-            output.includes(str).should.be.false()
+            should(get(data, 'size')).be.equal(7.0)
+            should(output.includes(str)).be.false()
           })
         })
       })
@@ -50,8 +51,8 @@ describe('identify » sail » size', function () {
         ].forEach(function (str) {
           it(str, function () {
             const {data, output} = sail(str)
-            get(data, 'size').should.be.equal(7.0)
-            output.includes(str).should.be.false()
+            should(get(data, 'size')).be.equal(7.0)
+            should(output.includes(str)).be.false()
           })
         })
       })
@@ -65,8 +66,8 @@ describe('identify » sail » size', function () {
         ].forEach(function (str) {
           it(str, function () {
             const {data, output} = sail(str)
-            get(data, 'size').should.be.equal(10.0)
-            output.includes(str).should.be.false()
+            should(get(data, 'size')).be.equal(10.0)
+            should(output.includes(str)).be.false()
           })
         })
       })
@@ -91,8 +92,8 @@ describe('identify » sail » size', function () {
         ].forEach(function (str) {
           it(str, function () {
             const {data, output} = sail(str)
-            get(data, 'size').should.be.equal(10.2)
-            output.includes(str).should.be.false()
+            should(get(data, 'size')).be.equal(10.2)
+            should(output.includes(str)).be.false()
           })
         })
       })
@@ -106,16 +107,16 @@ describe('identify » sail » size', function () {
         ['Vendo EZZY WAVE SE 2005 80 € de 5.3', 5.3, '5.3']
       ].forEach(function (str) {
         const {data, output} = sail(str[0])
-        get(data, 'size').should.be.equal(str[1])
-        output.includes(str[2]).should.be.false()
+        should(get(data, 'size')).be.equal(str[1])
+        should(output.includes(str[2])).be.false()
       })
     })
 
     it('in a string with price', function () {
       const str = 'Vendo EZZY WAVE SE 2005 80 € de 5.3'
       const {data, output} = sail(str)
-      get(data, 'size').should.be.equal(5.3)
-      output.includes('5.3').should.be.false()
+      should(get(data, 'size')).be.equal(5.3)
+      should(output.includes('5.3')).be.false()
     })
 
     it('in a string with model that finish in number', function () {
@@ -124,30 +125,30 @@ describe('identify » sail » size', function () {
         ['Vendo Simmer X-type2 9,0 2008 - 190€', 9.0, '9,0']
       ].forEach(function (str) {
         const {data, output} = sail(str[0])
-        get(data, 'size').should.be.equal(str[1])
-        output.includes(str[2]).should.be.false()
+        should(get(data, 'size')).be.equal(str[1])
+        should(output.includes(str[2])).be.false()
       })
     })
 
     it('in a string with brand and model that contains number', function () {
       const str = 'Point7 Ac2 8,3 2012'
       const {data, output} = sail(str)
-      get(data, 'size').should.be.equal(8.3)
-      output.includes('8,3').should.be.false()
+      should(get(data, 'size')).be.equal(8.3)
+      should(output.includes('8,3')).be.false()
     })
 
     it('in a string with model that finish in number separated with space', function () {
       const str = 'Vendo Neil Pryde Evo 6 8,6 2015 - 450€'
       const {data, output} = sail(str)
-      get(data, 'size').should.be.equal(8.6)
-      output.includes('8,6').should.be.false()
+      should(get(data, 'size')).be.equal(8.6)
+      should(output.includes('8,6')).be.false()
     })
 
     it('in a string with mast dimensions', function () {
       const str = 'Vendo Vela Gaasta Vapor 11 m 2013 y Mastil Gaastra 520 75 '
       const {data, output} = sail(str)
-      get(data, 'size').should.be.equal(11)
-      output.includes('11').should.be.false()
+      should(get(data, 'size')).be.equal(11)
+      should(output.includes('11')).be.false()
     })
   })
 })

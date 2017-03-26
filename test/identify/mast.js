@@ -1,21 +1,23 @@
 'use strict'
 
+const { get, template } = require('lodash')
+const should = require('should')
+
 const log = require('../../core/log')('mast_unidentify')
 const mast = require('../../core/identify/mast')(log)
-const { get, template } = require('lodash')
 
 describe('identify » mast', function () {
   it('category', function () {
     const str = 'Mástil Neilpryde X9 75c 4m SDM'
     const {data} = mast(str)
-    get(data, 'category').should.be.equal('masts')
+    should(get(data, 'category')).be.equal('masts')
   })
 
   it('brand', function () {
     const str = 'Mástil Neilpryde X9 75c 4m SDM'
     const {data, output} = mast(str)
-    get(data, 'brand').should.be.equal('Neilpryde')
-    output.includes('Neilpryde').should.be.false()
+    should(get(data, 'brand')).be.equal('Neilpryde')
+    should(output.includes('Neilpryde')).be.false()
   })
 
   describe('type', function () {
@@ -29,8 +31,8 @@ describe('identify » mast', function () {
         it(type, function () {
           const str = tpl({type})
           const {data, output} = mast(str)
-          get(data, 'type').should.be.equal('sdm')
-          output.includes('sdm').should.be.false()
+          should(get(data, 'type')).be.equal('sdm')
+          should(output.includes('sdm')).be.false()
         })
       })
     })
@@ -43,8 +45,8 @@ describe('identify » mast', function () {
         it(type, function () {
           const str = tpl({type})
           const {data, output} = mast(str)
-          get(data, 'type').should.be.equal('rdm')
-          output.includes('rdm').should.be.false()
+          should(get(data, 'type')).be.equal('rdm')
+          should(output.includes('rdm')).be.false()
         })
       })
     })
@@ -65,8 +67,8 @@ describe('identify » mast', function () {
         it(carbon, function () {
           const str = tpl({carbon})
           const {data, output} = mast(str)
-          get(data, 'carbon').should.be.equal(75)
-          output.includes('75').should.be.false()
+          should(get(data, 'carbon')).be.equal(75)
+          should(output.includes('75')).be.false()
         })
       })
     })
@@ -82,8 +84,8 @@ describe('identify » mast', function () {
         it(carbon, function () {
           const str = tpl({carbon})
           const {data, output} = mast(str)
-          get(data, 'carbon').should.be.equal(100)
-          output.includes('100').should.be.false()
+          should(get(data, 'carbon')).be.equal(100)
+          should(output.includes('100')).be.false()
         })
       })
     })
@@ -101,8 +103,8 @@ describe('identify » mast', function () {
           it(size, function () {
             const str = tpl({size})
             const {data, output} = mast(str)
-            get(data, 'size').should.be.equal(400)
-            output.includes('4').should.be.false()
+            should(get(data, 'size')).be.equal(400)
+            should(output.includes('4')).be.false()
           })
         })
       })
@@ -118,8 +120,8 @@ describe('identify » mast', function () {
           it(size, function () {
             const str = tpl({size})
             const {data, output} = mast(str)
-            get(data, 'size').should.be.equal(370)
-            output.includes('3').should.be.false()
+            should(get(data, 'size')).be.equal(370)
+            should(output.includes('3')).be.false()
           })
         })
       })
@@ -132,8 +134,8 @@ describe('identify » mast', function () {
         it(size, function () {
           const str = tpl({size})
           const {data, output} = mast(str)
-          get(data, 'size').should.be.equal(430)
-          output.includes('430').should.be.false()
+          should(get(data, 'size')).be.equal(430)
+          should(output.includes('430')).be.false()
         })
       })
     })

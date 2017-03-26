@@ -1,7 +1,8 @@
 'use strict'
 
-require('should')
 const { includes, get } = require('lodash')
+const should = require('should')
+
 const log = require('../../../core/log')('sail_model_unidentify')
 const sail = require('../../../core/identify/sail')(log)
 
@@ -11,7 +12,7 @@ describe('identify » sail » model', function () {
       ''
     ].forEach(function (title) {
       const {data} = sail(title)
-      get(data, 'category').should.be.equal('sails')
+      should(get(data, 'category')).be.equal('sails')
     })
   })
 
@@ -22,9 +23,9 @@ describe('identify » sail » model', function () {
       'loft racing blade'
     ].forEach(function (title) {
       const {data, output} = sail(title)
-      get(data, 'category').should.be.equal('sails')
-      get(data, 'model').should.be.equal('Racing Blade')
-      includes(output, 'racing').should.be.false()
+      should(get(data, 'category')).be.equal('sails')
+      should(get(data, 'model')).be.equal('Racing Blade')
+      should(includes(output, 'racing')).be.false()
     })
   })
 })

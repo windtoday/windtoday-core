@@ -54,7 +54,7 @@ describe('identify » price', function () {
             it(`${str} → ${quantity}`, function () {
               const {data, output} = price(str)
               should(get(data, 'price')).be.equal(quantity)
-              output.includes(str).should.be.false()
+              should(output.includes(str)).be.false()
             })
           })
         })
@@ -68,7 +68,7 @@ describe('identify » price', function () {
           it(`${str} → ${quantity}`, function () {
             const {data, output} = price(str)
             should(get(data, 'price')).be.equal(quantity)
-            output.includes(str).should.be.false()
+            should(output.includes(str)).be.false()
           })
         })
       })
@@ -96,7 +96,7 @@ describe('identify » price', function () {
             it(`${str} → ${expected}`, function () {
               const {data, output} = price(str)
               should(get(data, 'price')).be.equal(expected)
-              output.includes(str).should.be.false()
+              should(output.includes(str)).be.false()
             })
           })
         })
@@ -112,7 +112,7 @@ describe('identify » price', function () {
 
             const {data, output} = price(str)
             should(get(data, 'price')).be.equal(expected)
-            output.should.be.equal(output.replace(`${expected}${symbol}${separator}`, ''))
+            should(output).be.equal(output.replace(`${expected}${symbol}${separator}`, ''))
           })
         })
       })
@@ -139,7 +139,7 @@ describe('identify » price', function () {
             it(`${str} → ${expected}`, function () {
               const {data, output} = price(str)
               should(get(data, 'price')).be.equal(expected)
-              output.includes(str).should.be.false()
+              should(output.includes(str)).be.false()
             })
           })
         })

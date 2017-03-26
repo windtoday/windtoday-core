@@ -2,6 +2,7 @@
 
 const should = require('should')
 const {map, pick} = require('lodash')
+
 const createShare = require('../../core/share/create-share')
 
 const docs = [

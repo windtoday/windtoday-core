@@ -1,5 +1,7 @@
 'use strict'
 
+const should = require('should')
+
 const titleize = require('../../core/util/titleize')
 
 const fixture = {
@@ -14,18 +16,18 @@ const fixture = {
 
 describe('core » util » titleize', function () {
   it('string', function () {
-    titleize('http://foo.bar').should.be.equal('http://foo.bar')
-    titleize(123).should.be.equal(123)
-    titleize('foo bar').should.be.equal('Foo Bar')
+    should(titleize('http://foo.bar')).be.equal('http://foo.bar')
+    should(titleize(123)).be.equal(123)
+    should(titleize('foo bar')).be.equal('Foo Bar')
   })
 
   it('array', function () {
-    titleize(['foo', 'bar']).should.be.eql(['Foo', 'Bar'])
+    should(titleize(['foo', 'bar'])).be.eql(['Foo', 'Bar'])
   })
 
   it('object', function () {
     const output = titleize(fixture)
-    output.should.be.eql({
+    should(output).be.eql({
       title: 'Prolimit Cyber Boom 202 €129',
       price: 129,
       name: 'Cyber Boom',

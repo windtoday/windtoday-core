@@ -1,6 +1,6 @@
 'use strict'
 
-require('should')
+const should = require('should')
 const boardSize = require('../../../../core/schema/transform/pretty-title/pretty-board-size')
 
 const createCase = (str, cb) => {
@@ -21,7 +21,7 @@ describe('schema » transform » pretty title » pretty board size', function ()
   ].forEach(function (str) {
     it(`${str} → 120L`, function () {
       const output = createCase(str)
-      output.should.be.equal(`Starboard ${expected} Futura`)
+      should(output).be.equal(`Starboard ${expected} Futura`)
     })
   })
 })

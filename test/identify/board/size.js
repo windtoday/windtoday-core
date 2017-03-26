@@ -2,6 +2,7 @@
 
 const should = require('should')
 const { get } = require('lodash')
+
 const log = require('../../../core/log')('board_size_unidentify')
 const board = require('../../../core/identify/board')(log)
 
@@ -22,8 +23,8 @@ describe('identify » board » size', function () {
       '84 litros'
     ].forEach(function (str) {
       const {data, output} = board(str)
-      get(data, 'size').should.be.equal(84)
-      output.should.be.equal('')
+      should(get(data, 'size')).be.equal(84)
+      should(output).be.equal('')
     })
   })
 
@@ -34,8 +35,8 @@ describe('identify » board » size', function () {
       '105 litros'
     ].forEach(function (str) {
       const {data, output} = board(str)
-      get(data, 'size').should.be.equal(105)
-      output.includes('105').should.be.false()
+      should(get(data, 'size')).be.equal(105)
+      should(output.includes('105')).be.false()
     })
   })
 
@@ -46,8 +47,8 @@ describe('identify » board » size', function () {
       'Se vende Bic Techno 283 152 litros'
     ].forEach(function (str) {
       const {data, output} = board(str)
-      get(data, 'size').should.be.equal(152)
-      output.includes('152').should.be.false()
+      should(get(data, 'size')).be.equal(152)
+      should(output.includes('152')).be.false()
     })
   })
 })

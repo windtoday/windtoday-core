@@ -1,22 +1,24 @@
 'use strict'
 
+const { get } = require('lodash')
+const should = require('should')
+
 const log = require('../../../core/log')('mast_unidentify')
 const boom = require('../../../core/identify/boom')(log)
-const { get } = require('lodash')
 
 describe('identify » boom', function () {
   describe('from sails directory', function () {
     it('category', function () {
       const str = 'Northsails Red Boom 2014 150'
       const {data} = boom(str)
-      get(data, 'category').should.be.equal('booms')
+      should(get(data, 'category')).be.equal('booms')
     })
 
     it('brand', function () {
       const str = 'Northsails Red Boom 2014 150'
       const {data, output} = boom(str)
-      get(data, 'brand').should.be.equal('North')
-      output.includes('North').should.be.false()
+      should(get(data, 'brand')).be.equal('North')
+      should(output.includes('North')).be.false()
     })
   })
 
@@ -24,14 +26,14 @@ describe('identify » boom', function () {
     it('category', function () {
       const str = 'Chinook Red Boom 2014 150'
       const {data} = boom(str)
-      get(data, 'category').should.be.equal('booms')
+      should(get(data, 'category')).be.equal('booms')
     })
 
     it('brand', function () {
       const str = 'Chinook Red Boom 2014 150'
       const {data, output} = boom(str)
-      get(data, 'brand').should.be.equal('Chinook')
-      output.includes('Chinook').should.be.false()
+      should(get(data, 'brand')).be.equal('Chinook')
+      should(output.includes('Chinook')).be.false()
     })
   })
 })

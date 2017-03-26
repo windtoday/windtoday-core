@@ -1,13 +1,14 @@
 'use strict'
 
-require('should')
+const should = require('should')
+
 const prettyYear = require('../../../../core/schema/transform/pretty-title/pretty-year')
 
 describe('schema » transform » pretty title » pretty year', function () {
   it('do nothing if year is not detected', function () {
     const input = 'Starboard Futura 120L'
     const output = prettyYear(input)
-    output.should.be.equal(input)
+    should(output).be.equal(input)
   })
 
   describe('move year at the end', function () {
@@ -20,7 +21,7 @@ describe('schema » transform » pretty title » pretty year', function () {
     ].forEach(input => {
       it(`${input} → ${output}`, () => {
         const output = prettyYear(input)
-        output.should.be.equal('Starboard Futura 120L 2016')
+        should(output).be.equal('Starboard Futura 120L 2016')
       })
     })
   })

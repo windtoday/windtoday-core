@@ -1,7 +1,9 @@
 'use strict'
 
-const serializer = require('../../core/schema/serializer')
 const {assign} = require('lodash')
+const should = require('should')
+
+const serializer = require('../../core/schema/serializer')
 
 const singularCategory = {
   boards: 'board',
@@ -35,9 +37,9 @@ describe('schema » serializer', function () {
 
           const serialized = serializer(fixture)
           const _category = singularCategory[category]
-          serialized.should.have.property(`${_category} size`)
-          serialized.should.have.property(`${_category} type`)
-          serialized.should.have.property(`${_category} carbon`)
+          should(serialized).have.property(`${_category} size`)
+          should(serialized).have.property(`${_category} type`)
+          should(serialized).have.property(`${_category} carbon`)
         })
       })
     })
