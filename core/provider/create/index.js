@@ -5,8 +5,8 @@ const { waterfall, reduce } = require('async')
 
 const createExtractor = require('./create-extractor')
 const createContext = require('./create-context')
+const createShare = require('./create-share')
 const createAdd = require('./create-add')
-const share = require('../../share')
 const db = require('../../db')
 
 const env = get(process, 'env.NODE_ENV', 'development')
@@ -16,10 +16,12 @@ function createProvider (opts, fetch) {
   const key = `${env}:${provider}:${seller}:${path}`
 
   const ctx = createContext(opts)
+  const share = createShare(ctx)
   const add = createAdd(ctx)
+
+  const {log} = ctx
   const buffer = []
   const extract = ctx.extract = createExtractor(assign({buffer}, opts))
-  const log = ctx.log
 
   fetch = bind(fetch, ctx)
   extract.on('data', item => buffer.push(item))

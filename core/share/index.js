@@ -1,8 +1,7 @@
 'use strict'
 
-const composeMessge = require('./compose-message.js')
+const composeMessage = require('./compose-message')
 const createShare = require('./create-share')
-const createAddBuffer = require('./create-add-buffer')
+const getOffers = require('./get-offers')
 
-const addBuffer = createAddBuffer(composeMessge)
-module.exports = createShare(addBuffer)
+module.exports = createShare(composeMessage, getOffers)

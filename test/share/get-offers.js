@@ -1,9 +1,9 @@
 'use strict'
 
 const should = require('should')
-const {map, pick} = require('lodash')
+const {map} = require('lodash')
 
-const createShare = require('../../core/share/create-share')
+const getOffers = require('../../core/share/get-offers')
 
 const docs = [
   {
@@ -32,18 +32,10 @@ const docs = [
   }
 ]
 
-function fn (docs, cb) {
-  return cb(null, docs)
-}
-
-const share = createShare(fn)
-
-describe('share » create', function () {
-  it('just items with pricess less than 500', function (done) {
-    share(docs, function (err, sharedDocs) {
-      const output = map(sharedDocs, item => pick(item, 'price'))
-      should(output).be.eql([ { price: 260 } ])
-      done(err)
-    })
+describe('share » get offers', function () {
+  it('just items with pricess less than 500', function () {
+    const offers = getOffers(docs)
+    const offersPrice = map(offers, offer => offer.price)
+    should(offersPrice).be.eql([260])
   })
 })
