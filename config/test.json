@@ -7,10 +7,6 @@
     "pages": 1
   },
 
-  "buffer": {
-    "rateLimitWaitMs": 500
-  },
-
   "facebook": {
     "groups_ids": [
       173068032721866

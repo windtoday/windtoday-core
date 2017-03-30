@@ -5,20 +5,23 @@ const should = require('should')
 const createSendBuffer = require('../../core/share/create-send-buffer')
 
 describe('share » send buffer', function () {
-  it('handle rate limit', function (done) {
+  it('log API errors', function (done) {
     const accounts = ['123']
     const composeMessage = () => 'hello World'
-    const log = { warn: function () {}, info: function () {} }
 
-    let count = 0
+    const logBuffer = {warn: [], info: []}
+
+    const log = {
+      warn: function () { logBuffer.warn.push.apply(logBuffer.warn, arguments) },
+      info: function () { logBuffer.info.push.apply(logBuffer.info, arguments) }
+    }
 
     const client = {
       updates: {
         create: function (message, accounts) {
           return {
             nodeify: function (cb) {
-              ++count
-              const err = (count < 3) ? {errorCode: 1023} : null
+              const err = {errorCode: 1023, httpCode: 400}
               return cb(err)
             }
           }
@@ -27,12 +30,12 @@ describe('share » send buffer', function () {
 
     const opts = { client, accounts, composeMessage, log }
     const sendToBuffer = createSendBuffer(opts)
-    const timestamp = Date.now()
 
     sendToBuffer('foo bar', function (err) {
-      const now = Date.now()
-      const diff = now - timestamp
-      should(diff).be.within(1000, 1200)
+      should(logBuffer).be.eql({
+        warn: [ 'sendBuffer', { errorCode: 1023, httpCode: 400 } ],
+        info: []
+      })
       done(err)
     })
   })

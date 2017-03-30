@@ -14,7 +14,7 @@ function createShare (composeMessage, getOffers) {
   function share (opts) {
     const {log} = opts
     const client = bufferapp(accessToken)
-    const sendToBuffer = createSendBuffer(client, accounts, composeMessage, log)
+    const sendToBuffer = createSendBuffer({client, accounts, composeMessage, log})
 
     function createUpdates (docs, cb) {
       return each(docs, sendToBuffer, cb)
@@ -30,7 +30,6 @@ function createShare (composeMessage, getOffers) {
 
     function addBuffer (docs, cb) {
       const offers = getOffers(docs)
-
       const tasks = [
         (next) => createUpdates(offers, next),
         (next) => shuffleUpdates(next)

@@ -5,7 +5,7 @@ const { waterfall, reduce } = require('async')
 
 const createExtractor = require('./create-extractor')
 const createContext = require('./create-context')
-const createShare = require('./create-share')
+const createShare = require('../../share')
 const createAdd = require('./create-add')
 const db = require('../../db')
 
