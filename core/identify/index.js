@@ -1,5 +1,7 @@
 'use strict'
 
+const {forEach} = require('lodash')
+
 const categorySingular = require('../category').singular
 const createLogger = require('../log')
 
@@ -33,8 +35,6 @@ function createIdentify (opts) {
   }
 }
 
-Object.keys(identify).forEach(key => {
+module.exports = forEach(identify, (value, key) => {
   createIdentify[key] = identify[key]
 })
-
-module.exports = createIdentify

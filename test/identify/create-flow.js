@@ -2,9 +2,8 @@
 
 const should = require('should')
 
+const {price, year, mast, sail} = require('../../core/identify')
 const createFlow = require('../../core/identify/create-flow')
-const identify = require('../../core/identify')
-const {price, year, mast, sail} = identify
 const createLogger = require('../../core/log')
 
 describe('identify » create flow', function () {
