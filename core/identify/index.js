@@ -35,6 +35,8 @@ function createIdentify (opts) {
   }
 }
 
-module.exports = forEach(identify, (value, key) => {
+forEach(identify, (value, key) => {
   createIdentify[key] = identify[key]
 })
+
+module.exports = createIdentify
