@@ -37,7 +37,7 @@
     "surfkeppler-api": "~1.0.2",
     "telstarsurf-api": "~1.0.5",
     "titleize": "~1.0.0",
-    "totalwind-api": "~1.1.0",
+    "totalwind-api": "~1.2.0",
     "url-regex": "~4.0.0",
     "windtoday-windsurf-accesories": "github:windtoday/windtoday-windsurf-accesories",
     "windtoday-windsurf-boards": "github:windtoday/windtoday-windsurf-boards",

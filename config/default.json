@@ -39,7 +39,8 @@
 
   "totalwind_api": {
     "key": "process.env.WRAPAPI_KEY",
-    "pages": 5
+    "pages": 5,
+    "start": 2
   },
 
   "facebook": {
