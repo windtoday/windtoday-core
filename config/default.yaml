@@ -1,0 +1,62 @@
+algoliasearch:
+  api_key: process.env.ALGOLIA_API_KEY
+  app_id: process.env.ALGOLIA_APP_ID
+  index: primary
+bellini_api:
+  key: process.env.WRAPAPI_KEY
+bigsurfshop_api:
+  key: process.env.WRAPAPI_KEY
+buffer:
+  access_token: process.env.BUFFER_ACCESS_TOKEN
+  accounts:
+    - 5881d7cfc299a4272e244f6e
+    - 5871279baa70e81d3a6389bf
+check_hosts:
+  bellini:
+    - 'https://wrapapi.com'
+    - 'http://www.bellini.es'
+  easysurfshop:
+    - 'https://wrapapi.com'
+    - 'https://easy-surfshop.com'
+  facebook:
+    - 'https://www.facebook.com/platform/api-status'
+  merkawind:
+    - 'https://wrapapi.com'
+    - 'http://merkawind.com'
+  ozutarifa:
+    - 'https://wrapapi.com'
+    - 'http://ozu-tarifa.com'
+  surfkeppler:
+    - 'https://wrapapi.com'
+    - 'https://www.surfkeppler.de'
+  telstarsurf:
+    - 'https://wrapapi.com'
+    - 'http://www.telstarsurf.com'
+  totalwind:
+    - 'https://wrapapi.com'
+    - 'http://totalwind.net/foro'
+easysurfshop_api:
+  key: process.env.WRAPAPI_KEY
+facebook:
+  app_id: process.env.FACEBOOK_APP_ID
+  app_secret: process.env.FACEBOOK_SECRET_ID
+  groups_ids:
+    - 173068032721866
+    - 245756195532660
+    - 229068620567605
+    - 143928749095041
+  limit: 100
+merkawind_api:
+  key: process.env.WRAPAPI_KEY
+  pages: 4
+ozutarifa_api:
+  key: process.env.WRAPAPI_KEY
+redis: process.env.REDIS_URL
+surfkeppler_api:
+  key: process.env.WRAPAPI_KEY
+telstarsurf_api:
+  key: process.env.WRAPAPI_KEY
+totalwind_api:
+  key: process.env.WRAPAPI_KEY
+  pages: 5
+  start: 2

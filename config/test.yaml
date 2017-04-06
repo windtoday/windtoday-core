@@ -1,0 +1,10 @@
+algoliasearch:
+  index: []
+
+facebook:
+  groups_ids:
+    - 173068032721866
+  limit: 10
+
+totalwind_api:
+  pages: 1
