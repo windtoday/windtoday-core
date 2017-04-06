@@ -14,13 +14,18 @@
   "bugs": {
     "url": "https://github.com/windtoday/windtoday-core/issues"
   },
-  "keywords": [],
+  "keywords": [
+    "marketplace",
+    "windsurf",
+    "windtoday"
+  ],
   "dependencies": {
     "acho": "~3.1.2",
     "algoliasearch": "~3.22.1",
     "append-query": "~2.0.1",
     "async": "~2.3.0",
     "bellini-api": "~1.0.3",
+    "bigsurfshop-api": "~1.0.0",
     "buffer-node": "~1.0.2",
     "clean-stack": "~1.1.1",
     "condense-whitespace": "~1.0.0",
