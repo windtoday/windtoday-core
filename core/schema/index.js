@@ -48,6 +48,10 @@ const validate = osom({
     type: String,
     validate: isUrl
   },
+  image: {
+    type: String,
+    validate: isUrl
+  },
   createdAt: {
     type: Number
   },
