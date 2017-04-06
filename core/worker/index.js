@@ -30,10 +30,8 @@ function createWorker (opts) {
 
   function execWorker (cb) {
     waterfall(tasks, function (err, stats) {
-      if (!err) {
-        log.info('finished', stats)
-        return cb(err)
-      }
+      if (!err) log.info('finished', stats)
+      return cb(err)
     })
   }
 
