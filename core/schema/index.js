@@ -1,5 +1,6 @@
 'use strict'
 
+const startOfDay = require('date-fns/start_of_day')
 const {asyncify} = require('async')
 const {assign} = require('lodash')
 const osom = require('osom')
@@ -58,6 +59,9 @@ const validate = osom({
   updatedAt: {
     type: Number
   },
+  timestamp: {
+    type: Number
+  },
   isForced: {
     type: Boolean,
     default: false
@@ -96,10 +100,13 @@ const validate = osom({
 const validateAsync = asyncify(validate)
 
 function validator (item, cb) {
+  const now = Date.now()
+
   const doc = assign({}, item, {
     condition: getCondition(item),
     link: getReferralLink(item),
-    updatedAt: Date.now()
+    timestamp: now,
+    updatedAt: startOfDay(now).getTime()
   })
 
   const docSerialized = serializer(doc)
