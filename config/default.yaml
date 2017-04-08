@@ -15,6 +15,9 @@ check_hosts:
   bellini:
     - 'https://wrapapi.com'
     - 'http://www.bellini.es'
+  bigsurfshop:
+    - 'https://wrapapi.com'
+    - 'http://www.bigsurfshop.com'
   easysurfshop:
     - 'https://wrapapi.com'
     - 'https://easy-surfshop.com'
