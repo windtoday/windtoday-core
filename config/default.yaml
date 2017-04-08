@@ -21,6 +21,9 @@ check_hosts:
   easysurfshop:
     - 'https://wrapapi.com'
     - 'https://easy-surfshop.com'
+  lpwind:
+    - 'https://wrapapi.com'
+    - 'http://www.lpwindsurf.com'
   ozutarifa:
     - 'https://wrapapi.com'
     - 'http://ozu-tarifa.com'
@@ -34,6 +37,8 @@ check_hosts:
     - 'https://wrapapi.com'
     - 'http://totalwind.net/foro'
 easysurfshop_api:
+  key: process.env.WRAPAPI_KEY
+lpwind_api:
   key: process.env.WRAPAPI_KEY
 ozutarifa_api:
   key: process.env.WRAPAPI_KEY
