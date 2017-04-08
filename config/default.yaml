@@ -21,8 +21,6 @@ check_hosts:
   easysurfshop:
     - 'https://wrapapi.com'
     - 'https://easy-surfshop.com'
-  facebook:
-    - 'https://www.facebook.com/platform/api-status'
   ozutarifa:
     - 'https://wrapapi.com'
     - 'http://ozu-tarifa.com'
@@ -37,15 +35,6 @@ check_hosts:
     - 'http://totalwind.net/foro'
 easysurfshop_api:
   key: process.env.WRAPAPI_KEY
-facebook:
-  app_id: process.env.FACEBOOK_APP_ID
-  app_secret: process.env.FACEBOOK_SECRET_ID
-  groups_ids:
-    - 173068032721866
-    - 245756195532660
-    - 229068620567605
-    - 143928749095041
-  limit: 100
 ozutarifa_api:
   key: process.env.WRAPAPI_KEY
 redis: process.env.REDIS_URL
