@@ -1,6 +1,21 @@
 'use strict'
 
-const {pick} = require('lodash')
+const {assign, pick} = require('lodash')
+
+const DEFAULT = {
+  OPTIONS: {
+    picture: 'https://windtoday.co/assets/img/logo.jpg',
+    thumbnail: 'https://windtoday.co/assets/img/logo.jpg'
+  }
+}
+
+const getOptions = doc => assign({}, DEFAULT.OPTIONS, {
+  title: doc.title,
+  picture: doc.image,
+  thumbnail: doc.image,
+  link: doc.link
+})
+
 const isApiError = err => Boolean(err.errorCode)
 
 function createUpdate (opts) {
@@ -16,7 +31,8 @@ function createUpdate (opts) {
       return cb()
     }
 
-    return client.updates.create(message, accounts).nodeify(callback)
+    const options = getOptions(doc)
+    return client.updates.create(message, accounts, options).nodeify(callback)
   }
 
   return create
