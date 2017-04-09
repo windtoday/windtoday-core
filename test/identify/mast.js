@@ -13,11 +13,20 @@ describe('identify » mast', function () {
     should(get(data, 'category')).be.equal('masts')
   })
 
-  it('brand', function () {
-    const str = 'Mástil Neilpryde X9 75c 4m SDM'
-    const {data, output} = mast(str)
-    should(get(data, 'brand')).be.equal('Neilpryde')
-    should(output.includes('Neilpryde')).be.false()
+  describe('brand', function () {
+    it('Mástil Neilpryde X9 75c 4m SDM → Neilpryde', function () {
+      const str = 'Mástil Neilpryde X9 75c 4m SDM'
+      const {data, output} = mast(str)
+      should(get(data, 'brand')).be.equal('Neilpryde')
+      should(output.includes('Neilpryde')).be.false()
+    })
+
+    it('LOFTSAILS Mast SDM Vision C75% 2017 → Loft', function () {
+      const str = 'LOFTSAILS Mast SDM Vision C75% 2017'
+      const {data, output} = mast(str)
+      should(get(data, 'brand')).be.equal('Loft')
+      should(output.includes('Loft')).be.false()
+    })
   })
 
   describe('type', function () {

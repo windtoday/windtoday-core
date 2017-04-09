@@ -3,15 +3,16 @@
 const { size, reduce } = require('lodash')
 const strmatch = require('str-match')()
 
+const regexWordBoundary = require('regex-word-boundary')
 const category = require('../../category')
 
 const CONST = {
   REGEX: {
-    sails: RegExp(require('./sails.json').join('|'), 'i'),
-    boards: RegExp(require('./boards.json').join('|'), 'i'),
-    fins: RegExp(require('./fins.json').join('|'), 'i'),
-    masts: RegExp(require('./masts.json').join('|'), 'i'),
-    booms: RegExp(require('./booms.json').join('|'), 'i')
+    sails: regexWordBoundary(require('./sails.json')),
+    boards: regexWordBoundary(require('./boards.json')),
+    fins: regexWordBoundary(require('./fins.json')),
+    masts: regexWordBoundary(require('./masts.json')),
+    booms: regexWordBoundary(require('./booms.json'))
   },
 
   FALLBACK_CATEGORY: category('others')
