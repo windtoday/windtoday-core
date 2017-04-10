@@ -1,5 +1,6 @@
 [
-  "quillas?",
+  "aler(?:\\xF3n|on(?:es)?)",
+  "aletas?",
   "fins?",
-  "ale(?:ta|r[oó]n)"
+  "quillas?"
 ]

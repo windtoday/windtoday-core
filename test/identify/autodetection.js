@@ -21,11 +21,12 @@ describe('identify » autodetection', function () {
     it('mast', function () {
       const str = 'Mástil North Sdm Red 460 35c'
       const {data, output} = autodetection(str)
+
       should(get(data, 'category')).be.eql(['masts'])
       should(get(data, 'mast type')).be.equal('sdm')
       should(get(data, 'mast carbon')).be.equal(35)
       should(get(data, 'mast size')).be.equal(460)
-      should(output).be.equal('il   Red  ')
+      should(output).be.equal('   Red  ')
     })
 
     it('others', function () {
@@ -46,7 +47,7 @@ describe('identify » autodetection', function () {
       should(get(data, 'sail size')).be.equal(6.7)
       should(get(data, 'brand')).be.eql(['Neilpryde', 'North'])
       should(get(data, 'model')).be.equal('Hellcat')
-      should(output).be.equal('   . il   Y  ')
+      should(output).be.equal('   .    Y  ')
     })
   })
 })

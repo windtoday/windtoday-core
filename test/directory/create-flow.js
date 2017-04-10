@@ -15,7 +15,7 @@ describe('directory » create flow', function () {
 
       should(output).be.eql({
         data: { brand: 'MFC', type: 'US Box' },
-        output: 'Vendo  Freewave 28cm box - 45€'
+        output: 'Vendo  Freewave 28cm  - 45€'
       })
     })
 
@@ -26,7 +26,7 @@ describe('directory » create flow', function () {
 
       should(output).be.eql({
         data: { brand: 'B3', type: 'US Box' },
-        output: 'Vendo  Freewave 28cm box - 45€'
+        output: 'Vendo  Freewave 28cm  - 45€'
       })
     })
 
@@ -49,7 +49,7 @@ describe('directory » create flow', function () {
 
       should(output).be.eql({
         data: { brand: 'North' },
-        output: 'sails Red Boom 2014 150'
+        output: ' Red Boom 2014 150'
       })
     })
 

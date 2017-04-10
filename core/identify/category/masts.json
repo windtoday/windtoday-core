@@ -1,3 +1,3 @@
 [
-  "m[aá]sts?"
+  "m(?:ast(?:s|il(?:es)?)?|\\xE1stil(?:es)?)"
 ]

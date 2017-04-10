@@ -9,7 +9,7 @@ describe('identify » category', function () {
     const str = 'Vela Neilpryde Hellcat 6,7. Mastil Rdm 430 Y Botavara North'
     const {data, output} = category(str)
     should(data).be.eql(['sails', 'masts', 'booms'])
-    should(output).be.equal(' Neilpryde Hellcat 6,7. il Rdm 430 Y  North')
+    should(output).be.equal(' Neilpryde Hellcat 6,7.  Rdm 430 Y  North')
   })
 
   describe('keywords', function () {
