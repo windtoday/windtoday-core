@@ -75,20 +75,31 @@ describe('schema » validation', function () {
     })
 
     describe('title', function () {
-      it('throw error if not reached mininum length', function (done) {
-        const fixture = assign({}, baseFixture, {title: 'Vendo velas windsurf'})
-        schema(fixture, function (err, doc) {
-          should(err).be.an.Error()
-          done()
+      describe('invalid', function () {
+        it('throw error if not reached mininum words', function (done) {
+          const fixture = assign({}, baseFixture, {title: 'Vendo velas windsurf'})
+          schema(fixture, function (err, doc) {
+            should(err).be.an.Error()
+            done()
+          })
+        })
+
+        it('throw error if reached maximum length', function (done) {
+          const title = repeat('n', 141)
+          const fixture = assign({}, baseFixture, {title})
+          schema(fixture, function (err, doc) {
+            should(err).be.an.Error()
+            done()
+          })
         })
       })
 
-      it('throw error if reached maximum length', function (done) {
-        const title = repeat('n', 141)
-        const fixture = assign({}, baseFixture, {title})
-        schema(fixture, function (err, doc) {
-          should(err).be.an.Error()
-          done()
+      describe('valid', function () {
+        it.only('is correct if title has minimum words and is under max length', function (done) {
+          const fixture = assign({}, baseFixture, {title: 'Tabou Rocket 115'})
+          schema(fixture, function (err, doc) {
+            done(err)
+          })
         })
       })
     })

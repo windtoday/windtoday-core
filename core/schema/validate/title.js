@@ -1,19 +1,22 @@
 'use strict'
 
-const {size, inRange} = require('lodash')
+const {size, words} = require('lodash')
 
 const cleanTitleWords = require('../../util/clean-words')
 
-const MIN_LENGTH = 1
-const MAX_LENGTH = 141
+const MAX_LENGTH = 140
+const MIN_WORDS = 3
 
-const hasMinLength = length => inRange(length, MIN_LENGTH, MAX_LENGTH)
+const isUnderMaxLength = length => length < MAX_LENGTH
+const hasMinWords = (length) => length >= MIN_WORDS
 
 function isValidTitle (title) {
   const cleanTitle = cleanTitleWords(title)
   const sizeTitle = size(cleanTitle)
+  const wordsTitle = words(cleanTitle)
+  const wordsLengthTitle = size(wordsTitle)
 
-  return hasMinLength(sizeTitle)
+  return isUnderMaxLength(sizeTitle) && hasMinWords(wordsLengthTitle)
 }
 
 module.exports = isValidTitle
