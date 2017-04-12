@@ -1,38 +1,55 @@
 'use strict'
 
-const {assign, pick} = require('lodash')
+const {map, pick} = require('lodash')
+const {parallel} = require('async')
 
-const DEFAULT = {
-  OPTIONS: {
-    picture: 'https://windtoday.co/assets/img/logo.jpg',
-    thumbnail: 'https://windtoday.co/assets/img/logo.jpg'
+const FALLBACK_IMAGE = 'https://windtoday.co/assets/img/logo.jpg'
+
+function getOptions (doc, accountType) {
+  const image = doc.image || FALLBACK_IMAGE
+
+  return {
+    media: {
+      picture: image,
+      thumbnail: image,
+      link: doc.link,
+      photo: accountType === 'twitter' && image
+    }
   }
 }
-
-const getOptions = doc => assign({}, DEFAULT.OPTIONS, {
-  title: doc.title,
-  picture: doc.image,
-  thumbnail: doc.image,
-  link: doc.link
-})
 
 const isApiError = err => Boolean(err.errorCode)
 
 function createUpdate (opts) {
   const {client, accounts, composeMessage, log} = opts
 
-  function create (doc, cb) {
-    const message = composeMessage(doc)
+  function wrapRequest (message, accountId, options) {
+    function request (cb) {
+      const callback = wrapCallback(cb)
+      return client.updates.create(message, accountId, options).nodeify(callback)
+    }
 
+    return request
+  }
+
+  function wrapCallback (cb) {
     function callback (err) {
       if (!err) return cb()
       if (!isApiError(err)) return cb(err)
       log.warn('sendBuffer', pick(err, ['errorCode', 'httpCode']))
       return cb()
     }
+    return callback
+  }
 
-    const options = getOptions(doc)
-    return client.updates.create(message, accounts, options).nodeify(callback)
+  function create (doc, cb) {
+    const message = composeMessage(doc)
+    const tasks = map(accounts, function (accountId, accountType) {
+      const options = getOptions(doc, accountType)
+      return wrapRequest(message, accountId, options)
+    })
+
+    return parallel(tasks, cb)
   }
 
   return create

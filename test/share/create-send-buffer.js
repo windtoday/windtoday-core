@@ -6,7 +6,7 @@ const createSendBuffer = require('../../core/share/create-send-buffer')
 
 describe('share » send buffer', function () {
   it('log API errors', function (done) {
-    const accounts = ['123']
+    const accounts = [{twitter: '123'}]
     const composeMessage = () => 'hello World'
 
     const logBuffer = {warn: [], info: []}
