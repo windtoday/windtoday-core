@@ -13,7 +13,7 @@ function getOptions (doc, accountType) {
       picture: image,
       thumbnail: image,
       link: doc.link,
-      photo: accountType === 'twitter' && image
+      photo: (accountType === 'twitter' && doc.image) && doc.image
     }
   }
 }
