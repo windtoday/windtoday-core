@@ -44,8 +44,8 @@ function add (opts, cb) {
     function update (diff, next) {
       const {added, common, removed} = diff
       const objectIDs = map(removed, CONST.OBJECT_ID)
-      log.info('db:added', added)
-      log.info('db:removed', removed)
+      log.info('db:added %J', added)
+      log.info('db:removed %J', removed)
 
       const transaction = createTransaction(objectIDs, added)
 
