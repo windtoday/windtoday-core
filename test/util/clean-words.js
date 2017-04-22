@@ -40,25 +40,34 @@ describe('core » util » clean title words', function () {
   })
 
   describe('non words', function () {
-    it('-', function () {
-      const input = 'Mistral Syncro - €280'
-      const expected = 'Mistral Syncro €280'
-      const output = cleanTitleWords(input)
-      should(output).be.equal(expected)
-    })
+    describe('-', function () {
+      it('in the beginning', function () {
+        const input = '- Blacklabel Series Ns-60 (ht) Sdm'
+        const expected = 'Blacklabel Series Ns-60 (ht) Sdm'
+        const output = cleanTitleWords(input)
+        should(output).be.equal(expected)
+      })
 
-    it('.-', function () {
-      const input = 'Mistral Syncro .- €280'
-      const expected = 'Mistral Syncro €280'
-      const output = cleanTitleWords(input)
-      should(output).be.equal(expected)
-    })
+      it('in the middle', function () {
+        const input = 'Mistral Syncro - €280'
+        const expected = 'Mistral Syncro €280'
+        const output = cleanTitleWords(input)
+        should(output).be.equal(expected)
+      })
 
-    it('----', function () {
-      const input = 'SIMMER -------- 5.7 ---- 150€'
-      const expected = 'SIMMER 5.7 150€'
-      const output = cleanTitleWords(input)
-      should(output).be.equal(expected)
+      it('repetition', function () {
+        const input = 'SIMMER -------- 5.7 ---- 150€'
+        const expected = 'SIMMER 5.7 150€'
+        const output = cleanTitleWords(input)
+        should(output).be.equal(expected)
+      })
+
+      it('after a point', function () {
+        const input = 'Mistral Syncro .- €280'
+        const expected = 'Mistral Syncro €280'
+        const output = cleanTitleWords(input)
+        should(output).be.equal(expected)
+      })
     })
   })
 })
