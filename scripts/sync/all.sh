@@ -11,3 +11,4 @@ CURRENT_DIR=$(dirname $0)
 . $CURRENT_DIR/surfkeppler.sh
 . $CURRENT_DIR/telstarsurf.sh
 . $CURRENT_DIR/totalwind.sh
+. $CURRENT_DIR/wewind.sh

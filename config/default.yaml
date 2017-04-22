@@ -9,8 +9,8 @@ bigsurfshop_api:
 buffer:
   access_token: process.env.BUFFER_ACCESS_TOKEN
   accounts:
-    twitter: 58ed8477d05bd37d4c46d326
     facebook: 5871279baa70e81d3a6389bf
+    twitter: 58ed8477d05bd37d4c46d326
 check_hosts:
   bellini:
     - 'https://wrapapi.com'
@@ -36,6 +36,9 @@ check_hosts:
   totalwind:
     - 'https://wrapapi.com'
     - 'http://totalwind.net/foro'
+  wewind:
+    - 'https://wrapapi.com'
+    - 'http://we-wind.com'
 easysurfshop_api:
   key: process.env.WRAPAPI_KEY
 lpwind_api:
@@ -51,3 +54,5 @@ totalwind_api:
   key: process.env.WRAPAPI_KEY
   pages: 5
   start: 2
+wewind_api:
+  key: process.env.WRAPAPI_KEY

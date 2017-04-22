@@ -8,5 +8,6 @@ module.exports = {
   ozutarifa: require('./ozutarifa'),
   surfkeppler: require('./surfkeppler'),
   telstarsurf: require('./telstarsurf'),
-  totalwind: require('./totalwind')
+  totalwind: require('./totalwind'),
+  wewind: require('./wewind')
 }
