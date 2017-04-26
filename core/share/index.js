@@ -1,7 +1,7 @@
 'use strict'
 
 const composeMessage = require('./compose-message')
+const getShareables = require('./get-shareables')
 const createShare = require('./create-share')
-const getOffers = require('./get-offers')
 
-module.exports = createShare(composeMessage, getOffers)
+module.exports = createShare(composeMessage, getShareables)

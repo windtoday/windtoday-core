@@ -10,7 +10,7 @@ const accessToken = get(global, access_token)
 
 const createSendBuffer = require('./create-send-buffer')
 
-function createShare (composeMessage, getOffers) {
+function createShare (composeMessage, getShareables) {
   function share (opts) {
     const {log} = opts
     const client = bufferapp(accessToken)
@@ -29,9 +29,9 @@ function createShare (composeMessage, getOffers) {
     }
 
     function addBuffer (docs, cb) {
-      const offers = getOffers(docs)
+      const shareables = getShareables(docs)
       const tasks = [
-        (next) => createUpdates(offers, next),
+        (next) => createUpdates(shareables, next),
         (next) => shuffleUpdates(next)
       ]
       return waterfall(tasks, cb)
