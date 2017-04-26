@@ -15,7 +15,7 @@ describe('identify » autodetection', function () {
       should(get(data, 'category')).be.eql(['fins'])
       should(get(data, 'fin type')).be.equal('Trim Box')
       should(get(data, 'fin size')).be.equal(46)
-      should(output).be.equal('Vendo  NUEVA    box')
+      should(output).be.equal('Vendo  NUEVA   ')
     })
 
     it('mast', function () {
