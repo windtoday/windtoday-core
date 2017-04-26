@@ -95,7 +95,7 @@ describe('schema » validation', function () {
       })
 
       describe('valid', function () {
-        it.only('is correct if title has minimum words and is under max length', function (done) {
+        it('is correct if title has minimum words and is under max length', function (done) {
           const fixture = assign({}, baseFixture, {title: 'Tabou Rocket 115'})
           schema(fixture, function (err, doc) {
             done(err)
