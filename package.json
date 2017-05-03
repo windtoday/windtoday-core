@@ -29,7 +29,7 @@
     "buffer-node": "~1.0.4",
     "clean-stack": "~1.1.1",
     "condense-whitespace": "~1.0.0",
-    "config": "~1.25.1",
+    "config": "~1.26.1",
     "date-fns": "~1.28.2",
     "easysurfshop-api": "~1.0.3",
     "is-all-reachable": "~1.0.0",
