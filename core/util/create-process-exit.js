@@ -8,8 +8,8 @@ function createProcessExit (log) {
 
     const {stack, message, code = 1} = err
 
-    log.error(message || err)
-    if (stack) log.error(cleanStack(err.stack))
+    log.fatal(message || err)
+    if (stack) log.fatal(cleanStack(err.stack))
 
     return process.exit(code)
   }
