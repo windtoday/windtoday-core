@@ -15,5 +15,7 @@
   "\\btablas?\\b",
   "\\bvelas?\\b",
   "\\bvendo\\b",
+  "\\bnuevo\\b",
+  "\\bnew\\b",
   "\\bwindsurf(?:ing)?\\b"
 ]
