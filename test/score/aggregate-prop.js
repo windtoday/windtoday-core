@@ -3,7 +3,7 @@
 const should = require('should')
 const {size} = require('lodash')
 
-const aggregateProp = require('../../../core/score/aggregate-prop')
+const aggregateProp = require('../../core/score/aggregate-prop')
 const data = require('./data.json')
 
 describe('score » aggregate prop', function () {
