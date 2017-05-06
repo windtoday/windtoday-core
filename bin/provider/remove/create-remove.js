@@ -2,11 +2,11 @@
 
 const {parallel} = require('async')
 
-const createLoggerKeyword = require('../../core/util/create-logger-keyword')
-const redis = require('../../core/db/state').client
+const createLoggerKeyword = require('../../../core/util/create-logger-keyword')
+const redis = require('../../../core/db/state').client
 const createParams = require('./create-params')
-const createLogger = require('../../core/log')
-const index = require('../../core/db/search')
+const createLogger = require('../../../core/log')
+const index = require('../../../core/db/search')
 const getKey = require('./get-key')
 
 function createRemove (flags) {

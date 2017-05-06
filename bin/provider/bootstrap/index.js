@@ -2,7 +2,7 @@
 
 const meow = require('meow')
 
-const createProcessExit = require('../../core/util/create-process-exit')
+const createProcessExit = require('../../../core/util/create-process-exit')
 const createBootsrap = require('./create-bootstrap')
 
 const cli = meow()

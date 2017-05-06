@@ -4,9 +4,9 @@ const meow = require('meow')
 const {series} = require('async')
 const {assign} = require('lodash')
 
-const createProcessExit = require('../../core/util/create-process-exit')
-const createBootstrap = require('../bootstrap/create-bootstrap')
-const createRemove = require('../remove/create-remove')
+const createProcessExit = require('../../../core/util/create-process-exit')
+const createBootstrap = require('../../bootstrap/create-bootstrap')
+const createRemove = require('../../remove/create-remove')
 
 const cli = meow()
 const {flags} = cli

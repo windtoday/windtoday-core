@@ -2,7 +2,7 @@
 
 const meow = require('meow')
 const createRemove = require('./create-remove')
-const createProcessExit = require('../../core/util/create-process-exit')
+const createProcessExit = require('../../../core/util/create-process-exit')
 
 const cli = meow()
 const {flags} = cli

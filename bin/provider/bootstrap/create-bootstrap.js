@@ -2,9 +2,9 @@
 
 const {assign} = require('lodash')
 
-const createLoggerKeyword = require('../../core/util/create-logger-keyword')
-const createWorker = require('../../core/worker')
-const createLogger = require('../../core/log')
+const createLoggerKeyword = require('../../../core/util/create-logger-keyword')
+const createProviderWorker = require('../../../core/worker/provider')
+const createLogger = require('../../../core/log')
 
 function createBootstrap (flags) {
   const log = createLogger({
@@ -14,8 +14,8 @@ function createBootstrap (flags) {
 
   function bootstrap (cb) {
     const opts = assign({share: false, log}, flags)
-    const worker = createWorker(opts)
-    return worker(cb)
+    const providerWorker = createProviderWorker(opts)
+    return providerWorker(cb)
   }
 
   bootstrap.log = log

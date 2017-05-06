@@ -3,8 +3,8 @@
 const {reduce, chain, size} = require('lodash')
 const {waterfall} = require('async')
 
-const log = require('../../core/log')('remove-duplicates')
-const index = require('../../core/db/search')
+const log = require('../../../core/log')('remove-duplicates')
+const index = require('../../../core/db/search')
 
 const CONST = {
   QUERY: '',

@@ -3,13 +3,13 @@
 const { waterfall } = require('async')
 const { defaults } = require('lodash')
 
-const checkHostsAvailability = require('../util/check-hosts-availability')
-const checkRequiredParams = require('../util/check-required-params')
-const createWorkerFromProvider = require('../provider')
+const checkHostsAvailability = require('../../util/check-hosts-availability')
+const checkRequiredParams = require('../../util/check-required-params')
+const createWorkerFromProvider = require('../../provider')
 const CONST = require('./constants')
 const DEFAULT = require('./defaults')
 
-function createWorker (opts) {
+function createProviderWorker (opts) {
   opts = defaults(opts, DEFAULT)
   checkRequiredParams(opts, CONST.REQUIRED_PARAMS)
 
@@ -40,4 +40,4 @@ function createWorker (opts) {
   return execWorker
 }
 
-module.exports = createWorker
+module.exports = createProviderWorker
