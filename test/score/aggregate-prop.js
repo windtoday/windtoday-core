@@ -16,9 +16,9 @@ describe('score » aggregate prop', function () {
     const aggregateKey = '2017.new.masts'
 
     should(aggregate[aggregateKey]).be.eql({
-      min: 159,
-      max: 1080,
-      avg: 487
+      min: 320,
+      max: 499,
+      avg: 403
     })
   })
 })

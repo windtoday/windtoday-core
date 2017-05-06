@@ -16,7 +16,7 @@ describe('score » create get score', function () {
     const aggregate = aggregateProp({data, test, getKey, propName})
     const getScore = createGetScore({aggregate, test, getKey, propName})
 
-    const score = getScore(data[0])
-    should(score).be.equal(0.8251900108577633)
+    const score = getScore(data[1])
+    should(score).be.equal(0.6089385474860336)
   })
 })
