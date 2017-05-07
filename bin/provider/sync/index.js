@@ -8,8 +8,7 @@ const createProcessExit = require('../../../core/util/create-process-exit')
 const createProviderWorker = require('../../../core/worker/provider')
 const createLogger = require('../../../core/log')
 
-const cli = meow()
-const flags = assign(cli.flags)
+const {flags} = meow()
 
 const log = createLogger({
   keyword: createLoggerKeyword(flags),

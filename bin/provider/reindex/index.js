@@ -8,8 +8,7 @@ const createProcessExit = require('../../../core/util/create-process-exit')
 const createBootstrap = require('../../bootstrap/create-bootstrap')
 const createRemove = require('../../remove/create-remove')
 
-const cli = meow()
-const {flags} = cli
+const {flags} = meow()
 
 const remove = createRemove(flags)
 const bootstrapOpts = assign({checkHosts: false, isForced: true}, flags)
