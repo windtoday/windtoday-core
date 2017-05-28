@@ -1,7 +1,7 @@
 'use strict'
 
 const { flow, replace, toNumber } = require('lodash')
-const strmatch = require('str-match')()
+const createStrMatch = require('str-match')
 
 /**
  * Detect double sail size with separator variations
@@ -58,10 +58,14 @@ const normalizeSailSizeDoubleSimple = flow([
   toNumber
 ])
 
-function sailSizeDoubleSimple (str) {
-  let size = strmatch(str, REGEX_SAIL_SIZE_DOUBLE_SIMPLE)
-  if (!size.test) return
-  return response(normalizeSailSizeDoubleSimple(size.match), size.output)
+function createSailSizeDoubleSimple (strmatch) {
+  function sailSizeDoubleSimple (str) {
+    let size = strmatch(str, REGEX_SAIL_SIZE_DOUBLE_SIMPLE)
+    if (!size.test) return
+    return response(normalizeSailSizeDoubleSimple(size.match), size.output)
+  }
+
+  return sailSizeDoubleSimple
 }
 
 const normalizeSailSizeSingle = flow([
@@ -71,16 +75,27 @@ const normalizeSailSizeSingle = flow([
   toNumber
 ])
 
-function sailSizeSingle (str) {
-  let size = strmatch(str, REGEX_SAIL_SIZE_SINGLE)
-  if (!size.test) return
-  return response(normalizeSailSizeSingle(size.match), size.output)
+function createSailSizeSingle (strmatch) {
+  function sailSizeSingle (str) {
+    let size = strmatch(str, REGEX_SAIL_SIZE_SINGLE)
+    if (!size.test) return
+    return response(normalizeSailSizeSingle(size.match), size.output)
+  }
+
+  return sailSizeSingle
 }
 
-function sailSize (str) {
-  return sailSizeDoubleSimple(str) ||
-         sailSizeSingle(str) ||
-         response(undefined, str)
+function create (opts) {
+  const strmatch = createStrMatch(opts)
+  const sailSizeDoubleSimple = createSailSizeDoubleSimple(strmatch)
+  const sailSizeSingle = createSailSizeSingle(strmatch)
+
+  return function (str) {
+    return sailSizeDoubleSimple(str) ||
+           sailSizeSingle(str) ||
+           response(undefined, str)
+  }
 }
 
-module.exports = sailSize
+module.exports = create()
+module.exports.create = create

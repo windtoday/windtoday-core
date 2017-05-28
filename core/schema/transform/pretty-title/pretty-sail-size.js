@@ -1,31 +1,21 @@
 'use strict'
 
-const {replace, includes} = require('lodash')
+const {replace} = require('lodash')
 
 const createSailSize = require('../../../identify/sail/size').create
 
-const KEYWORD = '{{SIZE}}'
-const sailSize = createSailSize({replacement: KEYWORD})
+const REPLACEMENT = '{{SIZE}}'
+const REPLACEMENT_REGEX = /\{\{SIZE\}\} ?m/
 
-const getReplacer = (output, data) => {
-  if (includes(output, '{{SIZE}}m')) return {output, data}
-  if (includes(output, '{{SIZE}} m')) {
-    return {
-      output: replace(output, '{{SIZE}} m', '{{SIZE}}m'),
-      data
-    }
-  }
-
-  return {
-    output,
-    data: `${data}m`
-  }
-}
+const sailSize = createSailSize({replacement: REPLACEMENT})
+const normalizeOutput = output => replace(output, REPLACEMENT_REGEX, REPLACEMENT)
 
 function prettySailSize (str) {
-  const {data: originalData, output: originalOutput} = sailSize(str)
-  const {data, output} = getReplacer(originalOutput, originalData)
-  return replace(output, KEYWORD, data)
+  const {data, output} = sailSize(str)
+  if (!data) return
+
+  const normalizedOutput = normalizeOutput(output)
+  return replace(normalizedOutput, REPLACEMENT, `${data}m`)
 }
 
 module.exports = prettySailSize
