@@ -1,17 +1,9 @@
 'use strict'
 
-const condenseWhitespace = require('condense-whitespace')
-const { flow } = require('lodash')
+const basic = require('./basic')
 
-const cleanTitleWords = require('../../../util/clean-words')
-const prettyBoardSize = require('./pretty-board-size')
-const removePrice = require('./remove-price')
-const prettyYear = require('./pretty-year')
+function prettyTitle (item) {
+  return basic(item)
+}
 
-module.exports = flow([
-  removePrice,
-  cleanTitleWords,
-  prettyBoardSize,
-  prettyYear,
-  condenseWhitespace
-])
+module.exports = prettyTitle
