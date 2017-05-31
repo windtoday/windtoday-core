@@ -1,7 +1,7 @@
 'use strict'
 
 const should = require('should')
-const sailSize = require('../../../../core/schema/transform/pretty-title/pretty-sail-size')
+const sailSize = require('../../../../core/schema/transform/pretty-title/sail-size')
 
 const createCase = str => {
   const input = `Neilpryde Combat ${str}`
@@ -9,8 +9,13 @@ const createCase = str => {
 }
 
 describe('schema » transform » pretty title » pretty sail size', function () {
-  const expected = '4.7m'
+  it('dont normalize if sail size is not detected', function () {
+    const str = 'Starboard 120L Futura'
+    const output = createCase(str)
+    should(output).be.equal(str)
+  })
 
+  const expected = '4.7m'
   ;[
     '4 7',
     '4,7',

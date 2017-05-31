@@ -1,7 +1,7 @@
 'use strict'
 
 const condenseWhitespace = require('condense-whitespace')
-const price = require('../../../../identify/price')
+const price = require('../../../identify/price')
 
 function removePrice (item) {
   const {title} = item

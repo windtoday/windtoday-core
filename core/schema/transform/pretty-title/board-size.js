@@ -6,9 +6,9 @@ const strmatch = require('str-match')()
 const {
   regex: regexBoardSize,
   regexCleanOutput
-} = require('../../../../identify/board/size')
+} = require('../../../identify/board/size')
 
-const removeSpaces = require('../../../../util/remove-spaces')
+const removeSpaces = require('../../../util/remove-spaces')
 
 const hasBoardSize = item => !!item['board size']
 

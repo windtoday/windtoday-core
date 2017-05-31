@@ -1,7 +1,7 @@
 'use strict'
 
 const should = require('should')
-const boardSize = require('../../../../../core/schema/transform/pretty-title/board/size')
+const boardSize = require('../../../../core/schema/transform/pretty-title/board-size')
 
 const createCase = title => {
   const item = {

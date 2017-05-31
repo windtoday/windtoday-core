@@ -2,7 +2,7 @@
 
 const should = require('should')
 
-const prettyYear = require('../../../../../core/schema/transform/pretty-title/basic/pretty-year')
+const prettyYear = require('../../../../core/schema/transform/pretty-title/year')
 
 describe('schema » transform » pretty title » pretty year', function () {
   it('do nothing if year is not detected', function () {
