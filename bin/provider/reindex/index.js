@@ -5,8 +5,8 @@ const {series} = require('async')
 const {assign} = require('lodash')
 
 const createProcessExit = require('../../../core/util/create-process-exit')
-const createBootstrap = require('../../bootstrap/create-bootstrap')
-const createRemove = require('../../remove/create-remove')
+const createBootstrap = require('../bootstrap/create-bootstrap')
+const createRemove = require('../remove/create-remove')
 
 const {flags} = meow()
 
