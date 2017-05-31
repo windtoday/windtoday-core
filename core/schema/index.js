@@ -21,8 +21,7 @@ const validate = osom({
   title: {
     required: true,
     type: String,
-    validate: isValidTitle,
-    transform: [prettyTitle]
+    validate: isValidTitle
   },
   category: {
     required: true,
@@ -99,18 +98,28 @@ const validate = osom({
 
 const validateAsync = asyncify(validate)
 
-function validator (item, cb) {
+function validator (schema, cb) {
   const now = Date.now()
 
-  const doc = assign({}, item, {
-    condition: getCondition(item),
-    link: getReferralLink(item),
+  const doc = assign({}, schema, {
+    condition: getCondition(schema),
+    link: getReferralLink(schema),
     timestamp: now,
     updatedAt: startOfDay(now).getTime()
   })
 
-  const docSerialized = serializer(doc)
-  return validateAsync(docSerialized, cb)
+  const schemaSerialized = serializer(doc)
+
+  validateAsync(schemaSerialized, function (err, doc) {
+    if (err) return cb(err, doc)
+
+    return cb(
+      null,
+      Object.assign({}, doc, {
+        title: prettyTitle(doc)
+      })
+    )
+  })
 }
 
 module.exports = validator
