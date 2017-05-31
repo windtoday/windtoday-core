@@ -14,9 +14,8 @@ function createProcessExit (log) {
     if (!err) return process.exit()
 
     const {stack, message, code = 1} = err
-
-    log.fatal(message || err)
-    if (stack) log.fatal(cleanStack(err.stack))
+    log.fatal(`fatal error: ${message || err}`)
+    if (stack) log.fatal(cleanStack(stack))
     if (isProduction) rollbar.error(err)
 
     return process.exit(code)
