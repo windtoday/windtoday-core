@@ -21,6 +21,14 @@ describe('schema » transform » pretty title', function () {
         'board size': 120
       },
       expected: 'Starboard Futura 120L 2016'
+    },
+    {
+      item: {
+        title: 'Gun Sails GSR 8,7 2017',
+        year: 2017,
+        'sail size': 8.7
+      },
+      expected: 'Gun Sails GSR 8.7m 2017'
     }
   ].forEach(function ({item, expected}) {
     const {title} = item
