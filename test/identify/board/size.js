@@ -40,7 +40,7 @@ describe('identify » board » size', function () {
     })
   })
 
-  it('detech in a string that include numbers', function () {
+  it('detect in a string that include numbers', function () {
     [
       'Se vende Bic Techno 283 152l',
       'Se vende Bic Techno 283 152 l',
