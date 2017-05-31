@@ -41,6 +41,7 @@
     "ozutarifa-api": "~1.2.1",
     "redis-diff": "~2.0.1",
     "regex-word-boundary": "~1.0.1",
+    "rollbar": "~2.0.2",
     "str-match": "~2.1.1",
     "surfkeppler-api": "~1.0.2",
     "telstarsurf-api": "~1.0.5",
