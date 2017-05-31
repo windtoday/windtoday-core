@@ -3,9 +3,9 @@
 const { assign, flow } = require('lodash')
 
 const condenseWhiteSpace = require('./condene-white-space')
-const cleanWords = require('./clean-title-words')
-const removePrice = require('./remove-price')
-const prettyYear = require('./pretty-year')
+const cleanWords = require('./clean-words')
+const removePrice = require('./price')
+const prettyYear = require('./year')
 
 const assignItemTitle = (item, title) => assign({}, item, {title})
 
