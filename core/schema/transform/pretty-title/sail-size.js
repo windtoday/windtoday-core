@@ -14,10 +14,11 @@ const normalizeOutput = output => replace(output, REPLACEMENT_REGEX, REPLACEMENT
 const hasSailSize = item => !!item['sail size']
 
 function prettySailSize (item) {
-  const {title} = item
-  if (!hasSailSize(item)) return title
+  const {title: rawTitle, year} = item
+  if (!hasSailSize(item)) return rawTitle
 
-  let {data, output} = sailSize(title)
+  const title = replace(rawTitle, year, '')
+  const {data, output} = sailSize(title)
   const normalizedOutput = normalizeOutput(output)
   const replacerOutput = replace(normalizedOutput, REPLACEMENT, `${data}m `)
   return condenseWhitespace(replacerOutput)

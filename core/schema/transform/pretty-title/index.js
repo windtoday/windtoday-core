@@ -14,8 +14,8 @@ const assignItemTitle = (item, title) => assign({}, item, {title})
 module.exports = flow([
   item => assignItemTitle(item, removePrice(item)),
   item => assignItemTitle(item, cleanWords(item)),
-  item => assignItemTitle(item, prettyYear(item)),
   item => assignItemTitle(item, boardSize(item)),
   item => assignItemTitle(item, sailSize(item)),
+  item => assignItemTitle(item, prettyYear(item)),
   condenseWhiteSpace
 ])

@@ -50,6 +50,20 @@ describe('schema » transform » pretty title', function () {
         'board size': 82
       },
       expected: 'Jp Australia Slalom Demo 82 2016'
+    },
+    {
+      item: {
+        title: 'Northsails Drive Grom 2017 - Kids 3 €286',
+        'link': 'http://we-wind.com/velas-de-windsurf-es-2/north-sails-drive-grom-2017-kids.html?ref=windtodayco',
+        'image': 'http://we-wind.com/images/thumbnails/2/230/230/North-Sails-DRIVE-GROM-2016.jpg',
+        'brand': 'North',
+        'price': 286,
+        'year': 2017,
+        'sail size': 3,
+        'priceScore': 1,
+        'objectID': '2670729852'
+      },
+      expected: 'Northsails Drive Grom Kids 3m 2017'
     }
   ].forEach(function ({item, expected}) {
     const {title} = item
