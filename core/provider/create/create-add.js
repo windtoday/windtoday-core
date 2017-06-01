@@ -7,12 +7,11 @@ const schema = require('../../schema')
 function createAdd (opts) {
   const { log, isForced } = opts
   function add (acc, doc, cb) {
-    doc = assign(doc, {isForced})
-    schema(doc, (validationError, docValidated) => {
+    schema(doc, function (validationError, docValidated) {
       if (!validationError) {
-        acc.push(docValidated)
+        acc.push(assign({isForced}, docValidated))
       } else {
-        log.error(schema, {
+        log.error('schema', {
           key: validationError.key,
           value: validationError.value,
           title: doc.title
