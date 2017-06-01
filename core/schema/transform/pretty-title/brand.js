@@ -1,11 +1,14 @@
 'use strict'
 
+const { size, assign, flow, reduce, replace } = require('lodash')
+
 const {sails} = require('../../../directory')
-const {replace} = require('lodash')
 
 const REPLACEMENT = '{{BRAND}}'
 
-function prettyBrand (item) {
+const assignItemTitle = (item, title) => assign({}, item, {title})
+
+function prettySailBrand (item) {
   const {title, brand} = item
   if (!brand) return title
 
@@ -17,6 +20,26 @@ function prettyBrand (item) {
   })
 
   return replace(output, REPLACEMENT, brand)
+}
+
+const transformers = {
+  sails: prettySailBrand,
+  booms: prettySailBrand
+}
+
+const addTransformer = (acc, transformer) => (
+  acc.push(size(acc) ? assignItemTitle(transformer) : transformer)
+)
+
+function prettyBrand (item) {
+  const {category: categories} = item
+  const tranformers = reduce(categories, function (acc, category) {
+    const transformer = transformers[category]
+    addTransformer(acc, transformer)
+    return acc
+  }, [])
+
+  return flow(tranformers)(item)
 }
 
 module.exports = prettyBrand
