@@ -1,12 +1,12 @@
 'use strict'
 
 const startOfDay = require('date-fns/start_of_day')
+const {assign, isFinite} = require('lodash')
 const {asyncify} = require('async')
-const {assign} = require('lodash')
 const osom = require('osom')
 
-const getCondition = require('./get-condition')
 const getReferralLink = require('./get-referral-link')
+const getCondition = require('./get-condition')
 
 const prettyTitle = require('./transform/pretty-title')
 const isValidCondition = require('./validate/condition')
@@ -84,7 +84,10 @@ const validate = osom({
     validate: isValidSailSize
   },
 
-  'board size': Number,
+  'board size': {
+    type: Number,
+    validate: isFinite
+  },
 
   'boom size': String,
   'boom type': String,
@@ -113,12 +116,8 @@ function validator (schema, cb) {
   validateAsync(schemaSerialized, function (err, doc) {
     if (err) return cb(err, doc)
 
-    return cb(
-      null,
-      Object.assign({}, doc, {
-        title: prettyTitle(doc)
-      })
-    )
+    const title = prettyTitle(doc)
+    return cb(null, assign({}, doc, {title}))
   })
 }
 
