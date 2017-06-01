@@ -92,7 +92,11 @@ const validate = osom({
   'boom size': String,
   'boom type': String,
 
-  'fin size': Number,
+  'fin size': {
+    type: Number,
+    validate: isFinite
+  },
+
   'fin type': String,
 
   'mast carbon': Number,
