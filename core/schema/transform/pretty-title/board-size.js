@@ -20,7 +20,9 @@ const getBoardSize = flow([
 function prettyBoardSize (item) {
   const {title} = item
   if (!hasBoardSize(item)) return title
+
   const size = strmatch(title, regexBoardSize)
+  if (!size.test) return title
 
   return chain(title)
     .replace(size.match, getBoardSize(size.match))
