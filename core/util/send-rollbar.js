@@ -16,7 +16,7 @@ const rollbar = new Rollbar({
 })
 
 function sendToRollbar (level = 'error', ...params) {
-  if (isProduction) rollbar[level](params)
+  if (isProduction) rollbar[level](...params)
 }
 
 module.exports = sendToRollbar
