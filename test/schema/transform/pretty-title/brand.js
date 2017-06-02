@@ -81,4 +81,11 @@ describe('schema » transform » pretty title » brand', function () {
     const output = prettyBrand(item)
     should(output).be.equal('JP Australia Supersport Pro 137 2017')
   })
+
+  xit('mast', function () {
+  })
+  xit('accesories', function () {
+  })
+  xit('fin', function () {
+  })
 })
