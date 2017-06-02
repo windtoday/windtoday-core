@@ -2,44 +2,40 @@
 
 const { size, assign, flow, reduce, replace } = require('lodash')
 
-const {sails, boards} = require('../../../directory')
+const createDirectoryFlow = require('../../../directory/create-flow')
+
+const {
+  sails,
+  boards,
+  accesories
+} = require('../../../directory')
 
 const REPLACEMENT = '{{BRAND}}'
 
 const assignItemTitle = (item, title) => assign({}, item, {title})
 
-function prettySailBrand (item) {
-  const {title, brand} = item
-  if (!brand) return title
+function createPrettyBrand (directory) {
+  function prettyBrand (item) {
+    const {title, brand} = item
+    if (!brand) return title
 
-  const {output} = sails(title, {
-    findModel: false,
-    strmatchOpts: {
-      replacement: REPLACEMENT
-    }
-  })
+    const {output} = directory(title, {
+      findModel: false,
+      strmatchOpts: {
+        replacement: REPLACEMENT
+      }
+    })
 
-  return replace(output, REPLACEMENT, brand)
-}
+    return replace(output, REPLACEMENT, brand)
+  }
 
-function prettyBoardBrand (item) {
-  const {title, brand} = item
-  if (!brand) return title
-
-  const {output} = boards(title, {
-    findModel: false,
-    strmatchOpts: {
-      replacement: REPLACEMENT
-    }
-  })
-
-  return replace(output, REPLACEMENT, brand)
+  return prettyBrand
 }
 
 const transformers = {
-  sails: prettySailBrand,
-  booms: prettySailBrand,
-  boards: prettyBoardBrand
+  sails: createPrettyBrand(sails),
+  booms: createPrettyBrand(createDirectoryFlow([sails, accesories])),
+  boards: createPrettyBrand(boards)
 }
 
 const addTransformer = (acc, transformer) => (
