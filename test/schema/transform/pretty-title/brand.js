@@ -4,7 +4,7 @@ const should = require('should')
 const prettyBrand = require('../../../../core/schema/transform/pretty-title/brand')
 
 describe('schema » transform » pretty title » brand', function () {
-  it('sail', function () {
+  it('boom', function () {
     const item = {
       'isForced': true,
       'title': 'North Sails Red Series 180-230 Classic',
@@ -28,5 +28,32 @@ describe('schema » transform » pretty title » brand', function () {
 
     const output = prettyBrand(item)
     should(output).be.equal('North Red Series 180-230 Classic')
+  })
+
+  it('board', function () {
+    const item = {
+      'isForced': true,
+      'title': 'Jp Australia Supersport Pro 137 2017',
+      'category': [
+        'boards'
+      ],
+      'seller': 'freerace',
+      'condition': 'new',
+      'provider': 'telstarsurf',
+      'path': 'boards',
+      'link': 'http://www.telstarsurf.com/windsurf/windsurfboards/freerace-boards/53039/jp-australia-supersport-pro-2017/?ref=windtodayco',
+      'image': 'http://www.telstarsurf.com/cache/img/b0b078e3bfb3/500/500/max/max/supersport-pro-2017.png',
+      'updatedAt': 1496268000000,
+      'timestamp': 1496314912311,
+      'brand': 'JP Australia',
+      'model': 'Super Sport',
+      'price': 2299,
+      'year': 2017,
+      'board size': 137,
+      'objectID': '4377030791'
+    }
+
+    const output = prettyBrand(item)
+    should(output).be.equal('JP Australia Supersport Pro 137 2017')
   })
 })

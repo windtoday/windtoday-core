@@ -2,7 +2,7 @@
 
 const { size, assign, flow, reduce, replace } = require('lodash')
 
-const {sails} = require('../../../directory')
+const {sails, boards} = require('../../../directory')
 
 const REPLACEMENT = '{{BRAND}}'
 
@@ -22,9 +22,24 @@ function prettySailBrand (item) {
   return replace(output, REPLACEMENT, brand)
 }
 
+function prettyBoardBrand (item) {
+  const {title, brand} = item
+  if (!brand) return title
+
+  const {output} = boards(title, {
+    findModel: false,
+    strmatchOpts: {
+      replacement: REPLACEMENT
+    }
+  })
+
+  return replace(output, REPLACEMENT, brand)
+}
+
 const transformers = {
   sails: prettySailBrand,
-  booms: prettySailBrand
+  booms: prettySailBrand,
+  boards: prettyBoardBrand
 }
 
 const addTransformer = (acc, transformer) => (
