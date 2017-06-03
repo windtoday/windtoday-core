@@ -16,6 +16,7 @@ function createPrettyBrand (directory) {
 
     const {output} = directory(title, {
       findModel: false,
+      findType: false,
       strmatchOpts: {
         replacement: REPLACEMENT
       }
