@@ -1,7 +1,7 @@
 'use strict'
 
 const normalizeValue = require('./normalize-value')
-const {get} = require('lodash')
+const {round, get} = require('lodash')
 
 function createGetScore (opts) {
   const {aggregate, getKey, test, propName} = opts
@@ -13,10 +13,12 @@ function createGetScore (opts) {
     const key = getKey(doc)
     const score = aggregate[key]
 
-    return normalizeValue(prop, [
+    const normalize = normalizeValue(prop, [
       { value: score.min, norm: 1 },
       { value: score.max, norm: 0 }
     ])
+
+    return round(normalize, 2)
   }
 
   return getScore
