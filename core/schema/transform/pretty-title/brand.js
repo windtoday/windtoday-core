@@ -32,6 +32,7 @@ const transformers = {
   booms: createPrettyBrand(createDirectoryFlow([sails, accesories])),
   masts: createPrettyBrand(createDirectoryFlow([sails, accesories])),
   fins: createPrettyBrand(createDirectoryFlow([fins, accesories])),
+  others: createPrettyBrand(accesories),
   boards: createPrettyBrand(boards)
 }
 

@@ -64,6 +64,21 @@ describe('schema » transform » pretty title', function () {
         'objectID': '2670729852'
       },
       expected: 'Northsails Drive Grom Kids 3m 2017'
+    }, {
+      item: {
+        title: 'Vendo Gancho Arnés Dakine 30cm - 20€',
+        category: [ 'others' ],
+        seller: 'particular',
+        condition: 'used',
+        provider: 'totalwind',
+        path: 'accesories',
+        link: 'https://totalwind.net/foro/viewtopic.php?f=65&t=104694&ref=windtodayco',
+        updatedAt: 1496440800000,
+        timestamp: 1496488144704,
+        brand: 'Dakine',
+        price: 20
+      },
+      expected: 'Gancho Arnés Dakine 30cm'
     }
   ].forEach(function ({item, expected}) {
     const {title} = item
