@@ -40,14 +40,14 @@ const addTransformer = (acc, transformer) => (
 )
 
 function prettyBrand (item) {
-  const {category: categories} = item
+  const {category: categories, title} = item
   const tranformers = reduce(categories, function (acc, category) {
     const transformer = transformers[category]
     addTransformer(acc, transformer)
     return acc
   }, [])
 
-  return flow(tranformers)(item)
+  return size(tranformers) ? flow(tranformers)(item) : title
 }
 
 module.exports = prettyBrand

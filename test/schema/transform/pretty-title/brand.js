@@ -4,6 +4,11 @@ const should = require('should')
 const prettyBrand = require('../../../../core/schema/transform/pretty-title/brand')
 
 describe('schema » transform » pretty title » brand', function () {
+  it('nothing', function () {
+    const item = {title: 'Hello World'}
+    const output = prettyBrand(item)
+    should(output).be.equal('Hello World')
+  })
   it('sail', function () {
     const item = {
       'isForced': false,
@@ -81,7 +86,6 @@ describe('schema » transform » pretty title » brand', function () {
     const output = prettyBrand(item)
     should(output).be.equal('JP Australia Supersport Pro 137 2017')
   })
-
   it('mast', function () {
     const item = {
       'title': 'Loftsails Rdm Spark C50% 2017',
