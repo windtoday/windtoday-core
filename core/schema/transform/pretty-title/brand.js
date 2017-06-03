@@ -1,14 +1,9 @@
 'use strict'
 
-const { size, assign, flow, reduce, replace } = require('lodash')
+const {size, assign, flow, reduce, replace} = require('lodash')
 
+const {sails, boards, accesories, fins} = require('../../../directory')
 const createDirectoryFlow = require('../../../directory/create-flow')
-
-const {
-  sails,
-  boards,
-  accesories
-} = require('../../../directory')
 
 const REPLACEMENT = '{{BRAND}}'
 
@@ -36,6 +31,7 @@ const transformers = {
   sails: createPrettyBrand(sails),
   booms: createPrettyBrand(createDirectoryFlow([sails, accesories])),
   masts: createPrettyBrand(createDirectoryFlow([sails, accesories])),
+  fins: createPrettyBrand(createDirectoryFlow([fins, accesories])),
   boards: createPrettyBrand(boards)
 }
 

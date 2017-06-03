@@ -108,8 +108,28 @@ describe('schema » transform » pretty title » brand', function () {
     const output = prettyBrand(item)
     should(output).be.equal('Loft Rdm Spark C50% 2017')
   })
-  xit('accesories', function () {
-  })
-  xit('fin', function () {
+  it('fin', function () {
+    const item = {
+      'title': 'Pro Limit R-Cr 38cm Slalom',
+      'category': [
+        'fins'
+      ],
+      'seller': 'used',
+      'condition': 'used',
+      'provider': 'bigsurfshop',
+      'path': 'fins',
+      'link': 'http://www.bigsurfshop.com/product/pro-limit-windsurfing-fin-38cm-tuttle/?ref=windtodayco',
+      'image': 'http://www.bigsurfshop.com/wp-content/uploads/2016/08/bigsurfshop-Pro-Limit-R-CR-Tuttle-Fin-02-247x300.jpg',
+      'updatedAt': 1496268000000,
+      'timestamp': 1496308237872,
+      'isForced': true,
+      'brand': 'Prolimit',
+      'price': 59,
+      'fin size': 38,
+      'priceScore': 0,
+      'objectID': '4376588671'
+    }
+    const output = prettyBrand(item)
+    should(output).be.equal('Prolimit R-Cr 38cm Slalom')
   })
 })
