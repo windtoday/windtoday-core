@@ -8,7 +8,7 @@ const schema = require('../../core/schema')
 const baseFixture = {
   title: 'Vendo Mistral Syncro 92l 2007 - 280€',
   price: 280,
-  category: 'particular',
+  category: ['boards'],
   seller: 'particular',
   provider: 'totalwind',
   link: 'http://totalwind.net/foro/viewtopic.php?f=48&t=102239',
