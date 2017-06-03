@@ -1,8 +1,8 @@
 'use strict'
 
 const startOfDay = require('date-fns/start_of_day')
+const {waterfall, asyncify} = require('async')
 const {assign, isFinite} = require('lodash')
-const {asyncify} = require('async')
 const osom = require('osom')
 
 const getReferralLink = require('./get-referral-link')
@@ -16,7 +16,7 @@ const isValidPrice = require('./validate/price')
 const serializer = require('./serializer')
 const isUrl = require('../util/is-url')
 
-const validate = osom({
+const validator = osom({
   /* common */
   title: {
     required: true,
@@ -103,9 +103,10 @@ const validate = osom({
   'mast type': String
 })
 
-const validateAsync = asyncify(validate)
+const titleize = asyncify(prettyTitle)
+const validate = asyncify(validator)
 
-function validator (schema, cb) {
+module.exports = function (schema, cb) {
   const now = Date.now()
 
   const doc = assign({}, schema, {
@@ -117,12 +118,17 @@ function validator (schema, cb) {
 
   const schemaSerialized = serializer(doc)
 
-  validateAsync(schemaSerialized, function (err, doc) {
-    if (err) return cb(err, doc)
+  const tasks = [
+    function validateSchema (next) {
+      return validate(schemaSerialized, next)
+    },
+    function prettyTitle (doc, next) {
+      return titleize(doc, (err, title) => next(err, doc, title))
+    },
+    function assignProps (doc, title, next) {
+      return next(null, assign({}, doc, {title}))
+    }
+  ]
 
-    const title = prettyTitle(doc)
-    return cb(null, assign({}, doc, {title}))
-  })
+  return waterfall(tasks, cb)
 }
-
-module.exports = validator
