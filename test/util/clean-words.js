@@ -19,6 +19,8 @@ describe('core » util » clean title words', function () {
       'fin',
       'fins',
       'mastil',
+      'mast',
+      'masts',
       'mástil',
       'mastiles',
       'mástiles',
