@@ -47,7 +47,7 @@
     "telstarsurf-api": "~1.0.7",
     "titleize": "~1.0.0",
     "totalwind-api": "~1.2.4",
-    "url-regex": "~4.0.0",
+    "url-regex": "~4.1.0",
     "wewind-api": "~1.0.2",
     "windtoday-windsurf-accesories": "github:windtoday/windtoday-windsurf-accesories",
     "windtoday-windsurf-boards": "github:windtoday/windtoday-windsurf-boards",
@@ -63,7 +63,7 @@
     "standard": "latest"
   },
   "engines": {
-    "node": "6"
+    "node": ">= 8"
   },
   "scripts": {
     "clean": "rm -rf node_modules",
