@@ -9,6 +9,7 @@ const sailSize = require('./sail-size')
 const removePrice = require('./price')
 const prettyYear = require('./year')
 const prettyBrand = require('./brand')
+const prettyMastType = require('./mast-type')
 
 const assignItemTitle = (item, title) => assign({}, item, {title})
 
@@ -17,6 +18,7 @@ module.exports = flow([
   item => assignItemTitle(item, cleanWords(item)),
   item => assignItemTitle(item, boardSize(item)),
   item => assignItemTitle(item, sailSize(item)),
+  item => assignItemTitle(item, prettyMastType(item)),
   item => assignItemTitle(item, prettyYear(item)),
   item => assignItemTitle(item, prettyBrand(item)),
   condenseWhiteSpace

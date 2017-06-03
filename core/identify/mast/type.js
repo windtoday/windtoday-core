@@ -21,3 +21,4 @@ function type (str) {
 }
 
 module.exports = type
+module.exports.regex = REGEX_MAST_DIAMETER

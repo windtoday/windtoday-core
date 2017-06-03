@@ -123,6 +123,29 @@ describe('schema » transform » pretty title', function () {
         'objectID': '4397219781'
       },
       expected: 'Tekknosport FREEWEED G10 TUTTLE 27CM'
+    }, {
+      item: {
+        'isForced': true,
+        'title': 'North Silver Sdm 490 2014',
+        'category': [
+          'masts'
+        ],
+        'seller': 'rdm',
+        'condition': 'new',
+        'provider': 'telstarsurf',
+        'path': 'masts',
+        'link': 'http://www.telstarsurf.com/windsurf/windsurfmasts/sdm-windsurfmasts/40752/northsails-silver-sdm-2014/?ref=windtodayco',
+        'image': 'http://www.telstarsurf.com/cache/img/71ef781f0e35/500/500/max/max/silver-sdm-55-2014.jpeg',
+        'updatedAt': 1496440800000,
+        'timestamp': 1496496786976,
+        'brand': 'North',
+        'price': 239,
+        'year': 2014,
+        'mast size': 490,
+        'mast type': 'sdm',
+        'objectID': '3925173200'
+      },
+      expected: 'North Silver SDM 490 2014'
     }
   ].forEach(function ({item, expected}) {
     const {title} = item
