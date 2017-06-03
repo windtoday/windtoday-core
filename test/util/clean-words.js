@@ -8,6 +8,8 @@ describe('core » util » clean title words', function () {
     [
       'aleta',
       'aletas',
+      'sail',
+      'sails',
       'board',
       'boards',
       'boom',

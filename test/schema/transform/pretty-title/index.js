@@ -28,7 +28,7 @@ describe('schema » transform » pretty title', function () {
         year: 2017,
         'sail size': 8.7
       },
-      expected: 'Gun Sails GSR 8.7m 2017'
+      expected: 'Gun GSR 8.7m 2017'
     },
     {
       item: {
@@ -79,6 +79,50 @@ describe('schema » transform » pretty title', function () {
         price: 20
       },
       expected: 'Gancho Arnés Dakine 30cm'
+    }, {
+      item: {
+        'isForced': true,
+        'title': 'Northsails Drive Grom Kids 3m 2017',
+        'category': [
+          'sails'
+        ],
+        'seller': 'new',
+        'condition': 'new',
+        'provider': 'wewind',
+        'path': 'sails',
+        'link': 'http://we-wind.com/velas-de-windsurf-es-2/north-sails-drive-grom-2017-kids.html?ref=windtodayco',
+        'image': 'http://we-wind.com/images/thumbnails/2/230/230/North-Sails-DRIVE-GROM-2016.jpg',
+        'updatedAt': 1496268000000,
+        'timestamp': 1496318367225,
+        'brand': 'North',
+        'price': 286,
+        'year': 2017,
+        'sail size': 3,
+        'priceScore': 1,
+        'objectID': '3908327910'
+      },
+      expected: 'North Drive Grom Kids 3m 2017'
+    }, {
+      item: {
+        'isForced': true,
+        'title': 'VENDO ALETA TEKKNOSPORT FREEWEED G10 TUTTLE 27CM - 40€',
+        'category': [
+          'fins'
+        ],
+        'seller': 'particular',
+        'condition': 'used',
+        'provider': 'totalwind',
+        'path': 'fins',
+        'link': 'https://totalwind.net/foro/viewtopic.php?f=67&t=103190&ref=windtodayco',
+        'updatedAt': 1496440800000,
+        'timestamp': 1496487848932,
+        'brand': 'Tekknosport',
+        'price': 40,
+        'fin size': 10,
+        'fin type': 'Tuttle Box',
+        'objectID': '4397219781'
+      },
+      expected: 'Tekknosport FREEWEED G10 TUTTLE 27CM'
     }
   ].forEach(function ({item, expected}) {
     const {title} = item
