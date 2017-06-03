@@ -126,7 +126,8 @@ module.exports = function (schema, cb) {
       return titleize(doc, (err, title) => next(err, doc, title))
     },
     function assignProps (doc, title, next) {
-      return next(null, assign({}, doc, {title}))
+      const prettyDoc = assign({}, doc, {title})
+      return next(null, prettyDoc)
     }
   ]
 
