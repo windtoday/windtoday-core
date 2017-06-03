@@ -82,7 +82,31 @@ describe('schema » transform » pretty title » brand', function () {
     should(output).be.equal('JP Australia Supersport Pro 137 2017')
   })
 
-  xit('mast', function () {
+  it('mast', function () {
+    const item = {
+      'title': 'Loftsails Rdm Spark C50% 2017',
+      'category': [
+        'masts'
+      ],
+      'seller': 'new',
+      'condition': 'new',
+      'provider': 'easysurfshop',
+      'path': 'masts',
+      'link': 'https://easy-surfshop.com/do/item/N-LOFTSAILS-MAST-RDM-SPARK-C50-2017/LOFTSAILS-Mast-RDM-Spark-C50-2017?ref=windtodayco',
+      'image': 'https://images.easy-surfshop.com/images/_small/N-LOFTSAILS-MAST-RDM-SPARK-C50-2017.jpg',
+      'updatedAt': 1496268000000,
+      'timestamp': 1496308681313,
+      'isForced': true,
+      'brand': 'Loft',
+      'price': 159,
+      'year': 2017,
+      'mast carbon': 50,
+      'mast type': 'rdm',
+      'priceScore': 1,
+      'objectID': '2672178012'
+    }
+    const output = prettyBrand(item)
+    should(output).be.equal('Loft Rdm Spark C50% 2017')
   })
   xit('accesories', function () {
   })

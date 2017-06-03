@@ -35,6 +35,7 @@ function createPrettyBrand (directory) {
 const transformers = {
   sails: createPrettyBrand(sails),
   booms: createPrettyBrand(createDirectoryFlow([sails, accesories])),
+  masts: createPrettyBrand(createDirectoryFlow([sails, accesories])),
   boards: createPrettyBrand(boards)
 }
 
