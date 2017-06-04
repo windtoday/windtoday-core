@@ -9,16 +9,16 @@ function createGetScore (opts) {
   function getScore (doc) {
     if (!test(doc)) return 0
 
-    const prop = get(doc, propName)
+    const value = get(doc, propName)
     const key = getKey(doc)
     const score = aggregate[key]
 
-    const normalize = normalizeValue(prop, [
-      { value: score.min, norm: 1 },
-      { value: score.max, norm: 0 }
+    const normalize = normalizeValue(value, [
+      { value: score.min, norm: 5 },
+      { value: score.max, norm: 1 }
     ])
 
-    return round(normalize, 2)
+    return round(normalize)
   }
 
   return getScore
