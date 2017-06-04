@@ -146,6 +146,29 @@ describe('schema » transform » pretty title', function () {
         'objectID': '3925173200'
       },
       expected: 'North Silver SDM 490 2014'
+    }, {
+      item: {
+        'isForced': false,
+        'title': 'Carbono Rrd Slim 150-200 2016',
+        'category': [
+          'booms'
+        ],
+        'seller': 'particular',
+        'condition': 'used',
+        'provider': 'totalwind',
+        'path': 'booms',
+        'link': 'https://totalwind.net/foro/viewtopic.php?f=64&t=105801&ref=windtodayco',
+        'updatedAt': 1496534400000,
+        'timestamp': 1496557875426,
+        'brand': 'RRD',
+        'price': 300,
+        'year': 2016,
+        'boom size': '150/200',
+        'boom type': 'carbon',
+        'priceScore': 1,
+        'objectID': '4400901281'
+      },
+      expected: 'Carbono RRD Slim 150-200 2016'
     }
   ].forEach(function ({item, expected}) {
     const {title} = item
