@@ -18,6 +18,6 @@ describe('score » create get score', function () {
 
     const score = getScore(data[1])
 
-    should(score).be.equal(0.61)
+    should(score).be.equal(3)
   })
 })
