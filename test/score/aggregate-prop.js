@@ -18,7 +18,8 @@ describe('score » aggregate prop', function () {
     should(aggregate[aggregateKey]).be.eql({
       min: 320,
       max: 499,
-      avg: 403
+      avg: 403,
+      p95: 499
     })
   })
 })
