@@ -3,7 +3,7 @@
 const {map, pick} = require('lodash')
 const {parallel} = require('async')
 
-const FALLBACK_IMAGE = 'https://windtoday.co/assets/img/logo.jpg'
+const FALLBACK_IMAGE = 'https://blog.windtoday.co/logo.jpg'
 
 function getOptions (doc, accountType) {
   const image = doc.image || FALLBACK_IMAGE
