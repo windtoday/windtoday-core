@@ -2,7 +2,7 @@
 
 const startOfDay = require('date-fns/start_of_day')
 const {waterfall, asyncify} = require('async')
-const {assign, isFinite} = require('lodash')
+const {assign, isFinite, round} = require('lodash')
 const osom = require('osom')
 
 const getReferralLink = require('./get-referral-link')
@@ -72,7 +72,8 @@ const validator = osom({
   price: {
     required: true,
     type: Number,
-    validate: isValidPrice
+    validate: isValidPrice,
+    transform: [round]
   },
 
   year: Number,
