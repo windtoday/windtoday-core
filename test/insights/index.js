@@ -44,8 +44,8 @@ describe('core » insights', function () {
 
     describe('items by category', function () {
       it('all', function () {
-        const {items, size} = createInsights(data)
-        const {all} = items
+        const {category, size} = createInsights(data)
+        const {all} = category
 
         should(all).be.eql({
           easysurfshop: {count: 198, percent: '8%'},
@@ -63,8 +63,8 @@ describe('core » insights', function () {
       })
 
       it('sails', function () {
-        const {items, size} = createInsights(data)
-        const {sails} = items
+        const {category, size} = createInsights(data)
+        const {sails} = category
 
         should(sails).be.eql({
           easysurfshop: { count: 72, percent: '9%' },
@@ -82,8 +82,8 @@ describe('core » insights', function () {
       })
 
       it('boards', function () {
-        const {items, size} = createInsights(data)
-        const {boards} = items
+        const {category, size} = createInsights(data)
+        const {boards} = category
 
         should(boards).be.eql({
           lpwind: { count: 64, percent: '9%' },
@@ -101,8 +101,8 @@ describe('core » insights', function () {
       })
 
       it('masts', function () {
-        const {items, size} = createInsights(data)
-        const {masts} = items
+        const {category, size} = createInsights(data)
+        const {masts} = category
 
         should(masts).be.eql({
           easysurfshop: { count: 43, percent: '8%' },
@@ -120,8 +120,8 @@ describe('core » insights', function () {
       })
 
       it('fins', function () {
-        const {items, size} = createInsights(data)
-        const {fins} = items
+        const {category, size} = createInsights(data)
+        const {fins} = category
 
         should(fins).be.eql({
           telstarsurf: { count: 235, percent: '84%' },
@@ -136,8 +136,8 @@ describe('core » insights', function () {
       })
 
       it('booms', function () {
-        const {items, size} = createInsights(data)
-        const {booms} = items
+        const {category, size} = createInsights(data)
+        const {booms} = category
 
         should(booms).be.eql({
           easysurfshop: { count: 18, percent: '11%' },

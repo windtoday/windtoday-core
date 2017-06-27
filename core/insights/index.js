@@ -71,7 +71,7 @@ function insights (data) {
   return {
     providers: getUniqValues(data, 'provider'),
     size,
-    items: getItemsByCategory(data, size)
+    category: getItemsByCategory(data, size)
   }
 }
 
