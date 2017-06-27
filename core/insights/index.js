@@ -67,11 +67,11 @@ const getUniqValues = (data, iteratee) => chain(data)
 const getPercent = (partial, total) => calcPercent(partial, total, {suffix: '%'})
 
 function insights (data) {
-  const size = getSizeByCategory(data)
+  const category = getSizeByCategory(data)
   return {
     providers: getUniqValues(data, 'provider'),
-    size,
-    category: getItemsByCategory(data, size)
+    provider: getItemsByCategory(data, category),
+    category
   }
 }
 

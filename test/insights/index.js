@@ -23,7 +23,7 @@ describe('core » insights', function () {
       ])
     })
 
-    describe('size by category', function () {
+    describe('by category', function () {
       ;[
         ['all', { count: 2521, percent: '100%' }],
         ['sails', { count: 842, percent: '33%' }],
@@ -36,16 +36,16 @@ describe('core » insights', function () {
         const categorySize = category[1]
 
         it(categoryName, function () {
-          const {size} = createInsights(data)
-          should(size[categoryName]).be.eql(categorySize)
+          const {category} = createInsights(data)
+          should(category[categoryName]).be.eql(categorySize)
         })
       })
     })
 
-    describe('items by category', function () {
+    describe('by provider', function () {
       it('all', function () {
-        const {category, size} = createInsights(data)
-        const {all} = category
+        const {provider, category} = createInsights(data)
+        const {all} = provider
 
         should(all).be.eql({
           easysurfshop: {count: 198, percent: '8%'},
@@ -59,12 +59,12 @@ describe('core » insights', function () {
         })
 
         const sum = reduce(all, (acc, item) => acc + item.count, 0)
-        should(sum).be.equal(size.all.count)
+        should(sum).be.equal(category.all.count)
       })
 
       it('sails', function () {
-        const {category, size} = createInsights(data)
-        const {sails} = category
+        const {provider, category} = createInsights(data)
+        const {sails} = provider
 
         should(sails).be.eql({
           easysurfshop: { count: 72, percent: '9%' },
@@ -78,12 +78,12 @@ describe('core » insights', function () {
         })
 
         const sum = reduce(sails, (acc, item) => acc + item.count, 0)
-        should(sum).be.equal(size.sails.count)
+        should(sum).be.equal(category.sails.count)
       })
 
       it('boards', function () {
-        const {category, size} = createInsights(data)
-        const {boards} = category
+        const {provider, category} = createInsights(data)
+        const {boards} = provider
 
         should(boards).be.eql({
           lpwind: { count: 64, percent: '9%' },
@@ -97,12 +97,12 @@ describe('core » insights', function () {
         })
 
         const sum = reduce(boards, (acc, item) => acc + item.count, 0)
-        should(sum).be.equal(size.boards.count)
+        should(sum).be.equal(category.boards.count)
       })
 
       it('masts', function () {
-        const {category, size} = createInsights(data)
-        const {masts} = category
+        const {provider, category} = createInsights(data)
+        const {masts} = provider
 
         should(masts).be.eql({
           easysurfshop: { count: 43, percent: '8%' },
@@ -116,12 +116,12 @@ describe('core » insights', function () {
         })
 
         const sum = reduce(masts, (acc, item) => acc + item.count, 0)
-        should(sum).be.equal(size.masts.count)
+        should(sum).be.equal(category.masts.count)
       })
 
       it('fins', function () {
-        const {category, size} = createInsights(data)
-        const {fins} = category
+        const {provider, category} = createInsights(data)
+        const {fins} = provider
 
         should(fins).be.eql({
           telstarsurf: { count: 235, percent: '84%' },
@@ -132,12 +132,12 @@ describe('core » insights', function () {
         })
 
         const sum = reduce(fins, (acc, item) => acc + item.count, 0)
-        should(sum).be.equal(size.fins.count)
+        should(sum).be.equal(category.fins.count)
       })
 
       it('booms', function () {
-        const {category, size} = createInsights(data)
-        const {booms} = category
+        const {provider, category} = createInsights(data)
+        const {booms} = provider
 
         should(booms).be.eql({
           easysurfshop: { count: 18, percent: '11%' },
@@ -151,7 +151,7 @@ describe('core » insights', function () {
         })
 
         const sum = reduce(booms, (acc, item) => acc + item.count, 0)
-        should(sum).be.equal(size.booms.count)
+        should(sum).be.equal(category.booms.count)
       })
     })
   })
