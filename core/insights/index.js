@@ -1,9 +1,9 @@
 'use strict'
 
-const {size: getSize, get, iteratee, mapValues, set, chain, reduce} = require('lodash')
+const {size, get, iteratee, mapValues, set, chain, reduce} = require('lodash')
 const calcPercent = require('calc-percent')
 
-const groupBy = (data, size, groupPropName) => {
+const groupBy = (data, count, groupPropName) => {
   const getPropName = iteratee(groupPropName)
   const group = reduce(data, (acc, item) => {
     const propName = getPropName(item)
@@ -11,7 +11,7 @@ const groupBy = (data, size, groupPropName) => {
     return acc
   }, {})
 
-  return mapPercent(group, size)
+  return mapPercent(group, count)
 }
 
 const incrementPropName = (acc, key) => {
@@ -32,14 +32,15 @@ const getUniqValues = (data, iteratee) => chain(data)
 const getPercent = (partial, total) => calcPercent(partial, total, {suffix: '%'})
 
 function insights (data) {
-  const count = getSize(data)
+  const count = size(data)
 
   return {
     count,
     providers: getUniqValues(data, 'provider'),
     provider: groupBy(data, count, 'provider'),
     category: groupBy(data, count, 'category'),
-    condition: groupBy(data, count, 'condition')
+    condition: groupBy(data, count, 'condition'),
+    brand: groupBy(data, count, 'brand')
   }
 }
 

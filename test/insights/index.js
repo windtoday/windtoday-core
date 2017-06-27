@@ -57,5 +57,65 @@ describe('core » insights', function () {
         used: {count: 386, percent: '15%'}
       })
     })
+
+    it('by brand', function () {
+      const {brand} = createInsights(data)
+
+      should(brand).be.eql({
+        North: { count: 448, percent: '18%' },
+        Loft: { count: 120, percent: '5%' },
+        Gaastra: { count: 209, percent: '8%' },
+        Severne: { count: 159, percent: '6%' },
+        Starboard: { count: 164, percent: '7%' },
+        undefined: { count: 36, percent: '1%' },
+        RRD: { count: 50, percent: '2%' },
+        'JP Australia': { count: 82, percent: '3%' },
+        Naish: { count: 98, percent: '4%' },
+        Prolimit: { count: 25, percent: '1%' },
+        Neilpryde: { count: 166, percent: '7%' },
+        Tabou: { count: 127, percent: '5%' },
+        Fanatic: { count: 178, percent: '7%' },
+        Gun: { count: 8, percent: '0%' },
+        Aeron: { count: 16, percent: '1%' },
+        Goya: { count: 49, percent: '2%' },
+        'Point-7': { count: 3, percent: '0%' },
+        Simmer: { count: 13, percent: '1%' },
+        Secret: { count: 1, percent: '0%' },
+        'Hot Maui': { count: 2, percent: '0%' },
+        Challenger: { count: 1, percent: '0%' },
+        Vandal: { count: 9, percent: '0%' },
+        Unifiber: { count: 209, percent: '8%' },
+        Ezzy: { count: 11, percent: '0%' },
+        Exocet: { count: 20, percent: '1%' },
+        Ka: { count: 5, percent: '0%' },
+        Quatro: { count: 17, percent: '1%' },
+        Mistral: { count: 8, percent: '0%' },
+        F2: { count: 4, percent: '0%' },
+        'Severne Sails': { count: 2, percent: '0%' },
+        AHD: { count: 2, percent: '0%' },
+        Arrows: { count: 3, percent: '0%' },
+        Tribal: { count: 18, percent: '1%' },
+        '': { count: 11, percent: '0%' },
+        Chinook: { count: 10, percent: '0%' },
+        Select: { count: 88, percent: '3%' },
+        Technospar: { count: 4, percent: '0%' },
+        Tushingham: { count: 7, percent: '0%' },
+        XO: { count: 7, percent: '0%' },
+        mXr: { count: 6, percent: '0%' },
+        Angulo: { count: 1, percent: '0%' },
+        Avanti: { count: 1, percent: '0%' },
+        Maui: { count: 5, percent: '0%' },
+        Bic: { count: 1, percent: '0%' },
+        'Maui Ultra': { count: 5, percent: '0%' },
+        B3: { count: 6, percent: '0%' },
+        MFC: { count: 83, percent: '3%' },
+        C3: { count: 2, percent: '0%' },
+        MaverX: { count: 15, percent: '1%' },
+        Drake: { count: 2, percent: '0%' },
+        Sinergy: { count: 1, percent: '0%' },
+        Choco: { count: 2, percent: '0%' },
+        Radz: { count: 1, percent: '0%' }
+      })
+    })
   })
 })
