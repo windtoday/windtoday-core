@@ -3,7 +3,7 @@
 const {size} = require('lodash')
 
 const createProcessExit = require('../../core/util/create-process-exit')
-const createScoreWorker = require('../../core/worker/score')
+const createStatsWorker = require('../../core/worker/stats')
 const createLogger = require('../../core/log')
 
 const test = item => item.price && size(item.category) === 1 && item.year
@@ -11,11 +11,14 @@ const getKey = item => `${item.year}.${item.condition}.${item.category}`
 const propName = 'price'
 
 const log = createLogger({
-  keyword: 'score:price',
+  keyword: 'stats',
   diff: true
 })
 
-const scoreWorker = createScoreWorker({log, test, getKey, propName})
+const statsWorker = createStatsWorker({log, test, getKey, propName})
+
+// TODO: Determinate arguments for score worker
+// TODO: Pass to stats worker following a data interface
 const processExit = createProcessExit(log)
 
-scoreWorker(processExit)
+statsWorker(processExit)

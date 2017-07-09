@@ -3,12 +3,12 @@
 const should = require('should')
 const data = require('./data.json')
 
-const createInsights = require('../../core/insights')
+const createStats = require('../../core/stats')
 
-describe('core » insights', function () {
+describe('core » stats', function () {
   describe('leaderboard', function () {
     it('list all providers', function () {
-      const {providers} = createInsights(data)
+      const {providers} = createStats(data)
 
       should(providers).be.eql([
         'easysurfshop',
@@ -23,7 +23,7 @@ describe('core » insights', function () {
     })
 
     it('by category', function () {
-      const {category} = createInsights(data)
+      const {category} = createStats(data)
 
       should(category).be.eql({
         sails: { count: 842, percent: '33%' },
@@ -35,7 +35,7 @@ describe('core » insights', function () {
     })
 
     it('by provider', function () {
-      const {provider} = createInsights(data)
+      const {provider} = createStats(data)
 
       should(provider).be.eql({
         easysurfshop: { count: 198, percent: '8%' },
@@ -50,7 +50,7 @@ describe('core » insights', function () {
     })
 
     it('by condition', function () {
-      const {condition} = createInsights(data)
+      const {condition} = createStats(data)
 
       should(condition).be.eql({
         new: {count: 2135, percent: '85%'},
@@ -59,7 +59,7 @@ describe('core » insights', function () {
     })
 
     it('by brand', function () {
-      const {brand} = createInsights(data)
+      const {brand} = createStats(data)
 
       should(brand).be.eql({
         North: { count: 448, percent: '18%' },
