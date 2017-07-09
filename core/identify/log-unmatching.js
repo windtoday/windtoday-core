@@ -1,7 +1,6 @@
 'use strict'
 
 const { assign, get, pick } = require('lodash')
-const sendRollbar = require('../util/send-rollbar')
 
 function factory (namespace, log) {
   function logUnmatching (key, acc) {
@@ -14,7 +13,6 @@ function factory (namespace, log) {
     }
 
     log.warn(key, values)
-    sendRollbar('warning', 'unidentify', assign({}, values, {prop: key}))
   }
 
   return logUnmatching

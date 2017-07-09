@@ -61,4 +61,3 @@ premium_providers:
   - easysurfshop
   - bigsurfshop
   - lpwind
-rollbar: process.env.ROLLBAR_ACCESS_TOKEN
