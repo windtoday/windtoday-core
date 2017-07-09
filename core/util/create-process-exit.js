@@ -4,7 +4,10 @@ const cleanStack = require('clean-stack')
 
 function createProcessExit (log) {
   function processExit (err) {
-    if (!err) return process.exit()
+    if (!err) {
+      log.info('finished')
+      return process.exit()
+    }
 
     const {stack, message, code = 1} = err
     log.fatal(`fatal error: ${message || err}`)
