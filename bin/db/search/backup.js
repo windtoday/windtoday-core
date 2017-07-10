@@ -1,8 +1,8 @@
 'use strict'
 
-const jsonFuture = require('json-future')
-const {fetchAll} = require('../../core/db/search')
 const {waterfall} = require('async')
+const jsonFuture = require('json-future')
+const {fetchAll} = require('../../../core/db/search')
 
 const filename = 'backup.json'
 
