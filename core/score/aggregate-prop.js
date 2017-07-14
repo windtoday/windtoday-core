@@ -38,6 +38,7 @@ function getResume (aggregate) {
     const {max, min, avg, total, values} = value
 
     acc[key] = {
+      total,
       min,
       max,
       avg: round(divide(avg, total)),
