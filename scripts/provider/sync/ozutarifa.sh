@@ -8,6 +8,8 @@ export NODE_ENV=production
 
 (node bin/provider/sync --provider=ozutarifa --seller=outlet --path=sails --no-checkHosts)
 (node bin/provider/sync --provider=ozutarifa --seller=outlet --path=boards --no-checkHosts)
+(node bin/provider/sync --provider=ozutarifa --seller=outlet --path=masts --no-checkHosts)
+(node bin/provider/sync --provider=ozutarifa --seller=outlet --path=booms --no-checkHosts)
 
 (node bin/provider/sync --provider=ozutarifa --seller=store --path=sails --no-checkHosts)
 (node bin/provider/sync --provider=ozutarifa --seller=store --path=boards --no-checkHosts)

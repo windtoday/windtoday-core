@@ -39,7 +39,7 @@
     "lpwind-api": "~1.0.4",
     "meow": "~3.7.0",
     "osom": "~2.2.0",
-    "ozutarifa-api": "~1.2.3",
+    "ozutarifa-api": "~1.2.4",
     "redis-diff": "~2.0.1",
     "regex-word-boundary": "~1.0.1",
     "stats-percentile": "~2.0.0",
