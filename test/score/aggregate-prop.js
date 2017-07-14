@@ -4,7 +4,7 @@ const should = require('should')
 const {size} = require('lodash')
 
 const aggregateProp = require('../../core/score/aggregate-prop')
-const data = require('./data.json')
+const data = require('../data.json')
 
 describe('score » aggregate prop', function () {
   it('get aggregate of a numeric prop', function () {
@@ -16,10 +16,10 @@ describe('score » aggregate prop', function () {
     const aggregateKey = '2017.new.masts'
 
     should(aggregate[aggregateKey]).be.eql({
-      min: 320,
-      max: 499,
-      avg: 403,
-      p95: 499
+      min: 159,
+      max: 1120,
+      avg: 468,
+      p95: 769
     })
   })
 })

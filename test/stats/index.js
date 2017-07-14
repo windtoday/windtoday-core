@@ -1,7 +1,7 @@
 'use strict'
 
 const should = require('should')
-const data = require('./data.json')
+const data = require('../data.json')
 
 const createStats = require('../../core/stats')
 
