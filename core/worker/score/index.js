@@ -27,8 +27,7 @@ function createProviderWorker (opts) {
       const batch = map(data, function (item) {
         const {objectID} = item
         const score = getScore(item)
-        const scoreKey = `${propName}Score`
-        return { [scoreKey]: score, objectID }
+        return { [propName]: score, objectID }
       })
 
       return search.partialUpdateObjects(batch, next)

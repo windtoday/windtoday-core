@@ -13,9 +13,9 @@ const processExit = createProcessExit(log)
 
 const _createScoreWorker = data => {
   const test = item => item.price && size(item.category) === 1 && item.year
-  const getKey = item => `${item.year}.${item.condition}.${item.category}`
-  const propName = 'price'
   const log = createLogger({keyword: 'insights:price', diff: true})
+  const getKey = require('../../core/score/get-key')(log)
+  const propName = 'priceScore'
   return createScoreWorker({log, test, getKey, propName, data})
 }
 
