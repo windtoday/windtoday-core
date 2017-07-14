@@ -15,7 +15,7 @@ const _createScoreWorker = data => {
   const test = item => item.price && size(item.category) === 1 && item.year
   const log = createLogger({keyword: 'insights:price', diff: true})
   const getKey = require('../../core/score/get-key')(log)
-  const propName = 'priceScore'
+  const propName = 'price'
   return createScoreWorker({log, test, getKey, propName, data})
 }
 
