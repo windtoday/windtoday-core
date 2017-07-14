@@ -78,8 +78,6 @@ const validator = osom({
 
   year: Number,
 
-  'mast size': Number,
-
   'sail size': {
     type: Number,
     validate: isValidSailSize
@@ -101,7 +99,8 @@ const validator = osom({
   'fin type': String,
 
   'mast carbon': Number,
-  'mast type': String
+  'mast type': String,
+  'mast size': Number
 })
 
 const titleize = asyncify(prettyTitle)
