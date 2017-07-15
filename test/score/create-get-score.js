@@ -5,7 +5,7 @@ const {size} = require('lodash')
 
 const createGetScore = require('../../core/score/create-get-score')
 const aggregateProp = require('../../core/score/aggregate-prop')
-const data = require('./data.json')
+const data = require('../data.json')
 
 describe('score » create get score', function () {
   it('calculate score', function () {
@@ -18,6 +18,6 @@ describe('score » create get score', function () {
 
     const score = getScore(data[1])
 
-    should(score).be.equal(3)
+    should(score).be.equal(5)
   })
 })
