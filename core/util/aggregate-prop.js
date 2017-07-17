@@ -4,10 +4,8 @@ const {get, reduce, round, divide} = require('lodash')
 const percentile = require('stats-percentile')
 const p95 = data => percentile(data, 95)
 
-function getAggregate (opts) {
-  const {data, test, getKey, propName} = opts
-
-  return reduce(data, function (acc, doc) {
+const getAggregate = ({data, test, getKey, propName}) => (
+  reduce(data, (acc, doc) => {
     if (test(doc)) {
       const key = getKey(doc)
       const prop = get(doc, propName)
@@ -31,10 +29,10 @@ function getAggregate (opts) {
 
     return acc
   }, {})
-}
+)
 
-function getResume (aggregate) {
-  return reduce(aggregate, function (acc, value, key) {
+const getResume = (aggregate) => (
+  reduce(aggregate, function (acc, value, key) {
     const {max, min, avg, total, values} = value
 
     acc[key] = {
@@ -47,7 +45,7 @@ function getResume (aggregate) {
 
     return acc
   }, {})
-}
+)
 
 const aggregateProp = opts => getResume(getAggregate(opts))
 
