@@ -1,4 +1,3 @@
-
 'use strict'
 
 const strmatch = require('str-match')()
@@ -6,9 +5,7 @@ const { toLower, flow } = require('lodash')
 
 const REGEX_MAST_DIAMETER = /\b[sr]dm\b/i
 
-const normalize = flow([
-  toLower
-])
+const normalize = flow([toLower])
 
 function response (data, output) {
   return { data, output }

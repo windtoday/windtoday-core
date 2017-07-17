@@ -6,7 +6,7 @@ const sailSize = require('../../../../core/schema/transform/pretty-title/sail-si
 describe('schema » transform » pretty title » pretty sail size', function () {
   it('dont prettify if sails size is not detected', function () {
     const expected = 'Starboard Futura'
-    const output = sailSize({title: expected})
+    const output = sailSize({ title: expected })
     should(output).be.equal(expected)
   })
 
@@ -34,7 +34,7 @@ describe('schema » transform » pretty title » pretty sail size', function () 
   ].forEach(function (size) {
     const title = `Starboard ${size} Futura`
     it(`${title} → ${expected}`, function () {
-      const output = sailSize({title, 'sail size': 4.7})
+      const output = sailSize({ title, 'sail size': 4.7 })
       should(output).be.equal(expected)
     })
   })

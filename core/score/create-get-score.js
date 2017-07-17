@@ -1,17 +1,14 @@
 'use strict'
 
-const {size, round, get, toLower} = require('lodash')
+const { size, round, get, toLower } = require('lodash')
 
 const normalizeValue = require('../util/normalize-value')
 const createLogMissing = require('./create-log-missing')
 const aggregateProp = require('../util/aggregate-prop')
 const serializeProp = require('./serialize-prop')
 
-const createTest = test => item => (
-  test(item) &&
-  size(item.category) === 1 &&
-  item.price
-)
+const createTest = test => item =>
+  test(item) && size(item.category) === 1 && item.price
 
 const createGetKey = (getKey, logMissing) => item => {
   const customKey = getKey(item, serializeProp, logMissing)
@@ -30,9 +27,9 @@ const createGetScore = ({
   const getKey = createGetKey(_getKey, logMissing)
   const test = createTest(_test)
 
-  const aggregate = aggregateProp({data, test, getKey, propName})
+  const aggregate = aggregateProp({ data, test, getKey, propName })
 
-  const getScore = (doc) => {
+  const getScore = doc => {
     if (!test(doc)) return 0
 
     const value = get(doc, propName)

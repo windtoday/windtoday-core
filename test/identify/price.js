@@ -2,34 +2,16 @@
 
 const price = require('../../core/identify/price')
 const should = require('should')
-const {get} = require('lodash')
+const { get } = require('lodash')
 
-const SYMBOL_VARIATIONS = [
-  '€',
-  ' €',
-  'e',
-  ' e',
-  'E',
-  ' E',
-  'eu',
-  ' eu'
-]
+const SYMBOL_VARIATIONS = ['€', ' €', 'e', ' e', 'E', ' E', 'eu', ' eu']
 
-const SEPARATOR_VARIATIONS = [
-  ' ',
-  '.',
-  ',',
-  ';',
-  ')'
-]
+const SEPARATOR_VARIATIONS = [' ', '.', ',', ';', ')']
 
 describe('identify » price', function () {
   it('not detect', function () {
-    [
-      '',
-      'Vendo material (7 ene 16)'
-    ].forEach(function (str) {
-      const {data} = price(str)
+    ;['', 'Vendo material (7 ene 16)'].forEach(function (str) {
+      const { data } = price(str)
       should(get(data, 'price')).be.undefined()
     })
   })
@@ -38,13 +20,8 @@ describe('identify » price', function () {
     describe('zero decimal', function () {
       describe('symbol at end', function () {
         const quantity = 135
-
-        ;[
-          'e',
-          'E',
-          '€'
-        ].forEach(function (symbol) {
-          [
+        ;['e', 'E', '€'].forEach(function (symbol) {
+          ;[
             `${quantity}${symbol}`,
             `${quantity} ${symbol}`,
             ` ${quantity} ${symbol}`,
@@ -52,7 +29,7 @@ describe('identify » price', function () {
             ` ${quantity} ${symbol} `
           ].forEach(function (str) {
             it(`${str} → ${quantity}`, function () {
-              const {data, output} = price(str)
+              const { data, output } = price(str)
               should(get(data, 'price')).be.equal(quantity)
               should(output.includes(str)).be.false()
             })
@@ -62,11 +39,10 @@ describe('identify » price', function () {
 
       describe('symbol at begin', function () {
         const quantity = 135
-
         ;['€'].forEach(function (symbol) {
           const str = `${symbol}${quantity}`
           it(`${str} → ${quantity}`, function () {
-            const {data, output} = price(str)
+            const { data, output } = price(str)
             should(get(data, 'price')).be.equal(quantity)
             should(output.includes(str)).be.false()
           })
@@ -76,17 +52,9 @@ describe('identify » price', function () {
 
     describe('one decimal', function () {
       const expected = 1100
-
-      ;[
-        '1.100',
-        '1,100'
-      ].forEach(function (quantity) {
-        [
-          'e',
-          'E',
-          '€'
-        ].forEach(function (symbol) {
-          [
+      ;['1.100', '1,100'].forEach(function (quantity) {
+        ;['e', 'E', '€'].forEach(function (symbol) {
+          ;[
             `${quantity}${symbol}`,
             `${quantity} ${symbol}`,
             ` ${quantity} ${symbol}`,
@@ -94,7 +62,7 @@ describe('identify » price', function () {
             ` ${quantity} ${symbol} `
           ].forEach(function (str) {
             it(`${str} → ${expected}`, function () {
-              const {data, output} = price(str)
+              const { data, output } = price(str)
               should(get(data, 'price')).be.equal(expected)
               should(output.includes(str)).be.false()
             })
@@ -110,9 +78,11 @@ describe('identify » price', function () {
           it(`${expected}${symbol}${separator} → ${expected}`, function () {
             const str = `Vendo botavara de aluminio marca Aeron. Medidas de 200-250. Incluye driza y cabos de arnes de 28". Precio ${expected}${symbol}${separator}GI incluidos`
 
-            const {data, output} = price(str)
+            const { data, output } = price(str)
             should(get(data, 'price')).be.equal(expected)
-            should(output).be.equal(output.replace(`${expected}${symbol}${separator}`, ''))
+            should(output).be.equal(
+              output.replace(`${expected}${symbol}${separator}`, '')
+            )
           })
         })
       })
@@ -120,16 +90,9 @@ describe('identify » price', function () {
 
     describe('word', function () {
       const expected = 1100
-
-      ;[
-        '1.100',
-        '1,100'
-      ].forEach(function (quantity) {
-        [
-          'euros',
-          'Euros'
-        ].forEach(function (symbol) {
-          [
+      ;['1.100', '1,100'].forEach(function (quantity) {
+        ;['euros', 'Euros'].forEach(function (symbol) {
+          ;[
             `${quantity}${symbol}`,
             `${quantity} ${symbol}`,
             ` ${quantity} ${symbol}`,
@@ -137,7 +100,7 @@ describe('identify » price', function () {
             ` ${quantity} ${symbol} `
           ].forEach(function (str) {
             it(`${str} → ${expected}`, function () {
-              const {data, output} = price(str)
+              const { data, output } = price(str)
               should(get(data, 'price')).be.equal(expected)
               should(output.includes(str)).be.false()
             })

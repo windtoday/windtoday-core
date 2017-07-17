@@ -8,7 +8,7 @@ function factory (namespace, log) {
 
     switch (key) {
       case 'model':
-        values = assign({brand: get(acc, 'dir.data.brand')}, values)
+        values = assign({ brand: get(acc, 'dir.data.brand') }, values)
         break
     }
 

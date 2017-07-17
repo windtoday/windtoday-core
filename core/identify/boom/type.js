@@ -1,6 +1,6 @@
 'use strict'
 
-const {replace, flow, toLower} = require('lodash')
+const { replace, flow, toLower } = require('lodash')
 const strmatch = require('str-match')()
 
 function response (data, output) {
@@ -10,9 +10,7 @@ function response (data, output) {
 const REGEX_BOOM_TYPE_CARBON = /carbon/i
 const REGEX_BOOM_TYPE_ALUMINIUM = /aluminium|aluminio|alu/i
 
-const normalizeTypeCarbon = flow([
-  toLower
-])
+const normalizeTypeCarbon = flow([toLower])
 
 function typeCarbon (str) {
   const type = strmatch(str, REGEX_BOOM_TYPE_CARBON)

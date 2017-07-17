@@ -1,6 +1,6 @@
 'use strict'
 
-const {isArray, isObject, reduce} = require('lodash')
+const { isArray, isObject, reduce } = require('lodash')
 const titleize = require('titleize')
 
 const isTitle = require('./is-title')
@@ -16,10 +16,14 @@ function capitalizeValue (value) {
 function capitalizeCollection (collection) {
   if (isArray(collection)) return capitalizeValue(collection)
 
-  return reduce(collection, function (acc, value, key) {
-    acc[key] = capitalizeValue(value)
-    return acc
-  }, {})
+  return reduce(
+    collection,
+    function (acc, value, key) {
+      acc[key] = capitalizeValue(value)
+      return acc
+    },
+    {}
+  )
 }
 
 function capitalizeTitle (value) {

@@ -1,6 +1,6 @@
 'use strict'
 
-const {assign} = require('lodash')
+const { assign } = require('lodash')
 
 const createLoggerKeyword = require('../../../core/util/create-logger-keyword')
 const createProviderWorker = require('../../../core/worker/provider')
@@ -13,7 +13,7 @@ function createBootstrap (flags) {
   })
 
   function bootstrap (cb) {
-    const opts = assign({share: false, log}, flags)
+    const opts = assign({ share: false, log }, flags)
     const providerWorker = createProviderWorker(opts)
     return providerWorker(cb)
   }

@@ -15,7 +15,7 @@ describe('identify » others', function () {
 
   it('brand', function () {
     const str = 'Vendo Neopreno Mystic 5/3 talla S - 110€'
-    const {data, output} = others(str)
+    const { data, output } = others(str)
     should(get(data, 'brand')).be.equal('Mystic')
     should(output.includes('Mystic')).be.false()
   })

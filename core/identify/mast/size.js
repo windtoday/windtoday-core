@@ -16,7 +16,7 @@ const REGEX_MAST_SIZE = /\d{1}m/i
 const REGEX_MAST_SIZE_SYMBOL = /m/i
 
 const normalizeSizeSymbol = flow([
-  (str) => replace(str, REGEX_MAST_SIZE_SYMBOL, '00'),
+  str => replace(str, REGEX_MAST_SIZE_SYMBOL, '00'),
   toNumber
 ])
 
@@ -33,9 +33,7 @@ function sizeSymbol (str) {
  */
 const REGEX_MAST_SIZE_NUMBER = /\d{3}/
 
-const normalizeSizeNumber = flow([
-  toNumber
-])
+const normalizeSizeNumber = flow([toNumber])
 
 function sizeNumber (str) {
   const size = strmatch(str, REGEX_MAST_SIZE_NUMBER)
@@ -55,8 +53,8 @@ const REGEX_SAIL_SIZE_WITH_SEPARATOR = /\d{1,2}[,.'´]\d/
 const REGEX_SAIL_SIZE_SEPARATOR = /[,.'´]/
 
 const normalizeSizeSeparator = flow([
-  (str) => replace(str, REGEX_SAIL_SIZE_SEPARATOR, ''),
-  (str) => {
+  str => replace(str, REGEX_SAIL_SIZE_SEPARATOR, ''),
+  str => {
     while (str.length < 3) str += '0'
     return str
   },
@@ -70,10 +68,12 @@ function sizeSeparator (str) {
 }
 
 function size (str) {
-  return sizeSeparator(str) ||
-         sizeNumber(str) ||
-         sizeSymbol(str) ||
-         response(undefined, str)
+  return (
+    sizeSeparator(str) ||
+    sizeNumber(str) ||
+    sizeSymbol(str) ||
+    response(undefined, str)
+  )
 }
 
 module.exports = size

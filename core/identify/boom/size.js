@@ -10,9 +10,7 @@ function response (data, output) {
   return { data, output }
 }
 
-const normalize = flow([
-  (str) => replace(str, REGEX_BOOM_SEPARATOR, '/')
-])
+const normalize = flow([str => replace(str, REGEX_BOOM_SEPARATOR, '/')])
 
 function size (str) {
   const size = strmatch(str, REGEX_BOOM_SIZE)

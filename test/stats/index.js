@@ -8,7 +8,7 @@ const createStats = require('../../core/stats')
 describe('core » stats', function () {
   describe('leaderboard', function () {
     it('list all providers', function () {
-      const {providers} = createStats(data)
+      const { providers } = createStats(data)
 
       should(providers).be.eql([
         'easysurfshop',
@@ -23,7 +23,7 @@ describe('core » stats', function () {
     })
 
     it('by category', function () {
-      const {category} = createStats(data)
+      const { category } = createStats(data)
 
       should(category).be.eql({
         sails: { count: 842, percent: '33%' },
@@ -35,7 +35,7 @@ describe('core » stats', function () {
     })
 
     it('by provider', function () {
-      const {provider} = createStats(data)
+      const { provider } = createStats(data)
 
       should(provider).be.eql({
         easysurfshop: { count: 198, percent: '8%' },
@@ -50,16 +50,16 @@ describe('core » stats', function () {
     })
 
     it('by condition', function () {
-      const {condition} = createStats(data)
+      const { condition } = createStats(data)
 
       should(condition).be.eql({
-        new: {count: 2135, percent: '85%'},
-        used: {count: 386, percent: '15%'}
+        new: { count: 2135, percent: '85%' },
+        used: { count: 386, percent: '15%' }
       })
     })
 
     it('by brand', function () {
-      const {brand} = createStats(data)
+      const { brand } = createStats(data)
 
       should(brand).be.eql({
         North: { count: 448, percent: '18%' },

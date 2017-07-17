@@ -8,13 +8,14 @@ const REGEX_MAST_CARBON_SYMBOL_AT_END = /\d{2,3}[%c]/
 const REGEX_MAST_CARBON_SYMBOL = /[%cx]/i
 
 const REGEX_MAST_CARBON = RegExp(
-  REGEX_MAST_CARBON_SYMBOL_AT_BEGIN.source + '|' +
-  REGEX_MAST_CARBON_SYMBOL_AT_END.source,
+  REGEX_MAST_CARBON_SYMBOL_AT_BEGIN.source +
+    '|' +
+    REGEX_MAST_CARBON_SYMBOL_AT_END.source,
   'i'
 )
 
 const normalize = flow([
-  (str) => replace(str, REGEX_MAST_CARBON_SYMBOL, ''),
+  str => replace(str, REGEX_MAST_CARBON_SYMBOL, ''),
   toNumber
 ])
 

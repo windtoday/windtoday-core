@@ -1,6 +1,6 @@
 'use strict'
 
-const {includes} = require('lodash')
+const { includes } = require('lodash')
 
 const createGetScore = require('./create-get-score')
 
@@ -24,6 +24,5 @@ const getKey = (item, serializeProp, logMissing) => {
   return key
 }
 
-module.exports = ({log, propName, data}) => (
-  createGetScore({data, test, getKey, propName, log})
-)
+module.exports = ({ log, propName, data }) =>
+  createGetScore({ data, test, getKey, propName, log })

@@ -1,7 +1,7 @@
 'use strict'
 
 const should = require('should')
-const {size} = require('lodash')
+const { size } = require('lodash')
 
 const aggregateProp = require('../../core/util/aggregate-prop')
 
@@ -12,7 +12,7 @@ describe('core » util » aggregate prop', function () {
     const test = item => item.year && item.price && size(item.category) === 1
     const getKey = item => `${item.year}.${item.condition}.${item.category}`
     const propName = 'price'
-    const aggregate = aggregateProp({data, test, getKey, propName})
+    const aggregate = aggregateProp({ data, test, getKey, propName })
 
     const key = '2017.used.sails'
     const score = aggregate[key]

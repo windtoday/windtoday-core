@@ -1,7 +1,7 @@
 'use strict'
 
 const condenseWhitespace = require('condense-whitespace')
-const {assignIn, assign} = require('lodash')
+const { assignIn, assign } = require('lodash')
 const EventEmitter = require('events')
 
 const isBlacklisted = require('../../schema/is-blacklisted')
@@ -19,21 +19,18 @@ const generalExtractor = createFlow([
 function createExtractor (opts) {
   const { seller, provider, path, log } = opts
   const emitter = new EventEmitter()
-  const specificExtractor = identify({path, log})
+  const specificExtractor = identify({ path, log })
 
-  const extract = createFlow([
-    generalExtractor,
-    specificExtractor
-  ])
+  const extract = createFlow([generalExtractor, specificExtractor])
 
   function extractor (rawItem) {
-    const {title: rawTitle} = rawItem
+    const { title: rawTitle } = rawItem
     if (isBlacklisted(rawTitle)) return
 
     const item = titleize(rawItem)
     const title = condenseWhitespace(item.title)
-    const {data} = extract(title)
-    const doc = assign(item, {seller, provider, path}, data)
+    const { data } = extract(title)
+    const doc = assign(item, { seller, provider, path }, data)
     emitter.emit('data', doc)
   }
 

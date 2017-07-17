@@ -6,7 +6,7 @@ const prettyYear = require('../../../../core/schema/transform/pretty-title/year'
 
 describe('schema » transform » pretty title » pretty year', function () {
   it('do nothing if year is not detected', function () {
-    const item = {title: 'Starboard Futura 120L'}
+    const item = { title: 'Starboard Futura 120L' }
     const output = prettyYear(item)
     should(output).be.equal(item.title)
   })
@@ -20,7 +20,7 @@ describe('schema » transform » pretty title » pretty year', function () {
       'Starboard Futura 120L 2016'
     ].forEach(str => {
       it(`${str} → ${output}`, () => {
-        const item = {title: str, year: 2016}
+        const item = { title: str, year: 2016 }
         const output = prettyYear(item)
         should(output).be.equal('Starboard Futura 120L 2016')
       })

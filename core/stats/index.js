@@ -1,15 +1,19 @@
 'use strict'
 
-const {size, get, iteratee, mapValues, set, chain, reduce} = require('lodash')
+const { size, get, iteratee, mapValues, set, chain, reduce } = require('lodash')
 const calcPercent = require('calc-percent')
 
 const groupBy = (data, count, groupPropName) => {
   const getPropName = iteratee(groupPropName)
-  const group = reduce(data, (acc, item) => {
-    const propName = getPropName(item)
-    incrementPropName(acc, propName)
-    return acc
-  }, {})
+  const group = reduce(
+    data,
+    (acc, item) => {
+      const propName = getPropName(item)
+      incrementPropName(acc, propName)
+      return acc
+    },
+    {}
+  )
 
   return mapPercent(group, count)
 }
@@ -19,17 +23,17 @@ const incrementPropName = (acc, key) => {
   set(acc, key, count + 1)
 }
 
-const mapPercent = (acc, total) => mapValues(acc, count => {
-  const percent = getPercent(count, total)
-  return {count, percent}
-})
+const mapPercent = (acc, total) =>
+  mapValues(acc, count => {
+    const percent = getPercent(count, total)
+    return { count, percent }
+  })
 
-const getUniqValues = (data, iteratee) => chain(data)
-  .uniqBy(iteratee)
-  .map(iteratee)
-  .value()
+const getUniqValues = (data, iteratee) =>
+  chain(data).uniqBy(iteratee).map(iteratee).value()
 
-const getPercent = (partial, total) => calcPercent(partial, total, {suffix: '%'})
+const getPercent = (partial, total) =>
+  calcPercent(partial, total, { suffix: '%' })
 
 function insights (data) {
   const count = size(data)

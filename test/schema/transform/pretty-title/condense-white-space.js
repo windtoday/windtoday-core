@@ -6,7 +6,7 @@ const condenseWhiteSpace = require('../../../../core/schema/transform/pretty-tit
 describe('schema » transform » pretty title » condense white space', function () {
   describe('basic', function () {
     it('    Mistral  Syncro     → Mistral  Syncro', function () {
-      const item = {title: '    Mistral  Syncro    '}
+      const item = { title: '    Mistral  Syncro    ' }
       const output = condenseWhiteSpace(item)
       should(output).be.equal('Mistral Syncro')
     })

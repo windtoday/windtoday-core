@@ -2,7 +2,7 @@
 
 const CONFIG = require('config').algoliasearch
 const algoliasearch = require('algoliasearch')
-const {forEach, assign, get} = require('lodash')
+const { forEach, assign, get } = require('lodash')
 
 const appId = get(global, CONFIG.app_id)
 const apiKey = get(global, CONFIG.api_key)
@@ -20,4 +20,4 @@ function fetchAll (cb) {
     .on('error', err => cb(err, hits))
 }
 
-module.exports = assign(index, {fetchAll})
+module.exports = assign(index, { fetchAll })

@@ -1,6 +1,6 @@
 'use strict'
 
-const {parallel} = require('async')
+const { parallel } = require('async')
 
 const createLoggerKeyword = require('../../../core/util/create-logger-keyword')
 const redis = require('../../../core/db/state').client

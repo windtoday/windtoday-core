@@ -13,13 +13,13 @@ const log = {
 describe('score » get specific', function () {
   it('by model', function () {
     const propName = 'price'
-    const getPriceScore = createPriceScoreByModel({log, propName, data})
-    const {aggregate} = getPriceScore
+    const getPriceScore = createPriceScoreByModel({ log, propName, data })
+    const { aggregate } = getPriceScore
   })
 
   it('by brand', function () {
     const propName = 'price'
-    const getPriceScore = createPriceScoreByBrand({log, propName, data})
-    const {aggregate} = getPriceScore
+    const getPriceScore = createPriceScoreByBrand({ log, propName, data })
+    const { aggregate } = getPriceScore
   })
 })

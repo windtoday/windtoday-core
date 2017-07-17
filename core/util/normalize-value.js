@@ -1,8 +1,8 @@
 'use strict'
 
-const {findLastIndex, isNaN, eq, gte} = require('lodash')
-const {abs} = Math
-const {POSITIVE_INFINITY} = Number
+const { findLastIndex, isNaN, eq, gte } = require('lodash')
+const { abs } = Math
+const { POSITIVE_INFINITY } = Number
 
 /**
  * Normalizes a value according to the specified steps, using log norm2 formula.
@@ -26,8 +26,8 @@ function normalizeValue (value, steps) {
   const normalizedValue =
     stepLow.norm +
     (stepHigh.norm - stepLow.norm) *
-    (value - stepLow.value) /
-    (stepHigh.value - stepLow.value)
+      (value - stepLow.value) /
+      (stepHigh.value - stepLow.value)
 
   // Invalid calculation?
   if (isNaN(normalizedValue) || eq(abs(normalizedValue), POSITIVE_INFINITY)) {

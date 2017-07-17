@@ -10,7 +10,7 @@ const strmatch = require('str-match')()
 const REGEX_YEAR = /2[0-9]{3}/
 
 function response (year, output) {
-  return { data: {year}, output }
+  return { data: { year }, output }
 }
 
 function year (str) {

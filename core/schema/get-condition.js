@@ -1,6 +1,6 @@
 'use strict'
 
-const {includes, toLower} = require('lodash')
+const { includes, toLower } = require('lodash')
 const isValidCondition = require('./validate/condition')
 
 function isParticularSeller (seller) {

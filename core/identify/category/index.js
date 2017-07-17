@@ -19,12 +19,16 @@ const CONST = {
 }
 
 function getCategories (str) {
-  const categories = reduce(CONST.REGEX, function (acc, regex, category) {
-    const detection = strmatch(acc.output, regex)
-    if (detection.test) acc.data.push(category)
-    acc.output = detection.output
-    return acc
-  }, { data: [], output: str })
+  const categories = reduce(
+    CONST.REGEX,
+    function (acc, regex, category) {
+      const detection = strmatch(acc.output, regex)
+      if (detection.test) acc.data.push(category)
+      acc.output = detection.output
+      return acc
+    },
+    { data: [], output: str }
+  )
 
   if (!size(categories.data)) categories.data.push(CONST.FALLBACK_CATEGORY)
 

@@ -1,3 +1,2 @@
-module.exports = (acc, prop, serializedProp) => (
+module.exports = (acc, prop, serializedProp) =>
   prop ? `.${serializedProp || prop}` : ''
-)

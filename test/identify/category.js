@@ -7,14 +7,14 @@ const category = require('../../core/identify/category')
 describe('identify » category', function () {
   it('multiple detection', function () {
     const str = 'Vela Neilpryde Hellcat 6,7. Mastil Rdm 430 Y Botavara North'
-    const {data, output} = category(str)
+    const { data, output } = category(str)
     should(data).be.eql(['sails', 'masts', 'booms'])
     should(output).be.equal(' Neilpryde Hellcat 6,7.  Rdm 430 Y  North')
   })
 
   describe('keywords', function () {
     describe('fins', function () {
-      [
+      ;[
         'aleta',
         'aletas',
         'aleron',
@@ -31,13 +31,9 @@ describe('identify » category', function () {
     })
 
     describe('masts', function () {
-      [
-        'mástil',
-        'mástiles',
-        'mastil',
-        'mastiles',
-        'mast'
-      ].forEach(function (keyword) {
+      ;['mástil', 'mástiles', 'mastil', 'mastiles', 'mast'].forEach(function (
+        keyword
+      ) {
         it(keyword, function () {
           const { data } = category(keyword)
           should(data).be.eql(['masts'])
@@ -46,12 +42,7 @@ describe('identify » category', function () {
     })
 
     describe('booms', function () {
-      [
-        'boom',
-        'booms',
-        'botavara',
-        'botavaras'
-      ].forEach(function (keyword) {
+      ;['boom', 'booms', 'botavara', 'botavaras'].forEach(function (keyword) {
         it(keyword, function () {
           const { data } = category(keyword)
           should(data).be.eql(['booms'])
@@ -60,10 +51,7 @@ describe('identify » category', function () {
     })
 
     describe('sails', function () {
-      [
-        'vela',
-        'velas'
-      ].forEach(function (keyword) {
+      ;['vela', 'velas'].forEach(function (keyword) {
         it(keyword, function () {
           const { data } = category(keyword)
           should(data).be.eql(['sails'])
@@ -72,10 +60,7 @@ describe('identify » category', function () {
     })
 
     describe('boards', function () {
-      [
-        'tabla',
-        'tablas'
-      ].forEach(function (keyword) {
+      ;['tabla', 'tablas'].forEach(function (keyword) {
         it(keyword, function () {
           const { data } = category(keyword)
           should(data).be.eql(['boards'])
@@ -84,10 +69,7 @@ describe('identify » category', function () {
     })
 
     describe('others', function () {
-      [
-        'manivela',
-        'starboard'
-      ].forEach(function (keyword) {
+      ;['manivela', 'starboard'].forEach(function (keyword) {
         it(keyword, function () {
           const { data } = category(keyword)
           should(data).be.eql(['others'])

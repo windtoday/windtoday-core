@@ -1,7 +1,7 @@
 'use strict'
 
 const should = require('should')
-const {assign, repeat} = require('lodash')
+const { assign, repeat } = require('lodash')
 
 const schema = require('../../core/schema')
 
@@ -21,7 +21,7 @@ describe('schema » validation', function () {
     describe('condition', function () {
       describe('based on seller', function () {
         it('particular → used', function (done) {
-          const fixture = assign({}, baseFixture, {seller: 'particular'})
+          const fixture = assign({}, baseFixture, { seller: 'particular' })
           schema(fixture, function (err, doc) {
             should(doc.condition).be.equal('used')
             done(err)
@@ -29,7 +29,7 @@ describe('schema » validation', function () {
         })
 
         it('used → used', function (done) {
-          const fixture = assign({}, baseFixture, {seller: 'used'})
+          const fixture = assign({}, baseFixture, { seller: 'used' })
           schema(fixture, function (err, doc) {
             should(doc.condition).be.equal('used')
             done(err)
@@ -37,7 +37,7 @@ describe('schema » validation', function () {
         })
 
         it('otherwise, new', function (done) {
-          const fixture = assign({}, baseFixture, {seller: 'offer'})
+          const fixture = assign({}, baseFixture, { seller: 'offer' })
           schema(fixture, function (err, doc) {
             should(doc.condition).be.equal('new')
             done(err)
@@ -51,7 +51,8 @@ describe('schema » validation', function () {
         const fixture = assign({}, baseFixture, {
           link: 'http://totalwind.net/foro/viewtopic.php?f=48&t=102239'
         })
-        const expected = 'http://totalwind.net/foro/viewtopic.php?f=48&t=102239&ref=windtodayco'
+        const expected =
+          'http://totalwind.net/foro/viewtopic.php?f=48&t=102239&ref=windtodayco'
 
         schema(fixture, function (err, doc) {
           should(doc.link).be.equal(expected)
@@ -77,7 +78,9 @@ describe('schema » validation', function () {
     describe('title', function () {
       describe('invalid', function () {
         it('throw error if not reached mininum words', function (done) {
-          const fixture = assign({}, baseFixture, {title: 'Vendo velas windsurf'})
+          const fixture = assign({}, baseFixture, {
+            title: 'Vendo velas windsurf'
+          })
           schema(fixture, function (err, doc) {
             should(err).be.an.Error()
             done()
@@ -86,7 +89,7 @@ describe('schema » validation', function () {
 
         it('throw error if reached maximum length', function (done) {
           const title = repeat('n', 141)
-          const fixture = assign({}, baseFixture, {title})
+          const fixture = assign({}, baseFixture, { title })
           schema(fixture, function (err, doc) {
             should(err).be.an.Error()
             done()
@@ -95,8 +98,10 @@ describe('schema » validation', function () {
       })
 
       describe('valid', function () {
-        it('is correct if title has minimum words and is under max length', function (done) {
-          const fixture = assign({}, baseFixture, {title: 'Tabou Rocket 115'})
+        it('is correct if title has minimum words and is under max length', function (
+          done
+        ) {
+          const fixture = assign({}, baseFixture, { title: 'Tabou Rocket 115' })
           schema(fixture, function (err, doc) {
             done(err)
           })

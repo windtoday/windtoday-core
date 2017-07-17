@@ -4,11 +4,7 @@ const { get, mapKeys, includes } = require('lodash')
 
 const CATEGORY_SINGULAR = require('../category').singular
 
-const MAP_KEYS = [
-  'carbon',
-  'size',
-  'type'
-]
+const MAP_KEYS = ['carbon', 'size', 'type']
 
 function serializer (obj) {
   const namespace = CATEGORY_SINGULAR(get(obj, 'category'))

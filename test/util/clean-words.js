@@ -5,7 +5,7 @@ const cleanTitleWords = require('../../core/util/clean-words')
 
 describe('core » util » clean title words', function () {
   describe('words', function () {
-    [
+    ;[
       'aleta',
       'aletas',
       'board',
