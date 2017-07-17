@@ -57,7 +57,7 @@ totalwind_api:
 wewind_api:
   key: process.env.WRAPAPI_KEY
 premium_providers:
-  - wewind
+  - bellini
   - easysurfshop
-  - bigsurfshop
   - lpwind
+  - wewind
