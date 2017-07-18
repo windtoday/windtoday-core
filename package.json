@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "acho": "~3.3.0",
-    "algoliasearch": "~3.23.0",
+    "algoliasearch": "~3.24.0",
     "append-query": "~2.0.1",
     "async": "~2.5.0",
     "bellini-api": "~1.0.5",
