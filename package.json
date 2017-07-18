@@ -33,7 +33,7 @@
     "config": "~1.26.1",
     "date-fns": "~1.28.5",
     "easysurfshop-api": "~1.0.5",
-    "is-all-reachable": "~1.0.0",
+    "is-all-reachable": "~1.1.0",
     "js-yaml": "~3.9.0",
     "lodash": "~4.17.4",
     "lpwind-api": "~1.0.4",
