@@ -1,20 +1,12 @@
 'use strict'
 
-const { includes } = require('lodash')
-
 const createScore = require('./create')
 
 const test = item => item.year
 
 const getKey = (item, serializeProp, logMissing) => {
   let key = ''
-
-  if (includes(item.category, 'masts') && !item['mast carbon']) {
-    logMissing(item, 'mast carbon')
-  } else {
-    key += serializeProp(key, item['mast carbon'], `C${item['mast carbon']}`)
-  }
-
+  key += serializeProp(key, item['mast carbon'], `C${item['mast carbon']}`)
   key += `.${item.condition}`
   key += serializeProp(key, item.year)
 
