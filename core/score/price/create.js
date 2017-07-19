@@ -2,9 +2,9 @@
 
 const { size, round, get, toLower } = require('lodash')
 
-const normalizeValue = require('../util/normalize-value')
+const normalizeValue = require('../../util/normalize-value')
+const aggregateProp = require('../../util/aggregate-prop')
 const createLogMissing = require('./create-log-missing')
-const aggregateProp = require('../util/aggregate-prop')
 const serializeProp = require('./serialize-prop')
 
 const createTest = test => item =>
@@ -36,12 +36,12 @@ const createGetScore = ({
     const key = getKey(doc)
     const score = aggregate[key]
 
-    const normalize = normalizeValue(value, [
-      { value: score.min, norm: 5 },
-      { value: score.max, norm: 1 }
+    const scoreNormalized = normalizeValue(value, [
+      { value: score.min, norm: 100 },
+      { value: score.max, norm: 0 }
     ])
 
-    return round(normalize)
+    return round(scoreNormalized)
   }
 
   getScore.aggregate = aggregate

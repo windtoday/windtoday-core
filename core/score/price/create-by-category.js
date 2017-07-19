@@ -2,9 +2,9 @@
 
 const { includes } = require('lodash')
 
-const createGetScore = require('./create-get-score')
+const createScore = require('./create')
 
-const test = item => item.year && item.brand
+const test = item => item.year
 
 const getKey = (item, serializeProp, logMissing) => {
   let key = ''
@@ -15,12 +15,10 @@ const getKey = (item, serializeProp, logMissing) => {
     key += serializeProp(key, item['mast carbon'], `C${item['mast carbon']}`)
   }
 
-  key += serializeProp(key, item.brand)
   key += `.${item.condition}`
   key += serializeProp(key, item.year)
 
   return key
 }
 
-module.exports = ({ log, propName, data }) =>
-  createGetScore({ data, test, getKey, propName, log })
+module.exports = ({ log, propName, data }) => createScore({ data, test, getKey, propName, log })
