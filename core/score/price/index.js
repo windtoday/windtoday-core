@@ -4,8 +4,6 @@ const createByCategory = require('./create-by-category')
 const createByBrand = require('./create-by-brand')
 const createByModel = require('./create-by-model')
 
-const {round} = require('lodash')
-
 module.exports = ({ log, propName, data }) => {
   const getByCategory = createByCategory({log, propName, data})
   const getByBrand = createByBrand({log, propName, data})
@@ -22,7 +20,10 @@ module.exports = ({ log, propName, data }) => {
       byModel
     })
 
-    const score = byCategory * 0.3 + byBrand * 0.3 + byModel * 0.4
-    return round(score) % 5
+    return {
+      byCategory,
+      byBrand,
+      byModel
+    }
   }
 }

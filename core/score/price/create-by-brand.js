@@ -2,14 +2,11 @@
 
 const createScore = require('./create')
 
-const test = item => item.year && item.brand
+const test = item => item.brand
 
 const getKey = (item, serializeProp, logMissing) => {
   let key = ''
-  key += serializeProp(key, item['mast carbon'], `C${item['mast carbon']}`)
   key += serializeProp(key, item.brand)
-  key += `.${item.condition}`
-  key += serializeProp(key, item.year)
   return key
 }
 

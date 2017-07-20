@@ -2,15 +2,7 @@
 
 const createScore = require('./create')
 
-const test = item => item.year
-
-const getKey = (item, serializeProp, logMissing) => {
-  let key = ''
-  key += serializeProp(key, item['mast carbon'], `C${item['mast carbon']}`)
-  key += `.${item.condition}`
-  key += serializeProp(key, item.year)
-
-  return key
-}
+const test = item => true
+const getKey = (item, serializeProp, logMissing) => ''
 
 module.exports = ({ log, propName, data }) => createScore({ data, test, getKey, propName, log })
