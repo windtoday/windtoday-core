@@ -10,7 +10,7 @@ const sailSizeRange = require('../../range/sail-size')
 const serializeProp = require('./serialize-prop')
 
 const createTest = test => item =>
-  test(item) && size(item.category) === 1 && item.price && item.year
+  test(item) && size(item.category) === 1 && item.price
 
 const createGetKey = (getKey, logMissing) => item => {
   const customKey = getKey(item, serializeProp, logMissing)
@@ -18,7 +18,6 @@ const createGetKey = (getKey, logMissing) => item => {
   key += serializeProp(key, item['mast carbon'], `C${item['mast carbon']}`)
   key += serializeProp(key, item['sail size'], `${sailSizeRange(item['sail size'])}`)
   key += serializeProp(key, item['board size'], `${boardSizeRange(item['board size'])}`)
-  key += serializeProp(key, item.year)
 
   // TODO: Add mast size range
   // TODO: Add mast type
@@ -60,9 +59,10 @@ const createGetScore = ({
     const value = get(doc, propName)
     const key = getKey(doc)
     const aggregation = aggregate[key]
-    const score = calculateScore(value, aggregation)
+    // console.log('key', key)
+    // console.log('aggregation', aggregation)
 
-    log.debug('score:price', {aggregation, score})
+    const score = calculateScore(value, aggregation)
     return score
   }
 

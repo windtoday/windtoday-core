@@ -11,13 +11,21 @@ function createProviderWorker ({ log, propName, data }) {
   const getPriceScore = createGetPriceScore({log, propName, data})
 
   const tasks = [
-    function updateDate (getScore, next) {
+    function updateDate (next) {
       log.info('update', { count })
       const batch = map(data, function (item) {
         const { objectID } = item
-        const score = getPriceScore(item)
+        const {score, scoreDetail} = getPriceScore(item)
         const propNameScore = `${propName}Score`
-        return { [propNameScore]: score, objectID }
+
+        const updatedItem = {
+          objectID,
+          [propNameScore]: score,
+          [`${propNameScore}Detail`]: scoreDetail
+        }
+
+        log.debug('score', updatedItem)
+        return updatedItem
       })
 
       return search.partialUpdateObjects(batch, next)

@@ -18,7 +18,6 @@ const _createScoreWorker = data => {
 
 const tasks = [
   function fetchData (next) {
-    log.info('starting')
     return search.fetchAll(next)
   },
   function processData (data, next) {
@@ -27,4 +26,5 @@ const tasks = [
   }
 ]
 
+log.info('starting')
 waterfall(tasks, processExit)
