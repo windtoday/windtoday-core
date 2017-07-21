@@ -24,7 +24,7 @@ function createProviderWorker ({ log, propName, data }) {
           [`${propNameScore}Detail`]: scoreDetail
         }
 
-        log.debug('score', updatedItem)
+        log.debug('score', {title: item.title}, updatedItem)
         return updatedItem
       })
 

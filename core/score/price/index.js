@@ -20,10 +20,10 @@ module.exports = ({ log, propName, data }) => {
     const byYear = getByYear(doc)
 
     const score = weightedMean([
-      [byModel, 2],
-      [byBrand, 2],
-      [byYear, 2],
-      [byCategory, 2]
+      [byModel, 5],
+      [byBrand, 4],
+      [byYear, 3],
+      [byCategory, 4]
     ])
 
     return {
