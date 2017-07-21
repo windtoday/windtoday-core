@@ -82,10 +82,11 @@ describe('identify » mast', function () {
 
     describe('custom vendors', function () {
       ;['Spx65', 'Spx 65', 'flx65', 'flx 65'].forEach(function (carbon) {
-        it.only(carbon, function () {
+        it(carbon, function () {
           const str = tpl({ carbon })
           const { data, output } = mast(str)
           should(get(data, 'carbon')).be.equal(65)
+          should(output.includes('65')).be.false()
         })
       })
     })
