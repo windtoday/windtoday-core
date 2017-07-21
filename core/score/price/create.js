@@ -7,6 +7,7 @@ const aggregateProp = require('../../util/aggregate-prop')
 const createLogMissing = require('./create-log-missing')
 const boardSizeRange = require('../../range/board-size')
 const sailSizeRange = require('../../range/sail-size')
+const mastCarbonRange = require('../../range/mast-carbon')
 const serializeProp = require('./serialize-prop')
 
 const createTest = test => item =>
@@ -15,7 +16,7 @@ const createTest = test => item =>
 const createGetKey = (getKey, logMissing) => item => {
   const customKey = getKey(item, serializeProp, logMissing)
   let key = `${item.category}.${item.condition}${customKey}`
-  key += serializeProp(key, item['mast carbon'], `C${item['mast carbon']}`)
+  key += serializeProp(key, item['mast carbon'], `${mastCarbonRange(item['mast carbon'])}`)
   key += serializeProp(key, item['sail size'], `${sailSizeRange(item['sail size'])}`)
   key += serializeProp(key, item['board size'], `${boardSizeRange(item['board size'])}`)
 

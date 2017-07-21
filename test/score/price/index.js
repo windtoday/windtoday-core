@@ -25,7 +25,7 @@ describe('core » score', function () {
       const getPriceByModel = createGetScoreByModel({ log, propName, data })
       const { aggregate } = getPriceByModel
       should(aggregate['masts.new.north.2017']).be.undefined()
-      should(aggregate['masts.new.c95']).be.undefined()
+      should(aggregate['masts.used.c90 to c100']).be.undefined()
       should(aggregate['sails.new.north.warp.2017.5m to 6m']).be.an.Object()
     })
 
@@ -34,7 +34,7 @@ describe('core » score', function () {
       const getPriceByBrand = createGetScoreByBrand({ log, propName, data })
       const { aggregate } = getPriceByBrand
       should(aggregate['sails.new.north.warp.2017.5m to 6m']).be.undefined()
-      should(aggregate['masts.new.c95']).be.undefined()
+      should(aggregate['masts.used.c90 to c100']).be.undefined()
       should(aggregate['masts.new.north.2017']).be.an.Object()
     })
 
@@ -44,7 +44,7 @@ describe('core » score', function () {
       const { aggregate } = getPriceByCategory
       should(aggregate['sails.new.north.warp.2017.5m to 6m']).be.undefined()
       should(aggregate['masts.new.north.2017']).be.undefined()
-      should(aggregate['masts.new.c95']).be.an.Object()
+      should(aggregate['masts.used.c90 to c100']).be.an.Object()
     })
 
     it('all', function () {
