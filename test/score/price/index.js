@@ -25,16 +25,16 @@ describe('core » score', function () {
       const getPriceByModel = createGetScoreByModel({ log, propName, data })
       const { aggregate } = getPriceByModel
       should(aggregate['masts.new.north.2017']).be.undefined()
-      should(aggregate['masts.new.c95.2017']).be.undefined()
-      should(aggregate['sails.new.north.hero.4m to 5m.2017']).be.an.Object()
+      should(aggregate['masts.new.c95']).be.undefined()
+      should(aggregate['sails.new.north.warp.2017.5m to 6m']).be.an.Object()
     })
 
     it('by brand', function () {
       const propName = 'price'
       const getPriceByBrand = createGetScoreByBrand({ log, propName, data })
       const { aggregate } = getPriceByBrand
-      should(aggregate['sails.new.north.hero.4m to 5m.2017']).be.undefined()
-      should(aggregate['masts.new.c95.2017']).be.undefined()
+      should(aggregate['sails.new.north.warp.2017.5m to 6m']).be.undefined()
+      should(aggregate['masts.new.c95']).be.undefined()
       should(aggregate['masts.new.north.2017']).be.an.Object()
     })
 
@@ -42,9 +42,9 @@ describe('core » score', function () {
       const propName = 'price'
       const getPriceByCategory = createGetScoreByCategory({ log, propName, data })
       const { aggregate } = getPriceByCategory
-      should(aggregate['sails.new.north.hero.4m to 5m.2017']).be.undefined()
+      should(aggregate['sails.new.north.warp.2017.5m to 6m']).be.undefined()
       should(aggregate['masts.new.north.2017']).be.undefined()
-      should(aggregate['masts.new.c95.2017']).be.an.Object()
+      should(aggregate['masts.new.c95']).be.an.Object()
     })
 
     it('all', function () {
@@ -52,9 +52,13 @@ describe('core » score', function () {
       const getScore = createGetSscore({ log, propName, data })
       const score = getScore(item)
       should(score).be.eql({
-        byCategory: 1,
-        byBrand: 1,
-        byModel: 1
+        score: 97,
+        scoreDetail: {
+          byCategory: 88,
+          byBrand: 100,
+          byModel: 100,
+          byYear: 100
+        }
       })
     })
   })
