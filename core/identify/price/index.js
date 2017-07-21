@@ -39,13 +39,13 @@ const REGEX_CURRENCY_SYMBOL_WORD = /[ ]?([eE]u(ros)?)/
 const REGEX_NON_NUMBER = /\D/
 
 function response (price, output) {
-  return { data: {price}, output }
+  return { data: { price }, output }
 }
 
 const normalize = flow([
-  (str) => replace(str, REGEX_CURRENCY_SYMBOL_WORD, ''),
-  (str) => replace(str, REGEX_CURRENCY_SYMBOL, ''),
-  (str) => replace(str, REGEX_NON_NUMBER, ''),
+  str => replace(str, REGEX_CURRENCY_SYMBOL_WORD, ''),
+  str => replace(str, REGEX_CURRENCY_SYMBOL, ''),
+  str => replace(str, REGEX_NON_NUMBER, ''),
   toNumber
 ])
 
@@ -68,10 +68,12 @@ function priceAtBegin (str) {
 }
 
 function price (str) {
-  return priceAtBegin(str) ||
-         priceAtEnd(str) ||
-         priceAtEndWord(str) ||
-         response(undefined, str)
+  return (
+    priceAtBegin(str) ||
+    priceAtEnd(str) ||
+    priceAtEndWord(str) ||
+    response(undefined, str)
+  )
 }
 
 module.exports = price

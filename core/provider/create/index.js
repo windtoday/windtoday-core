@@ -19,9 +19,9 @@ function createProvider (opts, fetch) {
   const share = createShare(ctx)
   const add = createAdd(ctx)
 
-  const {log} = ctx
+  const { log } = ctx
   const buffer = []
-  const extract = ctx.extract = createExtractor(assign({buffer}, opts))
+  const extract = (ctx.extract = createExtractor(assign({ buffer }, opts)))
 
   fetch = bind(fetch, ctx)
   extract.on('data', item => buffer.push(item))
@@ -31,11 +31,11 @@ function createProvider (opts, fetch) {
       fetch,
       partial(reduce, buffer, [], add),
       function updateDatabase (docs, next) {
-        return db.add({log, key, docs}, next)
+        return db.add({ log, key, docs }, next)
       },
       function shareLinks (docs, stats, next) {
         if (!isShareable) return next(null, stats)
-        return share(docs, (err) => next(err, stats))
+        return share(docs, err => next(err, stats))
       }
     ]
 

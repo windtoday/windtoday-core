@@ -13,23 +13,23 @@ const directory = createDirectoryFlow([sails, accesories])
 function factory (log) {
   const createAdd = createAddFactory('mast', log)
 
-  const addCategory = createAdd('category', (acc) => {
+  const addCategory = createAdd('category', acc => {
     return {
       data: category('masts'),
       output: acc.input
     }
   })
 
-  const addBrand = createAdd('brand', (acc) => {
+  const addBrand = createAdd('brand', acc => {
     return {
       data: acc.dir.data.brand,
       output: acc.dir.output
     }
   })
 
-  const addType = createAdd('type', (acc) => type(acc.input))
-  const addCarbon = createAdd('carbon', (acc) => carbon(acc.input))
-  const addSize = createAdd('size', (acc) => size(acc.input))
+  const addType = createAdd('type', acc => type(acc.input))
+  const addCarbon = createAdd('carbon', acc => carbon(acc.input))
+  const addSize = createAdd('size', acc => size(acc.input))
 
   function mast (input) {
     const dir = directory(input)
@@ -41,7 +41,7 @@ function factory (log) {
     addCarbon(acc)
     addSize(acc)
 
-    return {data: acc.data, output: acc.input}
+    return { data: acc.data, output: acc.input }
   }
 
   return mast

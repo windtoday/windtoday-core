@@ -2,9 +2,9 @@
 
 const should = require('should')
 
-const normalizeValue = require('../../core/score/normalize-value')
+const normalizeValue = require('../../core/util/normalize-value')
 
-describe('score » normalize value', function () {
+describe('core » util » normalize value', function () {
   it('normalize correctly', function () {
     const value = 500
     const min = 0

@@ -12,13 +12,10 @@ const removeSpaces = require('../../../util/remove-spaces')
 
 const hasBoardSize = item => !!item['board size']
 
-const getBoardSize = flow([
-  removeSpaces,
-  toUpper
-])
+const getBoardSize = flow([removeSpaces, toUpper])
 
 function prettyBoardSize (item) {
-  const {title} = item
+  const { title } = item
   if (!hasBoardSize(item)) return title
 
   const size = strmatch(title, regexBoardSize)

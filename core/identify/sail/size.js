@@ -53,8 +53,8 @@ function response (data, output) {
 }
 
 const normalizeSailSizeDoubleSimple = flow([
-  (str) => replace(str, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.'),
-  (str) => replace(str, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0'),
+  str => replace(str, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.'),
+  str => replace(str, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0'),
   toNumber
 ])
 
@@ -69,9 +69,9 @@ function createSailSizeDoubleSimple (strmatch) {
 }
 
 const normalizeSailSizeSingle = flow([
-  (str) => replace(str, REGEX_SAIL_SIZE_DELIMITER, ''),
-  (str) => replace(str, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.'),
-  (str) => replace(str, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0'),
+  str => replace(str, REGEX_SAIL_SIZE_DELIMITER, ''),
+  str => replace(str, REGEX_SAIL_SIZE_DOUBLE_DELIMITER, '.'),
+  str => replace(str, REGEX_SAIL_SIZE_SINGLE_DELIMITER, '.0'),
   toNumber
 ])
 
@@ -91,9 +91,11 @@ function create (opts) {
   const sailSizeSingle = createSailSizeSingle(strmatch)
 
   return function (str) {
-    return sailSizeDoubleSimple(str) ||
-           sailSizeSingle(str) ||
-           response(undefined, str)
+    return (
+      sailSizeDoubleSimple(str) ||
+      sailSizeSingle(str) ||
+      response(undefined, str)
+    )
   }
 }
 

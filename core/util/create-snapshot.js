@@ -4,7 +4,7 @@ const { chain, uniqBy, pick } = require('lodash')
 
 const checkRequiredParams = require('./check-required-params')
 
-const stringify = (val) => JSON.stringify(val)
+const stringify = val => JSON.stringify(val)
 
 function createUniqByProps (props) {
   function uniqByProps (collection) {
@@ -18,14 +18,11 @@ const REQUIRED = ['sortId', 'uniqId']
 function createSnapshot (opts = {}) {
   checkRequiredParams(opts, REQUIRED)
 
-  const {sortId, uniqId} = opts
+  const { sortId, uniqId } = opts
   const uniqByProps = createUniqByProps(uniqId)
 
   function snapshot (collection) {
-    return chain(collection)
-    .thru(uniqByProps)
-    .sortBy(sortId)
-    .value()
+    return chain(collection).thru(uniqByProps).sortBy(sortId).value()
   }
 
   return snapshot

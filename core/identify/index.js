@@ -1,6 +1,6 @@
 'use strict'
 
-const {forEach} = require('lodash')
+const { forEach } = require('lodash')
 
 const categorySingular = require('../category').singular
 const createLogger = require('../log')

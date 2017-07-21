@@ -4,7 +4,7 @@ const should = require('should')
 
 const createFlow = require('../../core/directory/create-flow')
 const directory = require('../../core/directory')
-const {sails, fins, accesories} = directory
+const { sails, fins, accesories } = directory
 
 describe('directory » create flow', function () {
   describe('fins & accesories', function () {

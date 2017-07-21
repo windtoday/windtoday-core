@@ -11,7 +11,7 @@ const prettyYear = require('./year')
 const prettyBrand = require('./brand')
 const prettyMastType = require('./mast-type')
 
-const assignItemTitle = (item, title) => assign({}, item, {title})
+const assignItemTitle = (item, title) => assign({}, item, { title })
 
 module.exports = flow([
   item => assignItemTitle(item, removePrice(item)),

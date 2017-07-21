@@ -1,20 +1,25 @@
 'use strict'
 
-const {each, waterfall} = require('async')
+const { each, waterfall } = require('async')
 const bufferapp = require('buffer-node')
-const {get} = require('lodash')
+const { get } = require('lodash')
 
 const CONFIG = require('config').buffer
-const {accounts, access_token} = CONFIG
+const { accounts, access_token } = CONFIG
 const accessToken = get(global, access_token)
 
 const createSendBuffer = require('./create-send-buffer')
 
 function createShare (composeMessage, getShareables) {
   function share (opts) {
-    const {log} = opts
+    const { log } = opts
     const client = bufferapp(accessToken)
-    const sendToBuffer = createSendBuffer({client, accounts, composeMessage, log})
+    const sendToBuffer = createSendBuffer({
+      client,
+      accounts,
+      composeMessage,
+      log
+    })
 
     function createUpdates (docs, cb) {
       return each(docs, sendToBuffer, cb)
@@ -31,8 +36,8 @@ function createShare (composeMessage, getShareables) {
     function addBuffer (docs, cb) {
       const shareables = getShareables(docs)
       const tasks = [
-        (next) => createUpdates(shareables, next),
-        (next) => shuffleUpdates(next)
+        next => createUpdates(shareables, next),
+        next => shuffleUpdates(next)
       ]
       return waterfall(tasks, cb)
     }

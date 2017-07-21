@@ -1,8 +1,8 @@
 'use strict'
 
 const startOfDay = require('date-fns/start_of_day')
-const {waterfall, asyncify} = require('async')
-const {assign, isFinite, round} = require('lodash')
+const { waterfall, asyncify } = require('async')
+const { assign, isFinite, round } = require('lodash')
 const osom = require('osom')
 
 const getReferralLink = require('./get-referral-link')
@@ -126,7 +126,7 @@ module.exports = function (schema, cb) {
       return titleize(doc, (err, title) => next(err, doc, title))
     },
     function assignProps (doc, title, next) {
-      const prettyDoc = assign({}, doc, {title})
+      const prettyDoc = assign({}, doc, { title })
       return next(null, prettyDoc)
     }
   ]

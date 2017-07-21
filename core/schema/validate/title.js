@@ -1,6 +1,6 @@
 'use strict'
 
-const {size, words} = require('lodash')
+const { size, words } = require('lodash')
 
 const cleanTitleWords = require('../../util/clean-words')
 
@@ -8,7 +8,7 @@ const MAX_LENGTH = 140
 const MIN_WORDS = 3
 
 const isUnderMaxLength = length => length < MAX_LENGTH
-const hasMinWords = (length) => length >= MIN_WORDS
+const hasMinWords = length => length >= MIN_WORDS
 
 function isValidTitle (title) {
   const cleanTitle = cleanTitleWords(title)

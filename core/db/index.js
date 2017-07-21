@@ -25,24 +25,24 @@ function mapObjectID (objects, objectIDs) {
 
 function createTransaction (objectIDs, added) {
   return [
-    (done) => search.deleteObjects(objectIDs, done),
-    (done) => search.addObjects(added, done)
+    done => search.deleteObjects(objectIDs, done),
+    done => search.addObjects(added, done)
   ]
 }
 
 const getSnapshot = createSnapshot(CONST.SNAPSHOT_OPTS)
 
 function add (opts, cb) {
-  const {log, key, docs} = opts
+  const { log, key, docs } = opts
 
   const tasks = [
     function compare (next) {
       const ids = CONST.DIFF_IDS
       const value = getSnapshot(docs)
-      return state.compare({key, value, ids}, next)
+      return state.compare({ key, value, ids }, next)
     },
     function update (diff, next) {
-      const {added, common, removed} = diff
+      const { added, common, removed } = diff
       const objectIDs = map(removed, CONST.OBJECT_ID)
       if (size(added)) log.info('db:added %J', added)
       if (size(removed)) log.info('db:removed %J', removed)
@@ -53,7 +53,7 @@ function add (opts, cb) {
         if (err) return next(err)
 
         const [, content] = results
-        const {objectIDs} = content
+        const { objectIDs } = content
         const data = mapObjectID(added, objectIDs)
         const stats = mapValues(diff, size)
         const newDocs = concat(common, data)
@@ -62,7 +62,7 @@ function add (opts, cb) {
       })
     },
     function saveState (value, added, stats, next) {
-      return state.set({key, value}, (err) => next(err, added, stats))
+      return state.set({ key, value }, err => next(err, added, stats))
     }
   ]
 

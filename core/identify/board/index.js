@@ -8,25 +8,25 @@ const size = require('./size')
 function factory (log) {
   const createAdd = createAddFactory('board', log)
 
-  const addSize = createAdd('size', (acc) => {
+  const addSize = createAdd('size', acc => {
     return size(acc.input)
   })
 
-  const addBrand = createAdd('brand', (acc) => {
+  const addBrand = createAdd('brand', acc => {
     return {
       data: acc.dir.data.brand,
       output: acc.dir.output
     }
   })
 
-  const addModel = createAdd('model', (acc) => {
+  const addModel = createAdd('model', acc => {
     return {
       data: acc.dir.data.model,
       output: acc.dir.output
     }
   })
 
-  const addCategory = createAdd('category', (acc) => {
+  const addCategory = createAdd('category', acc => {
     return {
       data: category('boards'),
       output: acc.input
@@ -42,7 +42,7 @@ function factory (log) {
     addModel(acc)
     addSize(acc)
 
-    return {data: acc.data, output: acc.input}
+    return { data: acc.data, output: acc.input }
   }
 
   return board

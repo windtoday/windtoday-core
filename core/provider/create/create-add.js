@@ -1,6 +1,6 @@
 'use strict'
 
-const {assign} = require('lodash')
+const { assign } = require('lodash')
 
 const schema = require('../../schema')
 
@@ -9,7 +9,7 @@ function createAdd (opts) {
   function add (acc, doc, cb) {
     schema(doc, function (validationError, docValidated) {
       if (!validationError) {
-        acc.push(assign({isForced}, docValidated))
+        acc.push(assign({ isForced }, docValidated))
       } else {
         log.error('schema', {
           key: validationError.key,

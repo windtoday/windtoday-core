@@ -78,17 +78,19 @@ describe('share » get shareables', function () {
     ]
 
     const shareables = getShareables(docs)
-    should(shareables).be.eql([{
-      title: 'Ezzy Taka 4,9 2015',
-      category: ['sails'],
-      provider: 'lpwind',
-      seller: 'particular',
-      link: 'http:/totalwind.net/foro/viewtopic.php?f=49&t=95973',
-      brand: 'Ezzy',
-      model: 'Taka',
-      price: 260,
-      year: 2015,
-      'sail.size': 4.9
-    }])
+    should(shareables).be.eql([
+      {
+        title: 'Ezzy Taka 4,9 2015',
+        category: ['sails'],
+        provider: 'lpwind',
+        seller: 'particular',
+        link: 'http:/totalwind.net/foro/viewtopic.php?f=49&t=95973',
+        brand: 'Ezzy',
+        model: 'Taka',
+        price: 260,
+        year: 2015,
+        'sail.size': 4.9
+      }
+    ])
   })
 })

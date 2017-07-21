@@ -8,12 +8,12 @@ const REGEX_BOARD_LITRES_PREFIX = /l/i
 const REGEX_BOARD_LITRES_PREFIX_CLEAN_OUTPUT = /itr[eo]s/i
 
 const normalizePrice = flow([
-  (str) => replace(str, REGEX_BOARD_LITRES_PREFIX, ''),
+  str => replace(str, REGEX_BOARD_LITRES_PREFIX, ''),
   toNumber
 ])
 
 const normalizeOutput = flow([
-  (str) => replace(str, REGEX_BOARD_LITRES_PREFIX_CLEAN_OUTPUT, '')
+  str => replace(str, REGEX_BOARD_LITRES_PREFIX_CLEAN_OUTPUT, '')
 ])
 
 function boardSize (str) {
@@ -21,11 +21,11 @@ function boardSize (str) {
   let output = str
   let data
 
-  if (!size.test) return {data, output}
+  if (!size.test) return { data, output }
 
   data = normalizePrice(size.match)
   output = normalizeOutput(size.output)
-  return {data, output}
+  return { data, output }
 }
 
 boardSize.regex = REGEX_BOARD_LITRES

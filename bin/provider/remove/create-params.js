@@ -6,5 +6,5 @@ module.exports = function createParams (opts) {
   let filters = `provider:${provider}`
   if (seller) filters += ` AND seller:${seller}`
   if (path) filters += ` AND path:${path}`
-  return {filters}
+  return { filters }
 }

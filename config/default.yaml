@@ -1,7 +1,7 @@
 algoliasearch:
   api_key: process.env.ALGOLIA_API_KEY
   app_id: process.env.ALGOLIA_APP_ID
-  index: windsurf
+  index: dev_windsurf
 bellini_api:
   key: process.env.WRAPAPI_KEY
 bigsurfshop_api:

@@ -10,25 +10,37 @@ describe('core » util » snapshot', function () {
       uniqId: ['url', 'title', 'price']
     })
 
-    const fixtures = [{
-      title: 'Gaastra Cosmic 6.5 2015',
-      link: 'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
-    }, {
-      title: 'Gaastra Cosmic 6.5 2015',
-      link: 'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
-    }, {
-      title: 'Gaastra Cosmic 7.5 2015',
-      link: 'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
-    }]
+    const fixtures = [
+      {
+        title: 'Gaastra Cosmic 6.5 2015',
+        link:
+          'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
+      },
+      {
+        title: 'Gaastra Cosmic 6.5 2015',
+        link:
+          'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
+      },
+      {
+        title: 'Gaastra Cosmic 7.5 2015',
+        link:
+          'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
+      }
+    ]
 
     const output = snapshot(fixtures)
-    should(output).be.eql([{
-      title: 'Gaastra Cosmic 6.5 2015',
-      link: 'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
-    }, {
-      title: 'Gaastra Cosmic 7.5 2015',
-      link: 'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
-    }])
+    should(output).be.eql([
+      {
+        title: 'Gaastra Cosmic 6.5 2015',
+        link:
+          'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
+      },
+      {
+        title: 'Gaastra Cosmic 7.5 2015',
+        link:
+          'http://www.telstarsurf.com/windsurf/windsurf-sails/freerace-sails/46091/gaastra-cosmic-2015/'
+      }
+    ])
   })
 
   it('Keeps different elements', function () {
@@ -51,14 +63,17 @@ describe('core » util » snapshot', function () {
     })
 
     const output = snapshot(fixtures)
-    should(output).be.eql([{
-      title: 'Np Combat 3.7',
-      link: 'http://www.ozu-tarifa.com/np-combat-3.7-es.html',
-      price: 200
-    }, {
-      title: 'Np Combat 3.7',
-      link: 'http://www.ozu-tarifa.com/np-combat-3.7.html',
-      price: 180
-    }])
+    should(output).be.eql([
+      {
+        title: 'Np Combat 3.7',
+        link: 'http://www.ozu-tarifa.com/np-combat-3.7-es.html',
+        price: 200
+      },
+      {
+        title: 'Np Combat 3.7',
+        link: 'http://www.ozu-tarifa.com/np-combat-3.7.html',
+        price: 180
+      }
+    ])
   })
 })

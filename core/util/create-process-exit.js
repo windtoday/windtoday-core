@@ -9,7 +9,7 @@ function createProcessExit (log) {
       return process.exit()
     }
 
-    const {stack, message, code = 1} = err
+    const { stack, message, code = 1 } = err
     log.fatal(`fatal error: ${message || err}`)
     if (stack) log.fatal(cleanStack(stack))
 

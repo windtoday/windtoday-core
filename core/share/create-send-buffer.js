@@ -1,7 +1,7 @@
 'use strict'
 
-const {map, pick} = require('lodash')
-const {parallel} = require('async')
+const { map, pick } = require('lodash')
+const { parallel } = require('async')
 
 const FALLBACK_IMAGE = 'https://blog.windtoday.co/logo.jpg'
 
@@ -13,7 +13,7 @@ function getOptions (doc, accountType) {
       picture: image,
       thumbnail: image,
       link: doc.link,
-      photo: (accountType === 'twitter' && doc.image) && doc.image
+      photo: accountType === 'twitter' && doc.image && doc.image
     }
   }
 }
@@ -21,12 +21,14 @@ function getOptions (doc, accountType) {
 const isApiError = err => Boolean(err.errorCode)
 
 function createUpdate (opts) {
-  const {client, accounts, composeMessage, log} = opts
+  const { client, accounts, composeMessage, log } = opts
 
   function wrapRequest (message, accountId, options) {
     function request (cb) {
       const callback = wrapCallback(cb)
-      return client.updates.create(message, accountId, options).nodeify(callback)
+      return client.updates
+        .create(message, accountId, options)
+        .nodeify(callback)
     }
 
     return request

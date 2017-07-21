@@ -5,9 +5,7 @@ const strmatch = require('str-match')()
 
 const REGEX_FINS_SIZE = /\d{2}/
 
-const normalize = flow([
-  toNumber
-])
+const normalize = flow([toNumber])
 
 function response (data, output) {
   return { data, output }

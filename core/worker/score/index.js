@@ -1,34 +1,31 @@
 'use strict'
 
-const {map, size} = require('lodash')
-const {waterfall} = require('async')
+const { map, size } = require('lodash')
+const { waterfall } = require('async')
 
-const createGetScore = require('../../score/create-get-score')
-const aggregateProp = require('../../score/aggregate-prop')
+const createGetPriceScore = require('../../score/price')
 const search = require('../../db/search')
 
-function createProviderWorker (opts) {
-  const {log, test, getKey, propName, data} = opts
+function createProviderWorker ({ log, propName, data }) {
   const count = size(data)
+  const getPriceScore = createGetPriceScore({log, propName, data})
 
   const tasks = [
-    function createAggregate (next) {
-      log.info('fetch', {count})
-      const aggregate = aggregateProp({data, test, getKey, propName})
-      return next(null, aggregate)
-    },
-    function createScore (aggregate, next) {
-      log.info('aggregate %J', aggregate)
-      const getScore = createGetScore({aggregate, test, getKey, propName})
-      return next(null, getScore)
-    },
-    function updateDate (getScore, next) {
-      log.info('update', {count})
+    function updateDate (next) {
+      log.info('update', { count })
       const batch = map(data, function (item) {
-        const {objectID} = item
-        const score = getScore(item)
+        const { objectID } = item
+        const {score, scoreDetail} = getPriceScore(item)
         const propNameScore = `${propName}Score`
-        return { [propNameScore]: score, objectID }
+
+        const updatedItem = {
+          objectID,
+          [propNameScore]: score,
+          [`${propNameScore}Detail`]: scoreDetail
+        }
+
+        log.debug('score', {title: item.title}, updatedItem)
+        return updatedItem
       })
 
       return search.partialUpdateObjects(batch, next)
