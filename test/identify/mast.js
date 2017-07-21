@@ -56,7 +56,7 @@ describe('identify » mast', function () {
   })
 
   describe('carbon', function () {
-    const tpl = template('Mástil Neilpryde X9 4m <%= carbon %> SDM')
+    const tpl = template('Mástil Neilpryde 4m <%= carbon %> SDM')
 
     describe('two units', function () {
       ;['75c', '75C', 'c75', 'C75', 'X75', 'C75%', '75%'].forEach(function (carbon) {
@@ -76,6 +76,16 @@ describe('identify » mast', function () {
           const { data, output } = mast(str)
           should(get(data, 'carbon')).be.equal(100)
           should(output.includes('100')).be.false()
+        })
+      })
+    })
+
+    describe('custom vendors', function () {
+      ;['Spx65', 'Spx 65', 'flx65', 'flx 65'].forEach(function (carbon) {
+        it.only(carbon, function () {
+          const str = tpl({ carbon })
+          const { data, output } = mast(str)
+          should(get(data, 'carbon')).be.equal(65)
         })
       })
     })
