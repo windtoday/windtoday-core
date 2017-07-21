@@ -26,7 +26,7 @@ describe('identify » autodetection', function () {
       should(get(data, 'mast type')).be.equal('sdm')
       should(get(data, 'mast carbon')).be.equal(35)
       should(get(data, 'mast size')).be.equal(460)
-      should(output).be.equal('   Red  ')
+      should(output).be.equal('   Red ')
     })
 
     it('others', function () {
