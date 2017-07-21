@@ -59,7 +59,7 @@ describe('identify » mast', function () {
     const tpl = template('Mástil Neilpryde X9 4m <%= carbon %> SDM')
 
     describe('two units', function () {
-      ;['75c', '75C', 'c75', 'C75', 'X75', '75%'].forEach(function (carbon) {
+      ;['75c', '75C', 'c75', 'C75', 'X75', 'C75%', '75%'].forEach(function (carbon) {
         it(carbon, function () {
           const str = tpl({ carbon })
           const { data, output } = mast(str)
@@ -70,7 +70,7 @@ describe('identify » mast', function () {
     })
 
     describe('three units', function () {
-      ;['100c', '100C', 'c100', 'C100', '100%'].forEach(function (carbon) {
+      ;['100c', '100C', 'c100', 'C100', 'C100%', '100%'].forEach(function (carbon) {
         it(carbon, function () {
           const str = tpl({ carbon })
           const { data, output } = mast(str)
@@ -86,7 +86,7 @@ describe('identify » mast', function () {
 
     describe('letter', function () {
       describe('one', function () {
-        ;['4m', '4.0'].forEach(function (size) {
+        ;['400cm', '4m', '4.0'].forEach(function (size) {
           it(size, function () {
             const str = tpl({ size })
             const { data, output } = mast(str)
@@ -104,17 +104,6 @@ describe('identify » mast', function () {
             should(get(data, 'size')).be.equal(370)
             should(output.includes('3')).be.false()
           })
-        })
-      })
-    })
-
-    describe('number', function () {
-      ;['430'].forEach(function (size) {
-        it(size, function () {
-          const str = tpl({ size })
-          const { data, output } = mast(str)
-          should(get(data, 'size')).be.equal(430)
-          should(output.includes('430')).be.false()
         })
       })
     })

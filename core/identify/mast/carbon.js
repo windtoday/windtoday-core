@@ -4,7 +4,7 @@ const { flow, replace, toNumber } = require('lodash')
 const strmatch = require('str-match')()
 
 const REGEX_MAST_CARBON_SYMBOL_AT_BEGIN = /[%cx]\d{2,3}/
-const REGEX_MAST_CARBON_SYMBOL_AT_END = /\d{2,3}[%c]/
+const REGEX_MAST_CARBON_SYMBOL_AT_END = /[^\d{1}]\d{2}[%c]|100[%c]/
 const REGEX_MAST_CARBON_SYMBOL = /[%cx]/i
 
 const REGEX_MAST_CARBON = RegExp(
