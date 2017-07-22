@@ -1,13 +1,14 @@
 'use strict'
 
-const { includes, filter, overEvery } = require('lodash')
-const { premium_providers: premiumProviders } = require('config')
+const {includes, filter, overEvery} = require('lodash')
+const {premium_providers: premiumProviders} = require('config')
 
-const MAX_PRICE_BASELINE = 500
+const MIN_PRICE_SCORE = 90
 
-const isOffer = item => item.price < MAX_PRICE_BASELINE
-const isPremium = item => includes(premiumProviders, item.provider)
+const isDeal = ({priceScore}) => priceScore >= MIN_PRICE_SCORE
 
-const conditions = overEvery([isOffer, isPremium])
+const isPremiumShop = item => includes(premiumProviders, item.provider)
+
+const conditions = overEvery([isPremiumShop, isDeal])
 
 module.exports = items => filter(items, conditions)
