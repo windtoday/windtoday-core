@@ -61,3 +61,6 @@ premium_providers:
   - easysurfshop
   - lpwind
   - wewind
+share:
+  minPriceScore: 90
+  fallbackImage: 'https://blog.windtoday.co/logo.jpg'

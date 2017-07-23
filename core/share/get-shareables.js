@@ -1,12 +1,12 @@
 'use strict'
 
-const {includes, filter, overEvery} = require('lodash')
+const {includes, overEvery, chain} = require('lodash')
 const {premium_providers: premiumProviders} = require('config')
 const isToday = require('date-fns/is_today')
 
-const MIN_PRICE_SCORE = 90
+const {minPriceScore} = require('config').share
 
-const isDeal = ({priceScore}) => priceScore >= MIN_PRICE_SCORE
+const isDeal = ({priceScore}) => priceScore >= minPriceScore
 
 const isPremiumShop = ({provider}) => includes(premiumProviders, provider)
 
@@ -18,4 +18,7 @@ const conditions = overEvery([
   isDeal
 ])
 
-module.exports = items => filter(items, conditions)
+module.exports = items => chain(items)
+  .filter(conditions)
+  .sortBy('priceScore')
+  .value()

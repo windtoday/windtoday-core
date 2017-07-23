@@ -16,13 +16,19 @@ const _createScoreWorker = data => {
   return createScoreWorker({ log, propName, data })
 }
 
+const _createShareWorker = data => {
+  const log = createLogger({ keyword: 'insights:share', diff: true })
+  return createScoreWorker({ log, data })
+}
+
 const tasks = [
   function fetchData (next) {
     return search.fetchAll(next)
   },
   function processData (data, next) {
     const scoreWorker = _createScoreWorker(data)
-    return parallel([scoreWorker], next)
+    const shareWorker = _createShareWorker(data)
+    return parallel([scoreWorker, shareWorker], next)
   }
 ]
 
