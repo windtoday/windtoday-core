@@ -52,9 +52,9 @@ describe('core » score', function () {
       const getScore = createGetSscore({ log, propName, data })
       const score = getScore(item)
       should(score).be.eql({
-        score: 97,
+        score: 100,
         scoreDetail: {
-          byCategory: 88,
+          byCategory: 100,
           byBrand: 100,
           byModel: 100,
           byYear: 100
