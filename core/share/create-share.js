@@ -1,8 +1,8 @@
 'use strict'
 
 const bufferapp = require('buffer-node')
+const { get, size } = require('lodash')
 const { each } = require('async')
-const { get } = require('lodash')
 
 const { accounts, access_token } = require('config').buffer
 const accessToken = get(global, access_token)
@@ -23,6 +23,7 @@ function createShare (composeMessage, getShareables) {
 
     function addBuffer (docs, cb) {
       const shareables = getShareables(docs)
+      log.debug('shareables', {size: size(shareables)})
       return createUpdates(shareables, cb)
     }
 
