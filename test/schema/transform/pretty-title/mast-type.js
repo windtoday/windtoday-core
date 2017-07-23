@@ -1,7 +1,7 @@
 'use strict'
 
 const should = require('should')
-const prettyPrice = require('../../../../core/schema/transform/pretty-title/mast-type')
+const prettyMastType = require('../../../../core/schema/transform/pretty-title/mast-type')
 
 describe('schema » transform » pretty title » mast type', function () {
   it('nothing to replace', function () {
@@ -24,7 +24,7 @@ describe('schema » transform » pretty title » mast type', function () {
       'sail size': 4.7,
       objectID: '4397356031'
     }
-    const output = prettyPrice(item)
+    const output = prettyMastType(item)
     should(output).be.equal('Neilpryde Combat 4.7m 2014')
   })
   it('SDM', function () {
@@ -49,7 +49,7 @@ describe('schema » transform » pretty title » mast type', function () {
       'mast type': 'sdm',
       objectID: '3925173200'
     }
-    const output = prettyPrice(item)
+    const output = prettyMastType(item)
     should(output).be.equal('North Silver SDM 490 2014')
   })
 
@@ -75,7 +75,7 @@ describe('schema » transform » pretty title » mast type', function () {
       'mast type': 'rdm',
       objectID: '3925173200'
     }
-    const output = prettyPrice(item)
+    const output = prettyMastType(item)
     should(output).be.equal('North Silver RDM 490 2014')
   })
 })
