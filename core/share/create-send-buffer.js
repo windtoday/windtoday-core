@@ -2,7 +2,7 @@
 
 const { map, pick } = require('lodash')
 const { parallel } = require('async')
-const {fallbackImage} = require('config').share
+const { fallbackImage } = require('config').share
 
 function getOptions (doc, accountType) {
   const image = doc.image || fallbackImage

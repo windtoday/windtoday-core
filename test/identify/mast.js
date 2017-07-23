@@ -59,7 +59,9 @@ describe('identify » mast', function () {
     const tpl = template('Mástil Neilpryde 4m <%= carbon %> SDM')
 
     describe('two units', function () {
-      ;['75c', '75C', 'c75', 'C75', 'X75', 'C75%', '75%'].forEach(function (carbon) {
+      ;['75c', '75C', 'c75', 'C75', 'X75', 'C75%', '75%'].forEach(function (
+        carbon
+      ) {
         it(carbon, function () {
           const str = tpl({ carbon })
           const { data, output } = mast(str)
@@ -70,7 +72,9 @@ describe('identify » mast', function () {
     })
 
     describe('three units', function () {
-      ;['100c', '100C', 'c100', 'C100', 'C100%', '100%'].forEach(function (carbon) {
+      ;['100c', '100C', 'c100', 'C100', 'C100%', '100%'].forEach(function (
+        carbon
+      ) {
         it(carbon, function () {
           const str = tpl({ carbon })
           const { data, output } = mast(str)
