@@ -1,44 +1,36 @@
 'use strict'
 
-const { map, pick } = require('lodash')
+const { get, map, pick } = require('lodash')
 const { parallel } = require('async')
 const { fallbackImage } = require('config').share
 
-function getOptions (doc, accountType) {
-  const image = doc.image || fallbackImage
-
-  return {
-    media: {
-      picture: image,
-      thumbnail: image,
-      link: doc.link,
-      photo: accountType === 'twitter' && doc.image && doc.image
-    }
-  }
+function getOpts (doc, accountType) {
+  const {link} = doc
+  const image = get(doc, 'image', fallbackImage)
+  const media = { picture: image, thumbnail: image, link }
+  if (accountType === 'twitter') media.photo = doc.image
+  return {media}
 }
-
-const isApiError = err => Boolean(err.errorCode)
 
 function createUpdate (opts) {
   const { client, accounts, composeMessage, log } = opts
 
-  function wrapRequest (message, accountId, options) {
+  function wrapRequest (message, accountId, opts) {
     function request (cb) {
-      const callback = wrapCallback(cb)
-      log.debug('sendBuffer', message)
+      const req = {message, accountId, opts}
+      const callback = wrapCallback(req, cb)
+
       return client.updates
-        .create(message, accountId, options)
+        .create(message, accountId, opts)
         .nodeify(callback)
     }
 
     return request
   }
 
-  function wrapCallback (cb) {
+  function wrapCallback (req, cb) {
     function callback (err) {
-      if (!err) return cb()
-      if (!isApiError(err)) return cb(err)
-      log.warn('sendBuffer', pick(err, ['errorCode', 'httpCode']))
+      if (err) log.warn(req, pick(err, ['messge', 'errorCode', 'httpCode']))
       return cb()
     }
     return callback
@@ -46,10 +38,13 @@ function createUpdate (opts) {
 
   function create (doc, cb) {
     const message = composeMessage(doc)
+
     const tasks = map(accounts, function (accountId, accountType) {
-      const options = getOptions(doc, accountType)
-      return wrapRequest(message, accountId, options)
+      const opts = getOpts(doc, accountType)
+      return wrapRequest(message, accountId, opts)
     })
+
+    log.debug(message)
 
     return parallel(tasks, cb)
   }

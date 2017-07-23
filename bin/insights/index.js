@@ -1,9 +1,10 @@
 'use strict'
 
-const { waterfall, parallel } = require('async')
+const { waterfall } = require('async')
 
 const createProcessExit = require('../../core/util/create-process-exit')
 const createScoreWorker = require('../../core/worker/score')
+const createShareWorker = require('../../core/worker/share')
 const createLogger = require('../../core/log')
 const search = require('../../core/db/search')
 
@@ -18,18 +19,13 @@ const _createScoreWorker = data => {
 
 const _createShareWorker = data => {
   const log = createLogger({ keyword: 'insights:share', diff: true })
-  return createScoreWorker({ log, data })
+  return createShareWorker({ log, data })
 }
 
 const tasks = [
-  function fetchData (next) {
-    return search.fetchAll(next)
-  },
-  function processData (data, next) {
-    const scoreWorker = _createScoreWorker(data)
-    const shareWorker = _createShareWorker(data)
-    return parallel([scoreWorker, shareWorker], next)
-  }
+  next => search.fetchAll(next),
+  (data, next) => _createScoreWorker(data)(next),
+  (data, next) => _createShareWorker(data)(next)
 ]
 
 log.info('starting')
