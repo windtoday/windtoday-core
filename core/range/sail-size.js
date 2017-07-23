@@ -1,8 +1,8 @@
 'use strict'
 
-const {lt, inRange} = require('lodash')
+const { lt, inRange } = require('lodash')
 
-module.exports = (sailSize) => {
+module.exports = sailSize => {
   if (lt(sailSize, 3)) return '<3m'
   if (inRange(sailSize, 3, 4)) return '3m to 4m'
   if (inRange(sailSize, 4, 5)) return '4m to 5m'

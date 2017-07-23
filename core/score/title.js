@@ -1,6 +1,6 @@
 'use strict'
 
-const {isNil, every} = require('lodash')
+const { isNil, every } = require('lodash')
 
 const REQUIRED = [
   'price',
@@ -12,7 +12,7 @@ const REQUIRED = [
   'image'
 ]
 
-const getConditionalScore = prop => !isNil(prop) ? 0.1 : 0
+const getConditionalScore = prop => (!isNil(prop) ? 0.1 : 0)
 
 const CATEGORY_SCORE = {
   sails: item => 0.9 + getConditionalScore(item['sail size']),

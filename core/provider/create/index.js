@@ -5,18 +5,18 @@ const { waterfall, reduce } = require('async')
 
 const createExtractor = require('./create-extractor')
 const createContext = require('./create-context')
-const createShare = require('../../share')
+
 const createAdd = require('./create-add')
 const db = require('../../db')
 
 const env = get(process, 'env.NODE_ENV', 'development')
 
 function createProvider (opts, fetch) {
-  const { provider, seller, path, share: isShareable } = opts
+  const { provider, seller, path } = opts
   const key = `${env}:${provider}:${seller}:${path}`
 
   const ctx = createContext(opts)
-  const share = createShare(ctx)
+
   const add = createAdd(ctx)
 
   const { log } = ctx
@@ -30,13 +30,7 @@ function createProvider (opts, fetch) {
     const tasks = [
       fetch,
       partial(reduce, buffer, [], add),
-      function updateDatabase (docs, next) {
-        return db.add({ log, key, docs }, next)
-      },
-      function shareLinks (docs, stats, next) {
-        if (!isShareable) return next(null, stats)
-        return share(docs, err => next(err, stats))
-      }
+      (docs, next) => db.add({ log, key, docs }, next)
     ]
 
     return waterfall(tasks, cb)

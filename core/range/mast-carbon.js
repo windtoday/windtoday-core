@@ -1,8 +1,8 @@
 'use strict'
 
-const {lt, inRange} = require('lodash')
+const { lt, inRange } = require('lodash')
 
-module.exports = (carbonSize) => {
+module.exports = carbonSize => {
   if (lt(carbonSize, 10)) return 'C0 to C10'
   if (inRange(carbonSize, 10, 20)) return 'C10 to C20'
   if (inRange(carbonSize, 20, 30)) return 'C20 to C30'

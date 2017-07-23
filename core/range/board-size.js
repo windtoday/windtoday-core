@@ -1,8 +1,8 @@
 'use strict'
 
-const {lt, inRange} = require('lodash')
+const { lt, inRange } = require('lodash')
 
-module.exports = (boardSize) => {
+module.exports = boardSize => {
   if (lt(boardSize, 70)) return '<70l'
   if (inRange(boardSize, 70, 80)) return '70l to 80l'
   if (inRange(boardSize, 80, 90)) return '80l to 90l'

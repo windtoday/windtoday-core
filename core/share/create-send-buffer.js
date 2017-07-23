@@ -2,11 +2,10 @@
 
 const { map, pick } = require('lodash')
 const { parallel } = require('async')
-
-const FALLBACK_IMAGE = 'https://blog.windtoday.co/logo.jpg'
+const { fallbackImage } = require('config').share
 
 function getOptions (doc, accountType) {
-  const image = doc.image || FALLBACK_IMAGE
+  const image = doc.image || fallbackImage
 
   return {
     media: {
@@ -26,6 +25,7 @@ function createUpdate (opts) {
   function wrapRequest (message, accountId, options) {
     function request (cb) {
       const callback = wrapCallback(cb)
+      log.debug('sendBuffer', message)
       return client.updates
         .create(message, accountId, options)
         .nodeify(callback)
