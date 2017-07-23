@@ -20,7 +20,7 @@ describe('schema » transform » pretty title', function () {
         year: 2016,
         'board size': 120
       },
-      expected: 'Starboard Futura 120L 2016'
+      expected: 'Starboard Futura 120l 2016'
     },
     {
       item: {

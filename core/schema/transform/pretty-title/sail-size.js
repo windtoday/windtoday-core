@@ -8,20 +8,17 @@ const createSailSize = require('../../../identify/sail/size').create
 const REPLACEMENT = '{{SIZE}}'
 const REPLACEMENT_REGEX = /\{\{SIZE\}\} ?m/
 
-const sailSize = createSailSize({ replacement: REPLACEMENT })
-const normalizeOutput = output =>
-  replace(output, REPLACEMENT_REGEX, REPLACEMENT)
+const getSailSize = createSailSize({ replacement: REPLACEMENT })
+const normalizeOutput = output => replace(output, REPLACEMENT_REGEX, REPLACEMENT)
 
-const hasSailSize = item => !!item['sail size']
-
-function prettySailSize (item) {
-  const { title: rawTitle, year } = item
-  if (!hasSailSize(item)) return rawTitle
-
+function prettySailSize ({ title: rawTitle, year, 'sail size': sailSize }) {
+  if (!sailSize) return rawTitle
+  // We remove the year for don't interfer in the sail size detection
   const title = replace(rawTitle, year, '')
-  const { data, output } = sailSize(title)
+
+  const { output } = getSailSize(title)
   const normalizedOutput = normalizeOutput(output)
-  const replacerOutput = replace(normalizedOutput, REPLACEMENT, `${data}m `)
+  const replacerOutput = replace(normalizedOutput, REPLACEMENT, `${sailSize}m `)
   return condenseWhitespace(replacerOutput)
 }
 

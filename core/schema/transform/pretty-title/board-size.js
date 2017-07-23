@@ -10,13 +10,11 @@ const {
 
 const removeSpaces = require('../../../util/remove-spaces')
 
-const hasBoardSize = item => !!item['board size']
-
 const getBoardSize = flow([removeSpaces])
 
-function prettyBoardSize (item) {
-  const { title } = item
-  if (!hasBoardSize(item)) return title
+module.exports = (item) => {
+  const { title, 'board size': boardSize } = item
+  if (!boardSize) return title
 
   const size = strmatch(title, regexBoardSize)
   if (!size.test) return title
@@ -26,5 +24,3 @@ function prettyBoardSize (item) {
     .replace(regexCleanOutput, '')
     .value()
 }
-
-module.exports = prettyBoardSize
