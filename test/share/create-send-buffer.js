@@ -39,11 +39,29 @@ describe('share » send buffer', function () {
     const opts = { client, accounts, composeMessage, log }
     const sendToBuffer = createSendBuffer(opts)
 
-    sendToBuffer('foo bar', function (err) {
+    const item = {
+      title: 'foo bar',
+      link: 'mylink.com'
+    }
+
+    sendToBuffer(item, function (err) {
       should(logBuffer).be.eql({
-        warn: ['sendBuffer', { errorCode: 1023, httpCode: 400 }],
+        warn: [{
+          message: 'hello world',
+          accountId: { twitter: '123' },
+          opts: {
+            media: {
+              picture: 'https://blog.windtoday.co/logo.jpg',
+              thumbnail: 'https://blog.windtoday.co/logo.jpg',
+              link: 'mylink.com'
+            }
+          }
+        }, {
+          errorCode: 1023,
+          httpCode: 400
+        }],
         info: [],
-        debug: ['sendBuffer', 'hello world']
+        debug: ['hello world']
       })
       done(err)
     })

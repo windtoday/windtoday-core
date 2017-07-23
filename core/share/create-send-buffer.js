@@ -8,7 +8,7 @@ function getOpts (doc, accountType) {
   const {link} = doc
   const image = get(doc, 'image', fallbackImage)
   const media = { picture: image, thumbnail: image, link }
-  if (accountType === 'twitter') media.photo = doc.image
+  // if (accountType === 'twitter') media.photo = doc.image
   return {media}
 }
 
