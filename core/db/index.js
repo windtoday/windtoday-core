@@ -32,9 +32,7 @@ function createTransaction (objectIDs, added) {
 
 const getSnapshot = createSnapshot(CONST.SNAPSHOT_OPTS)
 
-function add (opts, cb) {
-  const { log, key, docs } = opts
-
+function add ({ log, key, docs }, cb) {
   const tasks = [
     function compare (next) {
       const ids = CONST.DIFF_IDS
@@ -58,11 +56,11 @@ function add (opts, cb) {
         const stats = mapValues(diff, size)
         const newDocs = concat(common, data)
         const newState = getSnapshot(newDocs)
-        return next(err, newState, data, stats)
+        return next(err, newState, stats)
       })
     },
-    function saveState (value, added, stats, next) {
-      return state.set({ key, value }, err => next(err, added, stats))
+    function saveState (value, stats, next) {
+      return state.set({ key, value }, err => next(err, stats))
     }
   ]
 

@@ -30,7 +30,7 @@ function createProviderWorker (opts) {
 
   function execWorker (cb) {
     waterfall(tasks, function (err, stats) {
-      if (!err) log.info('finished', stats)
+      log.info('stats', stats)
       return cb(err)
     })
   }
