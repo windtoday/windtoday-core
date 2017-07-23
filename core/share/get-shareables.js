@@ -8,9 +8,9 @@ const MIN_PRICE_SCORE = 90
 
 const isDeal = ({priceScore}) => priceScore >= MIN_PRICE_SCORE
 
-const isPremiumShop = item => includes(premiumProviders, item.provider)
+const isPremiumShop = ({provider}) => includes(premiumProviders, provider)
 
-const isRecent = item => isToday(item.timestamp)
+const isRecent = ({isForced, timestamp}) => !isForced && isToday(timestamp)
 
 const conditions = overEvery([
   isRecent,
