@@ -1,6 +1,6 @@
 'use strict'
 
-const { chain, toUpper, flow } = require('lodash')
+const { chain, flow } = require('lodash')
 const strmatch = require('str-match')()
 
 const {
@@ -12,7 +12,7 @@ const removeSpaces = require('../../../util/remove-spaces')
 
 const hasBoardSize = item => !!item['board size']
 
-const getBoardSize = flow([removeSpaces, toUpper])
+const getBoardSize = flow([removeSpaces])
 
 function prettyBoardSize (item) {
   const { title } = item

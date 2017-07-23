@@ -12,7 +12,7 @@ const createCase = title => {
 }
 
 describe('schema » transform » pretty title » board » size', function () {
-  const expected = 'Starboard 120L Futura'
+  const expected = 'Starboard 120l Futura'
   ;[
     '120 l',
     '120l',
