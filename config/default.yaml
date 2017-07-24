@@ -64,3 +64,6 @@ premium_providers:
 share:
   minPriceScore: 90
   fallbackImage: 'https://blog.windtoday.co/logo.jpg'
+stats:
+  password: process.env.STATS_PASSWORD
+  database: process.env.STATS_DATABASE

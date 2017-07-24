@@ -38,6 +38,7 @@
     "lodash": "~4.17.4",
     "lpwind-api": "~1.0.4",
     "meow": "~3.7.0",
+    "mongodb": "~2.2.30",
     "osom": "~2.2.0",
     "ozutarifa-api": "~1.2.4",
     "redis-diff": "~2.0.1",
