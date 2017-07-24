@@ -1,15 +1,19 @@
 'use strict'
 
 const condenseWhitespace = require('condense-whitespace')
-const { replace } = require('lodash')
+const { flow, replace } = require('lodash')
 
 const {create: createMastCarbon} = require('../../../identify/mast/carbon')
 
 const REPLACEMENT = '{{SIZE}}'
-const REPLACEMENT_REGEX = /\{\{SIZE\}\} ?[%cx]|spx|flx/i
+const REGEX_MAST_CARBON_WORD = /carbon/i
+const REGEX_MAST_CARBON_SYMBOL = /\{\{SIZE\}\}.?[%cx]|spx|flx/i
 
 const getMastCarbon = createMastCarbon({ replacement: ` ${REPLACEMENT}` })
-const normalizeOutput = output => replace(output, REPLACEMENT_REGEX, REPLACEMENT)
+const normalizeOutput = flow([
+  title => replace(title, REGEX_MAST_CARBON_WORD, ''),
+  title => replace(title, REGEX_MAST_CARBON_SYMBOL, REPLACEMENT)
+])
 
 module.exports = ({ title, year, 'mast carbon': mastCarbon }) => {
   if (!mastCarbon) return title
