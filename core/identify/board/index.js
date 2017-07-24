@@ -26,6 +26,13 @@ function factory (log) {
     }
   })
 
+  const addType = createAdd('type', acc => {
+    return {
+      data: acc.dir.data.type,
+      output: acc.dir.output
+    }
+  })
+
   const addCategory = createAdd('category', acc => {
     return {
       data: category('boards'),
@@ -40,6 +47,7 @@ function factory (log) {
     addCategory(acc)
     addBrand(acc)
     addModel(acc)
+    addType(acc)
     addSize(acc)
 
     return { data: acc.data, output: acc.input }

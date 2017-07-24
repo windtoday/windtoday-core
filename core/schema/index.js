@@ -83,10 +83,14 @@ const validator = osom({
     validate: isValidSailSize
   },
 
+  'sail type': String,
+
   'board size': {
     type: Number,
     validate: isFinite
   },
+
+  'board type': String,
 
   'boom size': String,
   'boom type': String,
