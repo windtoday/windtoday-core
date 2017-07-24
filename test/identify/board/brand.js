@@ -3,7 +3,9 @@
 const { get } = require('lodash')
 const should = require('should')
 
-const log = require('../../../core/log')('board_brand_unidentify')
+const log = {
+  warn: () => {}
+}
 const board = require('../../../core/identify/board')(log)
 
 describe('identify » board » brand', function () {

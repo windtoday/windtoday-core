@@ -4,7 +4,10 @@ const should = require('should')
 
 const { price, year, mast, sail } = require('../../core/identify')
 const createFlow = require('../../core/identify/create-flow')
-const createLogger = require('../../core/log')
+
+const createLog = () => ({
+  warn: () => {}
+})
 
 describe('identify » create flow', function () {
   it('price and year', function () {
@@ -19,8 +22,8 @@ describe('identify » create flow', function () {
 
   it('sail and mast', function () {
     const flow = createFlow([
-      sail(createLogger('sail_brand_unidentify')),
-      mast(createLogger('sail_brand_unidentify'))
+      sail(createLog('sail_brand_unidentify')),
+      mast(createLog('sail_brand_unidentify'))
     ])
 
     const str = 'Neilpryde Hellcat 6,7. Mastil Rdm 430 Y Botavara North'

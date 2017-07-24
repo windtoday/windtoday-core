@@ -3,7 +3,10 @@
 const should = require('should')
 const { get } = require('lodash')
 
-const log = require('../../../core/log')('sail_brand_unidentify')
+const log = {
+  warn: () => {}
+}
+
 const sail = require('../../../core/identify/sail')(log)
 
 describe('identify » sail » brand', function () {

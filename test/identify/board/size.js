@@ -3,7 +3,9 @@
 const should = require('should')
 const { get } = require('lodash')
 
-const log = require('../../../core/log')('board_size_unidentify')
+const log = {
+  warn: () => {}
+}
 const board = require('../../../core/identify/board')(log)
 
 describe('identify » board » size', function () {

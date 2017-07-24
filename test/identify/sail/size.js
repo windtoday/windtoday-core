@@ -3,7 +3,9 @@
 const should = require('should')
 const { get } = require('lodash')
 
-const log = require('../../../core/log')('sail_size_unidentify')
+const log = {
+  warn: () => {}
+}
 const sail = require('../../../core/identify/sail')(log)
 
 describe('identify » sail » size', function () {

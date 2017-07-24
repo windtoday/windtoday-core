@@ -4,7 +4,9 @@ const should = require('should')
 const { get } = require('lodash')
 
 const createAutodetection = require('../../core/identify/autodetection')
-const log = require('../../core/log')('autodetection')
+const log = {
+  warn: () => {}
+}
 const autodetection = createAutodetection(log)
 
 describe('identify » autodetection', function () {
