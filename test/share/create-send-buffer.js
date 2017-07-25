@@ -46,22 +46,9 @@ describe('share » send buffer', function () {
 
     sendToBuffer(item, function (err) {
       should(logBuffer).be.eql({
-        warn: [{
-          message: 'hello world',
-          accountId: { twitter: '123' },
-          opts: {
-            media: {
-              picture: 'https://blog.windtoday.co/logo.jpg',
-              thumbnail: 'https://blog.windtoday.co/logo.jpg',
-              link: 'mylink.com'
-            }
-          }
-        }, {
-          errorCode: 1023,
-          httpCode: 400
-        }],
+        warn: [ { errorCode: 1023, httpCode: 400 } ],
         info: [],
-        debug: ['hello world']
+        debug: [ { message: 'hello world', accountType: 0 } ]
       })
       done(err)
     })

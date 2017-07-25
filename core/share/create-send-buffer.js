@@ -38,7 +38,7 @@ function createUpdate (opts) {
   function wrapCallback (req, cb) {
     function callback (err) {
       if (err) {
-        const apiError = pick(err, ['messge', 'errorCode', 'httpCode'])
+        const apiError = pick(err, ['message', 'errorCode', 'httpCode'])
         if (!apiError) return cb(err)
         log.warn(apiError)
       }
