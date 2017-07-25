@@ -21,7 +21,7 @@ describe('share » compose message', function () {
   it('create the social text from the doc', function () {
     const { title, price, link } = doc
     const message = compose(doc)
-    const expected = `${title} €${price} ${link}`
+    const expected = `💨 ${title} €${price} 👉 ${link}`
     should(message).be.equal(expected)
   })
 })
