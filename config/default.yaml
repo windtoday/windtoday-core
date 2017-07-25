@@ -62,5 +62,5 @@ premium_providers:
   - lpwind
   - wewind
 share:
-  minPriceScore: 90
+  minPercentile: 90
   fallbackImage: 'https://blog.windtoday.co/logo.jpg'

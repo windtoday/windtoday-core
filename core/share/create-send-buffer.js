@@ -5,19 +5,26 @@ const { parallel } = require('async')
 const { fallbackImage } = require('config').share
 
 function getOpts (doc, accountType) {
-  const {link} = doc
+  const {link, title} = doc
   const image = get(doc, 'image', fallbackImage)
-  const media = { picture: image, thumbnail: image, link }
-  // if (accountType === 'twitter') media.photo = doc.image
+  const media = {
+    picture: image,
+    thumbnail: image,
+    link,
+    title,
+    // normally description of the products are useless
+    description: ' '
+  }
+
   return {media}
 }
 
 function createUpdate (opts) {
   const { client, accounts, composeMessage, log } = opts
 
-  function wrapRequest (message, accountId, opts) {
+  function wrapRequest (message, accountId, accountType, opts) {
     function request (cb) {
-      const req = {message, accountId, opts}
+      const req = {message, accountType}
       const callback = wrapCallback(req, cb)
 
       return client.updates
@@ -30,7 +37,12 @@ function createUpdate (opts) {
 
   function wrapCallback (req, cb) {
     function callback (err) {
-      if (err) log.warn(req, pick(err, ['messge', 'errorCode', 'httpCode']))
+      if (err) {
+        const apiError = pick(err, ['messge', 'errorCode', 'httpCode'])
+        if (!apiError) return cb(err)
+        log.warn(apiError)
+      }
+      log.debug(req)
       return cb()
     }
     return callback
@@ -41,10 +53,8 @@ function createUpdate (opts) {
 
     const tasks = map(accounts, function (accountId, accountType) {
       const opts = getOpts(doc, accountType)
-      return wrapRequest(message, accountId, opts)
+      return wrapRequest(message, accountId, accountType, opts)
     })
-
-    log.debug(message)
 
     return parallel(tasks, cb)
   }
