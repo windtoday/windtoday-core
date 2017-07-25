@@ -1,7 +1,8 @@
 'use strict'
 
-const exists = require('existential')
-const { get } = require('lodash')
+const { get, isNil, negate } = require('lodash')
+
+const exists = negate(isNil)
 
 const createLogUnmatching = require('./log-unmatching')
 
