@@ -149,7 +149,6 @@ describe('share » get shareables', function () {
     ]
 
     const shareables = getShareables(items)
-    console.log(shareables)
     should(shareables).be.eql([ {
       title: 'Ezzy Taka 4,9 2015',
       category: [ 'sails' ],
