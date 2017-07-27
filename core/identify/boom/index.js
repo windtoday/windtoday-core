@@ -26,7 +26,7 @@ function factory (log) {
     }
   })
 
-  const addType = createAdd('type', acc => type(acc.input))
+  const addType = createAdd('type', acc => type(acc.input, acc))
   const addSize = createAdd('size', acc => size(acc.input))
 
   function boom (input) {
