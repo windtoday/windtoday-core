@@ -7,6 +7,7 @@ const aggregateProp = require('../../util/aggregate-prop')
 const createLogMissing = require('./create-log-missing')
 const boardSizeRange = require('../../range/board-size')
 const sailSizeRange = require('../../range/sail-size')
+const boomSizeType = require('../../range/boom-size')
 const mastCarbonRange = require('../../range/mast-carbon')
 const serializeProp = require('./serialize-prop')
 
@@ -17,6 +18,8 @@ const createGetKey = (getKey, logMissing) => item => {
   const customKey = getKey(item, serializeProp, logMissing)
   let key = `${item.category}.${item.condition}${customKey}`
   key += serializeProp(key, item['mast carbon'], `${mastCarbonRange(item['mast carbon'])}`)
+  key += serializeProp(key, item['boom type'])
+  key += serializeProp(key, item['boom size'], `${boomSizeType(item['sail size'])}`)
   key += serializeProp(key, item['sail size'], `${sailSizeRange(item['sail size'])}`)
   key += serializeProp(key, item['board size'], `${boardSizeRange(item['board size'])}`)
 
@@ -24,8 +27,6 @@ const createGetKey = (getKey, logMissing) => item => {
   // TODO: Add mast type
   // TODO: Add fin size
   // TODO: Add fin type
-  // TODO: Add boom size range
-  // TODO: Add boom size
 
   return toLower(key)
 }
@@ -55,7 +56,7 @@ const createGetScore = ({
   const aggregate = aggregateProp({ data, test, getKey, propName })
 
   const getScore = doc => {
-    if (!test(doc)) return 0
+    if (!test(doc)) return null
 
     const value = get(doc, propName)
     const key = getKey(doc)

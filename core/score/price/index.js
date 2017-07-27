@@ -13,11 +13,15 @@ module.exports = ({ log, propName, data }) => {
   const getByModel = createByModel({log, propName, data})
   const getByYear = createByYear({log, propName, data})
 
+  const getBrandScore = (item, byCategory) => getByBrand(item) || byCategory
+  const getModelScore = (item, byCategory) => getByModel(item) || byCategory
+  const getYearSscore = (item, byCategory) => getByYear(item) || byCategory
+
   return doc => {
     const byCategory = getByCategory(doc)
-    const byBrand = getByBrand(doc)
-    const byModel = getByModel(doc)
-    const byYear = getByYear(doc)
+    const byModel = getModelScore(doc, byCategory)
+    const byYear = getYearSscore(doc, byCategory)
+    const byBrand = getBrandScore(doc, byCategory)
 
     const score = weightedMean([
       [byModel, 5],
