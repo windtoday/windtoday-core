@@ -16,13 +16,6 @@ describe('core » util » aggregate prop', function () {
 
     const key = '2017.used.sails'
     const score = aggregate[key]
-
-    should(score).be.eql({
-      total: 8,
-      min: 390,
-      max: 390,
-      avg: 390,
-      p95: 390
-    })
+    should(score).be.eql({ total: 9, min: 290, max: 495, avg: 313, p95: 495 })
   })
 })
