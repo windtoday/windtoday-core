@@ -92,7 +92,7 @@ const validator = osom({
 
   'board type': String,
 
-  'boom size': String,
+  'boom size': Number,
   'boom type': String,
 
   'fin size': {
