@@ -1,16 +1,15 @@
 'use strict'
 
-const { replace, flow } = require('lodash')
+const { toNumber, flow } = require('lodash')
 const strmatch = require('str-match')()
 
-const REGEX_BOOM_SIZE = /\d{3}( - |[-/ ])\d{3}/
-const REGEX_BOOM_SEPARATOR = / - |[-/ ]/g
+const REGEX_BOOM_SIZE = /\d{3}/
 
-function response (data, output) {
-  return { data, output }
-}
+const response = (data, output) => ({ data, output })
 
-const normalize = flow([str => replace(str, REGEX_BOOM_SEPARATOR, '/')])
+const normalize = flow([
+  toNumber
+])
 
 function size (str) {
   const size = strmatch(str, REGEX_BOOM_SIZE)
