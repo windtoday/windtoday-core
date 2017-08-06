@@ -1,8 +1,8 @@
 'use strict'
 
+const { assign, isFinite, round } = require('lodash')
 const startOfDay = require('date-fns/start_of_day')
 const { waterfall, asyncify } = require('async')
-const { assign, isFinite, round } = require('lodash')
 const osom = require('osom')
 
 const getReferralLink = require('./get-referral-link')
@@ -105,6 +105,13 @@ const validator = osom({
   'mast carbon': Number,
   'mast type': String,
   'mast size': Number
+
+  // TODO sail size range
+  // TODO board size range
+  // TODO mast carbon range
+  // TODO mast size range
+  // TODO boom size range
+  // TODO fin size range
 })
 
 const titleize = asyncify(prettyTitle)

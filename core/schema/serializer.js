@@ -7,12 +7,8 @@ const CATEGORY_SINGULAR = require('../category').singular
 const MAP_KEYS = ['carbon', 'size', 'type']
 
 function serializer (obj) {
-  const namespace = CATEGORY_SINGULAR(get(obj, 'category'))
-
-  return mapKeys(obj, function (value, key) {
-    if (includes(MAP_KEYS, key)) return `${namespace} ${key}`
-    return key
-  })
+  const category = CATEGORY_SINGULAR(get(obj, 'category'))
+  return mapKeys(obj, (value, key) => includes(MAP_KEYS, key) ? `${category} ${key}` : key)
 }
 
 module.exports = serializer
