@@ -59,6 +59,8 @@
   "devDependencies": {
     "coveralls": "latest",
     "git-dirty": "latest",
+    "husky": "~0.14.3",
+    "lint-staged": "~4.0.2",
     "mocha": "latest",
     "nyc": "latest",
     "prettier-standard": "latest",
@@ -72,13 +74,21 @@
     "clean": "rm -rf node_modules",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard",
-    "pretty": "prettier-standard {core,test,bin}/**/*.js",
+    "precommit": "lint-staged",
+    "precommit-lint": "prettier-standard",
     "prelint": "npm run pretty",
     "pretest": "npm run lint",
+    "pretty": "prettier-standard {core,test,bin}/**/*.js",
     "start": "echo 'waiting the wind'",
     "test": "NODE_ENV=test nyc mocha"
   },
   "license": "MIT",
+  "lint-staged": {
+    "*.js": [
+      "precommit-lint",
+      "git add"
+    ]
+  },
   "standard": {
     "globals": [
       "describe",
