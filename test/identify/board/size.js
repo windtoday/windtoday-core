@@ -20,6 +20,7 @@ describe('identify » board » size', function () {
     ;['84l', '84 l', '84 litros'].forEach(function (str) {
       const { data, output } = board(str)
       should(get(data, 'size')).be.equal(84)
+      should(get(data, 'size range')).be.equal('80l to 90l')
       should(output).be.equal('')
     })
   })
@@ -29,6 +30,7 @@ describe('identify » board » size', function () {
       const { data, output } = board(str)
       should(get(data, 'size')).be.equal(105)
       should(output.includes('105')).be.false()
+      should(get(data, 'size range')).be.equal('100l to 110l')
     })
   })
 
@@ -41,6 +43,7 @@ describe('identify » board » size', function () {
       const { data, output } = board(str)
       should(get(data, 'size')).be.equal(152)
       should(output.includes('152')).be.false()
+      should(get(data, 'size range')).be.equal('>130l')
     })
   })
 })
