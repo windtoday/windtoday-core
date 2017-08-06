@@ -104,14 +104,14 @@ const validator = osom({
 
   'mast carbon': Number,
   'mast type': String,
-  'mast size': Number
+  'mast size': Number,
 
-  // TODO sail size range
-  // TODO board size range
-  // TODO mast carbon range
-  // TODO mast size range
-  // TODO boom size range
-  // TODO fin size range
+  'sail size range': String,
+  'board size range': String,
+  'mast size range': String,
+  'mast carbon range': String,
+  'boom size range': String,
+  'fin size range': String
 })
 
 const titleize = asyncify(prettyTitle)
