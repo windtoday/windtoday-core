@@ -66,6 +66,7 @@ describe('identify » mast', function () {
           const str = tpl({ carbon })
           const { data, output } = mast(str)
           should(get(data, 'carbon')).be.equal(75)
+          should(get(data, 'carbon range')).be.equal('C70 to C80')
           should(output.includes('75')).be.false()
         })
       })
