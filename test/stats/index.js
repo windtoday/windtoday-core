@@ -10,16 +10,18 @@ describe('core » stats', function () {
     it('list all providers', function () {
       const { providers } = createStats(data)
 
-      should(providers.sort()).be.eql([
-        'ozutarifa',
-        'wewind',
-        'telstarsurf',
-        'lpwind',
-        'surfkeppler',
-        'easysurfshop',
-        'bellini',
-        'bigsurfshop'
-      ].sort())
+      should(providers.sort()).be.eql(
+        [
+          'ozutarifa',
+          'wewind',
+          'telstarsurf',
+          'lpwind',
+          'surfkeppler',
+          'easysurfshop',
+          'bellini',
+          'bigsurfshop'
+        ].sort()
+      )
     })
 
     it('by category', function () {

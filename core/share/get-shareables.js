@@ -7,7 +7,8 @@ const isToday = require('date-fns/is_today')
 
 const { minPercentile } = require('config').share
 
-const hasHighPriceScore = baseScore => ({ priceScore }) => priceScore >= baseScore
+const hasHighPriceScore = baseScore => ({ priceScore }) =>
+  priceScore >= baseScore
 
 const isPremiumShop = ({ provider }) => includes(premiumProviders, provider)
 

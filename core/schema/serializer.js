@@ -8,7 +8,10 @@ const MAP_KEYS = ['carbon', 'size', 'type']
 
 function serializer (obj) {
   const category = CATEGORY_SINGULAR(get(obj, 'category'))
-  return mapKeys(obj, (value, key) => includes(MAP_KEYS, key) ? `${category} ${key}` : key)
+  return mapKeys(
+    obj,
+    (value, key) => (includes(MAP_KEYS, key) ? `${category} ${key}` : key)
+  )
 }
 
 module.exports = serializer

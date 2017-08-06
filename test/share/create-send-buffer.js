@@ -46,9 +46,9 @@ describe('share » send buffer', function () {
 
     sendToBuffer(item, function (err) {
       should(logBuffer).be.eql({
-        warn: [ { errorCode: 1023, httpCode: 400 } ],
+        warn: [{ errorCode: 1023, httpCode: 400 }],
         info: [],
-        debug: [ { message: 'hello world', accountType: 0 } ]
+        debug: [{ message: 'hello world', accountType: 0 }]
       })
       done(err)
     })

@@ -1,4 +1,3 @@
 'use strict'
 
-module.exports = ({title, price, link}) =>
-  `💨 ${title} €${price} 👉 ${link}`
+module.exports = ({ title, price, link }) => `💨 ${title} €${price} 👉 ${link}`

@@ -7,7 +7,7 @@ const createScoreWorker = require('../../core/worker/score')
 const createShareWorker = require('../../core/worker/share')
 const createLogger = require('../../core/log')
 const search = require('../../core/db/search')
-const {assign, map, pick} = require('lodash')
+const { assign, map, pick } = require('lodash')
 
 const log = createLogger({ keyword: 'insights', diff: true })
 const processExit = createProcessExit(log)
@@ -23,16 +23,19 @@ const _createShareWorker = data => {
   return createShareWorker({ log, data })
 }
 
-const mergeScoreData = (data, scoredData) => map(data, (doc, index) =>
-  assign({}, doc, pick(scoredData[index], ['priceScore', 'priceScoreDetail']))
-)
+const mergeScoreData = (data, scoredData) =>
+  map(data, (doc, index) =>
+    assign({}, doc, pick(scoredData[index], ['priceScore', 'priceScoreDetail']))
+  )
 
 const tasks = [
   function fetch (next) {
     return search.fetchAll(next)
   },
   function scoreWorker (data, next) {
-    return _createScoreWorker(data)((err, scoredData) => next(err, scoredData, data))
+    return _createScoreWorker(data)((err, scoredData) =>
+      next(err, scoredData, data)
+    )
   },
   function shareWorker (scoredData, data, next) {
     return _createShareWorker(mergeScoreData(data, scoredData))(next)

@@ -5,7 +5,7 @@ const { parallel } = require('async')
 const { fallbackImage } = require('config').share
 
 function getOpts (doc, accountType) {
-  const {link, title} = doc
+  const { link, title } = doc
   const image = get(doc, 'image', fallbackImage)
   const media = {
     picture: image,
@@ -16,7 +16,7 @@ function getOpts (doc, accountType) {
     description: ' '
   }
 
-  return {media}
+  return { media }
 }
 
 function createUpdate (opts) {
@@ -24,12 +24,10 @@ function createUpdate (opts) {
 
   function wrapRequest (message, accountId, accountType, opts) {
     function request (cb) {
-      const req = {message, accountType}
+      const req = { message, accountType }
       const callback = wrapCallback(req, cb)
 
-      return client.updates
-        .create(message, accountId, opts)
-        .nodeify(callback)
+      return client.updates.create(message, accountId, opts).nodeify(callback)
     }
 
     return request

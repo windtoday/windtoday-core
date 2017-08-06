@@ -72,7 +72,7 @@
     "clean": "rm -rf node_modules",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard",
-    "pretty": "prettier-standard core/**/*.js test/**/*.js bin/**/*.js",
+    "pretty": "prettier-standard {core,test,bin}/**/*.js",
     "prelint": "npm run pretty",
     "pretest": "npm run lint",
     "start": "echo 'waiting the wind'",
