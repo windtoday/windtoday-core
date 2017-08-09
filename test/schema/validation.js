@@ -20,18 +20,18 @@ describe('schema » validation', function () {
   describe('calculated properties', function () {
     describe('condition', function () {
       describe('based on seller', function () {
-        it('particular → used', function (done) {
+        it('particular → Used', function (done) {
           const fixture = assign({}, baseFixture, { seller: 'particular' })
           schema(fixture, function (err, doc) {
-            should(doc.condition).be.equal('used')
+            should(doc.condition).be.equal('Used')
             done(err)
           })
         })
 
-        it('used → used', function (done) {
+        it('used → Used', function (done) {
           const fixture = assign({}, baseFixture, { seller: 'used' })
           schema(fixture, function (err, doc) {
-            should(doc.condition).be.equal('used')
+            should(doc.condition).be.equal('Used')
             done(err)
           })
         })
@@ -39,7 +39,7 @@ describe('schema » validation', function () {
         it('otherwise, new', function (done) {
           const fixture = assign({}, baseFixture, { seller: 'offer' })
           schema(fixture, function (err, doc) {
-            should(doc.condition).be.equal('new')
+            should(doc.condition).be.equal('New')
             done(err)
           })
         })

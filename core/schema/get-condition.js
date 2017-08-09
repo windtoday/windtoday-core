@@ -3,9 +3,7 @@
 const { includes, toLower } = require('lodash')
 const isValidCondition = require('./validate/condition')
 
-function isParticularSeller (seller) {
-  return includes(['particular', 'used'], seller)
-}
+const isParticularSeller = seller => includes(['particular', 'used'], seller)
 
 function getCondition (item) {
   const condition = toLower(item.condition)

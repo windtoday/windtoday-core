@@ -2,10 +2,6 @@
 
 const { includes } = require('lodash')
 
-const VALID_CONDITIONS = ['new', 'used']
+const VALID_CONDITIONS = ['New', 'Used']
 
-function isValidCondition (value) {
-  return includes(VALID_CONDITIONS, value)
-}
-
-module.exports = isValidCondition
+module.exports = value => includes(VALID_CONDITIONS, value)

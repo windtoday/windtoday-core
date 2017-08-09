@@ -1,6 +1,6 @@
 'use strict'
 
-const { assign, isFinite, round } = require('lodash')
+const { assign, capitalize, isFinite, round, toUpper } = require('lodash')
 const startOfDay = require('date-fns/start_of_day')
 const { waterfall, asyncify } = require('async')
 const osom = require('osom')
@@ -34,7 +34,8 @@ const validator = osom({
   condition: {
     required: true,
     type: String,
-    validate: isValidCondition
+    validate: isValidCondition,
+    transform: [capitalize]
   },
   provider: {
     required: true,
@@ -83,7 +84,10 @@ const validator = osom({
     validate: isValidSailSize
   },
 
-  'sail type': String,
+  'sail type': {
+    type: String,
+    transform: [capitalize]
+  },
 
   'board size': {
     type: Number,
@@ -103,7 +107,12 @@ const validator = osom({
   'fin type': String,
 
   'mast carbon': Number,
-  'mast type': String,
+
+  'mast type': {
+    type: String,
+    transform: [toUpper]
+  },
+
   'mast size': Number,
 
   'sail size range': String,
