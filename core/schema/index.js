@@ -1,6 +1,13 @@
 'use strict'
 
-const { assign, capitalize, isFinite, round, toUpper } = require('lodash')
+const {
+  assign,
+  capitalize,
+  isFinite,
+  round,
+  toUpper,
+  pickBy
+} = require('lodash')
 const startOfDay = require('date-fns/start_of_day')
 const { waterfall, asyncify } = require('async')
 const osom = require('osom')
@@ -148,6 +155,9 @@ module.exports = function (schema, cb) {
     function assignProps (doc, title, next) {
       const prettyDoc = assign({}, doc, { title })
       return next(null, prettyDoc)
+    },
+    function sanetizeProps (doc, next) {
+      return next(null, pickBy(doc))
     }
   ]
 

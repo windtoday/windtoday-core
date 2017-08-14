@@ -67,10 +67,34 @@ describe('schema » validation', function () {
       it("optional fields don't throw validation errors", function (done) {
         schema(baseFixture, done)
       })
+
       it('required fields need to be present', function (done) {
         schema({}, function (err) {
           should.exist(err)
           done()
+        })
+      })
+
+      it('not present fields should not be included', function (done) {
+        const item = {
+          title: 'NORTHSAILS S TYPE SL 2017 8.8 €599',
+          seller: 'freerace',
+          provider: 'telstarsurf',
+          category: ['sails'],
+          price: 599,
+          name: 'S TYPE SL 2017',
+          brand: 'NORTHSAILS',
+          image:
+            'https://www.telstarsurf.com/cache/img/cbf32f939668/500/500/max/max/s-type-sl-2017.png',
+          link:
+            'http://www.telstarsurf.com/windsurf/windsurf-sails/54070/northsails-s-type-sl-2017/',
+          size: '8.8'
+        }
+
+        schema(item, function (err, doc) {
+          should(doc['sail type']).be.undefined()
+          should(doc['mast type']).be.undefined()
+          done(err)
         })
       })
     })
