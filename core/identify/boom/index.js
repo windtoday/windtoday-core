@@ -2,10 +2,8 @@
 
 const createDirectoryFlow = require('../../directory/create-flow')
 const { accesories, sails } = require('../../directory')
-const boomRangeSize = require('../../range/boom-size')
 const createAddFactory = require('../create-add')
 const category = require('../../category')
-const {get} = require('lodash')
 const size = require('./size')
 const type = require('./type')
 
@@ -13,12 +11,6 @@ const directory = createDirectoryFlow([sails, accesories])
 
 function factory (log) {
   const createAdd = createAddFactory('boom', log)
-
-  const addSizeRange = createAdd('size range', acc => {
-    const size = get(acc, 'data.size')
-    const data = size && boomRangeSize(size)
-    return {data}
-  })
 
   const addCategory = createAdd('category', acc => ({
     data: category('booms'),
@@ -40,7 +32,6 @@ function factory (log) {
     addCategory(acc)
     addBrand(acc)
     addSize(acc)
-    addSizeRange(acc)
     addType(acc)
 
     return { data: acc.data, output: acc.input }

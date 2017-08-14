@@ -1,13 +1,14 @@
 'use strict'
 
-const should = require('should')
 const { assign, repeat } = require('lodash')
+const should = require('should')
 
 const schema = require('../../core/schema')
 
 const baseFixture = {
   title: 'Vendo Mistral Syncro 92l 2007 - 280€',
   price: 280,
+  size: 92,
   category: ['boards'],
   seller: 'particular',
   provider: 'totalwind',
@@ -17,7 +18,7 @@ const baseFixture = {
 }
 
 describe('schema » validation', function () {
-  describe('calculated properties', function () {
+  describe('calculated props', function () {
     describe('condition', function () {
       describe('based on seller', function () {
         it('particular → Used', function (done) {
@@ -45,7 +46,6 @@ describe('schema » validation', function () {
         })
       })
     })
-
     describe('referral link', function () {
       it('referral keyword is present', function (done) {
         const fixture = assign({}, baseFixture, {
@@ -61,8 +61,7 @@ describe('schema » validation', function () {
       })
     })
   })
-
-  describe('static properties', function () {
+  describe('static props', function () {
     describe('behavior', function () {
       it("optional fields don't throw validation errors", function (done) {
         schema(baseFixture, done)
@@ -130,6 +129,15 @@ describe('schema » validation', function () {
             done(err)
           })
         })
+      })
+    })
+  })
+  describe('additional props', function () {
+    it('range', function (done) {
+      schema(baseFixture, function (err, doc) {
+        should(doc['board size']).be.ok()
+        should(doc['board size range']).be.ok()
+        done(err)
       })
     })
   })

@@ -14,6 +14,7 @@ const osom = require('osom')
 
 const getReferralLink = require('./get-referral-link')
 const getCondition = require('./get-condition')
+const getRangeProps = require('../range')
 
 const prettyTitle = require('./transform/pretty-title')
 const isValidCondition = require('./validate/condition')
@@ -137,10 +138,10 @@ module.exports = function (schema, cb) {
   const now = Date.now()
 
   const doc = assign({}, schema, {
+    updatedAt: startOfDay(now).getTime(),
     condition: getCondition(schema),
     link: getReferralLink(schema),
-    timestamp: now,
-    updatedAt: startOfDay(now).getTime()
+    timestamp: now
   })
 
   const schemaSerialized = serializer(doc)
@@ -149,12 +150,13 @@ module.exports = function (schema, cb) {
     function validateSchema (next) {
       return validate(schemaSerialized, next)
     },
-    function prettyTitle (doc, next) {
-      return titleize(doc, (err, title) => next(err, doc, title))
+    function assignPrettyTitle (doc, next) {
+      return titleize(doc, (err, title) =>
+        next(err, assign({}, doc, { title }))
+      )
     },
-    function assignProps (doc, title, next) {
-      const prettyDoc = assign({}, doc, { title })
-      return next(null, prettyDoc)
+    function assignRangeProps (doc, next) {
+      return next(null, assign(doc, getRangeProps(doc)))
     },
     function sanetizeProps (doc, next) {
       return next(null, pickBy(doc))

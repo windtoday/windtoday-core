@@ -1,13 +1,10 @@
 'use strict'
 
 const createDirectoryFlow = require('../../directory/create-flow')
-const mastRangeCarbon = require('../../range/mast-carbon')
 const { accesories, sails } = require('../../directory')
-const mastRangeSize = require('../../range/mast-size')
 const createAddFactory = require('../create-add')
 const category = require('../../category')
 const carbon = require('./carbon')
-const {get} = require('lodash')
 const size = require('./size')
 const type = require('./type')
 
@@ -30,18 +27,6 @@ function factory (log) {
   const addCarbon = createAdd('carbon', acc => carbon(acc.input))
   const addSize = createAdd('size', acc => size(acc.input))
 
-  const addSizeRange = createAdd('size range', acc => {
-    const size = get(acc, 'data.size')
-    const data = size && mastRangeSize(size)
-    return {data}
-  })
-
-  const addCarbonRange = createAdd('carbon range', acc => {
-    const size = get(acc, 'data.carbon')
-    const data = size && mastRangeCarbon(size)
-    return {data}
-  })
-
   function mast (input) {
     const dir = directory(input)
     const acc = { dir, input, data: {} }
@@ -50,9 +35,7 @@ function factory (log) {
     addBrand(acc)
     addType(acc)
     addCarbon(acc)
-    addCarbonRange(acc)
     addSize(acc)
-    addSizeRange(acc)
 
     return { data: acc.data, output: acc.input }
   }

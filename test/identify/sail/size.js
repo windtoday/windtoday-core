@@ -23,7 +23,6 @@ describe('identify » sail » size', function () {
           it(str, function () {
             const { data, output } = sail(str)
             should(get(data, 'size')).be.equal(7.0)
-            should(get(data, 'size range')).be.equal('7m to 8m')
             should(output.includes(str)).be.false()
           })
         })
@@ -50,7 +49,6 @@ describe('identify » sail » size', function () {
           it(str, function () {
             const { data, output } = sail(str)
             should(get(data, 'size')).be.equal(7.0)
-            should(get(data, 'size range')).be.equal('7m to 8m')
             should(output.includes(str)).be.false()
           })
         })
@@ -63,7 +61,6 @@ describe('identify » sail » size', function () {
           it(str, function () {
             const { data, output } = sail(str)
             should(get(data, 'size')).be.equal(10.0)
-            should(get(data, 'size range')).be.equal('>9m')
             should(output.includes(str)).be.false()
           })
         })
@@ -90,7 +87,6 @@ describe('identify » sail » size', function () {
           it(str, function () {
             const { data, output } = sail(str)
             should(get(data, 'size')).be.equal(10.2)
-            should(get(data, 'size range')).be.equal('>9m')
             should(output.includes(str)).be.false()
           })
         })
@@ -106,7 +102,6 @@ describe('identify » sail » size', function () {
       ].forEach(function (str) {
         const { data, output } = sail(str[0])
         should(get(data, 'size')).be.equal(str[1])
-        should(get(data, 'size range')).be.equal('5m to 6m')
         should(output.includes(str[2])).be.false()
       })
     })
@@ -115,7 +110,6 @@ describe('identify » sail » size', function () {
       const str = 'Vendo EZZY WAVE SE 2005 80 € de 5.3'
       const { data, output } = sail(str)
       should(get(data, 'size')).be.equal(5.3)
-      should(get(data, 'size range')).be.equal('5m to 6m')
       should(output.includes('5.3')).be.false()
     })
 
@@ -127,7 +121,6 @@ describe('identify » sail » size', function () {
         const [str, size, sizeString, sizeRange] = test
         const { data, output } = sail(str)
         should(get(data, 'size')).be.equal(size)
-        should(get(data, 'size range')).be.equal(sizeRange)
         should(output.includes(sizeString)).be.false()
       })
     })
@@ -137,7 +130,6 @@ describe('identify » sail » size', function () {
       const { data, output } = sail(str)
       should(get(data, 'size')).be.equal(8.3)
       should(output.includes('8,3')).be.false()
-      should(get(data, 'size range')).be.equal('8m to 9m')
     })
 
     it('in a string with model that finish in number separated with space', function () {
@@ -145,7 +137,6 @@ describe('identify » sail » size', function () {
       const { data, output } = sail(str)
       should(get(data, 'size')).be.equal(8.6)
       should(output.includes('8,6')).be.false()
-      should(get(data, 'size range')).be.equal('8m to 9m')
     })
 
     it('in a string with mast dimensions', function () {
@@ -153,7 +144,6 @@ describe('identify » sail » size', function () {
       const { data, output } = sail(str)
       should(get(data, 'size')).be.equal(11)
       should(output.includes('11')).be.false()
-      should(get(data, 'size range')).be.equal('>9m')
     })
   })
 })
