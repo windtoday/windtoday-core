@@ -35,6 +35,7 @@
     "easysurfshop-api": "~1.0.5",
     "is-all-reachable": "~1.1.0",
     "js-yaml": "~3.9.0",
+    "json-future": "~2.1.2",
     "lodash": "~4.17.4",
     "lpwind-api": "~1.0.4",
     "meow": "~3.7.0",
