@@ -115,10 +115,10 @@ describe('identify » sail » size', function () {
 
     it('in a string with model that finish in number', function () {
       ;[
-        ['Vendo Neilpryde H2 7,2 2012 - 175€', 7.2, '7,2', '7m to 8m'],
-        ['Vendo Simmer X-type2 9,0 2008 - 190€', 9.0, '9,0', '>9m']
+        ['Vendo Neilpryde H2 7,2 2012 - 175€', 7.2, '7,2'],
+        ['Vendo Simmer X-type2 9,0 2008 - 190€', 9.0, '9,0']
       ].forEach(function (test) {
-        const [str, size, sizeString, sizeRange] = test
+        const [str, size, sizeString] = test
         const { data, output } = sail(str)
         should(get(data, 'size')).be.equal(size)
         should(output.includes(sizeString)).be.false()
