@@ -92,7 +92,7 @@ const validator = osom({
     validate: isValidSailSize
   },
 
-  'sail type': {
+  modality: {
     type: String,
     transform: [capitalize]
   },

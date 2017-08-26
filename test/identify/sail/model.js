@@ -26,7 +26,7 @@ describe('identify » sail » model', function () {
       const { data, output } = sail(title)
       should(get(data, 'category')).be.equal('sails')
       should(get(data, 'model')).be.equal('Racing Blade')
-      should(get(data, 'type')).be.equal('Race')
+      should(get(data, 'modality')).be.equal('Race')
       should(includes(output, 'racing')).be.false()
     })
   })
