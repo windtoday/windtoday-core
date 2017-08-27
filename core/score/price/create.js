@@ -17,11 +17,27 @@ const createTest = test => item =>
 const createGetKey = (getKey, logMissing) => item => {
   const customKey = getKey(item, serializeProp, logMissing)
   let key = `${item.category}.${item.condition}${customKey}`
-  key += serializeProp(key, item['mast carbon'], `${mastCarbonRange(item['mast carbon'])}`)
+  key += serializeProp(
+    key,
+    item['mast carbon'],
+    `${mastCarbonRange(item['mast carbon'])}`
+  )
   key += serializeProp(key, item['boom type'])
-  key += serializeProp(key, item['boom size'], `${boomSizeType(item['sail size'])}`)
-  key += serializeProp(key, item['sail size'], `${sailSizeRange(item['sail size'])}`)
-  key += serializeProp(key, item['board size'], `${boardSizeRange(item['board size'])}`)
+  key += serializeProp(
+    key,
+    item['boom size'],
+    `${boomSizeType(item['sail size'])}`
+  )
+  key += serializeProp(
+    key,
+    item['sail size'],
+    `${sailSizeRange(item['sail size'])}`
+  )
+  key += serializeProp(
+    key,
+    item['board size'],
+    `${boardSizeRange(item['board size'])}`
+  )
 
   // TODO: Add mast size range
   // TODO: Add mast type
@@ -32,13 +48,13 @@ const createGetKey = (getKey, logMissing) => item => {
 }
 
 const calculateScore = (value, aggregation) => {
-  const {min, max, total} = aggregation
+  const { min, max, total } = aggregation
 
   return total === 1 && min === max
     ? 1
     : normalizeValue(value, [
-    { value: aggregation.min, norm: 1 },
-    { value: aggregation.max, norm: 0 }
+        { value: aggregation.min, norm: 1 },
+        { value: aggregation.max, norm: 0 }
     ])
 }
 

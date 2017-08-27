@@ -6,16 +6,17 @@ const strmatch = require('str-match')()
 const response = (data, output) => ({ data, output })
 
 const BOOMS_CARBON_VENDORS = [
-  {brand: 'Neilpryde', model: /x9/i},
-  {brand: 'Severne', model: /enigma/i},
-  {brand: 'North', model: /platinum/i},
-  {brand: 'North', model: /gold/i}
+  { brand: 'Neilpryde', model: /x9/i },
+  { brand: 'Severne', model: /enigma/i },
+  { brand: 'North', model: /platinum/i },
+  { brand: 'North', model: /gold/i }
 ]
 
 const isVendorCarbon = (str, brandVendor) =>
-  some(BOOMS_CARBON_VENDORS, ({brand, model}) => (
-    brandVendor === brand && model.test(str)
-))
+  some(
+    BOOMS_CARBON_VENDORS,
+    ({ brand, model }) => brandVendor === brand && model.test(str)
+  )
 
 const REGEX_BOOM_TYPE_CARBON = /carbono?/i
 const REGEX_BOOM_TYPE_ALUMINIUM = /aluminium|aluminio|alu/i

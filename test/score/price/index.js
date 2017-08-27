@@ -1,7 +1,7 @@
 'use strict'
 
 const should = require('should')
-const {find} = require('lodash')
+const { find } = require('lodash')
 
 const createGetScoreByCategory = require('../../../core/score/price/create-by-category')
 const createGetScoreByModel = require('../../../core/score/price/create-by-model')
@@ -40,7 +40,11 @@ describe('core » score', function () {
 
     it('by category', function () {
       const propName = 'price'
-      const getPriceByCategory = createGetScoreByCategory({ log, propName, data })
+      const getPriceByCategory = createGetScoreByCategory({
+        log,
+        propName,
+        data
+      })
       const { aggregate } = getPriceByCategory
       should(aggregate['sails.new.north.warp.2017.5m to 6m']).be.undefined()
       should(aggregate['masts.new.north.2017']).be.undefined()

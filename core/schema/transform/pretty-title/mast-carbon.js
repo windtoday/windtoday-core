@@ -3,7 +3,7 @@
 const condenseWhitespace = require('condense-whitespace')
 const { flow, replace } = require('lodash')
 
-const {create: createMastCarbon} = require('../../../identify/mast/carbon')
+const { create: createMastCarbon } = require('../../../identify/mast/carbon')
 
 const REPLACEMENT = '{{SIZE}}'
 const REGEX_MAST_CARBON_WORD = /carbon/i
@@ -19,6 +19,10 @@ module.exports = ({ title, year, 'mast carbon': mastCarbon }) => {
   if (!mastCarbon) return title
   const { output } = getMastCarbon(title)
   const normalizedOutput = normalizeOutput(output)
-  const replacerOutput = replace(normalizedOutput, REPLACEMENT, `C${mastCarbon}`)
+  const replacerOutput = replace(
+    normalizedOutput,
+    REPLACEMENT,
+    `C${mastCarbon}`
+  )
   return condenseWhitespace(replacerOutput)
 }

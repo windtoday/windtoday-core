@@ -2,4 +2,4 @@
 
 const condenseWhitespace = require('condense-whitespace')
 
-module.exports = ({title}) => condenseWhitespace(title)
+module.exports = ({ title }) => condenseWhitespace(title)

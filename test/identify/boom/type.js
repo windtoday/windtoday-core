@@ -28,11 +28,11 @@ describe('identify » bom » type', function () {
 
   describe('special vendors', function () {
     ;[
-      {str: 'NEILPRYDE X9 BOOM 140 €839', type: 'carbon'},
-      {str: 'SEVERNE SAILS ENIGMA BOOM 140 €879', type: 'carbon'},
-      {str: 'NORTHSAILS PLATINUM RACE 240 €1140', type: 'carbon'},
-      {str: 'NORTHSAILS GOLD SERIES RS 170 €369', type: 'carbon'}
-    ].forEach(({str, type}) => {
+      { str: 'NEILPRYDE X9 BOOM 140 €839', type: 'carbon' },
+      { str: 'SEVERNE SAILS ENIGMA BOOM 140 €879', type: 'carbon' },
+      { str: 'NORTHSAILS PLATINUM RACE 240 €1140', type: 'carbon' },
+      { str: 'NORTHSAILS GOLD SERIES RS 170 €369', type: 'carbon' }
+    ].forEach(({ str, type }) => {
       it(`${str} → carbon`, function () {
         const { data, output } = boom(str)
         should(get(data, 'type')).be.equal(type)

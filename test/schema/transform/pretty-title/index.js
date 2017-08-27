@@ -180,32 +180,31 @@ describe('schema » transform » pretty title', function () {
     },
     {
       item: {
-        'isForced': true,
-        'title': 'North Blacklabel 100% Carbon (flex Top) SDM 490',
-        'category': [
-          'masts'
-        ],
-        'seller': 'new',
-        'condition': 'new',
-        'provider': 'wewind',
-        'path': 'masts',
-        'link': 'http://we-wind.com/mastiles-de-windsurf-es-2/mast-blacklabel-series-ns-100-ft-sdm.html?ref=windtodayco',
-        'image': 'http://we-wind.com/images/thumbnails/2/230/230/14130-1623.jpg',
-        'updatedAt': 1499983200000,
-        'timestamp': 1500063827240,
-        'brand': 'North',
-        'price': 595,
+        isForced: true,
+        title: 'North Blacklabel 100% Carbon (flex Top) SDM 490',
+        category: ['masts'],
+        seller: 'new',
+        condition: 'new',
+        provider: 'wewind',
+        path: 'masts',
+        link:
+          'http://we-wind.com/mastiles-de-windsurf-es-2/mast-blacklabel-series-ns-100-ft-sdm.html?ref=windtodayco',
+        image: 'http://we-wind.com/images/thumbnails/2/230/230/14130-1623.jpg',
+        updatedAt: 1499983200000,
+        timestamp: 1500063827240,
+        brand: 'North',
+        price: 595,
         'mast carbon': 100,
         'mast type': 'sdm',
         'mast size': 490,
-        'priceScore': 10,
-        'priceScoreDetail': {
-          'byCategory': 38,
-          'byYear': 0,
-          'byBrand': 0,
-          'byModel': 0
+        priceScore: 10,
+        priceScoreDetail: {
+          byCategory: 38,
+          byYear: 0,
+          byBrand: 0,
+          byModel: 0
         },
-        'objectID': '4945460962'
+        objectID: '4945460962'
       },
       expected: 'North Blacklabel C100 (flex Top) SDM 490'
     }

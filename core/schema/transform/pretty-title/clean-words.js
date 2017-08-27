@@ -2,4 +2,4 @@
 
 const cleanWords = require('../../../util/clean-words')
 
-module.exports = ({title}) => cleanWords(title)
+module.exports = ({ title }) => cleanWords(title)

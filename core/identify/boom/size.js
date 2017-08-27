@@ -7,9 +7,7 @@ const REGEX_BOOM_SIZE = /\d{3}/
 
 const response = (data, output) => ({ data, output })
 
-const normalize = flow([
-  toNumber
-])
+const normalize = flow([toNumber])
 
 function size (str) {
   const size = strmatch(str, REGEX_BOOM_SIZE)

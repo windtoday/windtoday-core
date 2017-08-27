@@ -11,4 +11,5 @@ const getKey = (item, serializeProp, logMissing) => {
   return key
 }
 
-module.exports = ({ log, propName, data }) => createScore({ data, test, getKey, propName, log })
+module.exports = ({ log, propName, data }) =>
+  createScore({ data, test, getKey, propName, log })

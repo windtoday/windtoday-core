@@ -7,13 +7,13 @@ const search = require('../../db/search')
 
 function createProviderWorker ({ log, propName, data }) {
   const count = size(data)
-  const getPriceScore = createGetPriceScore({log, propName, data})
+  const getPriceScore = createGetPriceScore({ log, propName, data })
 
   const execWorker = cb => {
     log.info('update', { count })
     const batch = map(data, item => {
       const { objectID } = item
-      const {score, scoreDetail} = getPriceScore(item)
+      const { score, scoreDetail } = getPriceScore(item)
       const propNameScore = `${propName}Score`
 
       const updatedItem = {
@@ -22,7 +22,7 @@ function createProviderWorker ({ log, propName, data }) {
         [`${propNameScore}Detail`]: scoreDetail
       }
 
-      log.debug('score', {title: item.title}, updatedItem)
+      log.debug('score', { title: item.title }, updatedItem)
       return updatedItem
     })
 

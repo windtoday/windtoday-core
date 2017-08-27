@@ -5,15 +5,7 @@ const prettyMastCarbon = require('../../../../core/schema/transform/pretty-title
 
 describe('schema » transform » pretty title » mast type', function () {
   const expected = 'C75'
-  ;[
-    '75c',
-    '75C',
-    'c75',
-    'C75',
-    'X75',
-    'C75%',
-    '75%'
-  ].forEach(carbon => {
+  ;['75c', '75C', 'c75', 'C75', 'X75', 'C75%', '75%'].forEach(carbon => {
     it(carbon, function () {
       const title = `Mástil Neilpryde 4m ${carbon} SDM`
       const item = { title, 'mast carbon': 75 }

@@ -1,6 +1,6 @@
 'use strict'
 
-const {assign} = require('lodash')
+const { assign } = require('lodash')
 const should = require('should')
 
 const serializer = require('../../core/schema/serializer')
@@ -15,11 +15,15 @@ const singularCategory = {
 
 describe('schema » serializer', function () {
   describe('convert prop into specific category', function () {
-    ;['size', 'type', 'carbon', 'size type', 'carbon range'].forEach(function (prop) {
+    ;['size', 'type', 'carbon', 'size type', 'carbon range'].forEach(function (
+      prop
+    ) {
       it(prop, function () {
-        ;['boards', 'booms', 'fins', 'masts', 'sails'].forEach(function (category) {
+        ;['boards', 'booms', 'fins', 'masts', 'sails'].forEach(function (
+          category
+        ) {
           const fixture = assign(
-            {category},
+            { category },
             {
               size: 132,
               type: 'sdm',
