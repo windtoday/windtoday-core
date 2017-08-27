@@ -51,7 +51,7 @@ describe('schema » transform » pretty title', function () {
         year: 2016,
         'board size': 82
       },
-      expected: 'JP Australia Slalom Demo 82 2016'
+      expected: 'JP Australia Slalom Demo 82l 2016'
     },
     {
       item: {

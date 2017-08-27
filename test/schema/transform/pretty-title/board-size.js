@@ -3,17 +3,12 @@
 const should = require('should')
 const boardSize = require('../../../../core/schema/transform/pretty-title/board-size')
 
-const createCase = title => {
-  const item = {
-    title,
-    'board size': 120
-  }
-  return boardSize(item)
-}
+const createCase = title => boardSize({ title, 'board size': 120 })
 
 describe('schema » transform » pretty title » board » size', function () {
   const expected = 'Starboard 120l Futura'
   ;[
+    '120',
     '120 l',
     '120l',
     '120 litros',

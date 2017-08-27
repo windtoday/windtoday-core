@@ -1,26 +1,27 @@
 'use strict'
 
-const { chain, flow } = require('lodash')
-const strmatch = require('str-match')()
+const condenseWhitespace = require('condense-whitespace')
+const { chain, replace } = require('lodash')
 
 const {
-  regex: regexBoardSize,
+  create: createBoardSize,
   regexCleanOutput
 } = require('../../../identify/board/size')
 
-const removeSpaces = require('../../../util/remove-spaces')
+const REPLACEMENT = '{{SIZE}}'
 
-const getBoardSize = flow([removeSpaces])
+module.exports = ({ title: rawTitle, year, 'board size': boardSize }) => {
+  if (!boardSize) return rawTitle
 
-module.exports = (item) => {
-  const { title, 'board size': boardSize } = item
-  if (!boardSize) return title
+  // We remove the year for don't interfer in the board size detection
+  const title = replace(rawTitle, year, '')
 
-  const size = strmatch(title, regexBoardSize)
-  if (!size.test) return title
+  const getBoardSize = createBoardSize({ replacement: REPLACEMENT })
+  const { output } = getBoardSize(title)
 
-  return chain(title)
-    .replace(size.match, getBoardSize(size.match))
+  return chain(output)
     .replace(regexCleanOutput, '')
+    .replace(RegExp(`${REPLACEMENT}|${boardSize}`, 'i'), `${boardSize}l `)
+    .thru(condenseWhitespace)
     .value()
 }
