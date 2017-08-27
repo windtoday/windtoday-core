@@ -21,6 +21,7 @@ describe('identify » board » model', function () {
       const { data, output } = board(str)
       should(get(data, 'category')).be.equal('boards')
       should(get(data, 'model')).be.equal('Futura')
+      should(get(data, 'modality')).be.equal('Freerace')
       should(output.includes('futura')).be.false()
     })
   })

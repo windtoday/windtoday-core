@@ -20,8 +20,8 @@ function factory (log) {
     output: acc.dir.output
   }))
 
-  const addType = createAdd('type', acc => ({
-    data: acc.dir.data.type,
+  const addType = createAdd('modality', acc => ({
+    data: acc.dir.data.modality,
     output: acc.dir.output
   }))
 
