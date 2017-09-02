@@ -21,6 +21,7 @@ const isValidCondition = require('./validate/condition')
 const isValidSailSize = require('./validate/sail-size')
 const isValidTitle = require('./validate/title')
 const isValidPrice = require('./validate/price')
+const getDescription = require('../description')
 const serializer = require('./serializer')
 const isUrl = require('../util/is-url')
 
@@ -161,6 +162,9 @@ module.exports = function (schema, cb) {
     },
     function assignRangeProps (doc, next) {
       return next(null, assign(doc, getRangeProps(doc)))
+    },
+    function assignDescription (doc, next) {
+      return next(null, assign(doc, { description: getDescription(doc) }))
     },
     function sanetizeProps (doc, next) {
       return next(null, pickBy(doc))
