@@ -14,14 +14,14 @@ const doc = {
   model: 'Taka',
   price: 260,
   year: 2015,
-  'sail.size': 4.9
+  'sail.size': 4.9,
+  objectID: '910980951'
 }
 
 describe('share » compose message', function () {
   it('create the social text from the doc', function () {
-    const { title, price, link } = doc
     const message = compose(doc)
-    const expected = `💨 ${title} €${price} 👉 ${link}`
+    const expected = `💨 Ezzy Taka 4,9 2015 €260 👉 https://windtoday.co/item?id=910980951`
     should(message).be.equal(expected)
   })
 })
