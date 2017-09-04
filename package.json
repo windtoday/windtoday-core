@@ -62,7 +62,7 @@
     "coveralls": "latest",
     "git-dirty": "latest",
     "husky": "~0.14.3",
-    "lint-staged": "~4.0.2",
+    "lint-staged": "~4.1.0",
     "mocha": "latest",
     "nyc": "latest",
     "prettier-standard": "latest",
