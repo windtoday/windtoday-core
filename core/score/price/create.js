@@ -1,8 +1,8 @@
 'use strict'
 
+const normalizeValue = require('normalize-value')
 const { size, get, toLower } = require('lodash')
 
-const normalizeValue = require('../../util/normalize-value')
 const aggregateProp = require('../../util/aggregate-prop')
 const createLogMissing = require('./create-log-missing')
 const boardSizeRange = require('../../range/board-size')

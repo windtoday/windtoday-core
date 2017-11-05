@@ -39,6 +39,7 @@
     "lodash": "~4.17.4",
     "lpwind-api": "~1.0.4",
     "meow": "~3.7.0",
+    "normalize-value": "~1.0.0",
     "osom": "~2.2.2",
     "ozutarifa-api": "~1.2.5",
     "redis-diff": "~2.0.1",
