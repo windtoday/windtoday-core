@@ -1,5 +1,7 @@
 # windtoday-core
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/windtoday/windtoday-core.svg)](https://greenkeeper.io/)
+
 ![Last version](https://img.shields.io/github/tag/windtoday/windtoday-core.svg?style=flat-square)
 [![Build Status](https://img.shields.io/travis/windtoday/windtoday-core/master.svg?style=flat-square)](https://travis-ci.org/windtoday/windtoday-core)
 [![Coverage Status](https://img.shields.io/coveralls/windtoday/windtoday-core.svg?style=flat-square)](https://coveralls.io/github/windtoday/windtoday-core)
