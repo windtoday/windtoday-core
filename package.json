@@ -34,7 +34,7 @@
     "date-fns": "~1.29.0",
     "easysurfshop-api": "~1.0.5",
     "is-all-reachable": "~1.1.3",
-    "js-yaml": "~3.10.0",
+    "js-yaml": "~3.11.0",
     "json-future": "~2.1.2",
     "lodash": "~4.17.4",
     "lpwind-api": "~1.0.4",
