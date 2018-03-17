@@ -53,8 +53,8 @@ const calculateScore = (value, aggregation) => {
   return total === 1 && min === max
     ? 1
     : normalizeValue(value, [
-        { value: aggregation.min, norm: 1 },
-        { value: aggregation.max, norm: 0 }
+      { value: aggregation.min, norm: 1 },
+      { value: aggregation.max, norm: 0 }
     ])
 }
 

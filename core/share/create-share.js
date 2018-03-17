@@ -4,14 +4,14 @@ const { get, size } = require('lodash')
 const bufferapp = require('buffer-node')
 const { each } = require('async')
 
-const { accounts, access_token } = require('config').buffer
-const accessToken = get(global, access_token)
+const { accounts, access_token: accessToken } = require('config').buffer
+const bufferToken = get(global, accessToken)
 
 const createSendBuffer = require('./create-send-buffer')
 
 function createShare (composeMessage, getShareables) {
   function share ({ log }) {
-    const client = bufferapp(accessToken)
+    const client = bufferapp(bufferToken)
     const sendToBuffer = createSendBuffer({
       client,
       accounts,
