@@ -77,7 +77,6 @@
     "clean": "rm -rf node_modules",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard",
-    "precommit": "lint-staged",
     "pretest": "npm run lint",
     "pretty": "prettier-standard --single-quote {core,test,bin}/**/*.js",
     "start": "echo 'waiting the wind'",
@@ -97,5 +96,10 @@
       "xdescribe",
       "xit"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
