@@ -30,7 +30,7 @@
     "calc-percent": "~1.0.1",
     "clean-stack": "~2.0.0",
     "condense-whitespace": "~1.0.0",
-    "config": "~2.0.1",
+    "config": "~3.0.0",
     "date-fns": "~1.29.0",
     "easysurfshop-api": "~1.0.5",
     "is-all-reachable": "~1.1.3",
