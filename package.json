@@ -49,7 +49,7 @@
     "str-match": "~2.1.2",
     "surfkeppler-api": "~1.0.4",
     "telstarsurf-api": "~1.0.7",
-    "titleize": "~1.0.0",
+    "titleize": "~2.0.0",
     "totalwind-api": "~1.2.4",
     "url-regex": "~4.1.1",
     "weighted-mean": "~1.0.2",
