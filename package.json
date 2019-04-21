@@ -51,7 +51,7 @@
     "telstarsurf-api": "~1.0.7",
     "titleize": "~2.1.0",
     "totalwind-api": "~1.2.4",
-    "url-regex": "~4.1.1",
+    "url-regex": "~5.0.0",
     "weighted-mean": "~1.0.2",
     "wewind-api": "~1.0.2",
     "windtoday-windsurf-accesories": "github:windtoday/windtoday-windsurf-accesories",
