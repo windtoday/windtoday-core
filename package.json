@@ -23,7 +23,7 @@
     "acho": "~4.0.1",
     "algoliasearch": "~3.33.0",
     "append-query": "~2.0.1",
-    "async": "~2.6.0",
+    "async": "~3.1.0",
     "bellini-api": "~1.0.5",
     "bigsurfshop-api": "~1.0.7",
     "buffer-node": "~1.0.4",
