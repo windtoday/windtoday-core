@@ -28,7 +28,7 @@
     "bigsurfshop-api": "~1.0.7",
     "buffer-node": "~1.0.4",
     "calc-percent": "~1.0.1",
-    "clean-stack": "~2.1.0",
+    "clean-stack": "~2.2.0",
     "condense-whitespace": "~2.0.0",
     "config": "~3.2.0",
     "date-fns": "~1.30.0",
