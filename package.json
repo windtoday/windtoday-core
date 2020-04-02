@@ -20,7 +20,7 @@
     "windtoday"
   ],
   "dependencies": {
-    "acho": "~4.0.1",
+    "acho": "~4.0.6",
     "algoliasearch": "~3.33.0",
     "append-query": "~2.1.0",
     "async": "~3.1.0",
