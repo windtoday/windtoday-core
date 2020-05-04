@@ -38,7 +38,7 @@
     "json-future": "~2.2.4",
     "lodash": "~4.17.5",
     "lpwind-api": "~1.0.4",
-    "meow": "~5.0.0",
+    "meow": "~6.1.1",
     "normalize-value": "~1.0.1",
     "osom": "2.3.0",
     "ozutarifa-api": "~1.2.5",
