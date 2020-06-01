@@ -46,7 +46,7 @@
     "regex-word-boundary": "~1.0.1",
     "import-modules": "~1.1.0",
     "stats-percentile": "~3.1.0",
-    "str-match": "~2.1.2",
+    "str-match": "~2.1.6",
     "surfkeppler-api": "~1.0.4",
     "telstarsurf-api": "~1.0.7",
     "titleize": "~2.1.0",
