@@ -44,7 +44,7 @@
     "ozutarifa-api": "~1.2.5",
     "redis-diff": "~2.0.1",
     "regex-word-boundary": "~1.0.1",
-    "import-modules": "~1.1.0",
+    "import-modules": "~2.1.0",
     "stats-percentile": "~3.1.0",
     "str-match": "~2.1.2",
     "surfkeppler-api": "~1.0.4",
