@@ -1,0 +1,35 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: date-fns
+    versions:
+    - 2.16.1
+    - 2.17.0
+    - 2.18.0
+    - 2.19.0
+    - 2.20.0
+    - 2.20.1
+    - 2.20.2
+    - 2.20.3
+    - 2.21.0
+  - dependency-name: algoliasearch
+    versions:
+    - 4.8.4
+    - 4.8.5
+    - 4.8.6
+    - 4.9.0
+  - dependency-name: config
+    versions:
+    - 3.3.3
+    - 3.3.4
+  - dependency-name: js-yaml
+    versions:
+    - 4.0.0
+  - dependency-name: clean-stack
+    versions:
+    - 3.0.1
